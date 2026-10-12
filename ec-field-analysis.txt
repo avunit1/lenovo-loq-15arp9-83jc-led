@@ -1,0 +1,984 @@
+﻿
+  DSDT.dsl:85:    External (_SB_.PCI0.LPC0.EC0_.ESCX, UnknownObj)
+  DSDT.dsl:86:    External (_SB_.PCI0.LPC0.EC0_.ESMB, UnknownObj)
+  DSDT.dsl:87:    External (_SB_.PCI0.LPC0.EC0_.ESMC, MethodObj)    // 1 Arguments
+  DSDT.dsl:88:    External (_SB_.PCI0.LPC0.EC0_.ESMS, UnknownObj)
+  DSDT.dsl:89:    External (_SB_.PCI0.LPC0.EC0_.FPTB, UnknownObj)
+> DSDT.dsl:90:    External (_SB_.PCI0.LPC0.EC0_.GZ35, FieldUnitObj)
+  DSDT.dsl:91:    External (_SB_.PCI0.LPC0.EC0_.IBAC, UnknownObj)
+  DSDT.dsl:92:    External (_SB_.PCI0.LPC0.EC0_.IBPD, UnknownObj)
+> DSDT.dsl:93:    External (_SB_.PCI0.LPC0.EC0_.KLEN, UnknownObj)
+  DSDT.dsl:94:    External (_SB_.PCI0.LPC0.EC0_.M034, MethodObj)    // 1 Arguments
+  DSDT.dsl:95:    External (_SB_.PCI0.LPC0.EC0_.NVRE, UnknownObj)
+  DSDT.dsl:96:    External (_SB_.PCI0.LPC0.EC0_.PDTY, UnknownObj)
+  DSDT.dsl:97:    External (_SB_.PCI0.LPC0.EC0_.PMID, UnknownObj)
+  DSDT.dsl:98:    External (_SB_.PCI0.LPC0.EC0_.RWAK, UnknownObj)
+  DSDT.dsl:99:    External (_SB_.PCI0.LPC0.EC0_.TCAD, UnknownObj)
+  DSDT.dsl:100:    External (_SB_.PCI0.LPC0.EC0_.TIDB, UnknownObj)
+  DSDT.dsl:101:    External (_SB_.PCI0.LPC0.EC0_.TKEY, UnknownObj)
+  DSDT.dsl:1312:    Scope (_SB)
+  DSDT.dsl:1313:    {
+  DSDT.dsl:1314:        Name (APBM, 0x00)
+  DSDT.dsl:1315:        Device (PWRB)
+  DSDT.dsl:1316:        {
+> DSDT.dsl:1317:            Name (_HID, EisaId ("PNP0C0C") /* Power Button Device */)  // _HID: Hardware ID
+> DSDT.dsl:1318:            Name (_DDN, "Power button")  // _DDN: DOS Device Name
+  DSDT.dsl:1319:            Method (_STA, 0, NotSerialized)  // _STA: Status
+  DSDT.dsl:1320:            {
+  DSDT.dsl:1321:                Name (PSTA, Zero)
+  DSDT.dsl:1322:                M460 ("PLA-ASL-\\_SB.PWRB._STA = 0xB\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  DSDT.dsl:1323:                If ((APBM == One))
+  DSDT.dsl:1324:                {
+  DSDT.dsl:1325:                    PSTA = 0x0B
+  DSDT.dsl:1326:                }
+  DSDT.dsl:10079:
+  DSDT.dsl:10080:            Method (PWSW, 0, NotSerialized)
+  DSDT.dsl:10081:            {
+  DSDT.dsl:10082:                If (CSAD ())
+  DSDT.dsl:10083:                {
+> DSDT.dsl:10084:                    GZ44 = RXMS (0x76)
+> DSDT.dsl:10085:                    SSFM (Zero, GZ44)
+  DSDT.dsl:10086:                }
+  DSDT.dsl:10087:                Else
+  DSDT.dsl:10088:                {
+  DSDT.dsl:10089:                    Local2 = RXMS (0x76)
+  DSDT.dsl:10090:                    Local3 = RXMS (0x7A)
+  DSDT.dsl:10091:                    If (((Local2 == 0x03) && (ADPS == 0x03)))
+  DSDT.dsl:10092:                    {
+  DSDT.dsl:10093:                        If (((Local3 == Zero) || (Local3 == One)))
+  DSDT.dsl:10094:                        {
+  DSDT.dsl:10095:                            WXMS (0x77, Zero)
+> DSDT.dsl:10096:                            GZ44 = Zero
+  DSDT.dsl:10097:                            SSFM (Zero, Zero)
+  DSDT.dsl:10098:                        }
+  DSDT.dsl:10099:                        Else
+  DSDT.dsl:10100:                        {
+  DSDT.dsl:10101:                            WXMS (0x77, 0x02)
+> DSDT.dsl:10102:                            GZ44 = 0x02
+  DSDT.dsl:10103:                            SSFM (Zero, 0x02)
+  DSDT.dsl:10104:                        }
+  DSDT.dsl:10105:                    }
+  DSDT.dsl:10106:                    ElseIf ((Local2 != 0x02))
+  DSDT.dsl:10107:                    {
+  DSDT.dsl:10108:                        WXMS (0x77, Zero)
+> DSDT.dsl:10109:                        GZ44 = Zero
+  DSDT.dsl:10110:                        SSFM (Zero, Zero)
+  DSDT.dsl:10111:                    }
+  DSDT.dsl:10112:                    Else
+  DSDT.dsl:10113:                    {
+  DSDT.dsl:10114:                        WXMS (0x77, 0x02)
+> DSDT.dsl:10115:                        GZ44 = 0x02
+  DSDT.dsl:10116:                        SSFM (Zero, 0x02)
+  DSDT.dsl:10117:                    }
+  DSDT.dsl:10118:                }
+  DSDT.dsl:10119:
+> DSDT.dsl:10120:                If (!((GZ44 == Zero) && (SUBM != Zero)))
+  DSDT.dsl:10121:                {
+  DSDT.dsl:10122:                    Notify (GZFD, 0xD9) // Hardware-Specific
+  DSDT.dsl:10123:                }
+  DSDT.dsl:10124:
+  DSDT.dsl:10125:                SSFM (One, Zero)
+  DSDT.dsl:10126:            }
+  DSDT.dsl:10127:
+  DSDT.dsl:10128:            Method (_Q11, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:10371:
+  DSDT.dsl:10372:                        }
+  DSDT.dsl:10373:                    }
+  DSDT.dsl:10374:
+  DSDT.dsl:10375:                    WXMS (0x76, Local1)
+> DSDT.dsl:10376:                    GZ44 = Local1
+  DSDT.dsl:10377:                    SSFM (Zero, Local1)
+  DSDT.dsl:10378:                }
+  DSDT.dsl:10379:                Else
+  DSDT.dsl:10380:                {
+  DSDT.dsl:10381:                    Local1 = RXMS (0x77)
+  DSDT.dsl:10382:                    If ((Local1 == 0x02))
+  DSDT.dsl:10383:                    {
+  DSDT.dsl:10384:                        Local1 = Zero
+  DSDT.dsl:10391:                    If ((Local1 == Zero))
+  DSDT.dsl:10392:                    {
+  DSDT.dsl:10393:                        WXMS (0x77, Zero)
+  DSDT.dsl:10394:                        WXMS (0x76, Zero)
+  DSDT.dsl:10395:                        SSFM (Zero, Zero)
+> DSDT.dsl:10396:                        GZ44 = Zero
+  DSDT.dsl:10397:                    }
+  DSDT.dsl:10398:                    Else
+  DSDT.dsl:10399:                    {
+  DSDT.dsl:10400:                        WXMS (0x77, 0x02)
+  DSDT.dsl:10401:                        WXMS (0x76, 0x02)
+  DSDT.dsl:10402:                        SSFM (Zero, 0x02)
+> DSDT.dsl:10403:                        GZ44 = 0x02
+  DSDT.dsl:10404:                    }
+  DSDT.dsl:10405:                }
+  DSDT.dsl:10406:
+  DSDT.dsl:10407:                Notify (GZFD, 0xD5) // Hardware-Specific
+  DSDT.dsl:10408:                Notify (GZFD, 0xD9) // Hardware-Specific
+  DSDT.dsl:10409:                SSFM (One, Zero)
+  DSDT.dsl:10410:            }
+  DSDT.dsl:10411:
+  DSDT.dsl:10412:            Method (_Q16, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:10413:            {
+  DSDT.dsl:10414:                Debug = "Q16 trigger"
+  DSDT.dsl:10415:                Notify (GZFD, 0xD8) // Hardware-Specific
+> DSDT.dsl:10416:                If ((GZ35 == Zero))
+  DSDT.dsl:10417:                {
+  DSDT.dsl:10418:                    ^^^^GZFD.KYID = 0x03
+  DSDT.dsl:10419:                    Notify (GZFD, 0xDA) // Hardware-Specific
+> DSDT.dsl:10420:                    If ((KLEN == Zero))
+  DSDT.dsl:10421:                    {
+  DSDT.dsl:10422:                        PSD1 = 0x40
+  DSDT.dsl:10423:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10424:                    }
+> DSDT.dsl:10425:                    ElseIf ((KLEN == One))
+  DSDT.dsl:10426:                    {
+  DSDT.dsl:10427:                        PSD1 = 0x41
+  DSDT.dsl:10428:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10429:                    }
+> DSDT.dsl:10430:                    ElseIf ((KLEN == 0x02))
+  DSDT.dsl:10431:                    {
+  DSDT.dsl:10432:                        PSD1 = 0x42
+  DSDT.dsl:10433:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10434:                    }
+  DSDT.dsl:10435:                    Else
+  DSDT.dsl:10436:                    {
+  DSDT.dsl:10437:                        PSD1 = 0x40
+  DSDT.dsl:10438:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10441:            }
+  DSDT.dsl:10442:
+  DSDT.dsl:10443:            Method (_Q2D, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:10444:            {
+  DSDT.dsl:10445:                Debug = "Q2D trigger"
+> DSDT.dsl:10446:                If ((GZ35 == One))
+  DSDT.dsl:10447:                {
+  DSDT.dsl:10448:                    ^^^^GZFD.KYID = 0x03
+  DSDT.dsl:10449:                    Notify (GZFD, 0xDA) // Hardware-Specific
+  DSDT.dsl:10450:                    If ((RGBM == Zero))
+  DSDT.dsl:10451:                    {
+  DSDT.dsl:10452:                        PSD1 = 0x1B
+  DSDT.dsl:10453:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10454:                    }
+  DSDT.dsl:10493:            }
+  DSDT.dsl:10494:
+  DSDT.dsl:10495:            Method (_Q2E, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:10496:            {
+  DSDT.dsl:10497:                Debug = "=====PROJECT_QUERY_2E====="
+> DSDT.dsl:10498:                If (((BLPF == One) && ((GZ44 == One) || (GZ44 == 0x07))))
+  DSDT.dsl:10499:                {
+  DSDT.dsl:10500:                    Local0 = (FSOC - CSOC) /* \_SB_.PCI0.LPC0.EC0_.CSOC */
+  DSDT.dsl:10501:                    If (((Local0 >= 0x0B) && (Local0 <= 0x0F)))
+  DSDT.dsl:10502:                    {
+  DSDT.dsl:10503:                        WXMS (0x71, One)
+  DSDT.dsl:10504:                    }
+  DSDT.dsl:10505:                    ElseIf (((Local0 >= 0x15) && (Local0 <= 0x19)))
+  DSDT.dsl:10506:                    {
+  DSDT.dsl:12441:                RETD |= One
+  DSDT.dsl:12442:                Switch (ToInteger (ICMD))
+  DSDT.dsl:12443:                {
+  DSDT.dsl:12444:                    Case (One)
+  DSDT.dsl:12445:                    {
+> DSDT.dsl:12446:                        If ((GZ35 == Zero))
+  DSDT.dsl:12447:                        {
+  DSDT.dsl:12448:                            Local0 = 0x04
+  DSDT.dsl:12449:                            RETD |= Local0
+  DSDT.dsl:12450:                        }
+  DSDT.dsl:12451:                        Else
+  DSDT.dsl:12452:                        {
+  DSDT.dsl:12453:                            Local0 = Zero
+  DSDT.dsl:12454:                            RETD |= Local0
+  DSDT.dsl:12458:                    {
+  DSDT.dsl:12459:                        Switch (ToInteger (IDTL))
+  DSDT.dsl:12460:                        {
+  DSDT.dsl:12461:                            Case (One)
+  DSDT.dsl:12462:                            {
+> DSDT.dsl:12463:                                Local0 = (KLEN << One)
+  DSDT.dsl:12464:                                RETD |= Local0
+  DSDT.dsl:12465:                            }
+  DSDT.dsl:12466:                            Case (0x02)
+  DSDT.dsl:12467:                            {
+> DSDT.dsl:12468:                                Local0 = (KLEN << One)
+  DSDT.dsl:12469:                                RETD |= Local0
+  DSDT.dsl:12470:                            }
+  DSDT.dsl:12471:                            Case (0x03)
+  DSDT.dsl:12472:                            {
+> DSDT.dsl:12473:                                Local0 = (KLEN << One)
+  DSDT.dsl:12474:                                RETD |= Local0
+  DSDT.dsl:12475:                                RETD |= 0x00010000
+  DSDT.dsl:12476:                            }
+  DSDT.dsl:12477:
+  DSDT.dsl:12478:                        }
+  DSDT.dsl:12479:                    }
+  DSDT.dsl:12480:                    Case (0x03)
+  DSDT.dsl:12481:                    {
+  DSDT.dsl:12482:                        Switch (ToInteger (IDTL))
+  DSDT.dsl:12483:                        {
+  DSDT.dsl:12484:                            Case (One)
+  DSDT.dsl:12485:                            {
+  DSDT.dsl:12486:                                Local0 = (IDTH & One)
+> DSDT.dsl:12487:                                KLEN = Local0
+> DSDT.dsl:12488:                                Local0 = (KLEN << One)
+  DSDT.dsl:12489:                                RETD |= Local0
+  DSDT.dsl:12490:                            }
+  DSDT.dsl:12491:                            Case (0x02)
+  DSDT.dsl:12492:                            {
+> DSDT.dsl:12493:                                KLEN = IDTH /* \_SB_.PCI0.LPC0.EC0_.VPC0.KBLC.IDTH */
+> DSDT.dsl:12494:                                Local0 = (KLEN << One)
+  DSDT.dsl:12495:                                RETD |= Local0
+  DSDT.dsl:12496:                            }
+  DSDT.dsl:12497:                            Case (0x03)
+  DSDT.dsl:12498:                            {
+> DSDT.dsl:12499:                                KLEN = IDTH /* \_SB_.PCI0.LPC0.EC0_.VPC0.KBLC.IDTH */
+> DSDT.dsl:12500:                                Local0 = (KLEN << One)
+  DSDT.dsl:12501:                                RETD |= Local0
+  DSDT.dsl:12502:                                RETD |= 0x00010000
+  DSDT.dsl:12503:                            }
+  DSDT.dsl:12504:
+  DSDT.dsl:12505:                        }
+  DSDT.dsl:12506:                    }
+  DSDT.dsl:12507:
+  DSDT.dsl:12508:                }
+  DSDT.dsl:12728:        }
+  DSDT.dsl:12729:
+  DSDT.dsl:12730:        Field (ECMM, AnyAcc, Lock, Preserve)
+  DSDT.dsl:12731:        {
+  DSDT.dsl:12732:            Offset (0x03), 
+> DSDT.dsl:12733:            KLEN,   2, 
+  DSDT.dsl:12734:            UCEN,   1, 
+  DSDT.dsl:12735:            UCEX,   1, 
+  DSDT.dsl:12736:            KLEX,   1, 
+  DSDT.dsl:12737:                ,   2, 
+  DSDT.dsl:12738:            UCBM,   1, 
+  DSDT.dsl:12739:            SBOV,   1, 
+  DSDT.dsl:12740:            SBIL,   1, 
+  DSDT.dsl:12741:            SBPF,   1, 
+  DSDT.dsl:12772:            GZ13,   1, 
+  DSDT.dsl:12773:            GZ22,   1, 
+  DSDT.dsl:12774:            GZ25,   1, 
+  DSDT.dsl:12775:                ,   1, 
+  DSDT.dsl:12776:            ECRS,   1, 
+> DSDT.dsl:12777:            GZ44,   3, 
+  DSDT.dsl:12778:            YMCD,   8, 
+  DSDT.dsl:12779:            PODL,   8, 
+  DSDT.dsl:12780:            PODH,   8, 
+  DSDT.dsl:12781:            Offset (0x10), 
+  DSDT.dsl:12782:                ,   1, 
+  DSDT.dsl:12783:                ,   1, 
+  DSDT.dsl:12784:            STMD,   1, 
+  DSDT.dsl:12785:                ,   1, 
+  DSDT.dsl:12794:            Offset (0x15), 
+  DSDT.dsl:12795:            Offset (0x16), 
+  DSDT.dsl:12796:            Offset (0x17), 
+  DSDT.dsl:12797:            ATMP,   8, 
+  DSDT.dsl:12798:            GZ52,   1, 
+> DSDT.dsl:12799:            GZ35,   1, 
+  DSDT.dsl:12800:            BDPF,   1, 
+  DSDT.dsl:12801:                ,   1, 
+  DSDT.dsl:12802:            PGPW,   1, 
+  DSDT.dsl:12803:                ,   1, 
+  DSDT.dsl:12804:                ,   1, 
+  DSDT.dsl:12805:            Offset (0x19), 
+  DSDT.dsl:12806:            EPWM,   16, 
+  DSDT.dsl:12807:            SBAM,   1, 
+  DSDT.dsl:13246:                        {
+  DSDT.dsl:13247:                            Return (0x21)
+  DSDT.dsl:13248:                        }
+  DSDT.dsl:13249:                        ElseIf ((ToInteger (Arg2) == 0x21))
+  DSDT.dsl:13250:                        {
+> DSDT.dsl:13251:                            If ((^^PCI0.LPC0.EC0.GZ35 == Zero))
+  DSDT.dsl:13252:                            {
+  DSDT.dsl:13253:                                Return (0x21)
+  DSDT.dsl:13254:                            }
+  DSDT.dsl:13255:                            Else
+  DSDT.dsl:13256:                            {
+  DSDT.dsl:13257:                                Return (Zero)
+  DSDT.dsl:13258:                            }
+  DSDT.dsl:13259:                        }
+  DSDT.dsl:16072:                    }
+  DSDT.dsl:16073:
+  DSDT.dsl:16074:                }
+  DSDT.dsl:16075:            }
+  DSDT.dsl:16076:
+> DSDT.dsl:16077:            If ((ToInteger (^PCI0.LPC0.EC0.GZ44) == 0x03))
+  DSDT.dsl:16078:            {
+  DSDT.dsl:16079:                ^NPCF.DBAC = Zero
+  DSDT.dsl:16080:            }
+> DSDT.dsl:16081:            ElseIf ((ToInteger (^PCI0.LPC0.EC0.GZ44) == 0x07))
+  DSDT.dsl:16082:            {
+  DSDT.dsl:16083:                If ((PMID == Zero))
+  DSDT.dsl:16084:                {
+  DSDT.dsl:16085:                    If ((RXMS (0x71) == One))
+  DSDT.dsl:16086:                    {
+  DSDT.dsl:16087:                        Local2 = (DerefOf (DerefOf (Local1 [0x04]) [One]) - 0x0A)
+  DSDT.dsl:16088:                        ^NPCF.ACBT = (Local2 * 0x08)
+  DSDT.dsl:16089:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [0x04]) [0x02]) * 0x08)
+  DSDT.dsl:16209:            }
+  DSDT.dsl:16210:            Else
+  DSDT.dsl:16211:            {
+  DSDT.dsl:16212:                If ((PMID == Zero))
+  DSDT.dsl:16213:                {
+> DSDT.dsl:16214:                    If ((ToInteger (^PCI0.LPC0.EC0.GZ44) == One))
+  DSDT.dsl:16215:                    {
+  DSDT.dsl:16216:                        If ((RXMS (0x71) == One))
+  DSDT.dsl:16217:                        {
+> DSDT.dsl:16218:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16219:                                ) - 0x0A)
+  DSDT.dsl:16220:                            ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16221:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16222:                                ) * 0x08)
+> DSDT.dsl:16223:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16224:                                ) * 0x08)
+  DSDT.dsl:16225:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16226:                            ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16227:                                ) * 0x08)
+> DSDT.dsl:16228:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16229:                                )
+  DSDT.dsl:16230:                        }
+  DSDT.dsl:16231:                        ElseIf ((RXMS (0x71) == 0x02))
+  DSDT.dsl:16232:                        {
+> DSDT.dsl:16233:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16234:                                ) - 0x14)
+  DSDT.dsl:16235:                            ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16236:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16237:                                ) * 0x08)
+> DSDT.dsl:16238:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16239:                                ) * 0x08)
+  DSDT.dsl:16240:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16241:                            ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16242:                                ) * 0x08)
+> DSDT.dsl:16243:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16244:                                )
+  DSDT.dsl:16245:                        }
+  DSDT.dsl:16246:                        ElseIf ((RXMS (0x71) == 0x03))
+  DSDT.dsl:16247:                        {
+> DSDT.dsl:16248:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16249:                                ) - 0x1E)
+  DSDT.dsl:16250:                            ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16251:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16252:                                ) * 0x08)
+> DSDT.dsl:16253:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16254:                                ) * 0x08)
+  DSDT.dsl:16255:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16256:                            ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16257:                                ) * 0x08)
+> DSDT.dsl:16258:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16259:                                )
+  DSDT.dsl:16260:                        }
+  DSDT.dsl:16261:                        Else
+  DSDT.dsl:16262:                        {
+> DSDT.dsl:16263:                            ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16264:                                ) * 0x08)
+> DSDT.dsl:16265:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16266:                                ) * 0x08)
+> DSDT.dsl:16267:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16268:                                ) * 0x08)
+  DSDT.dsl:16269:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16270:                            ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16271:                                ) * 0x08)
+> DSDT.dsl:16272:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16273:                                )
+  DSDT.dsl:16274:                        }
+  DSDT.dsl:16275:                    }
+  DSDT.dsl:16276:                    Else
+  DSDT.dsl:16277:                    {
+> DSDT.dsl:16278:                        ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16279:                            ) * 0x08)
+> DSDT.dsl:16280:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16281:                            ) * 0x08)
+> DSDT.dsl:16282:                        TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16283:                            ) * 0x08)
+  DSDT.dsl:16284:                        ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16285:                        ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16286:                            ) * 0x08)
+> DSDT.dsl:16287:                        ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16288:                            )
+  DSDT.dsl:16289:                    }
+  DSDT.dsl:16290:                }
+> DSDT.dsl:16291:                ElseIf ((ToInteger (^PCI0.LPC0.EC0.GZ44) == One))
+  DSDT.dsl:16292:                {
+  DSDT.dsl:16293:                    If (((ToInteger (PGID) == 0x04) || (ToInteger (PGID) == 0x05)))
+  DSDT.dsl:16294:                    {
+  DSDT.dsl:16295:                        If ((RXMS (0x71) == One))
+  DSDT.dsl:16296:                        {
+> DSDT.dsl:16297:                            ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16298:                                ) * 0x08)
+> DSDT.dsl:16299:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16300:                                ) * 0x08)
+> DSDT.dsl:16301:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16302:                                ) * 0x08)
+  DSDT.dsl:16303:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16304:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16305:                                ) - 0x0A)
+  DSDT.dsl:16306:                            ^NPCF.ATPP = (Local2 * 0x08)
+> DSDT.dsl:16307:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16308:                                )
+  DSDT.dsl:16309:                        }
+  DSDT.dsl:16310:                        ElseIf ((RXMS (0x71) == 0x02))
+  DSDT.dsl:16311:                        {
+> DSDT.dsl:16312:                            ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16313:                                ) * 0x08)
+> DSDT.dsl:16314:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16315:                                ) * 0x08)
+> DSDT.dsl:16316:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16317:                                ) * 0x08)
+  DSDT.dsl:16318:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16319:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16320:                                ) - 0x14)
+  DSDT.dsl:16321:                            ^NPCF.ATPP = (Local2 * 0x08)
+> DSDT.dsl:16322:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16323:                                )
+  DSDT.dsl:16324:                        }
+  DSDT.dsl:16325:                        ElseIf ((RXMS (0x71) == 0x03))
+  DSDT.dsl:16326:                        {
+> DSDT.dsl:16327:                            ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16328:                                ) * 0x08)
+> DSDT.dsl:16329:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16330:                                ) * 0x08)
+> DSDT.dsl:16331:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16332:                                ) * 0x08)
+  DSDT.dsl:16333:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16334:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16335:                                ) - 0x1E)
+  DSDT.dsl:16336:                            ^NPCF.ATPP = (Local2 * 0x08)
+> DSDT.dsl:16337:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16338:                                )
+  DSDT.dsl:16339:                        }
+  DSDT.dsl:16340:                        Else
+  DSDT.dsl:16341:                        {
+> DSDT.dsl:16342:                            ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16343:                                ) * 0x08)
+> DSDT.dsl:16344:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16345:                                ) * 0x08)
+> DSDT.dsl:16346:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16347:                                ) * 0x08)
+  DSDT.dsl:16348:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16349:                            ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16350:                                ) * 0x08)
+> DSDT.dsl:16351:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16352:                                )
+  DSDT.dsl:16353:                        }
+  DSDT.dsl:16354:                    }
+  DSDT.dsl:16355:                    ElseIf ((RXMS (0x71) == One))
+  DSDT.dsl:16356:                    {
+> DSDT.dsl:16357:                        Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16358:                            ) - 0x0A)
+  DSDT.dsl:16359:                        ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16360:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16361:                            ) * 0x08)
+> DSDT.dsl:16362:                        TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16363:                            ) * 0x08)
+  DSDT.dsl:16364:                        ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16365:                        ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16366:                            ) * 0x08)
+> DSDT.dsl:16367:                        ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16368:                            )
+  DSDT.dsl:16369:                    }
+  DSDT.dsl:16370:                    ElseIf ((RXMS (0x71) == 0x02))
+  DSDT.dsl:16371:                    {
+> DSDT.dsl:16372:                        Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16373:                            ) - 0x14)
+  DSDT.dsl:16374:                        ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16375:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16376:                            ) * 0x08)
+> DSDT.dsl:16377:                        TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16378:                            ) * 0x08)
+  DSDT.dsl:16379:                        ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16380:                        ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16381:                            ) * 0x08)
+> DSDT.dsl:16382:                        ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16383:                            )
+  DSDT.dsl:16384:                    }
+  DSDT.dsl:16385:                    ElseIf ((RXMS (0x71) == 0x03))
+  DSDT.dsl:16386:                    {
+> DSDT.dsl:16387:                        Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16388:                            ) - 0x1E)
+  DSDT.dsl:16389:                        ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16390:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16391:                            ) * 0x08)
+> DSDT.dsl:16392:                        TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16393:                            ) * 0x08)
+  DSDT.dsl:16394:                        ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16395:                        ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16396:                            ) * 0x08)
+> DSDT.dsl:16397:                        ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16398:                            )
+  DSDT.dsl:16399:                    }
+  DSDT.dsl:16400:                    Else
+  DSDT.dsl:16401:                    {
+> DSDT.dsl:16402:                        ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16403:                            ) * 0x08)
+> DSDT.dsl:16404:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16405:                            ) * 0x08)
+> DSDT.dsl:16406:                        TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16407:                            ) * 0x08)
+  DSDT.dsl:16408:                        ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16409:                        ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16410:                            ) * 0x08)
+> DSDT.dsl:16411:                        ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16412:                            )
+  DSDT.dsl:16413:                    }
+  DSDT.dsl:16414:                }
+  DSDT.dsl:16415:                Else
+  DSDT.dsl:16416:                {
+> DSDT.dsl:16417:                    ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16418:                        ) * 0x08)
+> DSDT.dsl:16419:                    ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16420:                        ) * 0x08)
+> DSDT.dsl:16421:                    TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16422:                        ) * 0x08)
+  DSDT.dsl:16423:                    ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16424:                    ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16425:                        ) * 0x08)
+> DSDT.dsl:16426:                    ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16427:                        )
+  DSDT.dsl:16428:                }
+  DSDT.dsl:16429:
+  DSDT.dsl:16430:                WXMS (0x71, Zero)
+  DSDT.dsl:16431:            }
+  DSDT.dsl:16432:
+> DSDT.dsl:16433:            If ((ToInteger (^PCI0.LPC0.EC0.GZ44) == Zero))
+  DSDT.dsl:16434:            {
+  DSDT.dsl:16435:                If ((SUBM != Zero))
+  DSDT.dsl:16436:                {
+  DSDT.dsl:16437:                    If ((PMID == One))
+  DSDT.dsl:16438:                    {
+  DSDT.dsl:16439:                        If ((PGID == Zero))
+  DSDT.dsl:16440:                        {
+  DSDT.dsl:16441:                            CopyObject (DBA0, Local1)
+  DSDT.dsl:16497:                    ^NPCF.DBAC = DerefOf (DerefOf (Local1 [(ToInteger (SUBM) - One
+  DSDT.dsl:16498:                        )]) [0x05])
+  DSDT.dsl:16499:                }
+  DSDT.dsl:16500:            }
+  DSDT.dsl:16501:
+> DSDT.dsl:16502:            If ((ToInteger (^PCI0.LPC0.EC0.GZ44) == 0x02))
+  DSDT.dsl:16503:            {
+  DSDT.dsl:16504:                ^NPCF.DROS = 0xAFC8
+  DSDT.dsl:16505:            }
+  DSDT.dsl:16506:            Else
+  DSDT.dsl:16507:            {
+  DSDT.dsl:16508:                ^NPCF.DROS = Zero
+  DSDT.dsl:16509:            }
+  DSDT.dsl:16510:
+  DSDT.dsl:16514:                {
+  DSDT.dsl:16515:                    ^NPCF.DBAC = One
+  DSDT.dsl:16516:                }
+  DSDT.dsl:16517:            }
+  DSDT.dsl:16518:
+> DSDT.dsl:16519:            If ((ToInteger (^PCI0.LPC0.EC0.GZ44) != 0x03))
+  DSDT.dsl:16520:            {
+  DSDT.dsl:16521:                ^PCI0.GPP0.PEGP.NTCC = 0x57
+  DSDT.dsl:16522:                Notify (^PCI0.GPP0.PEGP, 0xC0) // Hardware-Specific
+  DSDT.dsl:16523:            }
+  DSDT.dsl:16524:        }
+  DSDT.dsl:16525:
+  DSDT.dsl:16526:        Name (SUBM, Zero)
+  DSDT.dsl:16527:        Device (GZFD)
+  DSDT.dsl:34796:            Method (GFAN, 2, NotSerialized)
+  DSDT.dsl:34797:            {
+  DSDT.dsl:34798:                FTLE = 0x0A
+  DSDT.dsl:34799:                FTSL = 0x0A
+  DSDT.dsl:34800:                Local0 = One
+> DSDT.dsl:34801:                If ((^^PCI0.LPC0.EC0.GZ44 == 0x07))
+  DSDT.dsl:34802:                {
+  DSDT.dsl:34803:                    FTS0 = DerefOf (EFST [Zero])
+  DSDT.dsl:34804:                    FSS0 = DerefOf (EFST [Zero])
+  DSDT.dsl:34805:                    FTS1 = DerefOf (EFST [One])
+  DSDT.dsl:34806:                    FSS1 = DerefOf (EFST [One])
+  DSDT.dsl:34807:                    FTS2 = DerefOf (EFST [0x02])
+  DSDT.dsl:34808:                    FSS2 = DerefOf (EFST [0x02])
+  DSDT.dsl:34809:                    FTS3 = DerefOf (EFST [0x03])
+  DSDT.dsl:35881:            CreateByteField (STM2, Zero, C009)
+  DSDT.dsl:35882:            CreateByteField (STM2, One, C00A)
+  DSDT.dsl:35883:            CreateByteField (STM2, 0x02, C00B)
+  DSDT.dsl:35884:            Method (GLTT, 1, NotSerialized)
+  DSDT.dsl:35885:            {
+> DSDT.dsl:35886:                If ((^^PCI0.LPC0.EC0.GZ35 == Zero))
+  DSDT.dsl:35887:                {
+  DSDT.dsl:35888:                    Local1 = DerefOf (LTT0 [ToInteger (Arg0)])
+  DSDT.dsl:35889:                }
+  DSDT.dsl:35890:                Else
+  DSDT.dsl:35891:                {
+  DSDT.dsl:35892:                    Local1 = DerefOf (LTT1 [ToInteger (Arg0)])
+  DSDT.dsl:35893:                }
+  DSDT.dsl:35894:
+  DSDT.dsl:35900:                C005 = DerefOf (Local1 [0x05])
+  DSDT.dsl:35901:                C006 = DerefOf (Local1 [0x06])
+  DSDT.dsl:35902:                Return (LT00) /* \_SB_.GZFD.LT00 */
+  DSDT.dsl:35903:            }
+  DSDT.dsl:35904:
+> DSDT.dsl:35905:            Method (GLT1, 1, Serialized)
+  DSDT.dsl:35906:            {
+  DSDT.dsl:35907:                Switch (ToInteger (Arg0))
+  DSDT.dsl:35908:                {
+  DSDT.dsl:35909:                    Case (Zero)
+  DSDT.dsl:35910:                    {
+> DSDT.dsl:35911:                        If ((^^PCI0.LPC0.EC0.GZ35 == Zero))
+  DSDT.dsl:35912:                        {
+  DSDT.dsl:35913:                            C007 = Zero
+> DSDT.dsl:35914:                            C008 = (^^PCI0.LPC0.EC0.KLEN + One)
+  DSDT.dsl:35915:                        }
+  DSDT.dsl:35916:                        Else
+  DSDT.dsl:35917:                        {
+  DSDT.dsl:35918:                        }
+  DSDT.dsl:35919:                    }
+  DSDT.dsl:35920:                    Case (0x04)
+  DSDT.dsl:35921:                    {
+> DSDT.dsl:35922:                        If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  DSDT.dsl:35923:                        {
+  DSDT.dsl:35924:                            C007 = One
+  DSDT.dsl:35925:                        }
+  DSDT.dsl:35926:
+> DSDT.dsl:35927:                        If ((^^PCI0.LPC0.EC0.GZ44 == One))
+  DSDT.dsl:35928:                        {
+  DSDT.dsl:35929:                            C007 = 0x02
+  DSDT.dsl:35930:                        }
+  DSDT.dsl:35931:
+> DSDT.dsl:35932:                        If ((^^PCI0.LPC0.EC0.GZ44 == 0x02))
+  DSDT.dsl:35933:                        {
+  DSDT.dsl:35934:                            C007 = Zero
+  DSDT.dsl:35935:                        }
+  DSDT.dsl:35936:
+> DSDT.dsl:35937:                        If ((^^PCI0.LPC0.EC0.GZ44 == 0x03))
+  DSDT.dsl:35938:                        {
+  DSDT.dsl:35939:                            C007 = 0x03
+  DSDT.dsl:35940:                        }
+  DSDT.dsl:35941:
+  DSDT.dsl:35942:                        C008 = Zero
+  DSDT.dsl:35943:                    }
+  DSDT.dsl:35944:                    Case (0x05)
+  DSDT.dsl:35945:                    {
+  DSDT.dsl:35948:                }
+  DSDT.dsl:35949:
+  DSDT.dsl:35950:                Return (LTM1) /* \_SB_.GZFD.LTM1 */
+  DSDT.dsl:35951:            }
+  DSDT.dsl:35952:
+> DSDT.dsl:35953:            Method (SLT2, 1, Serialized)
+  DSDT.dsl:35954:            {
+  DSDT.dsl:35955:                CreateByteField (Arg0, Zero, C009)
+  DSDT.dsl:35956:                CreateByteField (Arg0, One, C00A)
+  DSDT.dsl:35957:                CreateByteField (Arg0, 0x02, C00B)
+  DSDT.dsl:35958:                Switch (ToInteger (C009))
+  DSDT.dsl:35959:                {
+  DSDT.dsl:35960:                    Case (Zero)
+  DSDT.dsl:35961:                    {
+> DSDT.dsl:35962:                        If ((^^PCI0.LPC0.EC0.GZ35 == Zero))
+  DSDT.dsl:35963:                        {
+> DSDT.dsl:35964:                            ^^PCI0.LPC0.EC0.KLEN = (C00B - One)
+  DSDT.dsl:35965:                        }
+  DSDT.dsl:35966:                        Else
+  DSDT.dsl:35967:                        {
+  DSDT.dsl:35968:                        }
+  DSDT.dsl:35969:                    }
+  DSDT.dsl:35970:                    Case (0x04)
+  DSDT.dsl:35971:                    {
+  DSDT.dsl:35972:                    }
+  DSDT.dsl:38211:                        M010 (0x46, Zero)
+  DSDT.dsl:38212:                    }
+  DSDT.dsl:38213:
+  DSDT.dsl:38214:                    If (CSAD ())
+  DSDT.dsl:38215:                    {
+> DSDT.dsl:38216:                        ^^PCI0.LPC0.EC0.GZ44 = RXMS (0x76)
+> DSDT.dsl:38217:                        SSFM (Zero, ^^PCI0.LPC0.EC0.GZ44)
+  DSDT.dsl:38218:                    }
+  DSDT.dsl:38219:                    Else
+  DSDT.dsl:38220:                    {
+  DSDT.dsl:38221:                        Local2 = RXMS (0x76)
+  DSDT.dsl:38222:                        If ((Local2 == 0x02))
+  DSDT.dsl:38223:                        {
+  DSDT.dsl:38224:                            WXMS (0x77, 0x02)
+> DSDT.dsl:38225:                            ^^PCI0.LPC0.EC0.GZ44 = 0x02
+  DSDT.dsl:38226:                            SSFM (Zero, 0x02)
+  DSDT.dsl:38227:                        }
+  DSDT.dsl:38228:                        Else
+  DSDT.dsl:38229:                        {
+  DSDT.dsl:38230:                            WXMS (0x77, Zero)
+> DSDT.dsl:38231:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38232:                            SSFM (Zero, Zero)
+  DSDT.dsl:38233:                        }
+  DSDT.dsl:38234:                    }
+  DSDT.dsl:38235:
+  DSDT.dsl:38236:                    Notify (GZFD, 0xD7) // Hardware-Specific
+  DSDT.dsl:38237:                    Notify (GZFD, 0xD9) // Hardware-Specific
+  DSDT.dsl:38238:                    SSFM (One, Zero)
+  DSDT.dsl:38239:                    PDTO = ^^PCI0.LPC0.EC0.ADPS /* \_SB_.PCI0.LPC0.EC0_.ADPS */
+  DSDT.dsl:38456:                    Return (Zero)
+  DSDT.dsl:38457:                }
+  DSDT.dsl:38458:
+  DSDT.dsl:38459:                If ((Arg1 == 0x23))
+  DSDT.dsl:38460:                {
+> DSDT.dsl:38461:                    If (^^PCI0.LPC0.EC0.GZ35)
+  DSDT.dsl:38462:                    {
+  DSDT.dsl:38463:                        Return (Zero)
+  DSDT.dsl:38464:                    }
+  DSDT.dsl:38465:                    Else
+  DSDT.dsl:38466:                    {
+  DSDT.dsl:38467:                        Return (0xF0)
+  DSDT.dsl:38468:                    }
+  DSDT.dsl:38469:                }
+  DSDT.dsl:38572:
+  DSDT.dsl:38573:                    If (CSAD ())
+  DSDT.dsl:38574:                    {
+  DSDT.dsl:38575:                        If ((ToInteger (Arg2) == One))
+  DSDT.dsl:38576:                        {
+> DSDT.dsl:38577:                            ^^PCI0.LPC0.EC0.GZ44 = 0x02
+  DSDT.dsl:38578:                            WXMS (0x76, 0x02)
+  DSDT.dsl:38579:                            SSFM (Zero, 0x02)
+  DSDT.dsl:38580:                            Debug = "AC_Quiet"
+  DSDT.dsl:38581:                        }
+  DSDT.dsl:38582:                        ElseIf ((ToInteger (Arg2) == 0x02))
+  DSDT.dsl:38583:                        {
+> DSDT.dsl:38584:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38585:                            WXMS (0x76, Zero)
+  DSDT.dsl:38586:                            SSFM (Zero, Zero)
+  DSDT.dsl:38587:                            Debug = "AC_Balance"
+  DSDT.dsl:38588:                        }
+  DSDT.dsl:38589:                        ElseIf ((ToInteger (Arg2) == 0x03))
+  DSDT.dsl:38590:                        {
+> DSDT.dsl:38591:                            ^^PCI0.LPC0.EC0.GZ44 = One
+  DSDT.dsl:38592:                            WXMS (0x76, One)
+  DSDT.dsl:38593:                            SSFM (Zero, One)
+  DSDT.dsl:38594:                            Debug = "AC_Performance"
+  DSDT.dsl:38595:                        }
+  DSDT.dsl:38596:                        ElseIf ((ToInteger (Arg2) == 0xFF))
+  DSDT.dsl:38597:                        {
+> DSDT.dsl:38598:                            If (((^^PCI0.LPC0.EC0.GZ44 != 0x03) && (^^PCI0.LPC0.EC0.GZ44 != 0x07)))
+  DSDT.dsl:38599:                            {
+> DSDT.dsl:38600:                                WXMS (0x7A, ^^PCI0.LPC0.EC0.GZ44)
+  DSDT.dsl:38601:                            }
+  DSDT.dsl:38602:
+> DSDT.dsl:38603:                            ^^PCI0.LPC0.EC0.GZ44 = 0x03
+  DSDT.dsl:38604:                            WXMS (0x76, 0x03)
+  DSDT.dsl:38605:                            SSFM (Zero, 0x03)
+  DSDT.dsl:38606:                            If (((RXMS (0x7B) == One) || (RXMS (0x7B) == 0x02)))
+  DSDT.dsl:38607:                            {
+  DSDT.dsl:38608:                                WXMS (0x7B, One)
+  DSDT.dsl:38609:                            }
+  DSDT.dsl:38610:                            Else
+  DSDT.dsl:38611:                            {
+  DSDT.dsl:38615:                            Debug = "AC_Custom"
+  DSDT.dsl:38616:                            WXMS (0x65, 0x11)
+  DSDT.dsl:38617:                        }
+  DSDT.dsl:38618:                        ElseIf ((ToInteger (Arg2) == 0xE0))
+  DSDT.dsl:38619:                        {
+> DSDT.dsl:38620:                            If (((^^PCI0.LPC0.EC0.GZ44 != 0x03) && (^^PCI0.LPC0.EC0.GZ44 != 0x07)))
+  DSDT.dsl:38621:                            {
+> DSDT.dsl:38622:                                WXMS (0x7A, ^^PCI0.LPC0.EC0.GZ44)
+  DSDT.dsl:38623:                            }
+  DSDT.dsl:38624:
+> DSDT.dsl:38625:                            ^^PCI0.LPC0.EC0.GZ44 = 0x07
+  DSDT.dsl:38626:                            WXMS (0x76, 0x07)
+  DSDT.dsl:38627:                            SSFM (Zero, 0x07)
+  DSDT.dsl:38628:                            If (((RXMS (0x7B) == One) || (RXMS (0x7B) == 0x02)))
+  DSDT.dsl:38629:                            {
+  DSDT.dsl:38630:                                WXMS (0x7B, 0x02)
+  DSDT.dsl:38631:                            }
+  DSDT.dsl:38632:
+  DSDT.dsl:38633:                            Debug = "AC_Extreme"
+  DSDT.dsl:38635:                    }
+  DSDT.dsl:38636:                    Else
+  DSDT.dsl:38637:                    {
+  DSDT.dsl:38638:                        If ((ToInteger (Arg2) == One))
+  DSDT.dsl:38639:                        {
+> DSDT.dsl:38640:                            ^^PCI0.LPC0.EC0.GZ44 = 0x02
+  DSDT.dsl:38641:                            WXMS (0x76, 0x02)
+  DSDT.dsl:38642:                            WXMS (0x77, 0x02)
+  DSDT.dsl:38643:                            SSFM (Zero, 0x02)
+  DSDT.dsl:38644:                            Debug = "DC_Quiet"
+  DSDT.dsl:38645:                        }
+  DSDT.dsl:38646:                        ElseIf ((ToInteger (Arg2) == 0x02))
+  DSDT.dsl:38647:                        {
+> DSDT.dsl:38648:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38649:                            WXMS (0x76, Zero)
+  DSDT.dsl:38650:                            WXMS (0x77, Zero)
+  DSDT.dsl:38651:                            SSFM (Zero, Zero)
+  DSDT.dsl:38652:                            Debug = "DC_Balance"
+  DSDT.dsl:38653:                        }
+  DSDT.dsl:38654:                        ElseIf ((ToInteger (Arg2) == 0x03))
+  DSDT.dsl:38655:                        {
+> DSDT.dsl:38656:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38657:                            WXMS (0x76, One)
+  DSDT.dsl:38658:                            WXMS (0x77, Zero)
+  DSDT.dsl:38659:                            SSFM (Zero, Zero)
+  DSDT.dsl:38660:                            Debug = "DC_Performance"
+  DSDT.dsl:38661:                        }
+  DSDT.dsl:38662:                        ElseIf ((ToInteger (Arg2) == 0xFF))
+  DSDT.dsl:38663:                        {
+> DSDT.dsl:38664:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38665:                            WXMS (0x76, 0x03)
+  DSDT.dsl:38666:                            WXMS (0x77, Zero)
+  DSDT.dsl:38667:                            SSFM (Zero, Zero)
+  DSDT.dsl:38668:                            If (((RXMS (0x7B) == One) || (RXMS (0x7B) == 0x02)))
+  DSDT.dsl:38669:                            {
+  DSDT.dsl:38670:                                WXMS (0x7B, One)
+  DSDT.dsl:38671:                            }
+  DSDT.dsl:38672:                            Else
+  DSDT.dsl:38676:
+  DSDT.dsl:38677:                            Debug = "DC_Custom"
+  DSDT.dsl:38678:                        }
+  DSDT.dsl:38679:                        ElseIf ((ToInteger (Arg2) == 0xE0))
+  DSDT.dsl:38680:                        {
+> DSDT.dsl:38681:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38682:                            WXMS (0x76, 0x07)
+  DSDT.dsl:38683:                            WXMS (0x77, Zero)
+  DSDT.dsl:38684:                            SSFM (Zero, Zero)
+  DSDT.dsl:38685:                            If (((RXMS (0x7B) == One) || (RXMS (0x7B) == 0x02)))
+  DSDT.dsl:38686:                            {
+  DSDT.dsl:38687:                                WXMS (0x7B, 0x02)
+  DSDT.dsl:38688:                            }
+  DSDT.dsl:38689:
+  DSDT.dsl:38906:                }
+  DSDT.dsl:38907:
+  DSDT.dsl:38908:                If ((Arg1 == 0x37))
+  DSDT.dsl:38909:                {
+  DSDT.dsl:38910:                    Debug = "GetThermalMode"
+> DSDT.dsl:38911:                    If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  DSDT.dsl:38912:                    {
+  DSDT.dsl:38913:                        Debug = "Balance"
+  DSDT.dsl:38914:                        Local0 = 0x02
+  DSDT.dsl:38915:                    }
+> DSDT.dsl:38916:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == One))
+  DSDT.dsl:38917:                    {
+  DSDT.dsl:38918:                        Debug = "Performance"
+  DSDT.dsl:38919:                        Local0 = 0x03
+  DSDT.dsl:38920:                    }
+> DSDT.dsl:38921:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x02))
+  DSDT.dsl:38922:                    {
+  DSDT.dsl:38923:                        Debug = "Quiet"
+  DSDT.dsl:38924:                        Local0 = One
+  DSDT.dsl:38925:                    }
+> DSDT.dsl:38926:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x03))
+  DSDT.dsl:38927:                    {
+  DSDT.dsl:38928:                        Debug = "Custom"
+  DSDT.dsl:38929:                        Local0 = 0xFF
+  DSDT.dsl:38930:                    }
+> DSDT.dsl:38931:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x07))
+  DSDT.dsl:38932:                    {
+  DSDT.dsl:38933:                        Debug = "Extreme"
+  DSDT.dsl:38934:                        Local0 = 0xE0
+  DSDT.dsl:38935:                    }
+  DSDT.dsl:38936:
+  DSDT.dsl:38937:                    Return (Local0)
+  DSDT.dsl:38938:                }
+  DSDT.dsl:38939:
+  DSDT.dsl:38952:                    Else
+  DSDT.dsl:38953:                    {
+  DSDT.dsl:38954:                        ^^PCI0.LPC0.EC0.WLIS = One
+  DSDT.dsl:38955:                    }
+  DSDT.dsl:38956:
+> DSDT.dsl:38957:                    If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  DSDT.dsl:38958:                    {
+  DSDT.dsl:38959:                        If ((((^^PCI0.LPC0.EC0.ADPT == One) && ((^^PCI0.LPC0.EC0.ADPS == 0x02) || (^^PCI0.LPC0.EC0.ADPS == 
+  DSDT.dsl:38960:                            Zero))) && (^^PCI0.LPC0.EC0.TCAD != One)))
+  DSDT.dsl:38961:                        {
+  DSDT.dsl:38962:                            SSFM (Zero, Zero)
+  DSDT.dsl:38963:                            SSFM (One, Zero)
+  DSDT.dsl:38964:                        }
+  DSDT.dsl:38965:                    }
+  DSDT.dsl:39232:                    Return (GFAN (FID0, SID0))
+  DSDT.dsl:39233:                }
+  DSDT.dsl:39234:
+  DSDT.dsl:39235:                If ((Arg1 == 0x06))
+  DSDT.dsl:39236:                {
+> DSDT.dsl:39237:                    If ((^^PCI0.LPC0.EC0.GZ44 != 0x07))
+  DSDT.dsl:39238:                    {
+  DSDT.dsl:39239:                        SFAN (Arg2)
+  DSDT.dsl:39240:                    }
+  DSDT.dsl:39241:
+  DSDT.dsl:39242:                    Return (Zero)
+  DSDT.dsl:39243:                }
+  DSDT.dsl:39244:            }
+  DSDT.dsl:39245:
+  DSDT.dsl:40364:                        }
+  DSDT.dsl:40365:                    }
+  DSDT.dsl:40366:
+  DSDT.dsl:40367:                    If ((DEV1 == One))
+  DSDT.dsl:40368:                    {
+> DSDT.dsl:40369:                        If ((ToInteger (^^PCI0.LPC0.EC0.GZ44) == 0x03))
+  DSDT.dsl:40370:                        {
+  DSDT.dsl:40371:                            If ((FEA1 == One))
+  DSDT.dsl:40372:                            {
+  DSDT.dsl:40373:                                DPC0 = 0x07
+  DSDT.dsl:40374:                                SSZE = 0x07
+  DSDT.dsl:40375:                                Local0 = ToInteger (DAT1)
+  DSDT.dsl:40376:                                ^^PCI0.LPC0.EC0.CSPL = Local0
+  DSDT.dsl:40377:                                Local0 *= 0x03E8
+  DSDT.dsl:40907:            Method (WMAF, 3, NotSerialized)
+  DSDT.dsl:40908:            {
+  DSDT.dsl:40909:                If ((Arg1 == One))
+  DSDT.dsl:40910:                {
+  DSDT.dsl:40911:                    Debug = "Call WMAF- MethodId 1 - Get_Lighting_Current_Status"
+> DSDT.dsl:40912:                    Return (GLT1 (Arg2))
+  DSDT.dsl:40913:                }
+  DSDT.dsl:40914:
+  DSDT.dsl:40915:                If ((Arg1 == 0x02))
+  DSDT.dsl:40916:                {
+  DSDT.dsl:40917:                    Debug = "Call WMAF- MethodId 2 - Set_Lighting_Current_Status"
+> DSDT.dsl:40918:                    SLT2 (Arg2)
+  DSDT.dsl:40919:                    Return (Zero)
+  DSDT.dsl:40920:                }
+  DSDT.dsl:40921:            }
+  DSDT.dsl:40922:
+  DSDT.dsl:40923:            Method (_WED, 1, NotSerialized)  // _Wxx: Wake Event, xx=0x00-0xFF
+  DSDT.dsl:40924:            {
+  DSDT.dsl:40925:                If ((Arg0 == 0xD0))
+  DSDT.dsl:40926:                {
+  DSDT.dsl:40960:                    Return (Local0)
+  DSDT.dsl:40961:                }
+  DSDT.dsl:40962:
+  DSDT.dsl:40963:                If ((Arg0 == 0xD5))
+  DSDT.dsl:40964:                {
+> DSDT.dsl:40965:                    If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  DSDT.dsl:40966:                    {
+  DSDT.dsl:40967:                        Local0 = 0x02
+  DSDT.dsl:40968:                    }
+> DSDT.dsl:40969:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == One))
+  DSDT.dsl:40970:                    {
+  DSDT.dsl:40971:                        Local0 = 0x03
+  DSDT.dsl:40972:                    }
+> DSDT.dsl:40973:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x02))
+  DSDT.dsl:40974:                    {
+  DSDT.dsl:40975:                        Local0 = One
+  DSDT.dsl:40976:                    }
+> DSDT.dsl:40977:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x03))
+  DSDT.dsl:40978:                    {
+  DSDT.dsl:40979:                        Local0 = 0xFF
+  DSDT.dsl:40980:                    }
+> DSDT.dsl:40981:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x07))
+  DSDT.dsl:40982:                    {
+  DSDT.dsl:40983:                        Local0 = 0xE0
+  DSDT.dsl:40984:                    }
+  DSDT.dsl:40985:
+  DSDT.dsl:40986:                    Return (Local0)
+  DSDT.dsl:40987:                }
+  DSDT.dsl:40988:
+  DSDT.dsl:40989:                If ((Arg0 == 0xD6))
+  DSDT.dsl:41038:                    Return (Local0)
+  DSDT.dsl:41039:                }
+  DSDT.dsl:41040:
+  DSDT.dsl:41041:                If ((Arg0 == 0xD9))
+  DSDT.dsl:41042:                {
+> DSDT.dsl:41043:                    If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  DSDT.dsl:41044:                    {
+  DSDT.dsl:41045:                        Local0 = 0x02
+  DSDT.dsl:41046:                    }
+> DSDT.dsl:41047:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == One))
+  DSDT.dsl:41048:                    {
+  DSDT.dsl:41049:                        Local0 = 0x03
+  DSDT.dsl:41050:                    }
+> DSDT.dsl:41051:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x02))
+  DSDT.dsl:41052:                    {
+  DSDT.dsl:41053:                        Local0 = One
+  DSDT.dsl:41054:                    }
+> DSDT.dsl:41055:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x03))
+  DSDT.dsl:41056:                    {
+  DSDT.dsl:41057:                        Local0 = 0xFF
+  DSDT.dsl:41058:                    }
+> DSDT.dsl:41059:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x07))
+  DSDT.dsl:41060:                    {
+  DSDT.dsl:41061:                        Local0 = 0xE0
+  DSDT.dsl:41062:                    }
+  DSDT.dsl:41063:
+  DSDT.dsl:41064:                    Return (Local0)
+  DSDT.dsl:41065:                }
+  DSDT.dsl:41066:
+  DSDT.dsl:41067:                If ((Arg0 == 0xDA))
+
+
