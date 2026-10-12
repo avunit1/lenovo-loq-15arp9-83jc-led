@@ -1,0 +1,421 @@
+﻿
+  dsdt.dsl:11129:
+  dsdt.dsl:11130:    Scope (_SB)
+  dsdt.dsl:11131:    {
+  dsdt.dsl:11132:        Mutex (MWMI, 0x00)
+  dsdt.dsl:11133:        Device (WMI4)
+  dsdt.dsl:11134:        {
+  dsdt.dsl:11135:            Name (_HID, EisaId ("PNP0C14") /* Windows Management Instrumentation Device */)  // _HID: Hardware ID
+  dsdt.dsl:11136:            Name (_UID, "WBAT")  // _UID: Unique ID
+> dsdt.dsl:11137:            Name (_WDG, Buffer (0x28)
+  dsdt.dsl:11138:            {
+  dsdt.dsl:11139:                /* 0000 */  0x76, 0x37, 0xA0, 0xC3, 0xAC, 0x51, 0xAA, 0x49,  // v7...Q.I
+  dsdt.dsl:11140:                /* 0008 */  0xAD, 0x0F, 0xF2, 0xF7, 0xD6, 0x2C, 0x3F, 0x3C,  // .....,?<
+  dsdt.dsl:11141:                /* 0010 */  0x41, 0x44, 0x06, 0x05, 0x21, 0x12, 0x90, 0x05,  // AD..!...
+  dsdt.dsl:11142:                /* 0018 */  0x66, 0xD5, 0xD1, 0x11, 0xB2, 0xF0, 0x00, 0xA0,  // f.......
+  dsdt.dsl:11143:                /* 0020 */  0xC9, 0x06, 0x29, 0x10, 0x42, 0x44, 0x01, 0x00   // ..).BD..
+  dsdt.dsl:11144:            })
+  dsdt.dsl:11145:            Name (ITEM, Package (0x06)
+  dsdt.dsl:11146:            {
+  dsdt.dsl:11147:                Package (0x03)
+  dsdt.dsl:11148:                {
+  dsdt.dsl:11149:                    Zero, 
+  dsdt.dsl:11150:                    Zero, 
+  dsdt.dsl:11151:                    "BAT0 BatMaker"
+  dsdt.dsl:11152:                }, 
+  dsdt.dsl:11153:
+  dsdt.dsl:11154:                Package (0x03)
+  dsdt.dsl:11155:                {
+  dsdt.dsl:11156:                    Zero, 
+  dsdt.dsl:11157:                    One, 
+  dsdt.dsl:11158:                    "BAT0 HwId    "
+  dsdt.dsl:11159:                }, 
+  dsdt.dsl:11160:
+  dsdt.dsl:11161:                Package (0x03)
+  dsdt.dsl:11162:                {
+  dsdt.dsl:11163:                    Zero, 
+  dsdt.dsl:11164:                    0x02, 
+  dsdt.dsl:11165:                    "BAT0 MfgDate "
+  dsdt.dsl:11166:                }, 
+  dsdt.dsl:11167:
+  dsdt.dsl:11168:                Package (0x03)
+  dsdt.dsl:11169:                {
+  dsdt.dsl:11170:                    One, 
+  dsdt.dsl:11171:                    Zero, 
+  dsdt.dsl:11172:                    "BAT1 BatMaker"
+  dsdt.dsl:11173:                }, 
+  dsdt.dsl:11174:
+  dsdt.dsl:11175:                Package (0x03)
+  dsdt.dsl:11176:                {
+  dsdt.dsl:11177:                    One, 
+  dsdt.dsl:11178:                    One, 
+  dsdt.dsl:11179:                    "BAT1 HwId "
+  dsdt.dsl:11180:                }, 
+  dsdt.dsl:11181:
+  dsdt.dsl:11182:                Package (0x03)
+  dsdt.dsl:11183:                {
+  dsdt.dsl:11184:                    One, 
+  dsdt.dsl:11185:                    0x02, 
+  dsdt.dsl:11186:                    "BAT1 MfgDate "
+  dsdt.dsl:11187:                }
+  dsdt.dsl:11188:            })
+  dsdt.dsl:11189:            Method (WQAD, 1, NotSerialized)
+  dsdt.dsl:11190:            {
+  dsdt.dsl:11191:                Acquire (MWMI, 0xFFFF)
+  dsdt.dsl:11192:                Local0 = PSAG (Arg0)
+  dsdt.dsl:11193:                Local1 = DerefOf (ITEM [Local0])
+  dsdt.dsl:11194:                Local2 = DerefOf (Local1 [Zero])
+  dsdt.dsl:11195:                Local3 = DerefOf (Local1 [One])
+  dsdt.dsl:11196:                Local4 = DerefOf (Local1 [0x02])
+  dsdt.dsl:11197:                Local5 = BATD (Local2, Local3)
+  dsdt.dsl:11198:                Concatenate (Local4, ",", Local6)
+  dsdt.dsl:11199:                Concatenate (Local6, Local5, Local7)
+  dsdt.dsl:11200:                Release (MWMI)
+  dsdt.dsl:11201:                Return (Local7)
+  dsdt.dsl:11202:            }
+  dsdt.dsl:13099:                    Return (0x0F)
+  dsdt.dsl:13100:                }
+  dsdt.dsl:13101:            }
+  dsdt.dsl:13102:
+  dsdt.dsl:13103:            Device (WMIU)
+  dsdt.dsl:13104:            {
+  dsdt.dsl:13105:                Name (_HID, "PNP0C14" /* Windows Management Instrumentation Device */)  // _HID: Hardware ID
+  dsdt.dsl:13106:                Name (_UID, "LSK20")  // _UID: Unique ID
+> dsdt.dsl:13107:                Name (_WDG, Buffer (0x3C)
+  dsdt.dsl:13108:                {
+  dsdt.dsl:13109:                    /* 0000 */  0x74, 0x09, 0x6C, 0xCE, 0x07, 0x04, 0x50, 0x4F,  // t.l...PO
+  dsdt.dsl:13110:                    /* 0008 */  0x88, 0xBA, 0x4F, 0xC3, 0xB6, 0x55, 0x9A, 0xD8,  // ..O..U..
+  dsdt.dsl:13111:                    /* 0010 */  0x53, 0x4B, 0x01, 0x02, 0x21, 0x12, 0x90, 0x05,  // SK..!...
+  dsdt.dsl:13112:                    /* 0018 */  0x66, 0xD5, 0xD1, 0x11, 0xB2, 0xF0, 0x00, 0xA0,  // f.......
+  dsdt.dsl:13113:                    /* 0020 */  0xC9, 0x06, 0x29, 0x10, 0x44, 0x41, 0x01, 0x00,  // ..).DA..
+  dsdt.dsl:13114:                    /* 0028 */  0x0C, 0xDE, 0xC0, 0x8F, 0xE4, 0xB4, 0xFD, 0x43,  // .......C
+  dsdt.dsl:13115:                    /* 0030 */  0xB0, 0xF3, 0x88, 0x71, 0x71, 0x1C, 0x12, 0x94,  // ...qq...
+  dsdt.dsl:13116:                    /* 0038 */  0xD0, 0x00, 0x01, 0x08                           // ....
+  dsdt.dsl:13117:                })
+  dsdt.dsl:13118:                Method (WMSK, 3, NotSerialized)
+  dsdt.dsl:13119:                {
+  dsdt.dsl:13120:                    If ((Arg1 == One))
+  dsdt.dsl:13121:                    {
+  dsdt.dsl:13122:                        If ((ToInteger (Arg2) == One))
+  dsdt.dsl:13123:                        {
+  dsdt.dsl:13124:                            Return (0x03)
+  dsdt.dsl:13125:                        }
+  dsdt.dsl:13126:                        ElseIf ((ToInteger (Arg2) == 0x02))
+  dsdt.dsl:13127:                        {
+  dsdt.dsl:13128:                            Return (Zero)
+  dsdt.dsl:13129:                        }
+  dsdt.dsl:13130:                        ElseIf ((ToInteger (Arg2) == 0x03))
+  dsdt.dsl:13131:                        {
+  dsdt.dsl:13132:                            Return (0x02)
+  dsdt.dsl:13133:                        }
+  dsdt.dsl:13134:                        ElseIf ((ToInteger (Arg2) == 0x04))
+  dsdt.dsl:13135:                        {
+  dsdt.dsl:13136:                            Return (0x02)
+  dsdt.dsl:13137:                        }
+  dsdt.dsl:13138:                        ElseIf ((ToInteger (Arg2) == 0x05))
+  dsdt.dsl:13139:                        {
+  dsdt.dsl:13140:                            Return (Zero)
+  dsdt.dsl:13141:                        }
+  dsdt.dsl:13142:                        ElseIf ((ToInteger (Arg2) == 0x06))
+  dsdt.dsl:13143:                        {
+  dsdt.dsl:13144:                            Return (Zero)
+  dsdt.dsl:13145:                        }
+  dsdt.dsl:13146:                        ElseIf ((ToInteger (Arg2) == 0x07))
+  dsdt.dsl:13147:                        {
+  dsdt.dsl:13148:                            Return (0x02)
+  dsdt.dsl:13149:                        }
+  dsdt.dsl:13150:                        ElseIf ((ToInteger (Arg2) == 0x08))
+  dsdt.dsl:13151:                        {
+  dsdt.dsl:13152:                            If ((FRHK != Zero))
+  dsdt.dsl:13153:                            {
+  dsdt.dsl:13154:                                Return (0x02)
+  dsdt.dsl:13155:                            }
+  dsdt.dsl:13156:                        }
+  dsdt.dsl:13157:                        ElseIf ((ToInteger (Arg2) == 0x0A))
+  dsdt.dsl:13158:                        {
+  dsdt.dsl:13159:                            Return (Zero)
+  dsdt.dsl:13160:                        }
+  dsdt.dsl:13161:                        ElseIf ((ToInteger (Arg2) == 0x0B))
+  dsdt.dsl:13162:                        {
+  dsdt.dsl:13163:                            Return (Zero)
+  dsdt.dsl:13164:                        }
+  dsdt.dsl:13165:                        ElseIf ((ToInteger (Arg2) == 0x0C))
+  dsdt.dsl:13166:                        {
+  dsdt.dsl:13167:                            Return (Zero)
+  dsdt.dsl:13168:                        }
+  dsdt.dsl:13169:                        ElseIf ((ToInteger (Arg2) == 0x0D))
+  dsdt.dsl:13170:                        {
+  dsdt.dsl:13171:                            Return (Zero)
+  dsdt.dsl:13172:                        }
+  dsdt.dsl:35897:                C002 = DerefOf (Local1 [0x02])
+  dsdt.dsl:35898:                C003 = DerefOf (Local1 [0x03])
+  dsdt.dsl:35899:                C004 = DerefOf (Local1 [0x04])
+  dsdt.dsl:35900:                C005 = DerefOf (Local1 [0x05])
+  dsdt.dsl:35901:                C006 = DerefOf (Local1 [0x06])
+  dsdt.dsl:35902:                Return (LT00) /* \_SB_.GZFD.LT00 */
+  dsdt.dsl:35903:            }
+  dsdt.dsl:35904:
+> dsdt.dsl:35905:            Method (GLT1, 1, Serialized)
+  dsdt.dsl:35906:            {
+  dsdt.dsl:35907:                Switch (ToInteger (Arg0))
+  dsdt.dsl:35908:                {
+  dsdt.dsl:35909:                    Case (Zero)
+  dsdt.dsl:35910:                    {
+  dsdt.dsl:35911:                        If ((^^PCI0.LPC0.EC0.GZ35 == Zero))
+  dsdt.dsl:35912:                        {
+  dsdt.dsl:35913:                            C007 = Zero
+  dsdt.dsl:35914:                            C008 = (^^PCI0.LPC0.EC0.KLEN + One)
+  dsdt.dsl:35915:                        }
+  dsdt.dsl:35916:                        Else
+  dsdt.dsl:35917:                        {
+  dsdt.dsl:35918:                        }
+  dsdt.dsl:35919:                    }
+  dsdt.dsl:35920:                    Case (0x04)
+  dsdt.dsl:35921:                    {
+  dsdt.dsl:35922:                        If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  dsdt.dsl:35923:                        {
+  dsdt.dsl:35924:                            C007 = One
+  dsdt.dsl:35925:                        }
+  dsdt.dsl:35926:
+  dsdt.dsl:35927:                        If ((^^PCI0.LPC0.EC0.GZ44 == One))
+  dsdt.dsl:35928:                        {
+  dsdt.dsl:35929:                            C007 = 0x02
+  dsdt.dsl:35930:                        }
+  dsdt.dsl:35931:
+  dsdt.dsl:35932:                        If ((^^PCI0.LPC0.EC0.GZ44 == 0x02))
+  dsdt.dsl:35933:                        {
+  dsdt.dsl:35934:                            C007 = Zero
+  dsdt.dsl:35935:                        }
+  dsdt.dsl:35936:
+  dsdt.dsl:35937:                        If ((^^PCI0.LPC0.EC0.GZ44 == 0x03))
+  dsdt.dsl:35938:                        {
+  dsdt.dsl:35939:                            C007 = 0x03
+  dsdt.dsl:35940:                        }
+  dsdt.dsl:35941:
+  dsdt.dsl:35942:                        C008 = Zero
+  dsdt.dsl:35943:                    }
+  dsdt.dsl:35944:                    Case (0x05)
+  dsdt.dsl:35945:                    {
+  dsdt.dsl:35946:                    }
+  dsdt.dsl:35947:
+  dsdt.dsl:35948:                }
+  dsdt.dsl:35949:
+  dsdt.dsl:35950:                Return (LTM1) /* \_SB_.GZFD.LTM1 */
+  dsdt.dsl:35951:            }
+  dsdt.dsl:35952:
+> dsdt.dsl:35953:            Method (SLT2, 1, Serialized)
+  dsdt.dsl:35954:            {
+  dsdt.dsl:35955:                CreateByteField (Arg0, Zero, C009)
+  dsdt.dsl:35956:                CreateByteField (Arg0, One, C00A)
+  dsdt.dsl:35957:                CreateByteField (Arg0, 0x02, C00B)
+  dsdt.dsl:35958:                Switch (ToInteger (C009))
+  dsdt.dsl:35959:                {
+  dsdt.dsl:35960:                    Case (Zero)
+  dsdt.dsl:35961:                    {
+  dsdt.dsl:35962:                        If ((^^PCI0.LPC0.EC0.GZ35 == Zero))
+  dsdt.dsl:35963:                        {
+  dsdt.dsl:35964:                            ^^PCI0.LPC0.EC0.KLEN = (C00B - One)
+  dsdt.dsl:35965:                        }
+  dsdt.dsl:35966:                        Else
+  dsdt.dsl:35967:                        {
+  dsdt.dsl:35968:                        }
+  dsdt.dsl:35969:                    }
+  dsdt.dsl:35970:                    Case (0x04)
+  dsdt.dsl:35971:                    {
+  dsdt.dsl:35972:                    }
+  dsdt.dsl:35973:                    Case (0x05)
+  dsdt.dsl:35974:                    {
+  dsdt.dsl:35975:                    }
+  dsdt.dsl:35976:
+  dsdt.dsl:35977:                }
+  dsdt.dsl:35978:            }
+  dsdt.dsl:35979:
+  dsdt.dsl:35980:            Name (DD00, Package (0x18)
+  dsdt.dsl:35981:            {
+  dsdt.dsl:35982:                Package (0x02)
+  dsdt.dsl:35983:                {
+  dsdt.dsl:35984:                    0x0107FF00, 
+  dsdt.dsl:35985:                    0x14
+  dsdt.dsl:35986:                }, 
+  dsdt.dsl:35987:
+  dsdt.dsl:35988:                Package (0x02)
+  dsdt.dsl:35989:                {
+  dsdt.dsl:35990:                    0x0107FF00, 
+  dsdt.dsl:35991:                    0x18
+  dsdt.dsl:35992:                }, 
+  dsdt.dsl:35993:
+  dsdt.dsl:35994:                Package (0x02)
+  dsdt.dsl:35995:                {
+  dsdt.dsl:35996:                    0x0107FF00, 
+  dsdt.dsl:35997:                    0x1C
+  dsdt.dsl:35998:                }, 
+  dsdt.dsl:35999:
+  dsdt.dsl:36000:                Package (0x02)
+  dsdt.dsl:36001:                {
+  dsdt.dsl:36002:                    0x0107FF00, 
+  dsdt.dsl:36003:                    0x20
+  dsdt.dsl:36004:                }, 
+  dsdt.dsl:36005:
+  dsdt.dsl:36006:                Package (0x02)
+  dsdt.dsl:36007:                {
+  dsdt.dsl:36008:                    0x0107FF00, 
+  dsdt.dsl:36009:                    0x28
+  dsdt.dsl:36010:                }, 
+  dsdt.dsl:36011:
+  dsdt.dsl:36012:                Package (0x02)
+  dsdt.dsl:36013:                {
+  dsdt.dsl:36014:                    0x0107FF00, 
+  dsdt.dsl:36015:                    0x30
+  dsdt.dsl:36016:                }, 
+  dsdt.dsl:36017:
+  dsdt.dsl:36018:                Package (0x02)
+  dsdt.dsl:37158:                }, 
+  dsdt.dsl:37159:
+  dsdt.dsl:37160:                Package (0x02)
+  dsdt.dsl:37161:                {
+  dsdt.dsl:37162:                    0x020BFF00, 
+  dsdt.dsl:37163:                    0x0F
+  dsdt.dsl:37164:                }
+  dsdt.dsl:37165:            })
+> dsdt.dsl:37166:            Name (WDG0, Buffer (0x02E4)
+  dsdt.dsl:37167:            {
+  dsdt.dsl:37168:                /* 0000 */  0x6D, 0x25, 0x90, 0x4C, 0xEA, 0x44, 0xA8, 0xD6,  // m%.L.D..
+  dsdt.dsl:37169:                /* 0008 */  0x76, 0x50, 0x63, 0xDF, 0x4F, 0xEB, 0x2C, 0xFF,  // vPc.O.,.
+  dsdt.dsl:37170:                /* 0010 */  0x41, 0x30, 0x02, 0x01, 0xC1, 0xC5, 0xF5, 0x3C,  // A0.....<
+  dsdt.dsl:37171:                /* 0018 */  0x6D, 0xFD, 0x3C, 0x4E, 0x91, 0xED, 0x59, 0xBA,  // m.<N..Y.
+  dsdt.dsl:37172:                /* 0020 */  0x1E, 0x9B, 0xBF, 0x36, 0x41, 0x31, 0x0D, 0x01,  // ...6A1..
+  dsdt.dsl:37173:                /* 0028 */  0xE2, 0x84, 0x89, 0x8A, 0x8F, 0x22, 0x5F, 0x68,  // ....."_h
+  dsdt.dsl:37174:                /* 0030 */  0xB4, 0x96, 0xDD, 0xA5, 0xF5, 0x2C, 0xBE, 0x5B,  // .....,.[
+  dsdt.dsl:37175:                /* 0038 */  0x41, 0x32, 0x02, 0x01, 0xAD, 0xEC, 0x60, 0x62,  // A2....`b
+  dsdt.dsl:37176:                /* 0040 */  0x7D, 0x0D, 0x01, 0x42, 0xA8, 0xBD, 0x25, 0x52,  // }..B..%R
+  dsdt.dsl:37177:                /* 0048 */  0xE8, 0x12, 0x50, 0x1F, 0x41, 0x33, 0x01, 0x01,  // ..P.A3..
+  dsdt.dsl:37178:                /* 0050 */  0xE2, 0x54, 0x7B, 0x88, 0xDC, 0xDD, 0x2C, 0x4B,  // .T{...,K
+  dsdt.dsl:37179:                /* 0058 */  0x8B, 0x88, 0x68, 0xA2, 0x6A, 0x88, 0x35, 0xD0,  // ..h.j.5.
+  dsdt.dsl:37180:                /* 0060 */  0x41, 0x34, 0x02, 0x01, 0x0A, 0xCA, 0xF3, 0xB7,  // A4......
+  dsdt.dsl:37181:                /* 0068 */  0xDC, 0xAC, 0xD2, 0x42, 0x92, 0x17, 0x77, 0xC6,  // ...B..w.
+  dsdt.dsl:37182:                /* 0070 */  0xC6, 0x28, 0xFB, 0xD2, 0x41, 0x35, 0x0C, 0x01,  // .(..A5..
+  dsdt.dsl:37183:                /* 0078 */  0xD3, 0x7C, 0xA5, 0x93, 0xC6, 0xBB, 0xAB, 0x46,  // .|.....F
+  dsdt.dsl:37184:                /* 0080 */  0x95, 0x1D, 0x31, 0xF1, 0x7C, 0xC9, 0x68, 0xA0,  // ..1.|.h.
+  dsdt.dsl:37185:                /* 0088 */  0x41, 0x36, 0x05, 0x01, 0x6D, 0x2A, 0xFB, 0x87,  // A6..m*..
+  dsdt.dsl:37186:                /* 0090 */  0x02, 0xD8, 0xE7, 0x48, 0x92, 0x08, 0x45, 0x76,  // ...H..Ev
+  dsdt.dsl:37187:                /* 0098 */  0xC5, 0xF5, 0xC8, 0xD8, 0x41, 0x37, 0x0F, 0x01,  // ....A7..
+  dsdt.dsl:37188:                /* 00A0 */  0x84, 0xBD, 0xD5, 0x4D, 0xA9, 0x15, 0xE2, 0x47,  // ...M...G
+  dsdt.dsl:37189:                /* 00A8 */  0xAD, 0x65, 0xCC, 0x61, 0xA5, 0xC6, 0x2F, 0xD0,  // .e.a../.
+  dsdt.dsl:37190:                /* 00B0 */  0x41, 0x38, 0x01, 0x01, 0xE6, 0x3C, 0xAF, 0xEC,  // A8...<..
+  dsdt.dsl:37191:                /* 00B8 */  0xB2, 0xDC, 0x3D, 0x47, 0x94, 0xC3, 0x7B, 0xF4,  // ..=G..{.
+  dsdt.dsl:37192:                /* 00C0 */  0xD9, 0x6E, 0x0D, 0x9A, 0x41, 0x39, 0x09, 0x01,  // .n..A9..
+  dsdt.dsl:37193:                /* 00C8 */  0xFE, 0x3A, 0x2A, 0x36, 0x96, 0x3D, 0x65, 0x46,  // .:*6.=eF
+  dsdt.dsl:37194:                /* 00D0 */  0x85, 0x30, 0x96, 0xDA, 0xD5, 0xBB, 0x30, 0x0E,  // .0....0.
+  dsdt.dsl:37195:                /* 00D8 */  0x42, 0x30, 0x25, 0x01, 0x07, 0x54, 0x8F, 0x7A,  // B0%..T.z
+  dsdt.dsl:37196:                /* 00E0 */  0x67, 0xCB, 0x6E, 0x4D, 0xB5, 0x47, 0x39, 0xB3,  // g.nM.G9.
+  dsdt.dsl:37197:                /* 00E8 */  0xBE, 0x01, 0x81, 0x54, 0x42, 0x31, 0x46, 0x01,  // ...TB1F.
+  dsdt.dsl:37198:                /* 00F0 */  0x17, 0x3B, 0x43, 0x91, 0xB7, 0xB7, 0x40, 0x46,  // .;C...@F
+  dsdt.dsl:37199:                /* 00F8 */  0xBB, 0x40, 0x34, 0xC6, 0x73, 0x49, 0xFB, 0xEC,  // .@4.sI..
+  dsdt.dsl:37200:                /* 0100 */  0x42, 0x32, 0x18, 0x01, 0x90, 0xF7, 0xF1, 0xBB,  // B2......
+  dsdt.dsl:37201:                /* 0108 */  0x2F, 0x6C, 0x2B, 0x42, 0xBC, 0x8C, 0x4E, 0x73,  // /l+B..Ns
+  dsdt.dsl:37202:                /* 0110 */  0x69, 0xC7, 0xF6, 0xAB, 0x42, 0x33, 0x08, 0x01,  // i...B3..
+  dsdt.dsl:37203:                /* 0118 */  0xE3, 0x54, 0x7B, 0x88, 0xDC, 0xDD, 0x2C, 0x4B,  // .T{...,K
+  dsdt.dsl:37204:                /* 0120 */  0x8B, 0x88, 0x68, 0xA2, 0x6A, 0x88, 0x35, 0xD0,  // ..h.j.5.
+  dsdt.dsl:37205:                /* 0128 */  0x41, 0x41, 0x01, 0x02, 0x49, 0x95, 0x54, 0x92,  // AA..I.T.
+  dsdt.dsl:37206:                /* 0130 */  0xDE, 0x4B, 0x06, 0x4F, 0xAC, 0x04, 0xCE, 0x8B,  // .K.O....
+  dsdt.dsl:37207:                /* 0138 */  0xF8, 0x98, 0xDB, 0xAA, 0x41, 0x42, 0x01, 0x02,  // ....AB..
+  dsdt.dsl:37208:                /* 0140 */  0x77, 0xD7, 0xAF, 0x14, 0x6F, 0x10, 0x9B, 0x4C,  // w...o..L
+  dsdt.dsl:37209:                /* 0148 */  0xB3, 0x34, 0xD3, 0x88, 0xDC, 0x78, 0x09, 0xBE,  // .4...x..
+  dsdt.dsl:37210:                /* 0150 */  0x41, 0x43, 0x01, 0x02, 0xF1, 0x47, 0x75, 0xDA,  // AC...Gu.
+  dsdt.dsl:37211:                /* 0158 */  0x4D, 0x82, 0x5F, 0x40, 0xBE, 0x79, 0xD9, 0x90,  // M._@.y..
+  dsdt.dsl:37212:                /* 0160 */  0x3E, 0x29, 0xCE, 0xD7, 0x41, 0x44, 0x01, 0x02,  // >)..AD..
+  dsdt.dsl:37213:                /* 0168 */  0x05, 0x88, 0x2A, 0xDC, 0x8C, 0x3A, 0xBA, 0x41,  // ..*..:.A
+  dsdt.dsl:37214:                /* 0170 */  0xA6, 0xF7, 0x09, 0x2E, 0x00, 0x89, 0xCD, 0x3B,  // .......;
+  dsdt.dsl:37215:                /* 0178 */  0x41, 0x45, 0x01, 0x02, 0x27, 0x91, 0x5B, 0x8C,  // AE..'.[.
+  dsdt.dsl:37216:                /* 0180 */  0xD4, 0xEC, 0x57, 0x46, 0x98, 0x0F, 0x85, 0x10,  // ..WF....
+  dsdt.dsl:37217:                /* 0188 */  0x19, 0xF9, 0x9C, 0xA5, 0x41, 0x46, 0x01, 0x02,  // ....AF..
+  dsdt.dsl:37218:                /* 0190 */  0x21, 0x12, 0x90, 0x05, 0x66, 0xD5, 0xD1, 0x11,  // !...f...
+  dsdt.dsl:37219:                /* 0198 */  0xB2, 0xF0, 0x00, 0xA0, 0xC9, 0x06, 0x29, 0x10,  // ......).
+  dsdt.dsl:37220:                /* 01A0 */  0x44, 0x44, 0x01, 0x00, 0x81, 0x24, 0xD4, 0xBF,  // DD...$..
+  dsdt.dsl:37221:                /* 01A8 */  0xE3, 0xAE, 0x01, 0x45, 0xA1, 0x07, 0xAF, 0xB6,  // ...E....
+  dsdt.dsl:37222:                /* 01B0 */  0x84, 0x25, 0xC5, 0xF8, 0xD0, 0x00, 0x01, 0x08,  // .%......
+  dsdt.dsl:37223:                /* 01B8 */  0x6B, 0x90, 0x62, 0xD0, 0xD4, 0x12, 0x10, 0x45,  // k.b....E
+  dsdt.dsl:37224:                /* 01C0 */  0x99, 0x9D, 0x48, 0x31, 0xEE, 0x80, 0xE9, 0x85,  // ..H1....
+  dsdt.dsl:37225:                /* 01C8 */  0xD1, 0x00, 0x01, 0x08, 0x81, 0x24, 0xD4, 0xBF,  // .....$..
+  dsdt.dsl:37226:                /* 01D0 */  0xE3, 0xAE, 0x02, 0x45, 0xA1, 0x07, 0xAF, 0xB6,  // ...E....
+  dsdt.dsl:37227:                /* 01D8 */  0x84, 0x25, 0xC5, 0xF8, 0xD2, 0x00, 0x01, 0x08,  // .%......
+  dsdt.dsl:37228:                /* 01E0 */  0x35, 0xA4, 0x72, 0xBC, 0xC1, 0xE8, 0x75, 0x42,  // 5.r...uB
+  dsdt.dsl:37229:                /* 01E8 */  0xB3, 0xE2, 0xD8, 0xB8, 0x07, 0x4A, 0xBA, 0x59,  // .....J.Y
+  dsdt.dsl:37230:                /* 01F0 */  0xD3, 0x00, 0x01, 0x08, 0xD9, 0xC6, 0xAF, 0x10,  // ........
+  dsdt.dsl:37231:                /* 01F8 */  0x8B, 0xEA, 0x90, 0x45, 0xA2, 0xE7, 0x1C, 0xD3,  // ...E....
+  dsdt.dsl:40899:                            E30R = One
+  dsdt.dsl:40900:                        }
+  dsdt.dsl:40901:                    }
+  dsdt.dsl:40902:
+  dsdt.dsl:40903:                    Return (ES30) /* \_SB_.GZFD.ES30 */
+  dsdt.dsl:40904:                }
+  dsdt.dsl:40905:            }
+  dsdt.dsl:40906:
+> dsdt.dsl:40907:            Method (WMAF, 3, NotSerialized)
+  dsdt.dsl:40908:            {
+  dsdt.dsl:40909:                If ((Arg1 == One))
+  dsdt.dsl:40910:                {
+  dsdt.dsl:40911:                    Debug = "Call WMAF- MethodId 1 - Get_Lighting_Current_Status"
+  dsdt.dsl:40912:                    Return (GLT1 (Arg2))
+  dsdt.dsl:40913:                }
+  dsdt.dsl:40914:
+  dsdt.dsl:40915:                If ((Arg1 == 0x02))
+  dsdt.dsl:40916:                {
+  dsdt.dsl:40917:                    Debug = "Call WMAF- MethodId 2 - Set_Lighting_Current_Status"
+  dsdt.dsl:40918:                    SLT2 (Arg2)
+  dsdt.dsl:40919:                    Return (Zero)
+  dsdt.dsl:40920:                }
+  dsdt.dsl:40921:            }
+  dsdt.dsl:40922:
+  dsdt.dsl:40923:            Method (_WED, 1, NotSerialized)  // _Wxx: Wake Event, xx=0x00-0xFF
+  dsdt.dsl:40924:            {
+  dsdt.dsl:40925:                If ((Arg0 == 0xD0))
+  dsdt.dsl:40926:                {
+  dsdt.dsl:40927:                    Return (Zero)
+  dsdt.dsl:40928:                }
+  dsdt.dsl:40929:
+  dsdt.dsl:40930:                If ((Arg0 == 0xD2))
+  dsdt.dsl:40931:                {
+  dsdt.dsl:40932:                    Local0 = ^^PCI0.LPC0.EC0.SKTC /* \_SB_.PCI0.LPC0.EC0_.SKTC */
+  dsdt.dsl:40933:                    Local0 &= 0xFF
+  dsdt.dsl:40934:                    Return (Local0)
+  dsdt.dsl:40935:                }
+  dsdt.dsl:40936:
+  dsdt.dsl:40937:                If ((Arg0 == 0xD1))
+  dsdt.dsl:40938:                {
+  dsdt.dsl:40939:                    Return (Zero)
+  dsdt.dsl:40940:                }
+  dsdt.dsl:40941:
+  dsdt.dsl:40942:                If ((Arg0 == 0xD3))
+  dsdt.dsl:40943:                {
+  dsdt.dsl:40944:                    Return (^^PCI0.LPC0.EC0.GZ13) /* \_SB_.PCI0.LPC0.EC0_.GZ13 */
+  dsdt.dsl:40945:                }
+  dsdt.dsl:40946:
+  dsdt.dsl:40947:                If ((Arg0 == 0xD4))
+  dsdt.dsl:40948:                {
+  dsdt.dsl:40949:                    Local0 = Zero
+  dsdt.dsl:40950:                    If ((^^PCI0.LPC0.EC0.GZ22 == One))
+  dsdt.dsl:40951:                    {
+  dsdt.dsl:40952:                        Local0 |= One
+  dsdt.dsl:40953:                    }
+  dsdt.dsl:40954:
+  dsdt.dsl:40955:                    If ((^^PCI0.LPC0.EC0.GZ25 == One))
+  dsdt.dsl:40956:                    {
+  dsdt.dsl:40957:                        Local0 |= 0x02
+  dsdt.dsl:40958:                    }
+  dsdt.dsl:40959:
+  dsdt.dsl:40960:                    Return (Local0)
+  dsdt.dsl:40961:                }
+  dsdt.dsl:40962:
+  dsdt.dsl:40963:                If ((Arg0 == 0xD5))
+  dsdt.dsl:40964:                {
+  dsdt.dsl:40965:                    If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  dsdt.dsl:40966:                    {
+  dsdt.dsl:40967:                        Local0 = 0x02
+  dsdt.dsl:40968:                    }
+  dsdt.dsl:40969:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == One))
+  dsdt.dsl:40970:                    {
+  dsdt.dsl:40971:                        Local0 = 0x03
+  dsdt.dsl:40972:                    }
+
+
