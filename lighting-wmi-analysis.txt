@@ -1,0 +1,2980 @@
+﻿
+  DSDT.dsl:440:        {
+  DSDT.dsl:441:            If ((\_SB.APBM == One))
+  DSDT.dsl:442:            {
+> DSDT.dsl:443:                Notify (\_SB.PWRB, 0x02) // Device Wake
+  DSDT.dsl:444:            }
+  DSDT.dsl:445:        }
+  DSDT.dsl:446:    }
+  DSDT.dsl:447:
+  DSDT.dsl:448:    Method (TPST, 1, Serialized)
+  DSDT.dsl:465:        CADL,   16, 
+  DSDT.dsl:466:        PADL,   16, 
+  DSDT.dsl:467:        LIDS,   8, 
+> DSDT.dsl:468:        PWRS,   8, 
+  DSDT.dsl:469:        BVAL,   32, 
+  DSDT.dsl:470:        ADDL,   16, 
+  DSDT.dsl:471:        BCMD,   8, 
+  DSDT.dsl:472:        SBFN,   8, 
+  DSDT.dsl:473:        DID,    32, 
+  DSDT.dsl:1284:            \_SB.S80H (0xE3)
+  DSDT.dsl:1285:            If ((\_SB.APBM == One))
+  DSDT.dsl:1286:            {
+> DSDT.dsl:1287:                Notify (\_SB.PWRB, 0x02) // Device Wake
+  DSDT.dsl:1288:            }
+  DSDT.dsl:1289:        }
+  DSDT.dsl:1290:
+  DSDT.dsl:1291:        If ((Arg0 == 0x04))
+  DSDT.dsl:1292:        {
+  DSDT.dsl:1298:            \_SB.S80H (0xE4)
+  DSDT.dsl:1299:            If ((\_SB.APBM == One))
+  DSDT.dsl:1300:            {
+> DSDT.dsl:1301:                Notify (\_SB.PWRB, 0x02) // Device Wake
+  DSDT.dsl:1302:            }
+  DSDT.dsl:1303:        }
+  DSDT.dsl:1304:
+  DSDT.dsl:1305:        M460 ("PLA-ASL-\\_WAK call MWAK\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  DSDT.dsl:1306:        MWAK (Arg0)
+  DSDT.dsl:1312:    Scope (_SB)
+  DSDT.dsl:1313:    {
+  DSDT.dsl:1314:        Name (APBM, 0x00)
+> DSDT.dsl:1315:        Device (PWRB)
+  DSDT.dsl:1316:        {
+> DSDT.dsl:1317:            Name (_HID, EisaId ("PNP0C0C") /* Power Button Device */)  // _HID: Hardware ID
+> DSDT.dsl:1318:            Name (_DDN, "Power button")  // _DDN: DOS Device Name
+  DSDT.dsl:1319:            Method (_STA, 0, NotSerialized)  // _STA: Status
+  DSDT.dsl:1320:            {
+  DSDT.dsl:1321:                Name (PSTA, Zero)
+> DSDT.dsl:1322:                M460 ("PLA-ASL-\\_SB.PWRB._STA = 0xB\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  DSDT.dsl:1323:                If ((APBM == One))
+  DSDT.dsl:1324:                {
+  DSDT.dsl:1325:                    PSTA = 0x0B
+  DSDT.dsl:1326:                }
+  DSDT.dsl:1327:
+> DSDT.dsl:1328:                Return (PSTA) /* \_SB_.PWRB._STA.PSTA */
+  DSDT.dsl:1329:            }
+  DSDT.dsl:1330:        }
+  DSDT.dsl:1331:
+  DSDT.dsl:1332:        Device (BTNS)
+  DSDT.dsl:1333:        {
+  DSDT.dsl:2238:            Device (GPP0)
+  DSDT.dsl:2239:            {
+  DSDT.dsl:2240:                Name (_ADR, 0x00010001)  // _ADR: Address
+> DSDT.dsl:2241:                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+  DSDT.dsl:2242:                {
+  DSDT.dsl:2243:                    If ((WKPM == One))
+  DSDT.dsl:2244:                    {
+  DSDT.dsl:2245:                        M460 ("PLA-ASL-\\_SB.PCI0.GPP0.RHRW Return GPRW (0x8, 0x4)\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  DSDT.dsl:2246:                        Return (GPRW (0x08, 0x04))
+  DSDT.dsl:4444:                                Return (PLD1) /* \_SB_.PCI0.GP17.XHC0.RHUB.PRT4.PLD1 */
+  DSDT.dsl:4445:                            }
+  DSDT.dsl:4446:
+> DSDT.dsl:4447:                            Name (_PRR, Package (0x01)  // _PRR: Power Resource for Reset
+  DSDT.dsl:4448:                            {
+  DSDT.dsl:4449:                                BRWL, 
+  DSDT.dsl:4450:                            })
+  DSDT.dsl:4451:                            Name (BLPS, One)
+> DSDT.dsl:4452:                            PowerResource (BRWL, 0x00, 0x0000)
+  DSDT.dsl:4453:                            {
+  DSDT.dsl:4454:                                Method (_RST, 0, NotSerialized)  // _RST: Device Reset
+  DSDT.dsl:4455:                                {
+  DSDT.dsl:4456:                                    M010 (0x27, Zero)
+  DSDT.dsl:4457:                                    Sleep (0xC8)
+  DSDT.dsl:4464:                                    Return (BLPS) /* \_SB_.PCI0.GP17.XHC0.RHUB.PRT4.BLPS */
+  DSDT.dsl:4465:                                }
+  DSDT.dsl:4466:
+> DSDT.dsl:4467:                                Method (_ON, 0, NotSerialized)  // _ON_: Power On
+  DSDT.dsl:4468:                                {
+  DSDT.dsl:4469:                                    BLPS = One
+  DSDT.dsl:4470:                                }
+  DSDT.dsl:4471:
+> DSDT.dsl:4472:                                Method (_OFF, 0, NotSerialized)  // _OFF: Power Off
+  DSDT.dsl:4473:                                {
+  DSDT.dsl:4474:                                    BLPS = Zero
+  DSDT.dsl:4475:                                }
+  DSDT.dsl:4476:                            }
+  DSDT.dsl:4477:                        }
+  DSDT.dsl:6708:                }
+  DSDT.dsl:6709:            }
+  DSDT.dsl:6710:
+> DSDT.dsl:6711:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:6712:            {
+  DSDT.dsl:6713:                If ((UT0D && UT0E))
+  DSDT.dsl:6714:                {
+  DSDT.dsl:6715:                    DSAD (0x0B, Zero)
+  DSDT.dsl:6716:                }
+  DSDT.dsl:6717:            }
+  DSDT.dsl:6718:
+> DSDT.dsl:6719:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:6720:            {
+  DSDT.dsl:6721:                If ((UT0D && UT0E))
+  DSDT.dsl:6722:                {
+  DSDT.dsl:6723:                    DSAD (0x0B, 0x03)
+  DSDT.dsl:6724:                }
+  DSDT.dsl:6786:                }
+  DSDT.dsl:6787:            }
+  DSDT.dsl:6788:
+> DSDT.dsl:6789:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:6790:            {
+  DSDT.dsl:6791:                If ((UT1D && UT1E))
+  DSDT.dsl:6792:                {
+  DSDT.dsl:6793:                    DSAD (0x0C, Zero)
+  DSDT.dsl:6794:                }
+  DSDT.dsl:6795:            }
+  DSDT.dsl:6796:
+> DSDT.dsl:6797:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:6798:            {
+  DSDT.dsl:6799:                If ((UT1D && UT1E))
+  DSDT.dsl:6800:                {
+  DSDT.dsl:6801:                    DSAD (0x0C, 0x03)
+  DSDT.dsl:6802:                }
+  DSDT.dsl:6864:                }
+  DSDT.dsl:6865:            }
+  DSDT.dsl:6866:
+> DSDT.dsl:6867:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:6868:            {
+  DSDT.dsl:6869:                If ((UT2D && UT2E))
+  DSDT.dsl:6870:                {
+  DSDT.dsl:6871:                    DSAD (0x10, Zero)
+  DSDT.dsl:6872:                }
+  DSDT.dsl:6873:            }
+  DSDT.dsl:6874:
+> DSDT.dsl:6875:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:6876:            {
+  DSDT.dsl:6877:                If ((UT2D && UT2E))
+  DSDT.dsl:6878:                {
+  DSDT.dsl:6879:                    DSAD (0x10, 0x03)
+  DSDT.dsl:6880:                }
+  DSDT.dsl:6942:                }
+  DSDT.dsl:6943:            }
+  DSDT.dsl:6944:
+> DSDT.dsl:6945:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:6946:            {
+  DSDT.dsl:6947:                If ((UT3D && UT3E))
+  DSDT.dsl:6948:                {
+  DSDT.dsl:6949:                    DSAD (0x1A, Zero)
+  DSDT.dsl:6950:                }
+  DSDT.dsl:6951:            }
+  DSDT.dsl:6952:
+> DSDT.dsl:6953:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:6954:            {
+  DSDT.dsl:6955:                If ((UT3D && UT3E))
+  DSDT.dsl:6956:                {
+  DSDT.dsl:6957:                    DSAD (0x1A, 0x03)
+  DSDT.dsl:6958:                }
+  DSDT.dsl:7006:                }
+  DSDT.dsl:7007:            }
+  DSDT.dsl:7008:
+> DSDT.dsl:7009:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:7010:            {
+  DSDT.dsl:7011:                If ((UT4D && UT4E))
+  DSDT.dsl:7012:                {
+  DSDT.dsl:7013:                    DSAD (0x14, Zero)
+  DSDT.dsl:7014:                }
+  DSDT.dsl:7015:            }
+  DSDT.dsl:7016:
+> DSDT.dsl:7017:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:7018:            {
+  DSDT.dsl:7019:                If ((UT4D && UT4E))
+  DSDT.dsl:7020:                {
+  DSDT.dsl:7021:                    DSAD (0x14, 0x03)
+  DSDT.dsl:7022:                }
+  DSDT.dsl:7106:                }
+  DSDT.dsl:7107:            }
+  DSDT.dsl:7108:
+> DSDT.dsl:7109:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:7110:            {
+  DSDT.dsl:7111:                If ((IC0D && IC0E))
+  DSDT.dsl:7112:                {
+  DSDT.dsl:7113:                    DSAD (0x05, Zero)
+  DSDT.dsl:7114:                }
+  DSDT.dsl:7115:            }
+  DSDT.dsl:7116:
+> DSDT.dsl:7117:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:7118:            {
+  DSDT.dsl:7119:                If ((IC0D && IC0E))
+  DSDT.dsl:7120:                {
+  DSDT.dsl:7121:                    DSAD (0x05, 0x03)
+  DSDT.dsl:7122:                }
+  DSDT.dsl:7206:                }
+  DSDT.dsl:7207:            }
+  DSDT.dsl:7208:
+> DSDT.dsl:7209:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:7210:            {
+  DSDT.dsl:7211:                If ((IC1D && IC1E))
+  DSDT.dsl:7212:                {
+  DSDT.dsl:7213:                    DSAD (0x06, Zero)
+  DSDT.dsl:7214:                }
+  DSDT.dsl:7215:            }
+  DSDT.dsl:7216:
+> DSDT.dsl:7217:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:7218:            {
+  DSDT.dsl:7219:                If ((IC1D && IC1E))
+  DSDT.dsl:7220:                {
+  DSDT.dsl:7221:                    DSAD (0x06, 0x03)
+  DSDT.dsl:7222:                }
+  DSDT.dsl:7306:                }
+  DSDT.dsl:7307:            }
+  DSDT.dsl:7308:
+> DSDT.dsl:7309:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:7310:            {
+  DSDT.dsl:7311:                If ((IC2D && IC2E))
+  DSDT.dsl:7312:                {
+  DSDT.dsl:7313:                    DSAD (0x07, Zero)
+  DSDT.dsl:7314:                }
+  DSDT.dsl:7315:            }
+  DSDT.dsl:7316:
+> DSDT.dsl:7317:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:7318:            {
+  DSDT.dsl:7319:                If ((IC2D && IC2E))
+  DSDT.dsl:7320:                {
+  DSDT.dsl:7321:                    DSAD (0x07, 0x03)
+  DSDT.dsl:7322:                }
+  DSDT.dsl:7406:                }
+  DSDT.dsl:7407:            }
+  DSDT.dsl:7408:
+> DSDT.dsl:7409:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:7410:            {
+  DSDT.dsl:7411:                If ((IC3D && IC3E))
+  DSDT.dsl:7412:                {
+  DSDT.dsl:7413:                    DSAD (0x08, Zero)
+  DSDT.dsl:7414:                }
+  DSDT.dsl:7415:            }
+  DSDT.dsl:7416:
+> DSDT.dsl:7417:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:7418:            {
+  DSDT.dsl:7419:                If ((IC3D && IC3E))
+  DSDT.dsl:7420:                {
+  DSDT.dsl:7421:                    DSAD (0x08, 0x03)
+  DSDT.dsl:7422:                }
+  DSDT.dsl:7487:                }
+  DSDT.dsl:7488:            }
+  DSDT.dsl:7489:
+> DSDT.dsl:7490:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:7491:            {
+  DSDT.dsl:7492:                If ((I30D && I30E))
+  DSDT.dsl:7493:                {
+  DSDT.dsl:7494:                    DSAD (0x15, Zero)
+  DSDT.dsl:7495:                }
+  DSDT.dsl:7496:            }
+  DSDT.dsl:7497:
+> DSDT.dsl:7498:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:7499:            {
+  DSDT.dsl:7500:                If ((I30D && I30E))
+  DSDT.dsl:7501:                {
+  DSDT.dsl:7502:                    DSAD (0x15, 0x03)
+  DSDT.dsl:7503:                }
+  DSDT.dsl:7566:                }
+  DSDT.dsl:7567:            }
+  DSDT.dsl:7568:
+> DSDT.dsl:7569:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:7570:            {
+  DSDT.dsl:7571:                If ((I31D && I31E))
+  DSDT.dsl:7572:                {
+  DSDT.dsl:7573:                    DSAD (0x0D, Zero)
+  DSDT.dsl:7574:                }
+  DSDT.dsl:7575:            }
+  DSDT.dsl:7576:
+> DSDT.dsl:7577:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:7578:            {
+  DSDT.dsl:7579:                If ((I31D && I31E))
+  DSDT.dsl:7580:                {
+  DSDT.dsl:7581:                    DSAD (0x0D, 0x03)
+  DSDT.dsl:7582:                }
+  DSDT.dsl:7645:                }
+  DSDT.dsl:7646:            }
+  DSDT.dsl:7647:
+> DSDT.dsl:7648:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:7649:            {
+  DSDT.dsl:7650:                If ((I32D && I32E))
+  DSDT.dsl:7651:                {
+  DSDT.dsl:7652:                    DSAD (0x0E, Zero)
+  DSDT.dsl:7653:                }
+  DSDT.dsl:7654:            }
+  DSDT.dsl:7655:
+> DSDT.dsl:7656:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:7657:            {
+  DSDT.dsl:7658:                If ((I32D && I32E))
+  DSDT.dsl:7659:                {
+  DSDT.dsl:7660:                    DSAD (0x0E, 0x03)
+  DSDT.dsl:7661:                }
+  DSDT.dsl:7724:                }
+  DSDT.dsl:7725:            }
+  DSDT.dsl:7726:
+> DSDT.dsl:7727:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:7728:            {
+  DSDT.dsl:7729:                If ((I33D && I33E))
+  DSDT.dsl:7730:                {
+  DSDT.dsl:7731:                    DSAD (0x0F, Zero)
+  DSDT.dsl:7732:                }
+  DSDT.dsl:7733:            }
+  DSDT.dsl:7734:
+> DSDT.dsl:7735:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:7736:            {
+  DSDT.dsl:7737:                If ((I33D && I33E))
+  DSDT.dsl:7738:                {
+  DSDT.dsl:7739:                    DSAD (0x0F, 0x03)
+  DSDT.dsl:7740:                }
+  DSDT.dsl:9299:                }
+  DSDT.dsl:9300:            }
+  DSDT.dsl:9301:
+> DSDT.dsl:9302:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:9303:            {
+  DSDT.dsl:9304:            }
+  DSDT.dsl:9305:
+> DSDT.dsl:9306:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:9307:            {
+  DSDT.dsl:9308:            }
+  DSDT.dsl:9309:
+  DSDT.dsl:9310:            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+  DSDT.dsl:9311:            {
+  DSDT.dsl:9397:                }
+  DSDT.dsl:9398:            }
+  DSDT.dsl:9399:
+> DSDT.dsl:9400:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:9401:            {
+  DSDT.dsl:9402:            }
+  DSDT.dsl:9403:
+> DSDT.dsl:9404:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:9405:            {
+  DSDT.dsl:9406:            }
+  DSDT.dsl:9407:
+  DSDT.dsl:9408:            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+  DSDT.dsl:9409:            {
+  DSDT.dsl:9495:                }
+  DSDT.dsl:9496:            }
+  DSDT.dsl:9497:
+> DSDT.dsl:9498:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:9499:            {
+  DSDT.dsl:9500:            }
+  DSDT.dsl:9501:
+> DSDT.dsl:9502:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:9503:            {
+  DSDT.dsl:9504:            }
+  DSDT.dsl:9505:
+  DSDT.dsl:9506:            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+  DSDT.dsl:9507:            {
+  DSDT.dsl:9593:                }
+  DSDT.dsl:9594:            }
+  DSDT.dsl:9595:
+> DSDT.dsl:9596:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  DSDT.dsl:9597:            {
+  DSDT.dsl:9598:            }
+  DSDT.dsl:9599:
+> DSDT.dsl:9600:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  DSDT.dsl:9601:            {
+  DSDT.dsl:9602:            }
+  DSDT.dsl:9603:
+  DSDT.dsl:9604:            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+  DSDT.dsl:9605:            {
+  DSDT.dsl:10254:                Notify (ACAD, 0x80) // Status Change
+  DSDT.dsl:10255:                Sleep (0x03E8)
+  DSDT.dsl:10256:                Notify (BAT1, 0x80) // Status Change
+> DSDT.dsl:10257:                PWRS = ADPT /* \_SB_.PCI0.LPC0.EC0_.ADPT */
+  DSDT.dsl:10258:                Mutex (ACXX, 0x00)
+  DSDT.dsl:10259:                Local0 = One
+  DSDT.dsl:10260:                Local0 = ADPT /* \_SB_.PCI0.LPC0.EC0_.ADPT */
+  DSDT.dsl:10261:                If (!Acquire (ACXX, 0x012C))
+  DSDT.dsl:10262:                {
+  DSDT.dsl:10420:                    If ((KLEN == Zero))
+  DSDT.dsl:10421:                    {
+  DSDT.dsl:10422:                        PSD1 = 0x40
+> DSDT.dsl:10423:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10424:                    }
+  DSDT.dsl:10425:                    ElseIf ((KLEN == One))
+  DSDT.dsl:10426:                    {
+  DSDT.dsl:10427:                        PSD1 = 0x41
+> DSDT.dsl:10428:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10429:                    }
+  DSDT.dsl:10430:                    ElseIf ((KLEN == 0x02))
+  DSDT.dsl:10431:                    {
+  DSDT.dsl:10432:                        PSD1 = 0x42
+> DSDT.dsl:10433:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10434:                    }
+  DSDT.dsl:10435:                    Else
+  DSDT.dsl:10436:                    {
+  DSDT.dsl:10437:                        PSD1 = 0x40
+> DSDT.dsl:10438:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10439:                    }
+  DSDT.dsl:10440:                }
+  DSDT.dsl:10441:            }
+  DSDT.dsl:10442:
+  DSDT.dsl:10443:            Method (_Q2D, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:10447:                {
+  DSDT.dsl:10448:                    ^^^^GZFD.KYID = 0x03
+  DSDT.dsl:10449:                    Notify (GZFD, 0xDA) // Hardware-Specific
+> DSDT.dsl:10450:                    If ((RGBM == Zero))
+  DSDT.dsl:10451:                    {
+  DSDT.dsl:10452:                        PSD1 = 0x1B
+> DSDT.dsl:10453:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10454:                    }
+> DSDT.dsl:10455:                    ElseIf ((RGBM == One))
+  DSDT.dsl:10456:                    {
+  DSDT.dsl:10457:                        PSD1 = 0x1C
+> DSDT.dsl:10458:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10459:                    }
+> DSDT.dsl:10460:                    ElseIf ((RGBM == 0x02))
+  DSDT.dsl:10461:                    {
+  DSDT.dsl:10462:                        PSD1 = 0x1D
+> DSDT.dsl:10463:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10464:                    }
+> DSDT.dsl:10465:                    ElseIf ((RGBM == 0x03))
+  DSDT.dsl:10466:                    {
+  DSDT.dsl:10467:                        PSD1 = 0x1E
+> DSDT.dsl:10468:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10469:                    }
+> DSDT.dsl:10470:                    ElseIf ((RGBM == 0x04))
+  DSDT.dsl:10471:                    {
+  DSDT.dsl:10472:                        PSD1 = 0x1F
+> DSDT.dsl:10473:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10474:                    }
+  DSDT.dsl:10475:                    Else
+  DSDT.dsl:10476:                    {
+  DSDT.dsl:10477:                        PSD1 = 0x1B
+> DSDT.dsl:10478:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10479:                    }
+  DSDT.dsl:10480:                }
+  DSDT.dsl:10481:            }
+  DSDT.dsl:10482:
+  DSDT.dsl:10483:            Method (_Q0D, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:10534:                If ((FRHK != Zero))
+  DSDT.dsl:10535:                {
+  DSDT.dsl:10536:                    PSD1 = 0x10
+> DSDT.dsl:10537:                    Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10538:                }
+  DSDT.dsl:10539:            }
+  DSDT.dsl:10540:
+  DSDT.dsl:10541:            Method (_Q10, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:10542:            {
+  DSDT.dsl:10799:        {
+  DSDT.dsl:10800:            Name (_HID, EisaId ("PNP0C0A") /* Control Method Battery */)  // _HID: Hardware ID
+  DSDT.dsl:10801:            Name (_UID, Zero)  // _UID: Unique ID
+> DSDT.dsl:10802:            Name (_PCL, Package (0x01)  // _PCL: Power Consumer List
+  DSDT.dsl:10803:            {
+  DSDT.dsl:10804:                _SB, 
+  DSDT.dsl:10805:            })
+  DSDT.dsl:10806:            Name (BMDL, Zero)
+  DSDT.dsl:10807:            Name (BASC, One)
+  DSDT.dsl:10978:
+  DSDT.dsl:10979:        Device (ACAD)
+  DSDT.dsl:10980:        {
+> DSDT.dsl:10981:            Name (_HID, "ACPI0003" /* Power Source Device */)  // _HID: Hardware ID
+> DSDT.dsl:10982:            Name (_PCL, Package (0x01)  // _PCL: Power Consumer List
+  DSDT.dsl:10983:            {
+  DSDT.dsl:10984:                _SB, 
+  DSDT.dsl:10985:            })
+  DSDT.dsl:10986:            Name (BUFF, Buffer (0x03){})
+  DSDT.dsl:10987:            Name (ACDC, 0xFF)
+> DSDT.dsl:10988:            Method (_PSR, 0, Serialized)  // _PSR: Power Source
+  DSDT.dsl:10989:            {
+  DSDT.dsl:10990:                Local0 = ^^EC0.ADPT /* \_SB_.PCI0.LPC0.EC0_.ADPT */
+  DSDT.dsl:10991:                CreateWordField (BUFF, Zero, SSZE)
+  DSDT.dsl:10992:                CreateByteField (BUFF, 0x02, ACST)
+  DSDT.dsl:10993:                SSZE = 0x03
+  DSDT.dsl:11130:    Scope (_SB)
+  DSDT.dsl:11131:    {
+  DSDT.dsl:11132:        Mutex (MWMI, 0x00)
+> DSDT.dsl:11133:        Device (WMI4)
+  DSDT.dsl:11134:        {
+  DSDT.dsl:11135:            Name (_HID, EisaId ("PNP0C14") /* Windows Management Instrumentation Device */)  // _HID: Hardware ID
+  DSDT.dsl:11136:            Name (_UID, "WBAT")  // _UID: Unique ID
+  DSDT.dsl:11137:            Name (_WDG, Buffer (0x28)
+  DSDT.dsl:11138:            {
+  DSDT.dsl:12822:            QBSM,   1, 
+  DSDT.dsl:12823:            BATM,   1, 
+  DSDT.dsl:12824:                ,   5, 
+> DSDT.dsl:12825:            RGBM,   3, 
+  DSDT.dsl:12826:            CNEX,   1, 
+  DSDT.dsl:12827:            CMEX,   1, 
+  DSDT.dsl:12828:                ,   1, 
+  DSDT.dsl:12829:            PDTY,   1, 
+  DSDT.dsl:12830:                ,   1, 
+  DSDT.dsl:13100:                }
+  DSDT.dsl:13101:            }
+  DSDT.dsl:13102:
+> DSDT.dsl:13103:            Device (WMIU)
+  DSDT.dsl:13104:            {
+  DSDT.dsl:13105:                Name (_HID, "PNP0C14" /* Windows Management Instrumentation Device */)  // _HID: Hardware ID
+  DSDT.dsl:13106:                Name (_UID, "LSK20")  // _UID: Unique ID
+  DSDT.dsl:13107:                Name (_WDG, Buffer (0x3C)
+  DSDT.dsl:13108:                {
+  DSDT.dsl:13115:                    /* 0030 */  0xB0, 0xF3, 0x88, 0x71, 0x71, 0x1C, 0x12, 0x94,  // ...qq...
+  DSDT.dsl:13116:                    /* 0038 */  0xD0, 0x00, 0x01, 0x08                           // ....
+  DSDT.dsl:13117:                })
+> DSDT.dsl:13118:                Method (WMSK, 3, NotSerialized)
+  DSDT.dsl:13119:                {
+  DSDT.dsl:13120:                    If ((Arg1 == One))
+  DSDT.dsl:13121:                    {
+  DSDT.dsl:13122:                        If ((ToInteger (Arg2) == One))
+  DSDT.dsl:13123:                        {
+  DSDT.dsl:13453:            Method (_Q3E, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:13454:            {
+  DSDT.dsl:13455:                PSD1 = 0x04
+> DSDT.dsl:13456:                Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:13457:            }
+  DSDT.dsl:13458:
+  DSDT.dsl:13459:            Method (_Q3F, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:13460:            {
+  DSDT.dsl:13461:                PSD1 = One
+> DSDT.dsl:13462:                Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:13463:            }
+  DSDT.dsl:13464:
+  DSDT.dsl:13465:            Method (_Q0F, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:13466:            {
+  DSDT.dsl:13467:                HOTM = ~HOTM /* \_SB_.PCI0.LPC0.EC0_.HOTM */
+  DSDT.dsl:13475:                }
+  DSDT.dsl:13476:
+  DSDT.dsl:13477:                WXMS (0x70, HOTM)
+> DSDT.dsl:13478:                Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:13479:            }
+  DSDT.dsl:13480:
+  DSDT.dsl:13481:            Method (_Q3D, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:13482:            {
+  DSDT.dsl:13483:                PSD1 = 0x07
+> DSDT.dsl:13484:                Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:13485:            }
+  DSDT.dsl:13486:
+  DSDT.dsl:13487:            Method (_Q14, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:13488:            {
+  DSDT.dsl:13489:                PSD1 = 0x2A
+> DSDT.dsl:13490:                Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:13491:            }
+  DSDT.dsl:13492:
+  DSDT.dsl:13493:            Method (_Q29, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:13494:            {
+  DSDT.dsl:13495:                If (COSD)
+  DSDT.dsl:13501:                    PSD1 = 0x0D
+  DSDT.dsl:13502:                }
+  DSDT.dsl:13503:
+> DSDT.dsl:13504:                Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:13505:            }
+  DSDT.dsl:13506:
+  DSDT.dsl:13507:            Method (_Q18, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:13508:            {
+  DSDT.dsl:13509:                PSD1 = 0x3E
+> DSDT.dsl:13510:                Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:13511:            }
+  DSDT.dsl:13512:
+  DSDT.dsl:13513:            Method (_Q19, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:13514:            {
+  DSDT.dsl:13515:                PSD1 = 0x3F
+> DSDT.dsl:13516:                Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:13517:            }
+  DSDT.dsl:13518:        }
+  DSDT.dsl:13519:    }
+  DSDT.dsl:13520:
+  DSDT.dsl:13521:    OperationRegion (SMIO, SystemIO, 0xB0, 0x02)
+  DSDT.dsl:13615:            Debug = "DGHP Plug Out"
+  DSDT.dsl:13616:            If ((M009 (PWOK) == One))
+  DSDT.dsl:13617:            {
+> DSDT.dsl:13618:                Debug = "DGHP DGPU_PWR_OK=1"
+  DSDT.dsl:13619:                Debug = "DGHP Plug Out - DGBS=1"
+  DSDT.dsl:13620:                DGBS = One
+  DSDT.dsl:13621:            }
+  DSDT.dsl:13622:            Else
+  DSDT.dsl:13623:            {
+  DSDT.dsl:16529:            Name (FNQF, Zero)
+  DSDT.dsl:16530:            Name (TGZF, Zero)
+  DSDT.dsl:16531:            Name (_HID, "PNP0C14" /* Windows Management Instrumentation Device */)  // _HID: Hardware ID
+> DSDT.dsl:16532:            Name (_UID, "GMZN")  // _UID: Unique ID
+  DSDT.dsl:16533:            Name (QGPS, 0x10)
+  DSDT.dsl:16534:            Name (BGPS, 0x10)
+  DSDT.dsl:16535:            Name (PGPS, 0x11)
+  DSDT.dsl:16536:            Name (MGPS, 0x11)
+  DSDT.dsl:16537:            Name (KYID, Zero)
+  DSDT.dsl:38192:                GCD2 (Arg0)
+  DSDT.dsl:38193:            }
+  DSDT.dsl:38194:
+> DSDT.dsl:38195:            Method (WMAA, 3, Serialized)
+  DSDT.dsl:38196:            {
+  DSDT.dsl:38197:                OperationRegion (SMIP, SystemIO, 0xB0, One)
+  DSDT.dsl:38198:                Field (SMIP, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:38199:                {
+  DSDT.dsl:38200:                    IOB0,   8
+  DSDT.dsl:38986:                    CreateField (CFRQ, 0x10, 0x10, FRQ2)
+  DSDT.dsl:38987:                    FRQ1 = CPMR /* \CPMR */
+  DSDT.dsl:38988:                    FRQ2 = CPMR /* \CPMR */
+> DSDT.dsl:38989:                    Return (CFRQ) /* \_SB_.GZFD.WMAA.CFRQ */
+  DSDT.dsl:38990:                }
+  DSDT.dsl:38991:
+  DSDT.dsl:38992:                If ((Arg1 == 0x3D))
+  DSDT.dsl:38993:                {
+  DSDT.dsl:38994:                    Return (0x06)
+  DSDT.dsl:39223:                }
+  DSDT.dsl:39224:            }
+  DSDT.dsl:39225:
+> DSDT.dsl:39226:            Method (WMAB, 3, NotSerialized)
+  DSDT.dsl:39227:            {
+  DSDT.dsl:39228:                If ((Arg1 == 0x05))
+  DSDT.dsl:39229:                {
+  DSDT.dsl:39230:                    CreateByteField (Arg2, Zero, FID0)
+  DSDT.dsl:39231:                    CreateByteField (Arg2, One, SID0)
+  DSDT.dsl:39243:                }
+  DSDT.dsl:39244:            }
+  DSDT.dsl:39245:
+> DSDT.dsl:39246:            Method (WMAC, 3, NotSerialized)
+  DSDT.dsl:39247:            {
+  DSDT.dsl:39248:                If ((Arg1 == 0x0E))
+  DSDT.dsl:39249:                {
+  DSDT.dsl:39250:                    Return (Zero)
+  DSDT.dsl:39251:                }
+  DSDT.dsl:39252:            }
+  DSDT.dsl:39253:
+> DSDT.dsl:39254:            Method (WMAD, 3, NotSerialized)
+  DSDT.dsl:39255:            {
+  DSDT.dsl:39256:                Return (Zero)
+  DSDT.dsl:39257:            }
+  DSDT.dsl:39258:
+> DSDT.dsl:39259:            Method (WMAE, 3, NotSerialized)
+  DSDT.dsl:39260:            {
+  DSDT.dsl:39261:                If ((Arg1 == 0x11))
+  DSDT.dsl:39262:                {
+  DSDT.dsl:39263:                    CreateWordField (Arg2, Zero, TYP0)
+  DSDT.dsl:39264:                    CreateByteField (Arg2, 0x02, FEA0)
+  DSDT.dsl:39344:                            FSPM = One
+  DSDT.dsl:39345:                            EXTM = One
+  DSDT.dsl:39346:                            CUSM = One
+> DSDT.dsl:39347:                            Return (GSTM) /* \_SB_.GZFD.WMAE.GSTM */
+  DSDT.dsl:39348:                        }
+  DSDT.dsl:39349:
+  DSDT.dsl:39350:                        If ((FEA0 == 0x08))
+  DSDT.dsl:39351:                        {
+  DSDT.dsl:39352:                            Name (HWTP, Buffer (0x04)
+  DSDT.dsl:39357:                            CreateByteField (HWTP, One, CTYP)
+  DSDT.dsl:39358:                            CTYP = One
+  DSDT.dsl:39359:                            GTYP = One
+> DSDT.dsl:39360:                            Return (HWTP) /* \_SB_.GZFD.WMAE.HWTP */
+  DSDT.dsl:39361:                        }
+  DSDT.dsl:39362:
+  DSDT.dsl:39363:                        If ((FEA0 == 0x09))
+  DSDT.dsl:39364:                        {
+  DSDT.dsl:39365:                            Return (0x04)
+  DSDT.dsl:40094:                                }
+  DSDT.dsl:40095:                            }
+  DSDT.dsl:40096:
+> DSDT.dsl:40097:                            Return (GAPS) /* \_SB_.GZFD.WMAE.GAPS */
+  DSDT.dsl:40098:                        }
+  DSDT.dsl:40099:                    }
+  DSDT.dsl:40100:
+  DSDT.dsl:40101:                    If ((DEV0 == 0x04))
+  DSDT.dsl:40102:                    {
+  DSDT.dsl:40291:                                PSD1 = 0x32
+  DSDT.dsl:40292:                            }
+  DSDT.dsl:40293:
+> DSDT.dsl:40294:                            Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:40295:                            Return (PSD1) /* \_SB_.PSD1 */
+  DSDT.dsl:40296:                        }
+  DSDT.dsl:40297:
+  DSDT.dsl:40298:                        If ((FEA1 == 0x0D))
+  DSDT.dsl:40299:                        {
+  DSDT.dsl:40479:
+  DSDT.dsl:40480:                            Local0 = ToInteger (DAT1)
+  DSDT.dsl:40481:                            ^^PCI0.LPC0.EC0.GTGP = Local0
+> DSDT.dsl:40482:                            Local0 -= NVBL /* \_SB_.GZFD.WMAE.NVBL */
+  DSDT.dsl:40483:                            Local0 *= 0x08
+  DSDT.dsl:40484:                            ^^NPCF.ACBT = Local0
+  DSDT.dsl:40485:                            Notify (NPCF, 0xC0) // Hardware-Specific
+  DSDT.dsl:40486:                            Return (One)
+  DSDT.dsl:40487:                        }
+  DSDT.dsl:40803:                        }
+  DSDT.dsl:40804:
+  DSDT.dsl:40805:                        GKHF = Zero
+> DSDT.dsl:40806:                        ^^PCI0.LPC0.EC0.TPSW = IDTA /* \_SB_.GZFD.WMAE.IDTA */
+> DSDT.dsl:40807:                        ^^PCI0.LPC0.EC0.TIDB = IDDA /* \_SB_.GZFD.WMAE.IDDA */
+  DSDT.dsl:40808:                        CSMI (0xC7, 0xA6)
+  DSDT.dsl:40809:                        Sleep (0x64)
+  DSDT.dsl:40810:                        If ((^^PCI0.LPC0.EC0.TSTA == 0xAA))
+  DSDT.dsl:40811:                        {
+  DSDT.dsl:40812:                            E3HD = ^^PCI0.LPC0.EC0.TRKH /* \_SB_.PCI0.LPC0.EC0_.TRKH */
+  DSDT.dsl:40829:
+  DSDT.dsl:40830:                    If ((GCMD == 0xCB))
+  DSDT.dsl:40831:                    {
+> DSDT.dsl:40832:                        ^^PCI0.LPC0.EC0.TPSW = IDTA /* \_SB_.GZFD.WMAE.IDTA */
+> DSDT.dsl:40833:                        CUST = HADL /* \_SB_.GZFD.WMAE.HADL */
+  DSDT.dsl:40834:                        CSMI (0xC7, 0xA7)
+  DSDT.dsl:40835:                        Sleep (0x64)
+  DSDT.dsl:40836:                        If ((^^PCI0.LPC0.EC0.TSTA == 0xAA))
+  DSDT.dsl:40837:                        {
+  DSDT.dsl:40838:                            E300 = ^^PCI0.LPC0.EC0.TKEY /* \_SB_.PCI0.LPC0.EC0_.TKEY */
+  DSDT.dsl:40851:
+  DSDT.dsl:40852:                    If ((GCMD == 0xCC))
+  DSDT.dsl:40853:                    {
+> DSDT.dsl:40854:                        CUST = HADL /* \_SB_.GZFD.WMAE.HADL */
+  DSDT.dsl:40855:                        CSMI (0xC7, 0xAD)
+  DSDT.dsl:40856:                        Sleep (0x64)
+  DSDT.dsl:40857:                        If ((^^PCI0.LPC0.EC0.TSTA == 0xAA))
+  DSDT.dsl:40858:                        {
+  DSDT.dsl:40859:                            IDDO = ^^PCI0.LPC0.EC0.TIDB /* \_SB_.PCI0.LPC0.EC0_.TIDB */
+  DSDT.dsl:40871:
+  DSDT.dsl:40872:                    If ((GCMD == 0xCD))
+  DSDT.dsl:40873:                    {
+> DSDT.dsl:40874:                        CUST = HADL /* \_SB_.GZFD.WMAE.HADL */
+  DSDT.dsl:40875:                        CSMI (0xC7, 0xAE)
+  DSDT.dsl:40876:                        Sleep (0x64)
+  DSDT.dsl:40877:                        E30S = One
+  DSDT.dsl:40878:                        If ((^^PCI0.LPC0.EC0.TSTA == 0xAA))
+  DSDT.dsl:40879:                        {
+  DSDT.dsl:40904:                }
+  DSDT.dsl:40905:            }
+  DSDT.dsl:40906:
+> DSDT.dsl:40907:            Method (WMAF, 3, NotSerialized)
+  DSDT.dsl:40908:            {
+  DSDT.dsl:40909:                If ((Arg1 == One))
+  DSDT.dsl:40910:                {
+> DSDT.dsl:40911:                    Debug = "Call WMAF- MethodId 1 - Get_Lighting_Current_Status"
+  DSDT.dsl:40912:                    Return (GLT1 (Arg2))
+  DSDT.dsl:40913:                }
+  DSDT.dsl:40914:
+  DSDT.dsl:40915:                If ((Arg1 == 0x02))
+  DSDT.dsl:40916:                {
+> DSDT.dsl:40917:                    Debug = "Call WMAF- MethodId 2 - Set_Lighting_Current_Status"
+  DSDT.dsl:40918:                    SLT2 (Arg2)
+  DSDT.dsl:40919:                    Return (Zero)
+  DSDT.dsl:40920:                }
+  DSDT.dsl:40921:            }
+  DSDT.dsl:40922:
+  DSDT.dsl:41013:                                Notify (^^PCI0.GPP0.PEGP, 0xC0) // Hardware-Specific
+  DSDT.dsl:41014:                            }
+  DSDT.dsl:41015:
+> DSDT.dsl:41016:                            Debug = "PowerChargeModeEvent_Update"
+  DSDT.dsl:41017:                        }
+  DSDT.dsl:41018:
+> DSDT.dsl:41019:                        Debug = "PowerChargeModeEvent_AC"
+  DSDT.dsl:41020:                    }
+  DSDT.dsl:41021:                    Else
+  DSDT.dsl:41022:                    {
+  DSDT.dsl:41023:                        Local0 = 0x02
+> DSDT.dsl:41024:                        Debug = "PowerChargeModeEvent_DC"
+  DSDT.dsl:41025:                    }
+  DSDT.dsl:41026:
+  DSDT.dsl:41027:                    Return (Local0)
+  DSDT.dsl:41028:                }
+  DSDT.dsl:41029:
+  ssdt.dsl:167:    Mutex (M27E, 0x00)
+  ssdt.dsl:168:    Method (M27D, 0, NotSerialized)
+  ssdt.dsl:169:    {
+> ssdt.dsl:170:        M460 ("FEA-ASL-CpmAcpRemovePowerGating-Start\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:171:        Local0 = M249 (Zero, Zero, Zero, 0x01240644)
+  ssdt.dsl:172:        M460 ("  ACP_DSP_FUSION_RUNSTALL   = %d\n", Local0, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:173:        If ((Local0 == Zero))
+  ssdt.dsl:174:        {
+  ssdt.dsl:175:            M250 (Zero, Zero, Zero, 0x01241A48, One)
+  ssdt.dsl:208:            }
+  ssdt.dsl:209:        }
+  ssdt.dsl:210:
+> ssdt.dsl:211:        M460 ("FEA-ASL-CpmAcpRemovePowerGating-End\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:212:    }
+  ssdt.dsl:213:
+  ssdt.dsl:214:    Method (M27C, 0, NotSerialized)
+  ssdt.dsl:215:    {
+> ssdt.dsl:216:        M460 ("FEA-ASL-CpmAcpApplyPowerGating-Start\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:217:        Local0 = M249 (Zero, Zero, Zero, 0x01240644)
+  ssdt.dsl:218:        M460 ("  ACP_DSP_FUSION_RUNSTALL   = %d\n", Local0, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:219:        If ((Local0 == Zero))
+  ssdt.dsl:220:        {
+  ssdt.dsl:221:            M250 (Zero, Zero, Zero, 0x01241A48, 0x02)
+  ssdt.dsl:254:            }
+  ssdt.dsl:255:        }
+  ssdt.dsl:256:
+> ssdt.dsl:257:        M460 ("FEA-ASL-CpmAcpApplyPowerGating-End\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:258:    }
+  ssdt.dsl:259:
+  ssdt.dsl:260:    Method (M276, 0, NotSerialized)
+  ssdt.dsl:261:    {
+> ssdt.dsl:262:        M460 ("FEA-ASL-CpmPowerGateOn-Start\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:263:        M460 ("  CpmAcpPresentState    = %d\n", M278, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:264:        M460 ("  CpmAzaliaPresentState = %d\n", M279, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:265:        M460 ("  ACGE                  = %d\n", ACGE, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:266:        M460 ("  APGE                  = %d\n", APGE, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:267:        If (!(M278 ^ M279))
+  ssdt.dsl:268:        {
+> ssdt.dsl:269:            M460 ("FEA-ASL-CpmPowerGateOn-1-End\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:270:            Return (Zero)
+  ssdt.dsl:271:        }
+  ssdt.dsl:272:
+  ssdt.dsl:273:        If ((ACGE == One))
+  ssdt.dsl:274:        {
+  ssdt.dsl:314:            M000 (0x0DB5)
+  ssdt.dsl:315:        }
+  ssdt.dsl:316:
+> ssdt.dsl:317:        M460 ("FEA-ASL-CpmPowerGateOn-End\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:318:    }
+  ssdt.dsl:319:
+  ssdt.dsl:320:    Method (M277, 0, NotSerialized)
+  ssdt.dsl:321:    {
+> ssdt.dsl:322:        M460 ("FEA-ASL-CpmPowerGateOff-Start\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:323:        M460 ("  CpmAcpPresentState    = %d\n", M278, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:324:        M460 ("  CpmAzaliaPresentState = %d\n", M279, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:325:        M460 ("  APGE                  = %d\n", APGE, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:326:        M460 ("  ACGE                  = %d\n", ACGE, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:327:        If (!((M278 == Zero) && (M279 == Zero)))
+  ssdt.dsl:328:        {
+> ssdt.dsl:329:            M460 ("FEA-ASL-CpmPowerGateOff-1-End\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:330:            Return (Zero)
+  ssdt.dsl:331:        }
+  ssdt.dsl:332:
+  ssdt.dsl:333:        If ((APGE == One))
+  ssdt.dsl:334:        {
+  ssdt.dsl:374:            Local6 = \_SB.ALIB (0x16, Zero)
+  ssdt.dsl:375:        }
+  ssdt.dsl:376:
+> ssdt.dsl:377:        M460 ("FEA-ASL-CpmPowerGateOff-End\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:378:    }
+  ssdt.dsl:379:
+  ssdt.dsl:380:    Scope (\_SB.PCI0.GP17.ACP)
+  ssdt.dsl:381:    {
+> ssdt.dsl:382:        Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  ssdt.dsl:383:        {
+  ssdt.dsl:384:            Acquire (\M27E, 0xFFFF)
+  ssdt.dsl:385:            M460 ("FEA-ASL-\\_SB.PCI0.PBC.ACP._PS0 CpmAcpPresentState = 1\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:386:            M278 = One
+  ssdt.dsl:387:            M276 ()
+  ssdt.dsl:388:            Release (\M27E)
+  ssdt.dsl:389:        }
+  ssdt.dsl:390:
+> ssdt.dsl:391:        Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  ssdt.dsl:392:        {
+  ssdt.dsl:393:            Acquire (\M27E, 0xFFFF)
+  ssdt.dsl:394:            M460 ("FEA-ASL-\\_SB.PCI0.PBC.ACP._PS3 CpmAcpPresentState = 0\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:395:            M278 = Zero
+  ssdt.dsl:396:            M277 ()
+  ssdt.dsl:483:
+  ssdt.dsl:484:    Scope (\_SB.PCI0.GP17.AZAL)
+  ssdt.dsl:485:    {
+> ssdt.dsl:486:        Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  ssdt.dsl:487:        {
+  ssdt.dsl:488:            Acquire (\M27E, 0xFFFF)
+  ssdt.dsl:489:            M460 ("FEA-ASL-\\_SB.PCI0.PBC.AZAL._PS0 CpmAzaliaPresentState = 1\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:490:            M279 = One
+  ssdt.dsl:491:            M276 ()
+  ssdt.dsl:492:            Release (\M27E)
+  ssdt.dsl:493:        }
+  ssdt.dsl:494:
+> ssdt.dsl:495:        Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  ssdt.dsl:496:        {
+  ssdt.dsl:497:            Acquire (\M27E, 0xFFFF)
+  ssdt.dsl:498:            M460 ("FEA-ASL-\\_SB.PCI0.PBC.AZAL._PS3 CpmAzaliaPresentState = 0\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:499:            M279 = Zero
+  ssdt.dsl:500:            M277 ()
+  ssdt14.dsl:151:
+  ssdt14.dsl:152:    Scope (\_SB.PCI0.GPP6.WLAN)
+  ssdt14.dsl:153:    {
+> ssdt14.dsl:154:        Name (_PRR, Package (0x01)  // _PRR: Power Resource for Reset
+  ssdt14.dsl:155:        {
+  ssdt14.dsl:156:            \_SB.PCI0.GPP6.WLAN.PRWL, 
+  ssdt14.dsl:157:        })
+  ssdt14.dsl:158:        Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
+  ssdt14.dsl:159:        {
+  ssdt14.dsl:222:        }
+  ssdt14.dsl:223:
+  ssdt14.dsl:224:        Name (WLPS, One)
+> ssdt14.dsl:225:        PowerResource (PRWL, 0x00, 0x0000)
+  ssdt14.dsl:226:        {
+  ssdt14.dsl:227:            Method (_RST, 0, NotSerialized)  // _RST: Device Reset
+  ssdt14.dsl:228:            {
+  ssdt14.dsl:229:                Local1 = WIST ()
+  ssdt14.dsl:230:                If ((Local1 == Zero)){}
+  ssdt14.dsl:255:                Return (WLPS) /* \_SB_.PCI0.GPP6.WLAN.WLPS */
+  ssdt14.dsl:256:            }
+  ssdt14.dsl:257:
+> ssdt14.dsl:258:            Method (_ON, 0, NotSerialized)  // _ON_: Power On
+  ssdt14.dsl:259:            {
+  ssdt14.dsl:260:                WLPS = One
+  ssdt14.dsl:261:            }
+  ssdt14.dsl:262:
+> ssdt14.dsl:263:            Method (_OFF, 0, NotSerialized)  // _OFF: Power Off
+  ssdt14.dsl:264:            {
+  ssdt14.dsl:265:                WLPS = Zero
+  ssdt14.dsl:266:            }
+  ssdt14.dsl:267:        }
+  ssdt14.dsl:268:    }
+  ssdt17.dsl:1748:        {
+  ssdt17.dsl:1749:            If (CondRefOf (\_SB.M284))
+  ssdt17.dsl:1750:            {
+> ssdt17.dsl:1751:                M460 ("    KER-ASL-Call \\_SB.CpmLowPowerEthernet_WAK (0x%X)\n", Arg0, Zero, Zero, Zero, Zero, Zero)
+  ssdt17.dsl:1752:                \_SB.M284 (Arg0)
+  ssdt17.dsl:1753:            }
+  ssdt17.dsl:1754:        }
+  ssdt17.dsl:1755:
+  ssdt17.dsl:1756:        If ((M331 != Zero))
+  ssdt18.dsl:186:        "Set ProcODT", 
+  ssdt18.dsl:187:        "Set RttWr", 
+  ssdt18.dsl:188:        "Set RttPark", 
+> ssdt18.dsl:189:        "Set PowerDwonEn", 
+  ssdt18.dsl:190:        "Set CCLK Fmax", 
+  ssdt18.dsl:191:        "Set GFXCCLK Fmax", 
+  ssdt18.dsl:192:        "Set FCLK OC Mode", 
+  ssdt18.dsl:193:        "Set FCLK Frequency", 
+  ssdt18.dsl:194:        "Set VDDIO", 
+  ssdt18.dsl:1532:                /* 0018 */  0x66, 0xD5, 0xD1, 0x11, 0xB2, 0xF0, 0x00, 0xA0,  // f.......
+  ssdt18.dsl:1533:                /* 0020 */  0xC9, 0x06, 0x29, 0x10, 0x42, 0x41, 0x01, 0x00   // ..).BA..
+  ssdt18.dsl:1534:            })
+> ssdt18.dsl:1535:            Method (WMAA, 3, NotSerialized)
+  ssdt18.dsl:1536:            {
+  ssdt18.dsl:1537:                If ((Arg0 == Zero))
+  ssdt18.dsl:1538:                {
+  ssdt18.dsl:1539:                    If ((((Arg1 != One) || (Arg1 != 0x02)) || 
+  ssdt18.dsl:1540:                        (Arg1 != 0x06)))
+  ssdt19.dsl:161:    Scope (\_SB.PCI0.GPP7)
+  ssdt19.dsl:162:    {
+  ssdt19.dsl:163:        Name (WD3C, Zero)
+> ssdt19.dsl:164:        PowerResource (P0NV, 0x00, 0x0000)
+  ssdt19.dsl:165:        {
+  ssdt19.dsl:166:            Name (D0NV, One)
+  ssdt19.dsl:167:            Method (_STA, 0, NotSerialized)  // _STA: Status
+  ssdt19.dsl:168:            {
+  ssdt19.dsl:169:                M000 (0x30AA)
+  ssdt19.dsl:171:                Return (D0NV) /* \_SB_.PCI0.GPP7.P0NV.D0NV */
+  ssdt19.dsl:172:            }
+  ssdt19.dsl:173:
+> ssdt19.dsl:174:            Method (_ON, 0, NotSerialized)  // _ON_: Power On
+  ssdt19.dsl:175:            {
+  ssdt19.dsl:176:                M000 (0x30D0)
+  ssdt19.dsl:177:                M460 ("PLA-ASL-\\_SB.PCI0.GPP7.P0NV._ON\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt19.dsl:178:                If (((WD3C == One) && \_SB.PCI0.LPC0.EC0.HWS3))
+  ssdt19.dsl:179:                {
+  ssdt19.dsl:200:                M000 (0x30D1)
+  ssdt19.dsl:201:            }
+  ssdt19.dsl:202:
+> ssdt19.dsl:203:            Method (_OFF, 0, NotSerialized)  // _OFF: Power Off
+  ssdt19.dsl:204:            {
+  ssdt19.dsl:205:                M000 (0x30D3)
+  ssdt19.dsl:206:                M460 ("PLA-ASL-\\_SB.PCI0.GPP7.P0NV._OFF\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt19.dsl:207:                If ((M049 (M4C0, 0x12) == One))
+  ssdt19.dsl:208:                {
+  ssdt19.dsl:225:        {
+  ssdt19.dsl:226:            Name (_ADR, Zero)  // _ADR: Address
+  ssdt19.dsl:227:            Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
+> ssdt19.dsl:228:            Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt19.dsl:229:            {
+  ssdt19.dsl:230:                P0NV, 
+  ssdt19.dsl:231:            })
+> ssdt19.dsl:232:            Name (_PR2, Package (0x01)  // _PR2: Power Resources for D2
+  ssdt19.dsl:233:            {
+  ssdt19.dsl:234:                P0NV, 
+  ssdt19.dsl:235:            })
+> ssdt19.dsl:236:            Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt19.dsl:237:            {
+  ssdt19.dsl:238:                P0NV, 
+  ssdt19.dsl:239:            })
+> ssdt19.dsl:240:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  ssdt19.dsl:241:            {
+  ssdt19.dsl:242:                M000 (0x3050)
+  ssdt19.dsl:243:                M460 ("PLA-ASL-\\_SB.PCI0.GPP7.NVME._PS0\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt19.dsl:244:            }
+  ssdt19.dsl:245:
+> ssdt19.dsl:246:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  ssdt19.dsl:247:            {
+  ssdt19.dsl:248:                M000 (0x3053)
+  ssdt19.dsl:249:                M460 ("PLA-ASL-\\_SB.PCI0.GPP7.NVME._PS3\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt19.dsl:250:            }
+  ssdt19.dsl:251:
+  ssdt20.dsl:161:    Scope (\_SB.PCI0.GPP8)
+  ssdt20.dsl:162:    {
+  ssdt20.dsl:163:        Name (WD3C, Zero)
+> ssdt20.dsl:164:        PowerResource (P0NV, 0x00, 0x0000)
+  ssdt20.dsl:165:        {
+  ssdt20.dsl:166:            Name (D0NV, One)
+  ssdt20.dsl:167:            Method (_STA, 0, NotSerialized)  // _STA: Status
+  ssdt20.dsl:168:            {
+  ssdt20.dsl:169:                M000 (0x30AA)
+  ssdt20.dsl:171:                Return (D0NV) /* \_SB_.PCI0.GPP8.P0NV.D0NV */
+  ssdt20.dsl:172:            }
+  ssdt20.dsl:173:
+> ssdt20.dsl:174:            Method (_ON, 0, NotSerialized)  // _ON_: Power On
+  ssdt20.dsl:175:            {
+  ssdt20.dsl:176:                M000 (0x30D0)
+  ssdt20.dsl:177:                M460 ("PLA-ASL-\\_SB.PCI0.GPP8.P0NV._ON\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt20.dsl:178:                If (((WD3C == One) && \_SB.PCI0.LPC0.EC0.HWS3))
+  ssdt20.dsl:179:                {
+  ssdt20.dsl:200:                M000 (0x30D1)
+  ssdt20.dsl:201:            }
+  ssdt20.dsl:202:
+> ssdt20.dsl:203:            Method (_OFF, 0, NotSerialized)  // _OFF: Power Off
+  ssdt20.dsl:204:            {
+  ssdt20.dsl:205:                M000 (0x30D3)
+  ssdt20.dsl:206:                M460 ("PLA-ASL-\\_SB.PCI0.GPP8.P0NV._OFF\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt20.dsl:207:                If ((M049 (M4C0, 0x12) == One))
+  ssdt20.dsl:208:                {
+  ssdt20.dsl:225:        {
+  ssdt20.dsl:226:            Name (_ADR, Zero)  // _ADR: Address
+  ssdt20.dsl:227:            Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
+> ssdt20.dsl:228:            Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt20.dsl:229:            {
+  ssdt20.dsl:230:                P0NV, 
+  ssdt20.dsl:231:            })
+> ssdt20.dsl:232:            Name (_PR2, Package (0x01)  // _PR2: Power Resources for D2
+  ssdt20.dsl:233:            {
+  ssdt20.dsl:234:                P0NV, 
+  ssdt20.dsl:235:            })
+> ssdt20.dsl:236:            Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt20.dsl:237:            {
+  ssdt20.dsl:238:                P0NV, 
+  ssdt20.dsl:239:            })
+> ssdt20.dsl:240:            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  ssdt20.dsl:241:            {
+  ssdt20.dsl:242:                M000 (0x3050)
+  ssdt20.dsl:243:                M460 ("PLA-ASL-\\_SB.PCI0.GPP8.NVME._PS0\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt20.dsl:244:            }
+  ssdt20.dsl:245:
+> ssdt20.dsl:246:            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  ssdt20.dsl:247:            {
+  ssdt20.dsl:248:                M000 (0x3053)
+  ssdt20.dsl:249:                M460 ("PLA-ASL-\\_SB.PCI0.GPP8.NVME._PS3\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt20.dsl:250:            }
+  ssdt20.dsl:251:
+  ssdt21.dsl:158:
+  ssdt21.dsl:159:    Scope (\_SB.PCI0.GPP5)
+  ssdt21.dsl:160:    {
+> ssdt21.dsl:161:        Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+  ssdt21.dsl:162:        {
+  ssdt21.dsl:163:            M460 ("PLA-ASL-\\_SB.PCI0.GPP5._PRW Return GPRW (0xF, 0x0)\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt21.dsl:164:            Return (Package (0x02)
+  ssdt21.dsl:165:            {
+  ssdt21.dsl:166:                0x0F, 
+  ssdt21.dsl:177:    Scope (\_SB.PCI0.GPP6)
+  ssdt21.dsl:178:    {
+  ssdt21.dsl:179:        Name (_S0W, Zero)  // _S0W: S0 Device Wake State
+> ssdt21.dsl:180:        Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+  ssdt21.dsl:181:        {
+  ssdt21.dsl:182:            M460 ("PLA-ASL-\\_SB.PCI0.GPP6._PRW Return GPRW (0xE, 0x4)\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt21.dsl:183:            Return (Package (0x02)
+  ssdt21.dsl:184:            {
+  ssdt21.dsl:185:                0x0E, 
+  ssdt22.dsl:190:        Device (PEP)
+  ssdt22.dsl:191:        {
+  ssdt22.dsl:192:            Name (_HID, "AMDI0007")  // _HID: Hardware ID
+> ssdt22.dsl:193:            Name (_CID, EisaId ("PNP0D80") /* Windows-compatible System Power Management Controller */)  // _CID: Compatible ID
+  ssdt22.dsl:194:            Name (_UID, One)  // _UID: Unique ID
+  ssdt22.dsl:195:            Name (WWSW, 0x00)
+  ssdt22.dsl:196:            Name (DEVL, Package (0x03)
+  ssdt22.dsl:197:            {
+  ssdt22.dsl:198:                Zero, 
+  ssdt24.dsl:583:            Return (Local0)
+  ssdt24.dsl:584:        }
+  ssdt24.dsl:585:
+> ssdt24.dsl:586:        Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt24.dsl:587:        {
+  ssdt24.dsl:588:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PRW ()  Return Package (2) {0x1A, 0x04}\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:589:            Return (Package (0x02)
+  ssdt24.dsl:590:            {
+  ssdt24.dsl:591:                0x1A, 
+  ssdt24.dsl:945:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt24.dsl:946:        }
+  ssdt24.dsl:947:
+> ssdt24.dsl:948:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt24.dsl:949:        {
+  ssdt24.dsl:950:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:951:            If (CondRefOf (PPS0))
+  ssdt24.dsl:952:            {
+  ssdt24.dsl:953:                PPS0 ()
+  ssdt24.dsl:954:            }
+  ssdt24.dsl:955:        }
+  ssdt24.dsl:956:
+> ssdt24.dsl:957:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt24.dsl:958:        {
+  ssdt24.dsl:959:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:960:            If (CondRefOf (PPS3))
+  ssdt24.dsl:961:            {
+  ssdt24.dsl:962:                PPS3 ()
+  ssdt24.dsl:963:            }
+  ssdt24.dsl:964:        }
+  ssdt24.dsl:965:
+> ssdt24.dsl:966:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt24.dsl:967:        {
+  ssdt24.dsl:968:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt24.dsl:969:            {
+> ssdt24.dsl:970:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:971:                If (CondRefOf (PSTA))
+  ssdt24.dsl:972:                {
+  ssdt24.dsl:973:                    PSTA ()
+  ssdt24.dsl:974:                }
+  ssdt24.dsl:975:
+  ssdt24.dsl:976:                Return (PW3S) /* \_SB_.PCI0.GP19.XHC2.PW3S */
+  ssdt24.dsl:977:            }
+  ssdt24.dsl:978:
+> ssdt24.dsl:979:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt24.dsl:980:            {
+  ssdt24.dsl:981:                If ((PW3S == Zero))
+  ssdt24.dsl:982:                {
+  ssdt24.dsl:983:                    PW3S = One
+> ssdt24.dsl:984:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:985:                    If (CondRefOf (P_ON))
+  ssdt24.dsl:986:                    {
+  ssdt24.dsl:987:                        P_ON ()
+  ssdt24.dsl:988:                    }
+  ssdt24.dsl:989:                }
+  ssdt24.dsl:990:            }
+  ssdt24.dsl:991:
+> ssdt24.dsl:992:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt24.dsl:993:            {
+  ssdt24.dsl:994:                If ((PW3S == One))
+  ssdt24.dsl:995:                {
+  ssdt24.dsl:996:                    PW3S = Zero
+> ssdt24.dsl:997:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:998:                    If (CondRefOf (P_OF))
+  ssdt24.dsl:999:                    {
+  ssdt24.dsl:1000:                        P_OF ()
+  ssdt24.dsl:1001:                    }
+  ssdt24.dsl:1002:                }
+  ssdt24.dsl:1003:            }
+  ssdt24.dsl:1004:        }
+  ssdt24.dsl:1005:
+> ssdt24.dsl:1006:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt24.dsl:1007:        {
+> ssdt24.dsl:1008:            PWRS, 
+  ssdt24.dsl:1009:        })
+> ssdt24.dsl:1010:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt24.dsl:1011:        {
+> ssdt24.dsl:1012:            PWRS, 
+  ssdt24.dsl:1013:        })
+  ssdt24.dsl:1014:    }
+  ssdt24.dsl:1015:
+  ssdt24.dsl:1016:    Scope (\_SB.PCI0.GP19.XHC3)
+  ssdt24.dsl:1017:    {
+  ssdt24.dsl:1028:            Return (Local0)
+  ssdt24.dsl:1029:        }
+  ssdt24.dsl:1030:
+> ssdt24.dsl:1031:        Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt24.dsl:1032:        {
+  ssdt24.dsl:1033:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PRW ()  Return Package (2) {0x1A, 0x04}\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1034:            Return (Package (0x02)
+  ssdt24.dsl:1035:            {
+  ssdt24.dsl:1036:                0x1A, 
+  ssdt24.dsl:1058:        Method (PSTA, 0, Serialized)
+  ssdt24.dsl:1059:        {
+  ssdt24.dsl:1060:            M000 (0x3F35)
+> ssdt24.dsl:1061:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.XHC3.PWRS._STA ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1062:        }
+  ssdt24.dsl:1063:
+  ssdt24.dsl:1064:        Method (P_ON, 0, Serialized)
+  ssdt24.dsl:1065:        {
+  ssdt24.dsl:1066:            M000 (0x3F36)
+> ssdt24.dsl:1067:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.XHC3.PWRS._ON ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1068:        }
+  ssdt24.dsl:1069:
+  ssdt24.dsl:1070:        Method (P_OF, 0, Serialized)
+  ssdt24.dsl:1071:        {
+  ssdt24.dsl:1072:            M000 (0x3F38)
+> ssdt24.dsl:1073:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.XHC3.PWRS._OFF ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1074:        }
+  ssdt24.dsl:1075:
+  ssdt24.dsl:1076:        Name (DADR, 0xEEEEEEEE)
+  ssdt24.dsl:1077:        Name (DSTA, 0xEE)
+  ssdt24.dsl:1078:        Name (DBUS, 0xEEEE)
+  ssdt24.dsl:1400:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt24.dsl:1401:        }
+  ssdt24.dsl:1402:
+> ssdt24.dsl:1403:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt24.dsl:1404:        {
+  ssdt24.dsl:1405:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1406:            If (CondRefOf (PPS0))
+  ssdt24.dsl:1407:            {
+  ssdt24.dsl:1408:                PPS0 ()
+  ssdt24.dsl:1409:            }
+  ssdt24.dsl:1410:        }
+  ssdt24.dsl:1411:
+> ssdt24.dsl:1412:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt24.dsl:1413:        {
+  ssdt24.dsl:1414:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1415:            If (CondRefOf (PPS3))
+  ssdt24.dsl:1416:            {
+  ssdt24.dsl:1417:                PPS3 ()
+  ssdt24.dsl:1418:            }
+  ssdt24.dsl:1419:        }
+  ssdt24.dsl:1420:
+> ssdt24.dsl:1421:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt24.dsl:1422:        {
+  ssdt24.dsl:1423:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt24.dsl:1424:            {
+> ssdt24.dsl:1425:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1426:                If (CondRefOf (PSTA))
+  ssdt24.dsl:1427:                {
+  ssdt24.dsl:1428:                    PSTA ()
+  ssdt24.dsl:1429:                }
+  ssdt24.dsl:1430:
+  ssdt24.dsl:1431:                Return (PW3S) /* \_SB_.PCI0.GP19.XHC3.PW3S */
+  ssdt24.dsl:1432:            }
+  ssdt24.dsl:1433:
+> ssdt24.dsl:1434:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt24.dsl:1435:            {
+  ssdt24.dsl:1436:                If ((PW3S == Zero))
+  ssdt24.dsl:1437:                {
+  ssdt24.dsl:1438:                    PW3S = One
+> ssdt24.dsl:1439:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1440:                    If (CondRefOf (P_ON))
+  ssdt24.dsl:1441:                    {
+  ssdt24.dsl:1442:                        P_ON ()
+  ssdt24.dsl:1443:                    }
+  ssdt24.dsl:1444:                }
+  ssdt24.dsl:1445:            }
+  ssdt24.dsl:1446:
+> ssdt24.dsl:1447:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt24.dsl:1448:            {
+  ssdt24.dsl:1449:                If ((PW3S == One))
+  ssdt24.dsl:1450:                {
+  ssdt24.dsl:1451:                    PW3S = Zero
+> ssdt24.dsl:1452:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1453:                    If (CondRefOf (P_OF))
+  ssdt24.dsl:1454:                    {
+  ssdt24.dsl:1455:                        P_OF ()
+  ssdt24.dsl:1456:                    }
+  ssdt24.dsl:1457:                }
+  ssdt24.dsl:1458:            }
+  ssdt24.dsl:1459:        }
+  ssdt24.dsl:1460:
+> ssdt24.dsl:1461:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt24.dsl:1462:        {
+> ssdt24.dsl:1463:            PWRS, 
+  ssdt24.dsl:1464:        })
+> ssdt24.dsl:1465:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt24.dsl:1466:        {
+> ssdt24.dsl:1467:            PWRS, 
+  ssdt24.dsl:1468:        })
+  ssdt24.dsl:1469:    }
+  ssdt24.dsl:1470:
+  ssdt24.dsl:1471:    Scope (\_SB.PCI0.GP19.XHC3.RHUB.PRT2)
+  ssdt24.dsl:1472:    {
+  ssdt24.dsl:1586:            Return (Local0)
+  ssdt24.dsl:1587:        }
+  ssdt24.dsl:1588:
+> ssdt24.dsl:1589:        Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt24.dsl:1590:        {
+  ssdt24.dsl:1591:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PRW ()  Return Package (2) {0x1A, 0x04}\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1592:            Return (Package (0x02)
+  ssdt24.dsl:1593:            {
+  ssdt24.dsl:1594:                0x1A, 
+  ssdt24.dsl:1616:        Method (PSTA, 0, Serialized)
+  ssdt24.dsl:1617:        {
+  ssdt24.dsl:1618:            M000 (0x3F45)
+> ssdt24.dsl:1619:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.XHC4.PWRS._STA ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1620:        }
+  ssdt24.dsl:1621:
+  ssdt24.dsl:1622:        Method (P_ON, 0, Serialized)
+  ssdt24.dsl:1623:        {
+  ssdt24.dsl:1624:            M000 (0x3F46)
+> ssdt24.dsl:1625:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.XHC4.PWRS._ON ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1626:        }
+  ssdt24.dsl:1627:
+  ssdt24.dsl:1628:        Method (P_OF, 0, Serialized)
+  ssdt24.dsl:1629:        {
+  ssdt24.dsl:1630:            M000 (0x3F48)
+> ssdt24.dsl:1631:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.XHC4.PWRS._OFF ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1632:        }
+  ssdt24.dsl:1633:
+  ssdt24.dsl:1634:        Name (DADR, 0xEEEEEEEE)
+  ssdt24.dsl:1635:        Name (DSTA, 0xEE)
+  ssdt24.dsl:1636:        Name (DBUS, 0xEEEE)
+  ssdt24.dsl:1958:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt24.dsl:1959:        }
+  ssdt24.dsl:1960:
+> ssdt24.dsl:1961:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt24.dsl:1962:        {
+  ssdt24.dsl:1963:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1964:            If (CondRefOf (PPS0))
+  ssdt24.dsl:1965:            {
+  ssdt24.dsl:1966:                PPS0 ()
+  ssdt24.dsl:1967:            }
+  ssdt24.dsl:1968:        }
+  ssdt24.dsl:1969:
+> ssdt24.dsl:1970:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt24.dsl:1971:        {
+  ssdt24.dsl:1972:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1973:            If (CondRefOf (PPS3))
+  ssdt24.dsl:1974:            {
+  ssdt24.dsl:1975:                PPS3 ()
+  ssdt24.dsl:1976:            }
+  ssdt24.dsl:1977:        }
+  ssdt24.dsl:1978:
+> ssdt24.dsl:1979:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt24.dsl:1980:        {
+  ssdt24.dsl:1981:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt24.dsl:1982:            {
+> ssdt24.dsl:1983:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1984:                If (CondRefOf (PSTA))
+  ssdt24.dsl:1985:                {
+  ssdt24.dsl:1986:                    PSTA ()
+  ssdt24.dsl:1987:                }
+  ssdt24.dsl:1988:
+  ssdt24.dsl:1989:                Return (PW3S) /* \_SB_.PCI0.GP19.XHC4.PW3S */
+  ssdt24.dsl:1990:            }
+  ssdt24.dsl:1991:
+> ssdt24.dsl:1992:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt24.dsl:1993:            {
+  ssdt24.dsl:1994:                If ((PW3S == Zero))
+  ssdt24.dsl:1995:                {
+  ssdt24.dsl:1996:                    PW3S = One
+> ssdt24.dsl:1997:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:1998:                    If (CondRefOf (P_ON))
+  ssdt24.dsl:1999:                    {
+  ssdt24.dsl:2000:                        P_ON ()
+  ssdt24.dsl:2001:                    }
+  ssdt24.dsl:2002:                }
+  ssdt24.dsl:2003:            }
+  ssdt24.dsl:2004:
+> ssdt24.dsl:2005:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt24.dsl:2006:            {
+  ssdt24.dsl:2007:                If ((PW3S == One))
+  ssdt24.dsl:2008:                {
+  ssdt24.dsl:2009:                    PW3S = Zero
+> ssdt24.dsl:2010:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2011:                    If (CondRefOf (P_OF))
+  ssdt24.dsl:2012:                    {
+  ssdt24.dsl:2013:                        P_OF ()
+  ssdt24.dsl:2014:                    }
+  ssdt24.dsl:2015:                }
+  ssdt24.dsl:2016:            }
+  ssdt24.dsl:2017:        }
+  ssdt24.dsl:2018:
+> ssdt24.dsl:2019:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt24.dsl:2020:        {
+> ssdt24.dsl:2021:            PWRS, 
+  ssdt24.dsl:2022:        })
+> ssdt24.dsl:2023:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt24.dsl:2024:        {
+> ssdt24.dsl:2025:            PWRS, 
+  ssdt24.dsl:2026:        })
+  ssdt24.dsl:2027:    }
+  ssdt24.dsl:2028:
+  ssdt24.dsl:2029:    Scope (\_SB.PCI0.GP19.XHC4.RHUB.PRT2)
+  ssdt24.dsl:2030:    {
+  ssdt24.dsl:2161:            Return (Local0)
+  ssdt24.dsl:2162:        }
+  ssdt24.dsl:2163:
+> ssdt24.dsl:2164:        Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt24.dsl:2165:        {
+  ssdt24.dsl:2166:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PRW ()  Return Package (2) {0x1A, 0x04}\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2167:            Return (Package (0x03)
+  ssdt24.dsl:2168:            {
+  ssdt24.dsl:2169:                0x1A, 
+  ssdt24.dsl:2170:                0x04, 
+> ssdt24.dsl:2171:                PWRS, 
+  ssdt24.dsl:2172:            })
+  ssdt24.dsl:2173:        }
+  ssdt24.dsl:2174:
+  ssdt24.dsl:2175:        Method (PPS0, 0, Serialized)
+  ssdt24.dsl:2176:        {
+  ssdt24.dsl:2238:        Method (PSTA, 0, Serialized)
+  ssdt24.dsl:2239:        {
+  ssdt24.dsl:2240:            M000 (0x3F55)
+> ssdt24.dsl:2241:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.NHI0.PWRS._STA ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2242:        }
+  ssdt24.dsl:2243:
+  ssdt24.dsl:2244:        Method (P_ON, 0, Serialized)
+  ssdt24.dsl:2245:        {
+  ssdt24.dsl:2246:            M000 (0x3F56)
+> ssdt24.dsl:2247:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.NHI0.PWRS.ON ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2248:        }
+  ssdt24.dsl:2249:
+  ssdt24.dsl:2250:        Method (P_OF, 0, Serialized)
+  ssdt24.dsl:2251:        {
+  ssdt24.dsl:2252:            M000 (0x3F58)
+> ssdt24.dsl:2253:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.NHI0.PWRS.OFF ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2254:        }
+  ssdt24.dsl:2255:
+  ssdt24.dsl:2256:        Name (DADR, 0xEEEEEEEE)
+  ssdt24.dsl:2257:        Name (DSTA, 0xEE)
+  ssdt24.dsl:2258:        Name (DBUS, 0xEEEE)
+  ssdt24.dsl:2580:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt24.dsl:2581:        }
+  ssdt24.dsl:2582:
+> ssdt24.dsl:2583:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt24.dsl:2584:        {
+  ssdt24.dsl:2585:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2586:            If (CondRefOf (PPS0))
+  ssdt24.dsl:2587:            {
+  ssdt24.dsl:2588:                PPS0 ()
+  ssdt24.dsl:2589:            }
+  ssdt24.dsl:2590:        }
+  ssdt24.dsl:2591:
+> ssdt24.dsl:2592:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt24.dsl:2593:        {
+  ssdt24.dsl:2594:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2595:            If (CondRefOf (PPS3))
+  ssdt24.dsl:2596:            {
+  ssdt24.dsl:2597:                PPS3 ()
+  ssdt24.dsl:2598:            }
+  ssdt24.dsl:2599:        }
+  ssdt24.dsl:2600:
+> ssdt24.dsl:2601:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt24.dsl:2602:        {
+  ssdt24.dsl:2603:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt24.dsl:2604:            {
+> ssdt24.dsl:2605:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2606:                If (CondRefOf (PSTA))
+  ssdt24.dsl:2607:                {
+  ssdt24.dsl:2608:                    PSTA ()
+  ssdt24.dsl:2609:                }
+  ssdt24.dsl:2610:
+  ssdt24.dsl:2611:                Return (PW3S) /* \_SB_.PCI0.GP19.NHI0.PW3S */
+  ssdt24.dsl:2612:            }
+  ssdt24.dsl:2613:
+> ssdt24.dsl:2614:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt24.dsl:2615:            {
+  ssdt24.dsl:2616:                If ((PW3S == Zero))
+  ssdt24.dsl:2617:                {
+  ssdt24.dsl:2618:                    PW3S = One
+> ssdt24.dsl:2619:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2620:                    If (CondRefOf (P_ON))
+  ssdt24.dsl:2621:                    {
+  ssdt24.dsl:2622:                        P_ON ()
+  ssdt24.dsl:2623:                    }
+  ssdt24.dsl:2624:                }
+  ssdt24.dsl:2625:            }
+  ssdt24.dsl:2626:
+> ssdt24.dsl:2627:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt24.dsl:2628:            {
+  ssdt24.dsl:2629:                If ((PW3S == One))
+  ssdt24.dsl:2630:                {
+  ssdt24.dsl:2631:                    PW3S = Zero
+> ssdt24.dsl:2632:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2633:                    If (CondRefOf (P_OF))
+  ssdt24.dsl:2634:                    {
+  ssdt24.dsl:2635:                        P_OF ()
+  ssdt24.dsl:2636:                    }
+  ssdt24.dsl:2637:                }
+  ssdt24.dsl:2638:            }
+  ssdt24.dsl:2639:        }
+  ssdt24.dsl:2640:
+> ssdt24.dsl:2641:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt24.dsl:2642:        {
+> ssdt24.dsl:2643:            PWRS, 
+  ssdt24.dsl:2644:        })
+> ssdt24.dsl:2645:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt24.dsl:2646:        {
+> ssdt24.dsl:2647:            PWRS, 
+  ssdt24.dsl:2648:        })
+  ssdt24.dsl:2649:    }
+  ssdt24.dsl:2650:
+  ssdt24.dsl:2651:    Scope (\_SB.PCI0.GP19.NHI1)
+  ssdt24.dsl:2652:    {
+  ssdt24.dsl:2680:            Return (Local0)
+  ssdt24.dsl:2681:        }
+  ssdt24.dsl:2682:
+> ssdt24.dsl:2683:        Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt24.dsl:2684:        {
+  ssdt24.dsl:2685:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PRW ()  Return Package (2) {0x1A, 0x04}\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2686:            Return (Package (0x03)
+  ssdt24.dsl:2687:            {
+  ssdt24.dsl:2688:                0x1A, 
+  ssdt24.dsl:2689:                0x04, 
+> ssdt24.dsl:2690:                PWRS, 
+  ssdt24.dsl:2691:            })
+  ssdt24.dsl:2692:        }
+  ssdt24.dsl:2693:
+  ssdt24.dsl:2694:        Method (PPS0, 0, Serialized)
+  ssdt24.dsl:2695:        {
+  ssdt24.dsl:2757:        Method (PSTA, 0, Serialized)
+  ssdt24.dsl:2758:        {
+  ssdt24.dsl:2759:            M000 (0x3F65)
+> ssdt24.dsl:2760:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.NHI1.PWRS._STA ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2761:        }
+  ssdt24.dsl:2762:
+  ssdt24.dsl:2763:        Method (P_ON, 0, Serialized)
+  ssdt24.dsl:2764:        {
+  ssdt24.dsl:2765:            M000 (0x3F66)
+> ssdt24.dsl:2766:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.NHI1.PWRS.ON ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2767:        }
+  ssdt24.dsl:2768:
+  ssdt24.dsl:2769:        Method (P_OF, 0, Serialized)
+  ssdt24.dsl:2770:        {
+  ssdt24.dsl:2771:            M000 (0x3F68)
+> ssdt24.dsl:2772:            M460 ("  OEM-ASL-\\_SB.PCI0.GP19.NHI1.PWRS.OFF ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:2773:        }
+  ssdt24.dsl:2774:
+  ssdt24.dsl:2775:        Name (DADR, 0xEEEEEEEE)
+  ssdt24.dsl:2776:        Name (DSTA, 0xEE)
+  ssdt24.dsl:2777:        Name (DBUS, 0xEEEE)
+  ssdt24.dsl:3099:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt24.dsl:3100:        }
+  ssdt24.dsl:3101:
+> ssdt24.dsl:3102:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt24.dsl:3103:        {
+  ssdt24.dsl:3104:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3105:            If (CondRefOf (PPS0))
+  ssdt24.dsl:3106:            {
+  ssdt24.dsl:3107:                PPS0 ()
+  ssdt24.dsl:3108:            }
+  ssdt24.dsl:3109:        }
+  ssdt24.dsl:3110:
+> ssdt24.dsl:3111:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt24.dsl:3112:        {
+  ssdt24.dsl:3113:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3114:            If (CondRefOf (PPS3))
+  ssdt24.dsl:3115:            {
+  ssdt24.dsl:3116:                PPS3 ()
+  ssdt24.dsl:3117:            }
+  ssdt24.dsl:3118:        }
+  ssdt24.dsl:3119:
+> ssdt24.dsl:3120:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt24.dsl:3121:        {
+  ssdt24.dsl:3122:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt24.dsl:3123:            {
+> ssdt24.dsl:3124:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3125:                If (CondRefOf (PSTA))
+  ssdt24.dsl:3126:                {
+  ssdt24.dsl:3127:                    PSTA ()
+  ssdt24.dsl:3128:                }
+  ssdt24.dsl:3129:
+  ssdt24.dsl:3130:                Return (PW3S) /* \_SB_.PCI0.GP19.NHI1.PW3S */
+  ssdt24.dsl:3131:            }
+  ssdt24.dsl:3132:
+> ssdt24.dsl:3133:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt24.dsl:3134:            {
+  ssdt24.dsl:3135:                If ((PW3S == Zero))
+  ssdt24.dsl:3136:                {
+  ssdt24.dsl:3137:                    PW3S = One
+> ssdt24.dsl:3138:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3139:                    If (CondRefOf (P_ON))
+  ssdt24.dsl:3140:                    {
+  ssdt24.dsl:3141:                        P_ON ()
+  ssdt24.dsl:3142:                    }
+  ssdt24.dsl:3143:                }
+  ssdt24.dsl:3144:            }
+  ssdt24.dsl:3145:
+> ssdt24.dsl:3146:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt24.dsl:3147:            {
+  ssdt24.dsl:3148:                If ((PW3S == One))
+  ssdt24.dsl:3149:                {
+  ssdt24.dsl:3150:                    PW3S = Zero
+> ssdt24.dsl:3151:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3152:                    If (CondRefOf (P_OF))
+  ssdt24.dsl:3153:                    {
+  ssdt24.dsl:3154:                        P_OF ()
+  ssdt24.dsl:3155:                    }
+  ssdt24.dsl:3156:                }
+  ssdt24.dsl:3157:            }
+  ssdt24.dsl:3158:        }
+  ssdt24.dsl:3159:
+> ssdt24.dsl:3160:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt24.dsl:3161:        {
+> ssdt24.dsl:3162:            PWRS, 
+  ssdt24.dsl:3163:        })
+> ssdt24.dsl:3164:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt24.dsl:3165:        {
+> ssdt24.dsl:3166:            PWRS, 
+  ssdt24.dsl:3167:        })
+  ssdt24.dsl:3168:    }
+  ssdt24.dsl:3169:
+  ssdt24.dsl:3170:    Scope (\_SB.PCI0.GP11)
+  ssdt24.dsl:3171:    {
+  ssdt24.dsl:3208:            Return (Local0)
+  ssdt24.dsl:3209:        }
+  ssdt24.dsl:3210:
+> ssdt24.dsl:3211:        Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt24.dsl:3212:        {
+  ssdt24.dsl:3213:            M460 ("  OEM-ASL-\\_SB.PCI0.GP11._PRW ()  Return Package (2) {0x1A, 0x04}\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3214:            Return (Package (0x02)
+  ssdt24.dsl:3215:            {
+  ssdt24.dsl:3216:                0x1A, 
+  ssdt24.dsl:3259:        Method (PSTA, 0, Serialized)
+  ssdt24.dsl:3260:        {
+  ssdt24.dsl:3261:            M000 (0x3F75)
+> ssdt24.dsl:3262:            M460 ("  OEM-ASL-\\_SB.PCI0.GP11.PWRS._STA ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3263:        }
+  ssdt24.dsl:3264:
+  ssdt24.dsl:3265:        Method (P_ON, 0, Serialized)
+  ssdt24.dsl:3266:        {
+  ssdt24.dsl:3267:            M000 (0x3F76)
+> ssdt24.dsl:3268:            M460 ("  OEM-ASL-\\_SB.PCI0.GP11.PWRS._ON ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3269:        }
+  ssdt24.dsl:3270:
+  ssdt24.dsl:3271:        Method (P_OF, 0, Serialized)
+  ssdt24.dsl:3272:        {
+  ssdt24.dsl:3273:            M000 (0x3F78)
+> ssdt24.dsl:3274:            M460 ("  OEM-ASL-\\_SB.PCI0.GP11.PWRS._OFF ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3275:        }
+  ssdt24.dsl:3276:
+  ssdt24.dsl:3277:        Name (DADR, 0xEEEEEEEE)
+  ssdt24.dsl:3278:        Name (DSTA, 0xEE)
+  ssdt24.dsl:3279:        Name (DBUS, 0xEEEE)
+  ssdt24.dsl:3601:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt24.dsl:3602:        }
+  ssdt24.dsl:3603:
+> ssdt24.dsl:3604:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt24.dsl:3605:        {
+  ssdt24.dsl:3606:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3607:            If (CondRefOf (PPS0))
+  ssdt24.dsl:3608:            {
+  ssdt24.dsl:3609:                PPS0 ()
+  ssdt24.dsl:3610:            }
+  ssdt24.dsl:3611:        }
+  ssdt24.dsl:3612:
+> ssdt24.dsl:3613:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt24.dsl:3614:        {
+  ssdt24.dsl:3615:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3616:            If (CondRefOf (PPS3))
+  ssdt24.dsl:3617:            {
+  ssdt24.dsl:3618:                PPS3 ()
+  ssdt24.dsl:3619:            }
+  ssdt24.dsl:3620:        }
+  ssdt24.dsl:3621:
+> ssdt24.dsl:3622:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt24.dsl:3623:        {
+  ssdt24.dsl:3624:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt24.dsl:3625:            {
+> ssdt24.dsl:3626:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3627:                If (CondRefOf (PSTA))
+  ssdt24.dsl:3628:                {
+  ssdt24.dsl:3629:                    PSTA ()
+  ssdt24.dsl:3630:                }
+  ssdt24.dsl:3631:
+  ssdt24.dsl:3632:                Return (PW3S) /* \_SB_.PCI0.GP11.PW3S */
+  ssdt24.dsl:3633:            }
+  ssdt24.dsl:3634:
+> ssdt24.dsl:3635:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt24.dsl:3636:            {
+  ssdt24.dsl:3637:                If ((PW3S == Zero))
+  ssdt24.dsl:3638:                {
+  ssdt24.dsl:3639:                    PW3S = One
+> ssdt24.dsl:3640:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3641:                    If (CondRefOf (P_ON))
+  ssdt24.dsl:3642:                    {
+  ssdt24.dsl:3643:                        P_ON ()
+  ssdt24.dsl:3644:                    }
+  ssdt24.dsl:3645:                }
+  ssdt24.dsl:3646:            }
+  ssdt24.dsl:3647:
+> ssdt24.dsl:3648:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt24.dsl:3649:            {
+  ssdt24.dsl:3650:                If ((PW3S == One))
+  ssdt24.dsl:3651:                {
+  ssdt24.dsl:3652:                    PW3S = Zero
+> ssdt24.dsl:3653:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3654:                    If (CondRefOf (P_OF))
+  ssdt24.dsl:3655:                    {
+  ssdt24.dsl:3656:                        P_OF ()
+  ssdt24.dsl:3657:                    }
+  ssdt24.dsl:3658:                }
+  ssdt24.dsl:3659:            }
+  ssdt24.dsl:3660:        }
+  ssdt24.dsl:3661:
+> ssdt24.dsl:3662:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt24.dsl:3663:        {
+> ssdt24.dsl:3664:            PWRS, 
+  ssdt24.dsl:3665:        })
+> ssdt24.dsl:3666:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt24.dsl:3667:        {
+> ssdt24.dsl:3668:            PWRS, 
+  ssdt24.dsl:3669:        })
+  ssdt24.dsl:3670:        Name (XDSD, Package (0x06)
+  ssdt24.dsl:3671:        {
+  ssdt24.dsl:3672:            ToUUID ("6211e2c0-58a3-4af3-90e1-927a4e0c55a4") /* Unknown UUID */, 
+  ssdt24.dsl:3673:            Package (0x01)
+  ssdt24.dsl:3803:                Return (Local0)
+  ssdt24.dsl:3804:            }
+  ssdt24.dsl:3805:
+> ssdt24.dsl:3806:            Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt24.dsl:3807:            {
+  ssdt24.dsl:3808:                M460 ("  OEM-ASL-\\_SB.PCI0.GP11.SWUS._PRW ()  Return Package (2) {0x1A, 0x04}\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3809:                Return (Package (0x02)
+  ssdt24.dsl:3810:                {
+  ssdt24.dsl:3811:                    0x1A, 
+  ssdt24.dsl:3828:            Method (PSTA, 0, Serialized)
+  ssdt24.dsl:3829:            {
+  ssdt24.dsl:3830:                M000 (0x3F95)
+> ssdt24.dsl:3831:                M460 ("  OEM-ASL-\\_SB.PCI0.GP11.SWUS.PWRS._STA ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3832:            }
+  ssdt24.dsl:3833:
+  ssdt24.dsl:3834:            Method (P_ON, 0, Serialized)
+  ssdt24.dsl:3835:            {
+  ssdt24.dsl:3836:                M000 (0x3F96)
+> ssdt24.dsl:3837:                M460 ("  OEM-ASL-\\_SB.PCI0.GP11.SWUS.PWRS._ON ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3838:            }
+  ssdt24.dsl:3839:
+  ssdt24.dsl:3840:            Method (P_OF, 0, Serialized)
+  ssdt24.dsl:3841:            {
+  ssdt24.dsl:3842:                M000 (0x3F98)
+> ssdt24.dsl:3843:                M460 ("  OEM-ASL-\\_SB.PCI0.GP11.SWUS.PWRS._OFF ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:3844:            }
+  ssdt24.dsl:3845:
+  ssdt24.dsl:3846:            Name (DADR, 0xEEEEEEEE)
+  ssdt24.dsl:3847:            Name (DSTA, 0xEE)
+  ssdt24.dsl:3848:            Name (DBUS, 0xEEEE)
+  ssdt24.dsl:4170:                M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt24.dsl:4171:            }
+  ssdt24.dsl:4172:
+> ssdt24.dsl:4173:            Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt24.dsl:4174:            {
+  ssdt24.dsl:4175:                M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4176:                If (CondRefOf (PPS0))
+  ssdt24.dsl:4177:                {
+  ssdt24.dsl:4178:                    PPS0 ()
+  ssdt24.dsl:4179:                }
+  ssdt24.dsl:4180:            }
+  ssdt24.dsl:4181:
+> ssdt24.dsl:4182:            Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt24.dsl:4183:            {
+  ssdt24.dsl:4184:                M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4185:                If (CondRefOf (PPS3))
+  ssdt24.dsl:4186:                {
+  ssdt24.dsl:4187:                    PPS3 ()
+  ssdt24.dsl:4188:                }
+  ssdt24.dsl:4189:            }
+  ssdt24.dsl:4190:
+> ssdt24.dsl:4191:            PowerResource (PWRS, 0x00, 0x0000)
+  ssdt24.dsl:4192:            {
+  ssdt24.dsl:4193:                Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt24.dsl:4194:                {
+> ssdt24.dsl:4195:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4196:                    If (CondRefOf (PSTA))
+  ssdt24.dsl:4197:                    {
+  ssdt24.dsl:4198:                        PSTA ()
+  ssdt24.dsl:4199:                    }
+  ssdt24.dsl:4200:
+  ssdt24.dsl:4201:                    Return (PW3S) /* \_SB_.PCI0.GP11.SWUS.PW3S */
+  ssdt24.dsl:4202:                }
+  ssdt24.dsl:4203:
+> ssdt24.dsl:4204:                Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt24.dsl:4205:                {
+  ssdt24.dsl:4206:                    If ((PW3S == Zero))
+  ssdt24.dsl:4207:                    {
+  ssdt24.dsl:4208:                        PW3S = One
+> ssdt24.dsl:4209:                        M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4210:                        If (CondRefOf (P_ON))
+  ssdt24.dsl:4211:                        {
+  ssdt24.dsl:4212:                            P_ON ()
+  ssdt24.dsl:4213:                        }
+  ssdt24.dsl:4214:                    }
+  ssdt24.dsl:4215:                }
+  ssdt24.dsl:4216:
+> ssdt24.dsl:4217:                Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt24.dsl:4218:                {
+  ssdt24.dsl:4219:                    If ((PW3S == One))
+  ssdt24.dsl:4220:                    {
+  ssdt24.dsl:4221:                        PW3S = Zero
+> ssdt24.dsl:4222:                        M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4223:                        If (CondRefOf (P_OF))
+  ssdt24.dsl:4224:                        {
+  ssdt24.dsl:4225:                            P_OF ()
+  ssdt24.dsl:4226:                        }
+  ssdt24.dsl:4227:                    }
+  ssdt24.dsl:4228:                }
+  ssdt24.dsl:4229:            }
+  ssdt24.dsl:4230:
+> ssdt24.dsl:4231:            Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt24.dsl:4232:            {
+> ssdt24.dsl:4233:                PWRS, 
+  ssdt24.dsl:4234:            })
+> ssdt24.dsl:4235:            Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt24.dsl:4236:            {
+> ssdt24.dsl:4237:                PWRS, 
+  ssdt24.dsl:4238:            })
+  ssdt24.dsl:4239:        }
+  ssdt24.dsl:4240:    }
+  ssdt24.dsl:4241:
+  ssdt24.dsl:4242:    Scope (\_SB.PCI0.GP12)
+  ssdt24.dsl:4280:            Return (Local0)
+  ssdt24.dsl:4281:        }
+  ssdt24.dsl:4282:
+> ssdt24.dsl:4283:        Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt24.dsl:4284:        {
+  ssdt24.dsl:4285:            M460 ("  OEM-ASL-\\_SB.PCI0.GP12._PRW ()  Return Package (2) {0x1A, 0x04}\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4286:            Return (Package (0x02)
+  ssdt24.dsl:4287:            {
+  ssdt24.dsl:4288:                0x1A, 
+  ssdt24.dsl:4331:        Method (PSTA, 0, Serialized)
+  ssdt24.dsl:4332:        {
+  ssdt24.dsl:4333:            M000 (0x3F85)
+> ssdt24.dsl:4334:            M460 ("  OEM-ASL-\\_SB.PCI0.GP12.PWRS._STA ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4335:        }
+  ssdt24.dsl:4336:
+  ssdt24.dsl:4337:        Method (P_ON, 0, Serialized)
+  ssdt24.dsl:4338:        {
+  ssdt24.dsl:4339:            M000 (0x3F86)
+> ssdt24.dsl:4340:            M460 ("  OEM-ASL-\\_SB.PCI0.GP12.PWRS._ON ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4341:        }
+  ssdt24.dsl:4342:
+  ssdt24.dsl:4343:        Method (P_OF, 0, Serialized)
+  ssdt24.dsl:4344:        {
+  ssdt24.dsl:4345:            M000 (0x3F88)
+> ssdt24.dsl:4346:            M460 ("  OEM-ASL-\\_SB.PCI0.GP12.PWRS._OFF ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4347:        }
+  ssdt24.dsl:4348:
+  ssdt24.dsl:4349:        Name (DADR, 0xEEEEEEEE)
+  ssdt24.dsl:4350:        Name (DSTA, 0xEE)
+  ssdt24.dsl:4351:        Name (DBUS, 0xEEEE)
+  ssdt24.dsl:4673:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt24.dsl:4674:        }
+  ssdt24.dsl:4675:
+> ssdt24.dsl:4676:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt24.dsl:4677:        {
+  ssdt24.dsl:4678:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4679:            If (CondRefOf (PPS0))
+  ssdt24.dsl:4680:            {
+  ssdt24.dsl:4681:                PPS0 ()
+  ssdt24.dsl:4682:            }
+  ssdt24.dsl:4683:        }
+  ssdt24.dsl:4684:
+> ssdt24.dsl:4685:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt24.dsl:4686:        {
+  ssdt24.dsl:4687:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4688:            If (CondRefOf (PPS3))
+  ssdt24.dsl:4689:            {
+  ssdt24.dsl:4690:                PPS3 ()
+  ssdt24.dsl:4691:            }
+  ssdt24.dsl:4692:        }
+  ssdt24.dsl:4693:
+> ssdt24.dsl:4694:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt24.dsl:4695:        {
+  ssdt24.dsl:4696:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt24.dsl:4697:            {
+> ssdt24.dsl:4698:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4699:                If (CondRefOf (PSTA))
+  ssdt24.dsl:4700:                {
+  ssdt24.dsl:4701:                    PSTA ()
+  ssdt24.dsl:4702:                }
+  ssdt24.dsl:4703:
+  ssdt24.dsl:4704:                Return (PW3S) /* \_SB_.PCI0.GP12.PW3S */
+  ssdt24.dsl:4705:            }
+  ssdt24.dsl:4706:
+> ssdt24.dsl:4707:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt24.dsl:4708:            {
+  ssdt24.dsl:4709:                If ((PW3S == Zero))
+  ssdt24.dsl:4710:                {
+  ssdt24.dsl:4711:                    PW3S = One
+> ssdt24.dsl:4712:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4713:                    If (CondRefOf (P_ON))
+  ssdt24.dsl:4714:                    {
+  ssdt24.dsl:4715:                        P_ON ()
+  ssdt24.dsl:4716:                    }
+  ssdt24.dsl:4717:                }
+  ssdt24.dsl:4718:            }
+  ssdt24.dsl:4719:
+> ssdt24.dsl:4720:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt24.dsl:4721:            {
+  ssdt24.dsl:4722:                If ((PW3S == One))
+  ssdt24.dsl:4723:                {
+  ssdt24.dsl:4724:                    PW3S = Zero
+> ssdt24.dsl:4725:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4726:                    If (CondRefOf (P_OF))
+  ssdt24.dsl:4727:                    {
+  ssdt24.dsl:4728:                        P_OF ()
+  ssdt24.dsl:4729:                    }
+  ssdt24.dsl:4730:                }
+  ssdt24.dsl:4731:            }
+  ssdt24.dsl:4732:        }
+  ssdt24.dsl:4733:
+> ssdt24.dsl:4734:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt24.dsl:4735:        {
+> ssdt24.dsl:4736:            PWRS, 
+  ssdt24.dsl:4737:        })
+> ssdt24.dsl:4738:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt24.dsl:4739:        {
+> ssdt24.dsl:4740:            PWRS, 
+  ssdt24.dsl:4741:        })
+  ssdt24.dsl:4742:        Name (YDSD, Package (0x06)
+  ssdt24.dsl:4743:        {
+  ssdt24.dsl:4744:            ToUUID ("6211e2c0-58a3-4af3-90e1-927a4e0c55a4") /* Unknown UUID */, 
+  ssdt24.dsl:4745:            Package (0x01)
+  ssdt24.dsl:4875:                Return (Local0)
+  ssdt24.dsl:4876:            }
+  ssdt24.dsl:4877:
+> ssdt24.dsl:4878:            Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt24.dsl:4879:            {
+  ssdt24.dsl:4880:                M460 ("  OEM-ASL-\\_SB.PCI0.GP12.SWUS._PRW ()  Return Package (2) {0x1A, 0x04}\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4881:                Return (Package (0x02)
+  ssdt24.dsl:4882:                {
+  ssdt24.dsl:4883:                    0x1A, 
+  ssdt24.dsl:4900:            Method (PSTA, 0, Serialized)
+  ssdt24.dsl:4901:            {
+  ssdt24.dsl:4902:                M000 (0x3FA5)
+> ssdt24.dsl:4903:                M460 ("  OEM-ASL-\\_SB.PCI0.GP12.SWUS.PWRS._STA ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4904:            }
+  ssdt24.dsl:4905:
+  ssdt24.dsl:4906:            Method (P_ON, 0, Serialized)
+  ssdt24.dsl:4907:            {
+  ssdt24.dsl:4908:                M000 (0x3FA6)
+> ssdt24.dsl:4909:                M460 ("  OEM-ASL-\\_SB.PCI0.GP12.SWUS.PWRS._ON ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4910:            }
+  ssdt24.dsl:4911:
+  ssdt24.dsl:4912:            Method (P_OF, 0, Serialized)
+  ssdt24.dsl:4913:            {
+  ssdt24.dsl:4914:                M000 (0x3FA8)
+> ssdt24.dsl:4915:                M460 ("  OEM-ASL-\\_SB.PCI0.GP12.SWUS.PWRS._OFF ()\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:4916:            }
+  ssdt24.dsl:4917:
+  ssdt24.dsl:4918:            Name (DADR, 0xEEEEEEEE)
+  ssdt24.dsl:4919:            Name (DSTA, 0xEE)
+  ssdt24.dsl:4920:            Name (DBUS, 0xEEEE)
+  ssdt24.dsl:5242:                M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt24.dsl:5243:            }
+  ssdt24.dsl:5244:
+> ssdt24.dsl:5245:            Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt24.dsl:5246:            {
+  ssdt24.dsl:5247:                M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:5248:                If (CondRefOf (PPS0))
+  ssdt24.dsl:5249:                {
+  ssdt24.dsl:5250:                    PPS0 ()
+  ssdt24.dsl:5251:                }
+  ssdt24.dsl:5252:            }
+  ssdt24.dsl:5253:
+> ssdt24.dsl:5254:            Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt24.dsl:5255:            {
+  ssdt24.dsl:5256:                M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:5257:                If (CondRefOf (PPS3))
+  ssdt24.dsl:5258:                {
+  ssdt24.dsl:5259:                    PPS3 ()
+  ssdt24.dsl:5260:                }
+  ssdt24.dsl:5261:            }
+  ssdt24.dsl:5262:
+> ssdt24.dsl:5263:            PowerResource (PWRS, 0x00, 0x0000)
+  ssdt24.dsl:5264:            {
+  ssdt24.dsl:5265:                Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt24.dsl:5266:                {
+> ssdt24.dsl:5267:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:5268:                    If (CondRefOf (PSTA))
+  ssdt24.dsl:5269:                    {
+  ssdt24.dsl:5270:                        PSTA ()
+  ssdt24.dsl:5271:                    }
+  ssdt24.dsl:5272:
+  ssdt24.dsl:5273:                    Return (PW3S) /* \_SB_.PCI0.GP12.SWUS.PW3S */
+  ssdt24.dsl:5274:                }
+  ssdt24.dsl:5275:
+> ssdt24.dsl:5276:                Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt24.dsl:5277:                {
+  ssdt24.dsl:5278:                    If ((PW3S == Zero))
+  ssdt24.dsl:5279:                    {
+  ssdt24.dsl:5280:                        PW3S = One
+> ssdt24.dsl:5281:                        M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:5282:                        If (CondRefOf (P_ON))
+  ssdt24.dsl:5283:                        {
+  ssdt24.dsl:5284:                            P_ON ()
+  ssdt24.dsl:5285:                        }
+  ssdt24.dsl:5286:                    }
+  ssdt24.dsl:5287:                }
+  ssdt24.dsl:5288:
+> ssdt24.dsl:5289:                Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt24.dsl:5290:                {
+  ssdt24.dsl:5291:                    If ((PW3S == One))
+  ssdt24.dsl:5292:                    {
+  ssdt24.dsl:5293:                        PW3S = Zero
+> ssdt24.dsl:5294:                        M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt24.dsl:5295:                        If (CondRefOf (P_OF))
+  ssdt24.dsl:5296:                        {
+  ssdt24.dsl:5297:                            P_OF ()
+  ssdt24.dsl:5298:                        }
+  ssdt24.dsl:5299:                    }
+  ssdt24.dsl:5300:                }
+  ssdt24.dsl:5301:            }
+  ssdt24.dsl:5302:
+> ssdt24.dsl:5303:            Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt24.dsl:5304:            {
+> ssdt24.dsl:5305:                PWRS, 
+  ssdt24.dsl:5306:            })
+> ssdt24.dsl:5307:            Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt24.dsl:5308:            {
+> ssdt24.dsl:5309:                PWRS, 
+  ssdt24.dsl:5310:            })
+  ssdt24.dsl:5311:        }
+  ssdt24.dsl:5312:    }
+  ssdt24.dsl:5313:
+  ssdt24.dsl:5314:    Scope (\_GPE)
+  ssdt25.dsl:547:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt25.dsl:548:        }
+  ssdt25.dsl:549:
+> ssdt25.dsl:550:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt25.dsl:551:        {
+  ssdt25.dsl:552:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:553:            If (CondRefOf (PPS0))
+  ssdt25.dsl:554:            {
+  ssdt25.dsl:555:                PPS0 ()
+  ssdt25.dsl:556:            }
+  ssdt25.dsl:557:        }
+  ssdt25.dsl:558:
+> ssdt25.dsl:559:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt25.dsl:560:        {
+  ssdt25.dsl:561:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:562:            If (CondRefOf (PPS3))
+  ssdt25.dsl:563:            {
+  ssdt25.dsl:564:                PPS3 ()
+  ssdt25.dsl:565:            }
+  ssdt25.dsl:566:        }
+  ssdt25.dsl:567:
+> ssdt25.dsl:568:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt25.dsl:569:        {
+  ssdt25.dsl:570:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt25.dsl:571:            {
+> ssdt25.dsl:572:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:573:                If (CondRefOf (PSTA))
+  ssdt25.dsl:574:                {
+  ssdt25.dsl:575:                    PSTA ()
+  ssdt25.dsl:576:                }
+  ssdt25.dsl:577:
+  ssdt25.dsl:578:                Return (PW3S) /* \_SB_.PCI0.GP17.PW3S */
+  ssdt25.dsl:579:            }
+  ssdt25.dsl:580:
+> ssdt25.dsl:581:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt25.dsl:582:            {
+  ssdt25.dsl:583:                If ((PW3S == Zero))
+  ssdt25.dsl:584:                {
+  ssdt25.dsl:585:                    PW3S = One
+> ssdt25.dsl:586:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:587:                    If (CondRefOf (P_ON))
+  ssdt25.dsl:588:                    {
+  ssdt25.dsl:589:                        P_ON ()
+  ssdt25.dsl:590:                    }
+  ssdt25.dsl:591:                }
+  ssdt25.dsl:592:            }
+  ssdt25.dsl:593:
+> ssdt25.dsl:594:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt25.dsl:595:            {
+  ssdt25.dsl:596:                If ((PW3S == One))
+  ssdt25.dsl:597:                {
+  ssdt25.dsl:598:                    PW3S = Zero
+> ssdt25.dsl:599:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:600:                    If (CondRefOf (P_OF))
+  ssdt25.dsl:601:                    {
+  ssdt25.dsl:602:                        P_OF ()
+  ssdt25.dsl:603:                    }
+  ssdt25.dsl:604:                }
+  ssdt25.dsl:605:            }
+  ssdt25.dsl:606:        }
+  ssdt25.dsl:607:
+> ssdt25.dsl:608:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt25.dsl:609:        {
+> ssdt25.dsl:610:            PWRS, 
+  ssdt25.dsl:611:        })
+> ssdt25.dsl:612:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt25.dsl:613:        {
+> ssdt25.dsl:614:            PWRS, 
+  ssdt25.dsl:615:        })
+  ssdt25.dsl:616:    }
+  ssdt25.dsl:617:
+  ssdt25.dsl:618:    Scope (\_SB.PCI0.GP17.VGA)
+  ssdt25.dsl:619:    {
+  ssdt25.dsl:956:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt25.dsl:957:        }
+  ssdt25.dsl:958:
+> ssdt25.dsl:959:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt25.dsl:960:        {
+  ssdt25.dsl:961:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:962:            If (CondRefOf (PPS0))
+  ssdt25.dsl:963:            {
+  ssdt25.dsl:964:                PPS0 ()
+  ssdt25.dsl:965:            }
+  ssdt25.dsl:966:        }
+  ssdt25.dsl:967:
+> ssdt25.dsl:968:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt25.dsl:969:        {
+  ssdt25.dsl:970:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:971:            If (CondRefOf (PPS3))
+  ssdt25.dsl:972:            {
+  ssdt25.dsl:973:                PPS3 ()
+  ssdt25.dsl:974:            }
+  ssdt25.dsl:975:        }
+  ssdt25.dsl:976:
+> ssdt25.dsl:977:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt25.dsl:978:        {
+  ssdt25.dsl:979:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt25.dsl:980:            {
+> ssdt25.dsl:981:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:982:                If (CondRefOf (PSTA))
+  ssdt25.dsl:983:                {
+  ssdt25.dsl:984:                    PSTA ()
+  ssdt25.dsl:985:                }
+  ssdt25.dsl:986:
+  ssdt25.dsl:987:                Return (PW3S) /* \_SB_.PCI0.GP17.VGA_.PW3S */
+  ssdt25.dsl:988:            }
+  ssdt25.dsl:989:
+> ssdt25.dsl:990:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt25.dsl:991:            {
+  ssdt25.dsl:992:                If ((PW3S == Zero))
+  ssdt25.dsl:993:                {
+  ssdt25.dsl:994:                    PW3S = One
+> ssdt25.dsl:995:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:996:                    If (CondRefOf (P_ON))
+  ssdt25.dsl:997:                    {
+  ssdt25.dsl:998:                        P_ON ()
+  ssdt25.dsl:999:                    }
+  ssdt25.dsl:1000:                }
+  ssdt25.dsl:1001:            }
+  ssdt25.dsl:1002:
+> ssdt25.dsl:1003:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt25.dsl:1004:            {
+  ssdt25.dsl:1005:                If ((PW3S == One))
+  ssdt25.dsl:1006:                {
+  ssdt25.dsl:1007:                    PW3S = Zero
+> ssdt25.dsl:1008:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1009:                    If (CondRefOf (P_OF))
+  ssdt25.dsl:1010:                    {
+  ssdt25.dsl:1011:                        P_OF ()
+  ssdt25.dsl:1012:                    }
+  ssdt25.dsl:1013:                }
+  ssdt25.dsl:1014:            }
+  ssdt25.dsl:1015:        }
+  ssdt25.dsl:1016:
+> ssdt25.dsl:1017:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt25.dsl:1018:        {
+> ssdt25.dsl:1019:            PWRS, 
+  ssdt25.dsl:1020:        })
+> ssdt25.dsl:1021:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt25.dsl:1022:        {
+> ssdt25.dsl:1023:            PWRS, 
+  ssdt25.dsl:1024:        })
+  ssdt25.dsl:1025:    }
+  ssdt25.dsl:1026:
+  ssdt25.dsl:1027:    Scope (\_SB.PCI0.GP17.HDAU)
+  ssdt25.dsl:1028:    {
+  ssdt25.dsl:1365:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt25.dsl:1366:        }
+  ssdt25.dsl:1367:
+> ssdt25.dsl:1368:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt25.dsl:1369:        {
+  ssdt25.dsl:1370:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1371:            If (CondRefOf (PPS0))
+  ssdt25.dsl:1372:            {
+  ssdt25.dsl:1373:                PPS0 ()
+  ssdt25.dsl:1374:            }
+  ssdt25.dsl:1375:        }
+  ssdt25.dsl:1376:
+> ssdt25.dsl:1377:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt25.dsl:1378:        {
+  ssdt25.dsl:1379:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1380:            If (CondRefOf (PPS3))
+  ssdt25.dsl:1381:            {
+  ssdt25.dsl:1382:                PPS3 ()
+  ssdt25.dsl:1383:            }
+  ssdt25.dsl:1384:        }
+  ssdt25.dsl:1385:
+> ssdt25.dsl:1386:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt25.dsl:1387:        {
+  ssdt25.dsl:1388:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt25.dsl:1389:            {
+> ssdt25.dsl:1390:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1391:                If (CondRefOf (PSTA))
+  ssdt25.dsl:1392:                {
+  ssdt25.dsl:1393:                    PSTA ()
+  ssdt25.dsl:1394:                }
+  ssdt25.dsl:1395:
+  ssdt25.dsl:1396:                Return (PW3S) /* \_SB_.PCI0.GP17.HDAU.PW3S */
+  ssdt25.dsl:1397:            }
+  ssdt25.dsl:1398:
+> ssdt25.dsl:1399:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt25.dsl:1400:            {
+  ssdt25.dsl:1401:                If ((PW3S == Zero))
+  ssdt25.dsl:1402:                {
+  ssdt25.dsl:1403:                    PW3S = One
+> ssdt25.dsl:1404:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1405:                    If (CondRefOf (P_ON))
+  ssdt25.dsl:1406:                    {
+  ssdt25.dsl:1407:                        P_ON ()
+  ssdt25.dsl:1408:                    }
+  ssdt25.dsl:1409:                }
+  ssdt25.dsl:1410:            }
+  ssdt25.dsl:1411:
+> ssdt25.dsl:1412:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt25.dsl:1413:            {
+  ssdt25.dsl:1414:                If ((PW3S == One))
+  ssdt25.dsl:1415:                {
+  ssdt25.dsl:1416:                    PW3S = Zero
+> ssdt25.dsl:1417:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1418:                    If (CondRefOf (P_OF))
+  ssdt25.dsl:1419:                    {
+  ssdt25.dsl:1420:                        P_OF ()
+  ssdt25.dsl:1421:                    }
+  ssdt25.dsl:1422:                }
+  ssdt25.dsl:1423:            }
+  ssdt25.dsl:1424:        }
+  ssdt25.dsl:1425:
+> ssdt25.dsl:1426:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt25.dsl:1427:        {
+> ssdt25.dsl:1428:            PWRS, 
+  ssdt25.dsl:1429:        })
+> ssdt25.dsl:1430:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt25.dsl:1431:        {
+> ssdt25.dsl:1432:            PWRS, 
+  ssdt25.dsl:1433:        })
+  ssdt25.dsl:1434:    }
+  ssdt25.dsl:1435:
+  ssdt25.dsl:1436:    Scope (\_SB.PCI0.GP17.XHC0)
+  ssdt25.dsl:1437:    {
+  ssdt25.dsl:1447:            Return (Local0)
+  ssdt25.dsl:1448:        }
+  ssdt25.dsl:1449:
+> ssdt25.dsl:1450:        Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt25.dsl:1451:        {
+  ssdt25.dsl:1452:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PRW ()  Return Package (2) {0x19, 0x04}\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1453:            Return (Package (0x02)
+  ssdt25.dsl:1454:            {
+  ssdt25.dsl:1455:                0x19, 
+  ssdt25.dsl:1809:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt25.dsl:1810:        }
+  ssdt25.dsl:1811:
+> ssdt25.dsl:1812:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt25.dsl:1813:        {
+  ssdt25.dsl:1814:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1815:            If (CondRefOf (PPS0))
+  ssdt25.dsl:1816:            {
+  ssdt25.dsl:1817:                PPS0 ()
+  ssdt25.dsl:1818:            }
+  ssdt25.dsl:1819:        }
+  ssdt25.dsl:1820:
+> ssdt25.dsl:1821:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt25.dsl:1822:        {
+  ssdt25.dsl:1823:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1824:            If (CondRefOf (PPS3))
+  ssdt25.dsl:1825:            {
+  ssdt25.dsl:1826:                PPS3 ()
+  ssdt25.dsl:1827:            }
+  ssdt25.dsl:1828:        }
+  ssdt25.dsl:1829:
+> ssdt25.dsl:1830:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt25.dsl:1831:        {
+  ssdt25.dsl:1832:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt25.dsl:1833:            {
+> ssdt25.dsl:1834:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1835:                If (CondRefOf (PSTA))
+  ssdt25.dsl:1836:                {
+  ssdt25.dsl:1837:                    PSTA ()
+  ssdt25.dsl:1838:                }
+  ssdt25.dsl:1839:
+  ssdt25.dsl:1840:                Return (PW3S) /* \_SB_.PCI0.GP17.XHC0.PW3S */
+  ssdt25.dsl:1841:            }
+  ssdt25.dsl:1842:
+> ssdt25.dsl:1843:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt25.dsl:1844:            {
+  ssdt25.dsl:1845:                If ((PW3S == Zero))
+  ssdt25.dsl:1846:                {
+  ssdt25.dsl:1847:                    PW3S = One
+> ssdt25.dsl:1848:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1849:                    If (CondRefOf (P_ON))
+  ssdt25.dsl:1850:                    {
+  ssdt25.dsl:1851:                        P_ON ()
+  ssdt25.dsl:1852:                    }
+  ssdt25.dsl:1853:                }
+  ssdt25.dsl:1854:            }
+  ssdt25.dsl:1855:
+> ssdt25.dsl:1856:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt25.dsl:1857:            {
+  ssdt25.dsl:1858:                If ((PW3S == One))
+  ssdt25.dsl:1859:                {
+  ssdt25.dsl:1860:                    PW3S = Zero
+> ssdt25.dsl:1861:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1862:                    If (CondRefOf (P_OF))
+  ssdt25.dsl:1863:                    {
+  ssdt25.dsl:1864:                        P_OF ()
+  ssdt25.dsl:1865:                    }
+  ssdt25.dsl:1866:                }
+  ssdt25.dsl:1867:            }
+  ssdt25.dsl:1868:        }
+  ssdt25.dsl:1869:
+> ssdt25.dsl:1870:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt25.dsl:1871:        {
+> ssdt25.dsl:1872:            PWRS, 
+  ssdt25.dsl:1873:        })
+> ssdt25.dsl:1874:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt25.dsl:1875:        {
+> ssdt25.dsl:1876:            PWRS, 
+  ssdt25.dsl:1877:        })
+  ssdt25.dsl:1878:    }
+  ssdt25.dsl:1879:
+  ssdt25.dsl:1880:    Scope (\_SB.PCI0.GP17.XHC1)
+  ssdt25.dsl:1881:    {
+  ssdt25.dsl:1891:            Return (Local0)
+  ssdt25.dsl:1892:        }
+  ssdt25.dsl:1893:
+> ssdt25.dsl:1894:        Method (_PRW, 0, Serialized)  // _PRW: Power Resources for Wake
+  ssdt25.dsl:1895:        {
+  ssdt25.dsl:1896:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PRW ()  Return Package (2) {0x19, 0x04}\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:1897:            Return (Package (0x02)
+  ssdt25.dsl:1898:            {
+  ssdt25.dsl:1899:                0x19, 
+  ssdt25.dsl:2253:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt25.dsl:2254:        }
+  ssdt25.dsl:2255:
+> ssdt25.dsl:2256:        Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+  ssdt25.dsl:2257:        {
+  ssdt25.dsl:2258:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS0\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:2259:            If (CondRefOf (PPS0))
+  ssdt25.dsl:2260:            {
+  ssdt25.dsl:2261:                PPS0 ()
+  ssdt25.dsl:2262:            }
+  ssdt25.dsl:2263:        }
+  ssdt25.dsl:2264:
+> ssdt25.dsl:2265:        Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+  ssdt25.dsl:2266:        {
+  ssdt25.dsl:2267:            M460 ("  OEM-ASL-PCIe Address (0x%X)._PS3\n", DADR, Zero, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:2268:            If (CondRefOf (PPS3))
+  ssdt25.dsl:2269:            {
+  ssdt25.dsl:2270:                PPS3 ()
+  ssdt25.dsl:2271:            }
+  ssdt25.dsl:2272:        }
+  ssdt25.dsl:2273:
+> ssdt25.dsl:2274:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt25.dsl:2275:        {
+  ssdt25.dsl:2276:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt25.dsl:2277:            {
+> ssdt25.dsl:2278:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:2279:                If (CondRefOf (PSTA))
+  ssdt25.dsl:2280:                {
+  ssdt25.dsl:2281:                    PSTA ()
+  ssdt25.dsl:2282:                }
+  ssdt25.dsl:2283:
+  ssdt25.dsl:2284:                Return (PW3S) /* \_SB_.PCI0.GP17.XHC1.PW3S */
+  ssdt25.dsl:2285:            }
+  ssdt25.dsl:2286:
+> ssdt25.dsl:2287:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt25.dsl:2288:            {
+  ssdt25.dsl:2289:                If ((PW3S == Zero))
+  ssdt25.dsl:2290:                {
+  ssdt25.dsl:2291:                    PW3S = One
+> ssdt25.dsl:2292:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:2293:                    If (CondRefOf (P_ON))
+  ssdt25.dsl:2294:                    {
+  ssdt25.dsl:2295:                        P_ON ()
+  ssdt25.dsl:2296:                    }
+  ssdt25.dsl:2297:                }
+  ssdt25.dsl:2298:            }
+  ssdt25.dsl:2299:
+> ssdt25.dsl:2300:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt25.dsl:2301:            {
+  ssdt25.dsl:2302:                If ((PW3S == One))
+  ssdt25.dsl:2303:                {
+  ssdt25.dsl:2304:                    PW3S = Zero
+> ssdt25.dsl:2305:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:2306:                    If (CondRefOf (P_OF))
+  ssdt25.dsl:2307:                    {
+  ssdt25.dsl:2308:                        P_OF ()
+  ssdt25.dsl:2309:                    }
+  ssdt25.dsl:2310:                }
+  ssdt25.dsl:2311:            }
+  ssdt25.dsl:2312:        }
+  ssdt25.dsl:2313:
+> ssdt25.dsl:2314:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt25.dsl:2315:        {
+> ssdt25.dsl:2316:            PWRS, 
+  ssdt25.dsl:2317:        })
+> ssdt25.dsl:2318:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt25.dsl:2319:        {
+> ssdt25.dsl:2320:            PWRS, 
+  ssdt25.dsl:2321:        })
+  ssdt25.dsl:2322:    }
+  ssdt25.dsl:2323:
+  ssdt25.dsl:2324:    Scope (\_SB.PCI0.GP17.ACP)
+  ssdt25.dsl:2325:    {
+  ssdt25.dsl:2674:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt25.dsl:2675:        }
+  ssdt25.dsl:2676:
+> ssdt25.dsl:2677:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt25.dsl:2678:        {
+  ssdt25.dsl:2679:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt25.dsl:2680:            {
+> ssdt25.dsl:2681:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:2682:                If (CondRefOf (PSTA))
+  ssdt25.dsl:2683:                {
+  ssdt25.dsl:2684:                    PSTA ()
+  ssdt25.dsl:2685:                }
+  ssdt25.dsl:2686:
+  ssdt25.dsl:2687:                Return (PW3S) /* \_SB_.PCI0.GP17.ACP_.PW3S */
+  ssdt25.dsl:2688:            }
+  ssdt25.dsl:2689:
+> ssdt25.dsl:2690:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt25.dsl:2691:            {
+  ssdt25.dsl:2692:                If ((PW3S == Zero))
+  ssdt25.dsl:2693:                {
+  ssdt25.dsl:2694:                    PW3S = One
+> ssdt25.dsl:2695:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:2696:                    If (CondRefOf (P_ON))
+  ssdt25.dsl:2697:                    {
+  ssdt25.dsl:2698:                        P_ON ()
+  ssdt25.dsl:2699:                    }
+  ssdt25.dsl:2700:                }
+  ssdt25.dsl:2701:            }
+  ssdt25.dsl:2702:
+> ssdt25.dsl:2703:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt25.dsl:2704:            {
+  ssdt25.dsl:2705:                If ((PW3S == One))
+  ssdt25.dsl:2706:                {
+  ssdt25.dsl:2707:                    PW3S = Zero
+> ssdt25.dsl:2708:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:2709:                    If (CondRefOf (P_OF))
+  ssdt25.dsl:2710:                    {
+  ssdt25.dsl:2711:                        P_OF ()
+  ssdt25.dsl:2712:                    }
+  ssdt25.dsl:2713:                }
+  ssdt25.dsl:2714:            }
+  ssdt25.dsl:2715:        }
+  ssdt25.dsl:2716:
+> ssdt25.dsl:2717:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt25.dsl:2718:        {
+> ssdt25.dsl:2719:            PWRS, 
+  ssdt25.dsl:2720:        })
+> ssdt25.dsl:2721:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt25.dsl:2722:        {
+> ssdt25.dsl:2723:            PWRS, 
+  ssdt25.dsl:2724:        })
+  ssdt25.dsl:2725:    }
+  ssdt25.dsl:2726:
+  ssdt25.dsl:2727:    Scope (\_SB.PCI0.GP17.AZAL)
+  ssdt25.dsl:2728:    {
+  ssdt25.dsl:3065:            M460 ("  OEM-ASL-PCIe Address (0x%X)._DSW (%d %d %d)  PCSA = %d\n", DADR, Arg0, Arg1, Arg2, PCSA, Zero)
+  ssdt25.dsl:3066:        }
+  ssdt25.dsl:3067:
+> ssdt25.dsl:3068:        PowerResource (PWRS, 0x00, 0x0000)
+  ssdt25.dsl:3069:        {
+  ssdt25.dsl:3070:            Method (_STA, 0, Serialized)  // _STA: Status
+  ssdt25.dsl:3071:            {
+> ssdt25.dsl:3072:                M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._STA = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:3073:                If (CondRefOf (PSTA))
+  ssdt25.dsl:3074:                {
+  ssdt25.dsl:3075:                    PSTA ()
+  ssdt25.dsl:3076:                }
+  ssdt25.dsl:3077:
+  ssdt25.dsl:3078:                Return (PW3S) /* \_SB_.PCI0.GP17.AZAL.PW3S */
+  ssdt25.dsl:3079:            }
+  ssdt25.dsl:3080:
+> ssdt25.dsl:3081:            Method (_ON, 0, Serialized)  // _ON_: Power On
+  ssdt25.dsl:3082:            {
+  ssdt25.dsl:3083:                If ((PW3S == Zero))
+  ssdt25.dsl:3084:                {
+  ssdt25.dsl:3085:                    PW3S = One
+> ssdt25.dsl:3086:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._ON = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:3087:                    If (CondRefOf (P_ON))
+  ssdt25.dsl:3088:                    {
+  ssdt25.dsl:3089:                        P_ON ()
+  ssdt25.dsl:3090:                    }
+  ssdt25.dsl:3091:                }
+  ssdt25.dsl:3092:            }
+  ssdt25.dsl:3093:
+> ssdt25.dsl:3094:            Method (_OFF, 0, Serialized)  // _OFF: Power Off
+  ssdt25.dsl:3095:            {
+  ssdt25.dsl:3096:                If ((PW3S == One))
+  ssdt25.dsl:3097:                {
+  ssdt25.dsl:3098:                    PW3S = Zero
+> ssdt25.dsl:3099:                    M460 ("  OEM-ASL-PCIe Address (0x%X).PWRS._OFF = 0x%X\n", DADR, PW3S, Zero, Zero, Zero, Zero)
+  ssdt25.dsl:3100:                    If (CondRefOf (P_OF))
+  ssdt25.dsl:3101:                    {
+  ssdt25.dsl:3102:                        P_OF ()
+  ssdt25.dsl:3103:                    }
+  ssdt25.dsl:3104:                }
+  ssdt25.dsl:3105:            }
+  ssdt25.dsl:3106:        }
+  ssdt25.dsl:3107:
+> ssdt25.dsl:3108:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt25.dsl:3109:        {
+> ssdt25.dsl:3110:            PWRS, 
+  ssdt25.dsl:3111:        })
+> ssdt25.dsl:3112:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt25.dsl:3113:        {
+> ssdt25.dsl:3114:            PWRS, 
+  ssdt25.dsl:3115:        })
+  ssdt25.dsl:3116:    }
+  ssdt25.dsl:3117:
+  ssdt25.dsl:3118:    Scope (\_GPE)
+  ssdt25.dsl:3119:    {
+  ssdt26.dsl:34:    External (_SB_.PCI0.GPP5, DeviceObj)
+  ssdt26.dsl:35:    External (_SB_.PCI0.GPP6, DeviceObj)
+  ssdt26.dsl:36:    External (_SB_.PCI0.GPP7, DeviceObj)
+> ssdt26.dsl:37:    External (_SB_.PWRB, DeviceObj)
+  ssdt26.dsl:38:    External (M000, MethodObj)    // 1 Arguments
+  ssdt26.dsl:39:    External (M037, DeviceObj)
+  ssdt26.dsl:40:    External (M046, IntObj)
+  ssdt26.dsl:41:    External (M050, DeviceObj)
+  ssdt26.dsl:42:    External (M051, DeviceObj)
+  ssdt26.dsl:224:                Case (Zero)
+  ssdt26.dsl:225:                {
+  ssdt26.dsl:226:                    M000 (0x3900)
+> ssdt26.dsl:227:                    M460 ("    Notify (\\_SB.PWRB, 0x80)\n", Zero, Zero, Zero, Zero, Zero, Zero)
+> ssdt26.dsl:228:                    Notify (\_SB.PWRB, 0x80) // Status Change
+  ssdt26.dsl:229:                }
+  ssdt26.dsl:230:                Case (0x12)
+  ssdt26.dsl:231:                {
+  ssdt26.dsl:232:                    M000 (0x3912)
+  ssdt26.dsl:233:                    M460 ("    Notify (\\_SB.PCI0.GPP6, 0x02)\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt26.dsl:248:                    {
+  ssdt26.dsl:249:                        If ((APBM == One))
+  ssdt26.dsl:250:                        {
+> ssdt26.dsl:251:                            M460 ("    Notify (\\_SB.PCI0.GP17.MP2C(HPDW):PWRB 0x80)\n", Zero, Zero, Zero, Zero, Zero, Zero)
+> ssdt26.dsl:252:                            Notify (\_SB.PWRB, 0x80) // Status Change
+  ssdt26.dsl:253:                        }
+  ssdt26.dsl:254:                    }
+  ssdt26.dsl:255:                }
+  ssdt26.dsl:256:                Case (0x3A)
+  ssdt26.dsl:257:                {
+  ssdt28.dsl:24:
+  ssdt28.dsl:25:    Scope (\_SB.PLTF)
+  ssdt28.dsl:26:    {
+> ssdt28.dsl:27:        Name (_LPI, Package (0x04)  // _LPI: Low Power Idle States
+  ssdt28.dsl:28:        {
+  ssdt28.dsl:29:            Zero, 
+  ssdt28.dsl:30:            Zero, 
+  ssdt28.dsl:31:            One, 
+  ssdt28.dsl:32:            Package (0x0A)
+  ssdt5.dsl:176:    {
+  ssdt5.dsl:177:        Name (D0S0, One)
+  ssdt5.dsl:178:        Name (D3S0, One)
+> ssdt5.dsl:179:        PowerResource (P0S0, 0x00, 0x0000)
+  ssdt5.dsl:180:        {
+  ssdt5.dsl:181:            Method (_STA, 0, NotSerialized)  // _STA: Status
+  ssdt5.dsl:182:            {
+  ssdt5.dsl:183:                Return (D0S0) /* \_SB_.PCI0.GP18.SATA.D0S0 */
+  ssdt5.dsl:184:            }
+  ssdt5.dsl:185:
+> ssdt5.dsl:186:            Method (_ON, 0, NotSerialized)  // _ON_: Power On
+  ssdt5.dsl:187:            {
+  ssdt5.dsl:188:                D0S0 = One
+  ssdt5.dsl:189:            }
+  ssdt5.dsl:190:
+> ssdt5.dsl:191:            Method (_OFF, 0, NotSerialized)  // _OFF: Power Off
+  ssdt5.dsl:192:            {
+  ssdt5.dsl:193:                D0S0 = Zero
+  ssdt5.dsl:194:            }
+  ssdt5.dsl:195:        }
+  ssdt5.dsl:196:
+> ssdt5.dsl:197:        PowerResource (P3S0, 0x00, 0x0000)
+  ssdt5.dsl:198:        {
+  ssdt5.dsl:199:            Method (_STA, 0, NotSerialized)  // _STA: Status
+  ssdt5.dsl:200:            {
+  ssdt5.dsl:201:                Return (D3S0) /* \_SB_.PCI0.GP18.SATA.D3S0 */
+  ssdt5.dsl:202:            }
+  ssdt5.dsl:203:
+> ssdt5.dsl:204:            Method (_ON, 0, NotSerialized)  // _ON_: Power On
+  ssdt5.dsl:205:            {
+  ssdt5.dsl:206:                D3S0 = One
+  ssdt5.dsl:207:            }
+  ssdt5.dsl:208:
+> ssdt5.dsl:209:            Method (_OFF, 0, NotSerialized)  // _OFF: Power Off
+  ssdt5.dsl:210:            {
+  ssdt5.dsl:211:                D3S0 = Zero
+  ssdt5.dsl:212:            }
+  ssdt5.dsl:213:        }
+  ssdt5.dsl:214:
+> ssdt5.dsl:215:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt5.dsl:216:        {
+  ssdt5.dsl:217:            P0S0, 
+  ssdt5.dsl:218:        })
+> ssdt5.dsl:219:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt5.dsl:220:        {
+  ssdt5.dsl:221:            P3S0, 
+  ssdt5.dsl:222:        })
+  ssdt5.dsl:223:        Name (_DSD, Package (0x02)  // _DSD: Device-Specific Data
+  ssdt5.dsl:224:        {
+  ssdt5.dsl:257:            Return (Zero)
+  ssdt5.dsl:258:        }
+  ssdt5.dsl:259:
+> ssdt5.dsl:260:        Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  ssdt5.dsl:261:        {
+  ssdt5.dsl:262:            If ((STDS == One))
+  ssdt5.dsl:263:            {
+  ssdt5.dsl:264:                If ((STDD == Zero))
+  ssdt5.dsl:265:                {
+  ssdt5.dsl:269:            }
+  ssdt5.dsl:270:        }
+  ssdt5.dsl:271:
+> ssdt5.dsl:272:        Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  ssdt5.dsl:273:        {
+  ssdt5.dsl:274:            If ((STDS == One))
+  ssdt5.dsl:275:            {
+  ssdt5.dsl:276:                If ((STDD == Zero))
+  ssdt5.dsl:277:                {
+  ssdt8.dsl:239:            }
+  ssdt8.dsl:240:        }
+  ssdt8.dsl:241:
+> ssdt8.dsl:242:        PowerResource (PG00, 0x00, 0x0000)
+  ssdt8.dsl:243:        {
+  ssdt8.dsl:244:            Name (M239, One)
+  ssdt8.dsl:245:            Method (_STA, 0, NotSerialized)  // _STA: Status
+  ssdt8.dsl:246:            {
+  ssdt8.dsl:247:                Return (M239) /* \_SB_.PCI0.GPP0.PG00.M239 */
+  ssdt8.dsl:248:            }
+  ssdt8.dsl:249:
+> ssdt8.dsl:250:            Method (_ON, 0, NotSerialized)  // _ON_: Power On
+  ssdt8.dsl:251:            {
+  ssdt8.dsl:252:                If ((\_SB.PCI0.TDGC == One))
+  ssdt8.dsl:253:                {
+  ssdt8.dsl:254:                    If ((\_SB.PCI0.DGCX == 0x03))
+  ssdt8.dsl:255:                    {
+  ssdt8.dsl:289:                }
+  ssdt8.dsl:290:            }
+  ssdt8.dsl:291:
+> ssdt8.dsl:292:            Method (_OFF, 0, NotSerialized)  // _OFF: Power Off
+  ssdt8.dsl:293:            {
+  ssdt8.dsl:294:                If ((\_SB.PCI0.TDGC == One))
+  ssdt8.dsl:295:                {
+  ssdt8.dsl:296:                    CreateField (\_SB.PCI0.TGPC, Zero, 0x03, GPPC)
+  ssdt8.dsl:297:                    If ((ToInteger (GPPC) == One))
+  ssdt8.dsl:327:            }
+  ssdt8.dsl:328:        }
+  ssdt8.dsl:329:
+> ssdt8.dsl:330:        Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
+  ssdt8.dsl:331:        {
+  ssdt8.dsl:332:            PG00, 
+  ssdt8.dsl:333:        })
+> ssdt8.dsl:334:        Name (_PR2, Package (0x01)  // _PR2: Power Resources for D2
+  ssdt8.dsl:335:        {
+  ssdt8.dsl:336:            PG00, 
+  ssdt8.dsl:337:        })
+> ssdt8.dsl:338:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt8.dsl:339:        {
+  ssdt8.dsl:340:            PG00, 
+  ssdt8.dsl:341:        })
+  ssdt8.dsl:342:        Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
+  ssdt8.dsl:343:        OperationRegion (RPCX, SystemMemory, \_SB.PCI0.DGBA, 0x1000)
+  ssdt8.dsl:416:    {
+  ssdt8.dsl:417:        Name (LTRE, Zero)
+  ssdt8.dsl:418:        Name (DGPS, Zero)
+> ssdt8.dsl:419:        Name (_PSC, Zero)  // _PSC: Power State Current
+  ssdt8.dsl:420:        Name (GPRF, Zero)
+  ssdt8.dsl:421:        Name (OPCE, 0x02)
+  ssdt8.dsl:422:        OperationRegion (PCIM, SystemMemory, \_SB.PCI0.DGDA, 0x1000)
+  ssdt8.dsl:423:        Field (PCIM, DWordAcc, NoLock, Preserve)
+  ssdt8.dsl:424:        {
+  ssdt8.dsl:454:            PDID,   16
+  ssdt8.dsl:455:        }
+  ssdt8.dsl:456:
+> ssdt8.dsl:457:        Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  ssdt8.dsl:458:        {
+  ssdt8.dsl:459:            Acquire (NVMT, 0xFFFF)
+  ssdt8.dsl:460:            _PSC = Zero
+  ssdt8.dsl:461:            If ((DGPS != Zero))
+  ssdt8.dsl:462:            {
+  ssdt8.dsl:467:            Release (NVMT)
+  ssdt8.dsl:468:        }
+  ssdt8.dsl:469:
+> ssdt8.dsl:470:        Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  ssdt8.dsl:471:        {
+  ssdt8.dsl:472:            Acquire (NVMT, 0xFFFF)
+  ssdt8.dsl:473:            If ((OPCE == 0x03))
+  ssdt8.dsl:474:            {
+  ssdt8.dsl:475:                If ((DGPS == Zero))
+  ssdt8.dsl:837:                }
+  ssdt8.dsl:838:                Case (0x03)
+  ssdt8.dsl:839:                {
+> ssdt8.dsl:840:                    Debug = "   JT fun3 JT_FUNC_POWERCONTROL"
+  ssdt8.dsl:841:                    CreateField (Arg3, Zero, 0x03, GPPC)
+  ssdt8.dsl:842:                    CreateField (Arg3, 0x04, One, PLPC)
+  ssdt8.dsl:843:                    CreateField (Arg3, 0x07, One, ECOC)
+  ssdt8.dsl:844:                    CreateField (Arg3, 0x0E, 0x02, DFGC)
+  ssdt8.dsl:845:                    CreateField (Arg3, 0x10, 0x03, GPCX)
+  ssdt8.dsl:1071:            /* 0038 */  0x6E, 0x63, 0x20, 0x52, 0x65, 0x61, 0x64, 0x79,  // nc Ready
+  ssdt8.dsl:1072:            /* 0040 */  0x20, 0x50, 0x6C, 0x61, 0x74, 0x66, 0x6F, 0x72,  //  Platfor
+  ssdt8.dsl:1073:            /* 0048 */  0x6D, 0x20, 0x66, 0x6F, 0x72, 0x20, 0x45, 0x56,  // m for EV
+> ssdt8.dsl:1074:            /* 0050 */  0x59, 0x57, 0x4D, 0x4F, 0x48, 0x4A, 0x51, 0x58,  // YWMOHJQX
+  ssdt8.dsl:1075:            /* 0058 */  0x55, 0x4F, 0x48, 0x48, 0x54, 0x4C, 0x4B, 0x55,  // UOHHTLKU
+  ssdt8.dsl:1076:            /* 0060 */  0x51, 0x49, 0x20, 0x2D, 0x20, 0x41, 0x42, 0x39,  // QI - AB9
+  ssdt8.dsl:1077:            /* 0068 */  0x48, 0x4F, 0x28, 0x56, 0x56, 0x3E, 0x2F, 0x3A,  // HO(VV>/:
+  ssdt8.dsl:1078:            /* 0070 */  0x3F, 0x51, 0x5B, 0x35, 0x3A, 0x40, 0x4E, 0x2A,  // ?Q[5:@N*
+  ssdt8.dsl:1079:            /* 0078 */  0x43, 0x34, 0x53, 0x3E, 0x42, 0x29, 0x51, 0x22,  // C4S>B)Q"
+  ssdt8.dsl:4597:                /* 0018 */  0x66, 0xD5, 0xD1, 0x11, 0xB2, 0xF0, 0x00, 0xA0,  // f.......
+  ssdt8.dsl:4598:                /* 0020 */  0xC9, 0x06, 0x29, 0x10, 0x30, 0x30, 0x01, 0x00   // ..).00..
+  ssdt8.dsl:4599:            })
+> ssdt8.dsl:4600:            Method (WMAA, 3, Serialized)
+  ssdt8.dsl:4601:            {
+  ssdt8.dsl:4602:                Name (TEMP, Zero)
+  ssdt8.dsl:4603:                CreateByteField (Arg2, Zero, MODF)
+> ssdt8.dsl:4604:                CreateDWordField (Arg2, 0x04, LEDB)
+  ssdt8.dsl:4605:                While (One)
+  ssdt8.dsl:4606:                {
+  ssdt8.dsl:4607:                    TEMP = Arg1
+  ssdt8.dsl:4608:                    If ((TEMP == One))
+  ssdt8.dsl:4609:                    {
+  ssdt8.dsl:4614:                        }
+  ssdt8.dsl:4615:                        ElseIf ((MODF == One))
+  ssdt8.dsl:4616:                        {
+> ssdt8.dsl:4617:                            LEDB |= 0x8000
+> ssdt8.dsl:4618:                            \_SB.PCI0.LPC0.EC0.EPWM = LEDB /* \_SB_.PCI0.AWMI.WMAA.LEDB */
+  ssdt8.dsl:4619:                            Return (Zero)
+  ssdt8.dsl:4620:                        }
+  ssdt8.dsl:4621:                        ElseIf ((MODF == 0x02))
+  ssdt8.dsl:4622:                        {
+  ssdt8.dsl:4623:                            Return (0x0320)
+  ssdt8.dsl:4650:                        }
+  ssdt8.dsl:4651:                        ElseIf ((MODF == One))
+  ssdt8.dsl:4652:                        {
+> ssdt8.dsl:4653:                            If ((LEDB < 0x03))
+  ssdt8.dsl:4654:                            {
+  ssdt8.dsl:4655:                                Return (Zero)
+  ssdt8.dsl:4656:                            }
+  ssdt8.dsl:4657:
+  ssdt8.dsl:4658:                            Return (One)
+  ssdt9.dsl:170:                }
+  ssdt9.dsl:171:            }
+  ssdt9.dsl:172:        })
+> ssdt9.dsl:173:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:174:        {
+  ssdt9.dsl:175:            Package (0x05)
+  ssdt9.dsl:176:            {
+  ssdt9.dsl:177:                0x05, 
+  ssdt9.dsl:178:                0x00, 
+  ssdt9.dsl:244:                0x00000000
+  ssdt9.dsl:245:            }
+  ssdt9.dsl:246:        })
+> ssdt9.dsl:247:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:248:        {
+  ssdt9.dsl:249:            0x0000, 
+  ssdt9.dsl:250:            0x0000000000000000, 
+  ssdt9.dsl:251:            0x0003, 
+  ssdt9.dsl:252:            Package (0x0A)
+  ssdt9.dsl:614:                }
+  ssdt9.dsl:615:            }
+  ssdt9.dsl:616:        })
+> ssdt9.dsl:617:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:618:        {
+  ssdt9.dsl:619:            Package (0x05)
+  ssdt9.dsl:620:            {
+  ssdt9.dsl:621:                0x05, 
+  ssdt9.dsl:622:                0x00, 
+  ssdt9.dsl:688:                0x00000000
+  ssdt9.dsl:689:            }
+  ssdt9.dsl:690:        })
+> ssdt9.dsl:691:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:692:        {
+  ssdt9.dsl:693:            0x0000, 
+  ssdt9.dsl:694:            0x0000000000000000, 
+  ssdt9.dsl:695:            0x0003, 
+  ssdt9.dsl:696:            Package (0x0A)
+  ssdt9.dsl:1058:                }
+  ssdt9.dsl:1059:            }
+  ssdt9.dsl:1060:        })
+> ssdt9.dsl:1061:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:1062:        {
+  ssdt9.dsl:1063:            Package (0x05)
+  ssdt9.dsl:1064:            {
+  ssdt9.dsl:1065:                0x05, 
+  ssdt9.dsl:1066:                0x00, 
+  ssdt9.dsl:1132:                0x00000000
+  ssdt9.dsl:1133:            }
+  ssdt9.dsl:1134:        })
+> ssdt9.dsl:1135:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:1136:        {
+  ssdt9.dsl:1137:            0x0000, 
+  ssdt9.dsl:1138:            0x0000000000000000, 
+  ssdt9.dsl:1139:            0x0003, 
+  ssdt9.dsl:1140:            Package (0x0A)
+  ssdt9.dsl:1502:                }
+  ssdt9.dsl:1503:            }
+  ssdt9.dsl:1504:        })
+> ssdt9.dsl:1505:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:1506:        {
+  ssdt9.dsl:1507:            Package (0x05)
+  ssdt9.dsl:1508:            {
+  ssdt9.dsl:1509:                0x05, 
+  ssdt9.dsl:1510:                0x00, 
+  ssdt9.dsl:1576:                0x00000000
+  ssdt9.dsl:1577:            }
+  ssdt9.dsl:1578:        })
+> ssdt9.dsl:1579:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:1580:        {
+  ssdt9.dsl:1581:            0x0000, 
+  ssdt9.dsl:1582:            0x0000000000000000, 
+  ssdt9.dsl:1583:            0x0003, 
+  ssdt9.dsl:1584:            Package (0x0A)
+  ssdt9.dsl:1946:                }
+  ssdt9.dsl:1947:            }
+  ssdt9.dsl:1948:        })
+> ssdt9.dsl:1949:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:1950:        {
+  ssdt9.dsl:1951:            Package (0x05)
+  ssdt9.dsl:1952:            {
+  ssdt9.dsl:1953:                0x05, 
+  ssdt9.dsl:1954:                0x00, 
+  ssdt9.dsl:2020:                0x00000000
+  ssdt9.dsl:2021:            }
+  ssdt9.dsl:2022:        })
+> ssdt9.dsl:2023:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:2024:        {
+  ssdt9.dsl:2025:            0x0000, 
+  ssdt9.dsl:2026:            0x0000000000000000, 
+  ssdt9.dsl:2027:            0x0003, 
+  ssdt9.dsl:2028:            Package (0x0A)
+  ssdt9.dsl:2390:                }
+  ssdt9.dsl:2391:            }
+  ssdt9.dsl:2392:        })
+> ssdt9.dsl:2393:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:2394:        {
+  ssdt9.dsl:2395:            Package (0x05)
+  ssdt9.dsl:2396:            {
+  ssdt9.dsl:2397:                0x05, 
+  ssdt9.dsl:2398:                0x00, 
+  ssdt9.dsl:2464:                0x00000000
+  ssdt9.dsl:2465:            }
+  ssdt9.dsl:2466:        })
+> ssdt9.dsl:2467:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:2468:        {
+  ssdt9.dsl:2469:            0x0000, 
+  ssdt9.dsl:2470:            0x0000000000000000, 
+  ssdt9.dsl:2471:            0x0003, 
+  ssdt9.dsl:2472:            Package (0x0A)
+  ssdt9.dsl:2834:                }
+  ssdt9.dsl:2835:            }
+  ssdt9.dsl:2836:        })
+> ssdt9.dsl:2837:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:2838:        {
+  ssdt9.dsl:2839:            Package (0x05)
+  ssdt9.dsl:2840:            {
+  ssdt9.dsl:2841:                0x05, 
+  ssdt9.dsl:2842:                0x00, 
+  ssdt9.dsl:2908:                0x00000000
+  ssdt9.dsl:2909:            }
+  ssdt9.dsl:2910:        })
+> ssdt9.dsl:2911:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:2912:        {
+  ssdt9.dsl:2913:            0x0000, 
+  ssdt9.dsl:2914:            0x0000000000000000, 
+  ssdt9.dsl:2915:            0x0003, 
+  ssdt9.dsl:2916:            Package (0x0A)
+  ssdt9.dsl:3278:                }
+  ssdt9.dsl:3279:            }
+  ssdt9.dsl:3280:        })
+> ssdt9.dsl:3281:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:3282:        {
+  ssdt9.dsl:3283:            Package (0x05)
+  ssdt9.dsl:3284:            {
+  ssdt9.dsl:3285:                0x05, 
+  ssdt9.dsl:3286:                0x00, 
+  ssdt9.dsl:3352:                0x00000000
+  ssdt9.dsl:3353:            }
+  ssdt9.dsl:3354:        })
+> ssdt9.dsl:3355:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:3356:        {
+  ssdt9.dsl:3357:            0x0000, 
+  ssdt9.dsl:3358:            0x0000000000000000, 
+  ssdt9.dsl:3359:            0x0003, 
+  ssdt9.dsl:3360:            Package (0x0A)
+  ssdt9.dsl:3722:                }
+  ssdt9.dsl:3723:            }
+  ssdt9.dsl:3724:        })
+> ssdt9.dsl:3725:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:3726:        {
+  ssdt9.dsl:3727:            Package (0x05)
+  ssdt9.dsl:3728:            {
+  ssdt9.dsl:3729:                0x05, 
+  ssdt9.dsl:3730:                0x00, 
+  ssdt9.dsl:3796:                0x00000000
+  ssdt9.dsl:3797:            }
+  ssdt9.dsl:3798:        })
+> ssdt9.dsl:3799:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:3800:        {
+  ssdt9.dsl:3801:            0x0000, 
+  ssdt9.dsl:3802:            0x0000000000000000, 
+  ssdt9.dsl:3803:            0x0003, 
+  ssdt9.dsl:3804:            Package (0x0A)
+  ssdt9.dsl:4166:                }
+  ssdt9.dsl:4167:            }
+  ssdt9.dsl:4168:        })
+> ssdt9.dsl:4169:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:4170:        {
+  ssdt9.dsl:4171:            Package (0x05)
+  ssdt9.dsl:4172:            {
+  ssdt9.dsl:4173:                0x05, 
+  ssdt9.dsl:4174:                0x00, 
+  ssdt9.dsl:4240:                0x00000000
+  ssdt9.dsl:4241:            }
+  ssdt9.dsl:4242:        })
+> ssdt9.dsl:4243:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:4244:        {
+  ssdt9.dsl:4245:            0x0000, 
+  ssdt9.dsl:4246:            0x0000000000000000, 
+  ssdt9.dsl:4247:            0x0003, 
+  ssdt9.dsl:4248:            Package (0x0A)
+  ssdt9.dsl:4610:                }
+  ssdt9.dsl:4611:            }
+  ssdt9.dsl:4612:        })
+> ssdt9.dsl:4613:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:4614:        {
+  ssdt9.dsl:4615:            Package (0x05)
+  ssdt9.dsl:4616:            {
+  ssdt9.dsl:4617:                0x05, 
+  ssdt9.dsl:4618:                0x00, 
+  ssdt9.dsl:4684:                0x00000000
+  ssdt9.dsl:4685:            }
+  ssdt9.dsl:4686:        })
+> ssdt9.dsl:4687:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:4688:        {
+  ssdt9.dsl:4689:            0x0000, 
+  ssdt9.dsl:4690:            0x0000000000000000, 
+  ssdt9.dsl:4691:            0x0003, 
+  ssdt9.dsl:4692:            Package (0x0A)
+  ssdt9.dsl:5054:                }
+  ssdt9.dsl:5055:            }
+  ssdt9.dsl:5056:        })
+> ssdt9.dsl:5057:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:5058:        {
+  ssdt9.dsl:5059:            Package (0x05)
+  ssdt9.dsl:5060:            {
+  ssdt9.dsl:5061:                0x05, 
+  ssdt9.dsl:5062:                0x00, 
+  ssdt9.dsl:5128:                0x00000000
+  ssdt9.dsl:5129:            }
+  ssdt9.dsl:5130:        })
+> ssdt9.dsl:5131:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:5132:        {
+  ssdt9.dsl:5133:            0x0000, 
+  ssdt9.dsl:5134:            0x0000000000000000, 
+  ssdt9.dsl:5135:            0x0003, 
+  ssdt9.dsl:5136:            Package (0x0A)
+  ssdt9.dsl:5498:                }
+  ssdt9.dsl:5499:            }
+  ssdt9.dsl:5500:        })
+> ssdt9.dsl:5501:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:5502:        {
+  ssdt9.dsl:5503:            Package (0x05)
+  ssdt9.dsl:5504:            {
+  ssdt9.dsl:5505:                0x05, 
+  ssdt9.dsl:5506:                0x00, 
+  ssdt9.dsl:5572:                0x00000000
+  ssdt9.dsl:5573:            }
+  ssdt9.dsl:5574:        })
+> ssdt9.dsl:5575:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:5576:        {
+  ssdt9.dsl:5577:            0x0000, 
+  ssdt9.dsl:5578:            0x0000000000000000, 
+  ssdt9.dsl:5579:            0x0003, 
+  ssdt9.dsl:5580:            Package (0x0A)
+  ssdt9.dsl:5942:                }
+  ssdt9.dsl:5943:            }
+  ssdt9.dsl:5944:        })
+> ssdt9.dsl:5945:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:5946:        {
+  ssdt9.dsl:5947:            Package (0x05)
+  ssdt9.dsl:5948:            {
+  ssdt9.dsl:5949:                0x05, 
+  ssdt9.dsl:5950:                0x00, 
+  ssdt9.dsl:6016:                0x00000000
+  ssdt9.dsl:6017:            }
+  ssdt9.dsl:6018:        })
+> ssdt9.dsl:6019:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:6020:        {
+  ssdt9.dsl:6021:            0x0000, 
+  ssdt9.dsl:6022:            0x0000000000000000, 
+  ssdt9.dsl:6023:            0x0003, 
+  ssdt9.dsl:6024:            Package (0x0A)
+  ssdt9.dsl:6386:                }
+  ssdt9.dsl:6387:            }
+  ssdt9.dsl:6388:        })
+> ssdt9.dsl:6389:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:6390:        {
+  ssdt9.dsl:6391:            Package (0x05)
+  ssdt9.dsl:6392:            {
+  ssdt9.dsl:6393:                0x05, 
+  ssdt9.dsl:6394:                0x00, 
+  ssdt9.dsl:6460:                0x00000000
+  ssdt9.dsl:6461:            }
+  ssdt9.dsl:6462:        })
+> ssdt9.dsl:6463:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:6464:        {
+  ssdt9.dsl:6465:            0x0000, 
+  ssdt9.dsl:6466:            0x0000000000000000, 
+  ssdt9.dsl:6467:            0x0003, 
+  ssdt9.dsl:6468:            Package (0x0A)
+  ssdt9.dsl:6830:                }
+  ssdt9.dsl:6831:            }
+  ssdt9.dsl:6832:        })
+> ssdt9.dsl:6833:        Name (_PSD, Package (0x01)  // _PSD: Power State Dependencies
+  ssdt9.dsl:6834:        {
+  ssdt9.dsl:6835:            Package (0x05)
+  ssdt9.dsl:6836:            {
+  ssdt9.dsl:6837:                0x05, 
+  ssdt9.dsl:6838:                0x00, 
+  ssdt9.dsl:6904:                0x00000000
+  ssdt9.dsl:6905:            }
+  ssdt9.dsl:6906:        })
+> ssdt9.dsl:6907:        Name (_LPI, Package (0x06)  // _LPI: Low Power Idle States
+  ssdt9.dsl:6908:        {
+  ssdt9.dsl:6909:            0x0000, 
+  ssdt9.dsl:6910:            0x0000000000000000, 
+  ssdt9.dsl:6911:            0x0003, 
+  ssdt9.dsl:6912:            Package (0x0A)
+
+
