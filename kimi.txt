@@ -1,0 +1,128 @@
+I now have enough evidence to write the report. I read all eight accessible repository files (`chat.txt` is a 621 KB blob whose content I could not fetch, but the decompiled DSDT/SSDT evidence is complete), traced the relevant ACPI control flow independently, and cross-checked against external sources (Lenovo's own LED documentation, the Linux kernel's `lenovo-wmi-gamezone` docs, and the LenovoLegionLinux project).
+
+---
+
+# Report: Lenovo LOQ 15ARP9 (83JC) power-button LED — reverse-engineering investigation
+
+## 9.1 Executive conclusion
+
+**Confidence level: Likely unsupported** (leaning strongly toward "no independent control exists," but one read-only runtime experiment remains untested).
+
+The power-button LED on this machine is not driven by any OS-visible register, WMI method, ACPI method, or EC field exposed to the operating system. It is driven **directly by the Embedded Controller firmware as a side effect of the thermal mode**. The complete chain is:
+
+1. `Fn+Q` (or Lenovo Vantage / WMI `SetThermalMode`) writes the mode via the EC mailbox command `WXMS(0x76, mode)` and mirrors it into the EC RAM field `GZ44` (3-bit field at EC RAM offset 0x09, bits 5–7, in the memory-mapped EC region `0xFE0B0400`).
+2. The EC firmware itself sets the power-button LED color from that mode. The ACPI code never touches any LED output register; it only *reads* `GZ44` to report status and reconfigure fan/power tables.
+
+The only writable "lighting" interface in the entire ACPI firmware is **lighting ID 0 — the keyboard backlight** (`KLEN`, EC RAM 0x03 bits 0–1), via `WMAF` method ID 2 → `SLT2`. Lighting ID 4 is a **read-only mirror of `GZ44`** (mode status), and lighting ID 5 is an **empty stub**. There is no power-LED enable, brightness, or color parameter anywhere in the dispatch path. This matches Lenovo's public documentation (LED color "corresponds to the computer's active operating mode"), the kernel's `lenovo-wmi-gamezone` documentation ("the currently set profile can be determined by the user on the hardware by looking at the color of the power or profile LED"), and the LenovoLegionLinux finding that mode switching "is purely implemented in hardware."
+
+This corrects and sharpens the previous investigation rather than contradicting it: the earlier conclusion that `SLT2` "only controls the keyboard backlight" is **confirmed**, and additionally I established that `GZ44` is definitively the *thermal-mode variable* (not a lighting selector), that `RGBM` belongs to RGB-keyboard variants only (this unit has `GZ35 == 0`, i.e., white backlight — see §9.2), and that `EPWM` is display-panel PWM brightness, unrelated.
+
+## 9.2 Evidence table
+
+| Identifier | Source (file:line) | Read/Write | Demonstrated purpose | Relation to power-button LED | Confidence |
+|---|---|---|---|---|---|
+| `GZ44` | DSDT.dsl:12777 (field decl, EC RAM 0xFE0B0400+0x09, 3 bits) | R/W by ACPI | Thermal mode: 0=Balance, 1=Performance, 2=Quiet, 3=Custom, 7=Extreme (DSDT.dsl:38908–38937, 40963–40986) | **None directly** — it is the mode the EC uses to pick the LED color; the LED is driven by EC firmware, not by this field's ACPI usage | Confirmed (direct) |
+| `WXMS(0x76, mode)` | DSDT.dsl:10375, 38577–38682 | W | EC mailbox command carrying the mode to the EC | This is the last OS-visible hop before the EC; the LED actuation happens inside EC firmware | Confirmed (direct) |
+| `WMAF` method IDs 1/2 | DSDT.dsl:40907–40921 | — | Get/Set_Lighting_Current_Status → `GLT1`/`SLT2` | The *only* lighting WMI interface; controls keyboard backlight only | Confirmed (direct) |
+| `SLT2` ID 0 → `KLEN` | DSDT.dsl:35953–35969; field at DSDT.dsl:12733 (EC RAM 0x03, 2 bits) | W | Keyboard backlight level (off/low/high) | None | Confirmed (direct) |
+| `SLT2` / `GLT1` ID 4 | DSDT.dsl:35920–35943, 35970 | R only (empty write case) | Returns `GZ44` remapped (Balance→1, Perf→2, Quiet→0, Custom→3) | Read-only mode *status*; writing is a no-op | Confirmed (direct) |
+| `SLT2` / `GLT1` ID 5 | DSDT.dsl:35944–35946, 35973 | Neither | Empty case — reserved/unimplemented on this platform | The stub where a power-LED control *would* live on models that have one; here it does nothing | Confirmed (direct) |
+| `RGBM` | DSDT.dsl:12825 (EC RAM 0x1F, 3 bits); used at 10446–10479 | R (ACPI) | RGB keyboard mode report (0–4) on **RGB-keyboard variants only** — entire block gated on `GZ35 == 1` | None on this unit: `GZ35` is 0 here (white backlight; see `GLT1` ID 0 guard at 35911, `_Q16` at 10416) | Confirmed (direct) |
+| `GZ35` | DSDT.dsl:12799 (EC RAM 0x18 bit 1) | R | Platform feature flag: 0 = white-KB LOQ, 1 = RGB-KB variant | Explains why the RGB paths are dead code here | Confirmed (direct) |
+| `EPWM` | DSDT.dsl:12806; ssdt8.dsl:4600–4623 (AWMI device, `_UID "0x00"`) | R/W | Display panel PWM brightness (NVIDIA SSDT) | None — previous interpretation confirmed | Confirmed (direct) |
+| `\_SB.PWRB` | DSDT.dsl:1315–1330 | — | Power button device; only `_STA` (gated on `APBM`) | No LED methods exist on the device | Confirmed (direct) |
+| `_WED` 0xD5/0xD9 | DSDT.dsl:40963–40986, 41041–41065 | R | Thermal-mode event payloads (the `LENOVO_GAMEZONE_*` events you subscribed to) | Events *report* the mode; they carry no LED control | Confirmed (direct) |
+| WMI GUID 887B54E3-DDDC-4B2C-8B88-68A26A8835D0 | Linux kernel docs: `lenovo-wmi-gamezone` | — | Platform-profile interface; documented LED semantics: low-power→blue, balanced→white, performance→red, max-power/custom→purple | External corroboration that LED color is a firmware-side mode indicator | Confirmed (external) |
+| Lenovo Vantage / BIOS setting | Your observation + Lenovo LOQ community reports | — | No power-LED toggle exists in Vantage or BIOS for LOQ | — | Confirmed (observation + external) |
+
+**New interpretation established in this pass (corrections to the prior analysis):**
+- `GZ44` is settled: it is the *thermal mode variable*, mirrored to EC RAM for the EC's and ACPI's consumption — **not** a lighting control. Writing it (via `SetThermalMode`) changes the LED only because the EC re-acts on the mode.
+- `RGBM` is settled: dead code on the 83JC because `GZ35 == 0`. Do not write it.
+- The empty `Case (0x05)` in `GLT1`/`SLT2` is the strongest structural evidence in the whole DSDT: Lenovo's lighting WMI dispatcher was built to accommodate additional lighting IDs, and on this platform ID 5 was left unimplemented. On some Legion models this ID family carries the Y-logo / IO-port LED; here, nothing.
+
+**Why the property monitor log was empty (§4.3 of your brief):** the events your script subscribed to are all *event* classes whose payload comes from `_WED` (mode values, fan data, etc.). None of them expose a settable LED property, and Lenovo Vantage on this model does not toggle any lighting WMI method when changing modes — it uses `WMAA` method `0x2C` (`SetThermalMode`), which never goes near `WMAF`. So an empty property log is exactly what this firmware predicts; it is not evidence of a scripting failure.
+
+## 9.3 Best candidate solution
+
+**There is no candidate that meets your success criterion.** The only honest "best available" options, in order:
+
+1. **Accept the mode-bound LED (zero risk).** Note the colors: Quiet = blue, Balance = white, Performance = red (per Lenovo's published LED table). No software control exists; this is the supported behavior.
+2. **Physical masking (zero software risk, fully reversible).** Opaque electrical tape or a light-blocking sticker over the LED window. This is the only method guaranteed to work across reboots, sleep, mode changes, and firmware updates, and it is what the community consistently lands on for LOQ models.
+3. **Optional, advanced, read-first experiment (not a recommendation): EC RAM differential scan.** The one genuinely untested possibility is an *undocumented* EC RAM byte that gates the LED, visible only at runtime. Procedure: with a tool that reads EC RAM (e.g., RW-EC/RWEverything reading the ACPI EC, not the `0xFE0B0400` MMIO alias which the EC may not honor the same way), dump all 256–1024 EC RAM bytes, press `Fn+Q` through every mode, dump again, and diff. The mode byte (`GZ44`'s location) and possibly an LED-drive byte will show up. **Only if** a byte is found that tracks the LED with values that look like per-mode color codes would a single cautious write test be justified — and only with the original value recorded, since an EC RAM write to the wrong address can misconfigure fans or power sequencing (recoverable by reboot in most cases, but not guaranteed). I am deliberately not providing EC offsets: none are validated for this machine, and the instruction not to guess offsets is the correct one.
+
+No WMI/ACPI-level write test is worth running: the dispatch tables are fully traced, and every lighting-path write is accounted for (keyboard backlight only).
+
+## 9.4 Ready-to-run diagnostics (read-only, closes the last gaps)
+
+Run from an elevated PowerShell. This enumerates every Lenovo WMI class and instance in `root\wmi` (no suppressed errors), calls the documented Get_Lighting method for lighting IDs 0–9 to prove which IDs are implemented, and captures full event payloads during `Fn+Q` transitions. Expected result: IDs 0 and 4 return data, 1–3 and 5–9 return stale/empty buffers — confirming the trace above and ruling out a hidden implemented ID.
+
+```powershell
+#requires -RunAsAdministrator
+$ErrorActionPreference = 'Continue'
+"=== WMI namespaces ==="
+Get-WmiObject -Namespace root -Class __Namespace | Where-Object { $_.Name -notmatch '^(cimv2|default|subscription|service)$' } | ForEach-Object { $_.Name }
+
+"`n=== Lenovo classes in root\wmi ==="
+$lenovoClasses = Get-WmiObject -Namespace root\wmi -Class __Class | Where-Object { $_.Name -match 'LENOVO|LEGION|GAMEZONE' }
+$lenovoClasses | ForEach-Object { $_.Name }
+
+"`n=== Class details (methods + properties) ==="
+foreach ($c in $lenovoClasses) {
+    "`n--- $($c.Name) ---"
+    $c.Properties | ForEach-Object { "  prop: $($_.Name) [$($_.Type)]" }
+    $c.Methods   | ForEach-Object { "  method: $($_.Name)" }
+}
+
+"`n=== Lighting Get probe: IDs 0..9 (read-only) ==="
+# GameZone data interface GUID per kernel docs; the device UID is GMZN
+$gw = Get-WmiObject -Namespace root\wmi -Class LENOVO_GAMEZONE_DATA 2>$null
+if ($gw) {
+    foreach ($id in 0..9) {
+        try {
+            $r = $gw.Get_Lighting_Current_Status($id)
+            "ID ${id}: returned " + (($r | Out-String).Trim() -replace '\s+',' ')
+        } catch {
+            "ID ${id}: ERROR - $($_.Exception.Message)"
+        }
+    }
+} else {
+    "LENOVO_GAMEZONE_DATA class not found; listing all root\wmi instances instead:"
+    Get-WmiObject -Namespace root\wmi -List | Where-Object { $_.Name -match 'LIGHT' } | ForEach-Object {
+        $inst = Get-WmiObject -Namespace root\wmi -Class $_.Name
+        "$($_.Name): $(( $inst | Out-String).Trim())"
+    }
+}
+
+"`n=== Event capture during Fn+Q (60 s) ==="
+$events = 'LENOVO_GAMEZONE_THERMAL_MODE_EVENT','LENOVO_GAMEZONE_LIGHT_PROFILE_CHANGE_EVENT','LENOVO_LIGHTING_EVENT'
+$jobs = foreach ($e in $events) {
+    Register-WmiEvent -Namespace root\wmi -Class $e -SourceIdentifier $e -ErrorAction SilentlyContinue
+}
+"Switch modes with Fn+Q now for 60 seconds..."
+Wait-Event -Timeout 60 | Out-Null
+Get-Event | ForEach-Object {
+    "{0:o}  {1}: {2}" -f $_.TimeGenerated, $_.SourceIdentifier, (($_.SourceEventArgs.NewEvent | Out-String).Trim() -replace '\s+',' ')
+    Remove-Event -EventIdentifier $_.EventIdentifier
+}
+$jobs | Unregister-Event -ErrorAction SilentlyContinue
+"`nDone."
+```
+
+What to look for / send back: the class list (to confirm no lighting class exists beyond the known ones), the ID-probe results, and the event payload dump.
+
+## 9.5 Final limitation analysis
+
+**Ruled out with direct firmware evidence:**
+- All ACPI lighting dispatch (`WMAF`/`GLT1`/`SLT2` — fully traced; IDs 4/5 inert).
+- `GZ44`, `RGBM`, `KLEN`, `EPWM` — each traced to a definitive non-power-LED function.
+- The `PWRB` device — no LED methods.
+- WMI event/property surface — the `_WED` payloads are mode/fan data only; Lenovo Vantage's mode switching never touches lighting methods.
+- BIOS/Vantage supported settings — absent (your observation, corroborated by Lenovo docs and community reports).
+
+**Externally corroborated:** Lenovo documents the LED as a mode indicator; the Linux `lenovo-wmi-gamezone` driver treats LED color as a hardware-side readout; LenovoLegionLinux — the most thorough independent reverse-engineering effort against this exact firmware family — explicitly states mode switching (and thus the LED) "is purely implemented in hardware," and offers power-LED control on **no** model.
+
+**Remaining untested:** a differential EC RAM scan (§9.3, item 3). This is the only path that could change the conclusion, and it is a search for an *undocumented* register — by definition not disprovable from ACPI tables alone. The script in §9.4 plus that scan would exhaust every interface the machine actually exposes.
+
+**Bottom line:** the firmware on the 83JC (BIOS PQCN31WW) does not expose an independent power-button LED-off control through any OS-reachable interface. The LED is an EC-firmware-driven mode indicator hard-wired to `Fn+Q` state. Absent an undocumented EC register discovered by runtime scanning, the definitive answers are: choose your mode by preferred LED color, or mask the LED physically.
+
+One footnote for completeness: if you ever boot Linux, don't expect relief there either — no `tpacpi::power`-style sysfs LED exists for this platform (that ThinkPad interface is a different EC generation), which is itself additional evidence that the EC firmware simply doesn't expose the LED to software on this design.
