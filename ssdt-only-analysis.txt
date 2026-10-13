@@ -1,0 +1,34 @@
+﻿
+  ssdt8.dsl:4601:            {
+  ssdt8.dsl:4602:                Name (TEMP, Zero)
+  ssdt8.dsl:4603:                CreateByteField (Arg2, Zero, MODF)
+> ssdt8.dsl:4604:                CreateDWordField (Arg2, 0x04, LEDB)
+  ssdt8.dsl:4605:                While (One)
+  ssdt8.dsl:4606:                {
+  ssdt8.dsl:4607:                    TEMP = Arg1
+  ssdt8.dsl:4608:                    If ((TEMP == One))
+  ssdt8.dsl:4609:                    {
+  ssdt8.dsl:4610:                        If ((MODF == Zero))
+  ssdt8.dsl:4614:                        }
+  ssdt8.dsl:4615:                        ElseIf ((MODF == One))
+  ssdt8.dsl:4616:                        {
+> ssdt8.dsl:4617:                            LEDB |= 0x8000
+> ssdt8.dsl:4618:                            \_SB.PCI0.LPC0.EC0.EPWM = LEDB /* \_SB_.PCI0.AWMI.WMAA.LEDB */
+  ssdt8.dsl:4619:                            Return (Zero)
+  ssdt8.dsl:4620:                        }
+  ssdt8.dsl:4621:                        ElseIf ((MODF == 0x02))
+  ssdt8.dsl:4622:                        {
+  ssdt8.dsl:4623:                            Return (0x0320)
+  ssdt8.dsl:4624:                        }
+  ssdt8.dsl:4650:                        }
+  ssdt8.dsl:4651:                        ElseIf ((MODF == One))
+  ssdt8.dsl:4652:                        {
+> ssdt8.dsl:4653:                            If ((LEDB < 0x03))
+  ssdt8.dsl:4654:                            {
+  ssdt8.dsl:4655:                                Return (Zero)
+  ssdt8.dsl:4656:                            }
+  ssdt8.dsl:4657:
+  ssdt8.dsl:4658:                            Return (One)
+  ssdt8.dsl:4659:                        }
+
+
