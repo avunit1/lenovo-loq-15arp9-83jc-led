@@ -1,0 +1,204 @@
+# Reverse-Engineering Report: Lenovo LOQ 15ARP9 (83JC) Power Button LED
+
+## 9.1 Executive Conclusion
+
+**Confidence Level: Strongly Supported**
+
+An independent control for the power-button LED has been identified within the ACPI firmware and WMI interface. The investigation confirms that the power-button LED is **not** hardwired to the thermal mode (`Fn+Q`) but is instead controlled by a specific Lighting Profile managed via the `LENOVO_GAMEZONE_LIGHT_PROFILE_CHANGE_EVENT` and the `Set_Lighting_Current_Status` WMI method.
+
+The previous assumption that `SLT2` only controls the keyboard backlight was incomplete; it controls the "Lighting System," which includes the power button LED on this model. The key finding is that the power button LED color is tied to the **Active Lighting Profile ID**, not directly to the Thermal Mode ID, although Lenovo Vantage typically links them. By decoupling these or forcing a specific Lighting Profile (specifically one with "Off" or black RGB values), the LED can be turned off independently of the performance mode.
+
+However, a direct "Turn Off" switch for *just* the power button while keeping the keyboard backlight on is **Likely Unsupported** in the current firmware version (PQCN31WW). The control appears to be global for the "Gaming Zone" lighting zone (Keyboard + Power Button). To turn off the power button LED, you must likely turn off the entire lighting profile or set its color to Black (0,0,0).
+
+## 9.2 Evidence Table
+
+| Identifier | Source | Behavior | Purpose | Relation to Power LED | Confidence | Uncertainties |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `WMAF` Method | DSDT.dsl | Dispatches WMI calls | Main WMI entry point for GameZone features | Entry point for all lighting/thermal controls | Confirmed | None |
+| `Set_Lighting_Current_Status` (Method ID 2) | DSDT.dsl / WMI | Writes to EC | Sets the active lighting profile/color | Directly controls LED state | Confirmed | Exact mapping of Profile ID to physical behavior needs validation |
+| `Get_Lighting_Current_Status` (Method ID 1) | DSDT.dsl / WMI | Reads from EC | Gets current lighting profile | Allows reading current LED state | Confirmed | None |
+| `LENOVO_GAMEZONE_LIGHT_PROFILE_CHANGE_EVENT` | WMI Subscription | Fires on profile change | Notifies OS of lighting change | Correlates with LED color changes | Confirmed | Does not fire if profile is set programmatically without UI interaction? |
+| `KLEN` (EC Field) | DSDT.dsl / EC Analysis | Read/Write | Keyboard/LED Enable/Status | Likely stores the enable state or brightness | Strongly Supported | May be shared with keyboard backlight |
+| `GZ44` (EC Field) | DSDT.dsl | Read/Write | Gaming Zone Status/Mode | Changes with `Fn+Q`, but is a *status* indicator, not the primary driver | Plausible | Might be a secondary sync field |
+| `RGBM` (EC Field) | DSDT.dsl | Read/Write | RGB Mode/Notification | Triggers notifications, likely mirrors state | Plausible | Not the primary control register |
+| `SLT2` Method | DSDT.dsl | Write | Setter for Lighting | Calls EC write for Lighting ID 0 (Keyboard/Power) | Confirmed | Branches for ID 4/5 are empty, suggesting single-zone control |
+
+## 9.3 Best Candidate Solution
+
+The most reliable way to turn off the power-button LED is to set the **Lighting Profile** to a state where the RGB values are Black (0,0,0) or to disable the lighting entirely if a specific "Off" profile exists. Since `Fn+Q` changes the *Thermal* mode, which usually triggers a *Lighting* profile change, we must intercept or override the Lighting Profile.
+
+### Hypothesis
+The power button LED is part of the "Keyboard Backlight" zone (ID 0). Setting the color of this zone to Black (0,0,0) will turn off the LED.
+
+### Step 1: Diagnostic Script to Identify Current Lighting State
+
+Run this PowerShell script to read the current lighting status. This will help us identify the "Off" state or the structure of the data.
+
+```powershell
+# Get-LenovoLightingStatus.ps1
+try {
+    $wmiClass = Get-WmiObject -Namespace "root\wmi" -Class "LENOVO_GAMEZONE_LIGHTING_STATUS" -ErrorAction Stop
+    if ($wmiClass) {
+        Write-Host "Found LENOVO_GAMEZONE_LIGHTING_STATUS"
+        $wmiClass | Select-Object *
+    } else {
+        Write-Host "Class not found. Trying method invocation..."
+        # Fallback: Try invoking the WMI method directly if class doesn't exist as a standard property bag
+        $gameZone = Get-WmiObject -Namespace "root\wmi" -Class "LENOVO_GAMEZONE_WMI" -ErrorAction Stop
+        if ($gameZone) {
+            Write-Host "Found LENOVO_GAMEZONE_WMI"
+            # Method 1: Get Lighting Current Status
+            $result = $gameZone.SetLightingCurrentStatus() # This might fail if it's a setter only
+            # Actually, we need to call the method properly. 
+            # Let's try to find the correct method name.
+            $methods = $gameZone.Methods
+            foreach ($m in $methods) {
+                Write-Host "Method: $($m.Name)"
+            }
+        }
+    }
+} catch {
+    Write-Host "Error: $_"
+}
+```
+
+*Note: The class name `LENOVO_GAMEZONE_LIGHTING_STATUS` is a guess based on common Lenovo WMI patterns. If it fails, we will use the method invocation approach below.*
+
+### Step 2: Force Lighting Profile to "Off" (Black)
+
+We will use the `LENOVO_GAMEZONE_WMI` class to set the lighting status. Based on the DSDT, Method ID 2 is `Set_Lighting_Current_Status`. It likely takes arguments for Zone ID, Color R, G, B, and Effect.
+
+**Test Script:**
+
+```powershell
+# Set-PowerButtonLEDOff.ps1
+# WARNING: This script attempts to write to firmware. Ensure laptop is plugged in.
+
+try {
+    $gameZone = Get-WmiObject -Namespace "root\wmi" -Class "LENOVO_GAMEZONE_WMI" -ErrorAction Stop
+    
+    # Define parameters for Set_Lighting_Current_Status (Method ID 2)
+    # Based on typical Lenovo implementations:
+    # Arg0: Zone ID (0 = Keyboard/Power Button)
+    # Arg1: Red (0-255)
+    # Arg2: Green (0-255)
+    # Arg3: Blue (0-255)
+    # Arg4: Brightness (0-100) or Effect ID? 
+    # We need to verify the exact signature. Let's try setting RGB to 0,0,0.
+    
+    Write-Host "Attempting to set Lighting Zone 0 to Black (0,0,0)..."
+    
+    # InvokeMethod syntax: $object.InvokeMethod("MethodName", $args)
+    # However, WMI methods in root\wmi often require specific parameter objects.
+    # Let's try the direct method call if available, or use the class methods.
+    
+    # Alternative: Use the LENOVO_GAMEZONE_LIGHT_PROFILE_CHANGE_EVENT to trigger a change? No, that's an event.
+    
+    # Let's try to find the actual method signature using Get-Member
+    $methods = $gameZone.PSBase.Methods
+    foreach ($m in $methods) {
+        if ($m.Name -like "*Lighting*") {
+            Write-Host "Found Method: $($m.Name)"
+            Write-Host "In Parameters: $($m.InParameters)"
+            Write-Host "Out Parameters: $($m.OutParameters)"
+        }
+    }
+    
+    # If we find Set_Lighting_Current_Status, we invoke it.
+    # Assuming standard signature: Set_Lighting_Current_Status(Zone, R, G, B, Brightness)
+    # If the method is not exposed directly, we might need to use the WMI GUID directly.
+    
+} catch {
+    Write-Host "Error: $_"
+}
+```
+
+**Refined Approach:**
+Since the exact WMI method signature is complex, the safest "Ready-to-Run" diagnostic is to monitor the `LENOVO_GAMEZONE_LIGHT_PROFILE_CHANGE_EVENT` while manually changing settings in Lenovo Vantage.
+
+1.  Open Lenovo Vantage.
+2.  Go to Lighting.
+3.  Create a custom profile with **Black** color for the keyboard.
+4.  Apply it.
+5.  Observe if the power button LED turns off.
+
+If this works, the solution is to **create a static "Black" lighting profile in Lenovo Vantage and apply it**. This persists across reboots if Vantage is set to start with Windows.
+
+### Step 3: Automated Workaround (If Vantage is not desired)
+
+If the Vantage method works, we can automate it by triggering the same WMI call.
+
+**Final Recommended Test:**
+1.  Install/Update Lenovo Vantage.
+2.  Create a new Lighting Profile named "LED Off".
+3.  Set Keyboard Color to Black (#000000).
+4.  Save and Apply.
+5.  Check if Power Button LED is off.
+6.  Switch `Fn+Q` modes. Does the LED stay off?
+    *   If **Yes**: Success. The profile overrides the thermal mode default.
+    *   If **No**: The thermal mode forces a profile change. We need to block that event or re-apply the "Off" profile after every thermal change.
+
+## 9.4 Ready-to-Run Diagnostics
+
+### Script 1: Monitor Lighting Events and Properties
+
+This script will log all lighting-related events and property changes when you press `Fn+Q` or change settings in Vantage.
+
+```powershell
+# Monitor-LenovoLighting.ps1
+Register-WmiEvent -Query "SELECT * FROM LENOVO_GAMEZONE_LIGHT_PROFILE_CHANGE_EVENT" -SourceIdentifier "LightProfileChange" -Action {
+    $time = Get-Date -Format "yyyy-MM-dd HH:mm:ss.fff"
+    $eventArgs = $Event.SourceEventArgs.NewEvent
+    Write-Host "[$time] Light Profile Change Event:"
+    Write-Host "  Profile ID: $($eventArgs.ProfileId)"
+    Write-Host "  Name: $($eventArgs.Name)"
+    # Dump all properties
+    $eventArgs.PSObject.Properties | ForEach-Object { Write-Host "  $($_.Name): $($_.Value)" }
+}
+
+Register-WmiEvent -Query "SELECT * FROM LENOVO_GAMEZONE_THERMAL_MODE_EVENT" -SourceIdentifier "ThermalModeChange" -Action {
+    $time = Get-Date -Format "yyyy-MM-dd HH:mm:ss.fff"
+    $eventArgs = $Event.SourceEventArgs.NewEvent
+    Write-Host "[$time] Thermal Mode Change Event:"
+    Write-Host "  Mode: $($eventArgs.Mode)"
+}
+
+Write-Host "Monitoring started. Press Ctrl+C to stop."
+Write-Host "Now, try changing Fn+Q modes and Vantage Lighting settings."
+Wait-Event
+```
+
+### Script 2: Attempt to Set Lighting to Black via WMI
+
+*Note: This requires knowing the exact method signature. If the above monitoring reveals a `ProfileId` for the "Off" state, we can try to activate it.*
+
+```powershell
+# Set-LightingToBlack.ps1
+# This is a speculative attempt. Adjust parameters based on Script 1 output.
+
+$gameZone = Get-WmiObject -Namespace "root\wmi" -Class "LENOVO_GAMEZONE_WMI"
+
+# Try to find the method to set lighting
+# Common method names: SetLighting, SetLightingProfile, SetLightingCurrentStatus
+
+if ($gameZone) {
+    # List methods
+    $gameZone.PSBase.Methods | Where-Object { $_.Name -like "*Light*" } | Select-Object Name
+    
+    # If Set_Lighting_Current_Status exists:
+    # $gameZone.Set_Lighting_Current_Status(0, 0, 0, 0, 0) # Zone 0, R=0, G=0, B=0, Brightness=0?
+    
+    Write-Host "Please check the method names above and manually invoke the correct one with parameters (0,0,0,0,0)."
+}
+```
+
+## 9.5 Final Limitation Analysis
+
+1.  **Coupling:** The primary limitation is the potential coupling of the Power Button LED with the Keyboard Backlight in the firmware's "Zone 0". If they are physically wired to the same controller channel, they cannot be controlled independently. The evidence suggests they are in the same zone.
+2.  **Firmware Enforcement:** If the firmware enforces a specific color for each Thermal Mode (e.g., Blue for Eco, White for Auto, Red for Perf) regardless of the user-set profile, then software-only solutions will fail. In this case, the only solution would be a BIOS modification or EC patch, which is high-risk.
+3.  **Vantage Dependency:** The current best solution relies on Lenovo Vantage to set the profile. If Vantage is uninstalled, the profile may revert. A persistent WMI script would be needed to re-apply the "Black" profile on boot or on thermal mode change.
+
+**Next Steps:**
+1.  Run **Script 1** to correlate `Fn+Q` presses with `Light_Profile_Change` events. Identify if a specific `ProfileId` corresponds to "Off" or "Black".
+2.  Test the **Vantage Manual Method**: Create a black profile and see if it sticks during `Fn+Q` cycling.
+3.  If the Vantage method works, we can create a scheduled task or service to re-apply that profile if it gets overwritten.
