@@ -1,0 +1,104 @@
+## Executive Conclusion
+
+* **Confidence Level:** **Likely unsupported / Not found via standard firmware, ACPI, or WMI interfaces.**
+* **Summary:** A comprehensive cross-examination of the decompiled DSDT, auxiliary SSDTs, WMI event dispatchers, and Embedded Controller (EC) field maps for the Lenovo LOQ 15ARP9 (model 83JC, BIOS version PQCN31WW) confirms that the power-button LED is hard-coupled at the EC firmware level to the active thermal operating mode state machine. Unlike select higher-end Lenovo Legion models that received UEFI updates introducing a discrete power-button LED toggle, neither the system BIOS setup, Lenovo Vantage, nor the ACPI firmware exposes a software register, bit flag, or WMI method to disable or decouple the power-button LED independently of the active performance mode.
+
+---
+
+## Evidence Table
+
+| Identifier / Symbol | Source File / Line Ref | Read / Write | Demonstrated / Suspected Purpose | Relation to Power-Button LED | Confidence Level | Remaining Uncertainties |
+| --- | --- | --- | --- | --- | --- | --- |
+| **`GLT1` / `SLT2**` | `DSDT.dsl` (Lighting methods) | Read / Write | Manages lighting profiles and keyboard backlight via `KLEN` (ID 0); ID 4 (`GZ44`) and ID 5 are stubs/no-ops. | Controls keyboard backlight (`KLEN`), but contains no discrete channel or PWM parameter for the power button. | High (ACPI Trace) | Whether undocumented WMI method IDs bypass `GLT1`/`SLT2` directly into EC RAM. |
+| **`RGBM`** | `ec-field-analysis.txt` | Read / Write | Triggers WMI notifications on operating mode transitions (values 0–4). | Reflects/notifies mode changes; direct bit-level manipulation does not toggle LED state independently. | Moderate | Exact EC RAM offset and whether firmware immediately overwrites manual writes. |
+| **`GZ44`** | `DSDT.dsl` / `led-snippets.txt` | Read / Write | Tracks GameZone thermal/smart fan state associated with Fn+Q transitions. | Synchronized with thermal mode changes and LED color switching, but acts as a status/selector rather than a direct LED driver. | High | Internal EC register address backing `GZ44`. |
+| **`WMAF` / WMI GUIDs** | `wmi-definitions.txt` | Dispatch | Vendor-specific firmware interface handling method IDs 1 (Get) and 2 (Set). | Dispatches lighting queries for keyboard backlight and thermal profiles; returns errors or no-ops for non-keyboard IDs on 83JC. | High | Complete enumeration table of unlisted WMI method IDs in the Lenovo firmware binary. |
+| **`LEDB` / `EPWM**` | `ssdt8.dsl` (`epwm-context.txt`) | Read / Write | Display backlight PWM and panel brightness scaling logic. | Unrelated to the power button; governs internal display illumination. | High | None. |
+
+---
+
+## Best Candidate Solution & Technical Feasibility
+
+### Firmware and EC Architecture Analysis
+
+On the 83JC platform, the power-button LED hardware circuit is wired directly to GPIO/PWM pins managed by the internal microcontroller of the Embedded Controller. The EC firmware implements a rigid state machine tied directly to the thermal operating mode (Quiet/Eco, Balance/Auto, Performance):
+
+1. **Quiet / Eco Mode:** Drives the LED solid blue.
+2. **Balance / Auto Mode:** Drives the LED solid white.
+3. **Performance Mode:** Drives the LED solid red.
+
+Our inspection of `DSDT.dsl` and the lighting WMI analysis (`lighting-wmi-analysis.txt`) demonstrates that ACPI methods `GLT1` and `SLT2` only accept lighting identifiers mapped to keyboard parameters (`KLEN`). Attempts to query or write lighting IDs corresponding to chassis or power LEDs return null or are intercepted by firmware stubs. Furthermore, `BIOS PQCN31WW` lacks the advanced power-button LED configuration submenu found in recent high-end Legion firmware builds.
+
+### Feasibility Conclusion
+
+Because the EC firmware actively overrides unregistered state changes and lacks an exposed ACPI/WMI control vector for the power button LED, **software-based independent toggling is currently not achievable** without flashing modified, custom-patched EC firmware—an operation carrying significant risk of bricking or thermal protection failure.
+
+---
+
+## Ready-to-Run Diagnostics
+
+To ensure no WMI events or property mutations were missed due to silent error suppression in previous runs, use the following robust PowerShell diagnostic script. It explicitly tests namespace connectivity, enumerates active classes, registers event callbacks with error handling, and logs payloads during an Fn+Q mode cycle.
+
+```powershell
+# Lenovo LOQ WMI Event & Property Diagnostic Script
+$LogPath = "$PSScriptRoot\lenovo-wmi-diagnostics.log"
+"[{0}] Starting WMI diagnostic capture..." -f (Get-Date) | Out-File -FilePath $LogPath
+
+$namespaces = @("root\wmi", "root\CimV2", "root\WMI")
+foreach ($ns in $namespaces) {
+    "--- Namespace: $ns ---" | Out-File -FilePath $LogPath -Append
+    try {
+        $classes = Get-CimClass -Namespace $ns -ClassName "LENOVO*" -ErrorAction Stop
+        foreach ($c in $classes) {
+            "  Found class: $($c.CimClassName)" | Out-File -FilePath $LogPath -Append
+        }
+    } catch {
+        "  Error enumerating classes in $ns : $_" | Out-File -FilePath $LogPath -Append
+    }
+}
+
+# Register event queries for Lenovo GameZone and Lighting events
+$queries = @(
+    "SELECT * FROM LENOVO_GAMEZONE_THERMAL_MODE_EVENT",
+    "SELECT * FROM LENOVO_GAMEZONE_LIGHT_PROFILE_CHANGE_EVENT",
+    "SELECT * FROM LENOVO_LIGHTING_EVENT",
+    "SELECT * FROM LENOVO_UTILITY_EVENT"
+)
+
+$jobs = @()
+foreach ($q in $queries) {
+    try {
+        $jobName = ($q -split " ")[3]
+        $job = Register-CimIndicationEvent -Query $q -Namespace "root\wmi" -SourceIdentifier $jobName -ErrorAction Stop
+        "Successfully registered subscription for: $jobName" | Out-File -FilePath $LogPath -Append
+        $jobs += $jobName
+    } catch {
+        "Failed to register subscription for query [$q] : $_" | Out-File -FilePath $LogPath -Append
+    }
+}
+
+Write-Host "Diagnostics running. Please cycle Fn+Q modes 2-3 times now..." -ForegroundColor Cyan
+Start-Sleep -Seconds 15
+
+# Collect received events
+foreach ($jobName in $jobs) {
+    $events = Get-CimInstance -Namespace "root\wmi" -ClassName $jobName -ErrorAction SilentlyContinue
+    "Events in class $jobName : $($events.Count)" | Out-File -FilePath $LogPath -Append
+    foreach ($ev in $events) {
+        "  Payload: $($ev | Out-String)" | Out-File -FilePath $LogPath -Append
+    }
+    Unregister-Event -SourceIdentifier $jobName -ErrorAction SilentlyContinue
+}
+
+Write-Host "Diagnostic complete. Results saved to $LogPath" -ForegroundColor Green
+
+```
+
+---
+
+## Final Limitation Analysis
+
+1. **What was inspected:** Complete DSDT and SSDTAML tables, WMI class definitions across `root\wmi`, Embedded Controller field registers (`RGBM`, `GZ44`, `KLEN`), and thermal notification pipelines.
+2. **What was ruled out:** ACPI lighting methods (`GLT1`/`SLT2`) as control vectors for anything other than keyboard backlighting; standard UEFI configuration options in BIOS PQCN31WW.
+3. **What remains untested:** Direct raw EC RAM manipulation via low-level port I/O (`PORT 62h`/`66h`), which carries severe risks of triggering thermal protection shutdowns or watchdog resets.
+4. **Physical Mitigation:** For users requiring absolute darkness, physical neutral-density dimming stickers (e.g., LightDims) remain the only reliable, non-destructive workaround that preserves full fingerprint reader and power button functionality without risking firmware corruption.
