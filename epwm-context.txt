@@ -1,0 +1,314 @@
+﻿
+  ssdt8.dsl:22:{
+  ssdt8.dsl:23:    External (_SB_.ALIB, MethodObj)    // 2 Arguments
+  ssdt8.dsl:24:    External (_SB_.NVDB, MethodObj)    // 0 Arguments
+  ssdt8.dsl:25:    External (_SB_.PCI0, DeviceObj)
+  ssdt8.dsl:26:    External (_SB_.PCI0.GPP0, DeviceObj)
+  ssdt8.dsl:27:    External (_SB_.PCI0.GPP0.DL23, MethodObj)    // 0 Arguments
+  ssdt8.dsl:28:    External (_SB_.PCI0.GPP0.L23D, MethodObj)    // 0 Arguments
+  ssdt8.dsl:29:    External (_SB_.PCI0.GPP0.PEGP, DeviceObj)
+  ssdt8.dsl:30:    External (_SB_.PCI0.GPP0.PEGP.GPID, UnknownObj)
+  ssdt8.dsl:31:    External (_SB_.PCI0.GPP0.PEGP.NTCC, UnknownObj)
+  ssdt8.dsl:32:    External (_SB_.PCI0.GPP0.PEGP.PGID, UnknownObj)
+  ssdt8.dsl:33:    External (_SB_.PCI0.GPP0.PEGP.PMID, UnknownObj)
+> ssdt8.dsl:34:    External (_SB_.PCI0.LPC0.EC0_.EPWM, UnknownObj)
+  ssdt8.dsl:35:    External (_SB_.PCI0.LPC0.EC0_.GPST, UnknownObj)
+  ssdt8.dsl:36:    External (_SB_.PCI0.LPC0.EC0_.NVRE, UnknownObj)
+  ssdt8.dsl:37:    External (_SB_.PCI0.LPC0.EC0_.PGPW, UnknownObj)
+  ssdt8.dsl:38:    External (_SB_.PLTF.C000, DeviceObj)
+  ssdt8.dsl:39:    External (_SB_.PLTF.C001, DeviceObj)
+  ssdt8.dsl:40:    External (_SB_.PLTF.C002, DeviceObj)
+  ssdt8.dsl:41:    External (_SB_.PLTF.C003, DeviceObj)
+  ssdt8.dsl:42:    External (_SB_.PLTF.C004, DeviceObj)
+  ssdt8.dsl:43:    External (_SB_.PLTF.C005, DeviceObj)
+  ssdt8.dsl:44:    External (_SB_.PLTF.C006, DeviceObj)
+  ssdt8.dsl:45:    External (_SB_.PLTF.C007, DeviceObj)
+  ssdt8.dsl:46:    External (_SB_.PLTF.C008, DeviceObj)
+  ssdt8.dsl:47:    External (_SB_.PLTF.C009, DeviceObj)
+  ssdt8.dsl:48:    External (_SB_.PLTF.C00A, DeviceObj)
+  ssdt8.dsl:49:    External (_SB_.PLTF.C00B, DeviceObj)
+  ssdt8.dsl:50:    External (_SB_.PLTF.C00C, DeviceObj)
+  ssdt8.dsl:51:    External (_SB_.PLTF.C00D, DeviceObj)
+  ssdt8.dsl:52:    External (_SB_.PLTF.C00E, DeviceObj)
+  ssdt8.dsl:53:    External (_SB_.PLTF.C00F, DeviceObj)
+  ssdt8.dsl:54:    External (BATC, IntObj)
+  ssdt8.dsl:92:        Device (NHDA)
+  ssdt8.dsl:93:        {
+  ssdt8.dsl:94:            Name (_ADR, One)  // _ADR: Address
+  ssdt8.dsl:95:            Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
+  ssdt8.dsl:96:            {
+  ssdt8.dsl:97:                Return (Zero)
+  ssdt8.dsl:98:            }
+  ssdt8.dsl:99:        }
+  ssdt8.dsl:100:    }
+  ssdt8.dsl:101:
+  ssdt8.dsl:102:    Scope (\_SB.PCI0)
+  ssdt8.dsl:103:    {
+> ssdt8.dsl:104:        OperationRegion (HGOP, SystemMemory, 0x72F2DF18, 0x00000013)
+  ssdt8.dsl:105:        Field (HGOP, AnyAcc, Lock, Preserve)
+  ssdt8.dsl:106:        {
+  ssdt8.dsl:107:            DGDA,   32, 
+  ssdt8.dsl:108:            DGBA,   32, 
+  ssdt8.dsl:109:            DGPV,   16, 
+  ssdt8.dsl:110:            OPTF,   8, 
+  ssdt8.dsl:111:            NVGE,   8, 
+  ssdt8.dsl:112:            DSSV,   32, 
+  ssdt8.dsl:113:            DISM,   8, 
+  ssdt8.dsl:114:            DISG,   8, 
+  ssdt8.dsl:115:            DISS,   8
+  ssdt8.dsl:116:        }
+  ssdt8.dsl:117:    }
+  ssdt8.dsl:118:
+  ssdt8.dsl:119:    Scope (\_SB.PCI0.GPP0.PEGP)
+  ssdt8.dsl:120:    {
+> ssdt8.dsl:121:        OperationRegion (VBOR, SystemMemory, 0x7AE1F018, 0x00040004)
+  ssdt8.dsl:122:        Field (VBOR, DWordAcc, Lock, Preserve)
+  ssdt8.dsl:123:        {
+  ssdt8.dsl:124:            RVBS,   32, 
+  ssdt8.dsl:125:            VBS1,   262144, 
+  ssdt8.dsl:126:            VBS2,   262144, 
+  ssdt8.dsl:127:            VBS3,   262144, 
+  ssdt8.dsl:128:            VBS4,   262144, 
+  ssdt8.dsl:129:            VBS5,   262144, 
+  ssdt8.dsl:130:            VBS6,   262144, 
+  ssdt8.dsl:131:            VBS7,   262144, 
+  ssdt8.dsl:132:            VBS8,   262144
+  ssdt8.dsl:133:        }
+  ssdt8.dsl:134:    }
+  ssdt8.dsl:135:
+  ssdt8.dsl:136:    Scope (\_SB.PCI0.GPP0.PEGP)
+  ssdt8.dsl:137:    {
+> ssdt8.dsl:138:        OperationRegion (NOPR, SystemMemory, 0x7AE1C018, 0x00002028)
+  ssdt8.dsl:139:        Field (NOPR, AnyAcc, Lock, Preserve)
+  ssdt8.dsl:140:        {
+  ssdt8.dsl:141:            DHPS,   8, 
+  ssdt8.dsl:142:            DPCS,   8, 
+  ssdt8.dsl:143:            GPSS,   8, 
+  ssdt8.dsl:144:            VENS,   8, 
+  ssdt8.dsl:145:            NBCS,   8, 
+  ssdt8.dsl:146:            GC6S,   8, 
+  ssdt8.dsl:147:            NVSR,   8, 
+  ssdt8.dsl:148:            NPCS,   8, 
+  ssdt8.dsl:149:            NCTP,   8, 
+  ssdt8.dsl:150:            SLVS,   8, 
+  ssdt8.dsl:151:            PBCM,   8, 
+  ssdt8.dsl:152:            EXMD,   8, 
+  ssdt8.dsl:153:            MXBS,   32, 
+  ssdt8.dsl:154:            MXMB,   32768, 
+  ssdt8.dsl:155:            SMXS,   32, 
+  ssdt8.dsl:156:            SMXB,   32768, 
+  ssdt8.dsl:157:            FBEN,   32, 
+  ssdt8.dsl:158:            ENVT,   32, 
+  ssdt8.dsl:331:        {
+  ssdt8.dsl:332:            PG00, 
+  ssdt8.dsl:333:        })
+  ssdt8.dsl:334:        Name (_PR2, Package (0x01)  // _PR2: Power Resources for D2
+  ssdt8.dsl:335:        {
+  ssdt8.dsl:336:            PG00, 
+  ssdt8.dsl:337:        })
+  ssdt8.dsl:338:        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
+  ssdt8.dsl:339:        {
+  ssdt8.dsl:340:            PG00, 
+  ssdt8.dsl:341:        })
+  ssdt8.dsl:342:        Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
+> ssdt8.dsl:343:        OperationRegion (RPCX, SystemMemory, \_SB.PCI0.DGBA, 0x1000)
+  ssdt8.dsl:344:        Field (RPCX, DWordAcc, NoLock, Preserve)
+  ssdt8.dsl:345:        {
+  ssdt8.dsl:346:            RVID,   32, 
+  ssdt8.dsl:347:            CMDR,   8, 
+  ssdt8.dsl:348:            Offset (0x19), 
+  ssdt8.dsl:349:            PRBN,   8, 
+  ssdt8.dsl:350:            Offset (0x54), 
+  ssdt8.dsl:351:            D0ST,   2, 
+  ssdt8.dsl:352:            Offset (0x62), 
+  ssdt8.dsl:353:            CEDR,   1, 
+  ssdt8.dsl:354:            Offset (0x68), 
+  ssdt8.dsl:355:            ASPM,   2, 
+  ssdt8.dsl:356:                ,   2, 
+  ssdt8.dsl:357:            LNKD,   1, 
+  ssdt8.dsl:358:            Offset (0x80), 
+  ssdt8.dsl:359:            Offset (0x81), 
+  ssdt8.dsl:360:                ,   2, 
+  ssdt8.dsl:361:            LREN,   1
+  ssdt8.dsl:362:        }
+  ssdt8.dsl:363:
+  ssdt8.dsl:410:            Sleep (0x0A)
+  ssdt8.dsl:411:            LRES ()
+  ssdt8.dsl:412:        }
+  ssdt8.dsl:413:    }
+  ssdt8.dsl:414:
+  ssdt8.dsl:415:    Scope (\_SB.PCI0.GPP0.PEGP)
+  ssdt8.dsl:416:    {
+  ssdt8.dsl:417:        Name (LTRE, Zero)
+  ssdt8.dsl:418:        Name (DGPS, Zero)
+  ssdt8.dsl:419:        Name (_PSC, Zero)  // _PSC: Power State Current
+  ssdt8.dsl:420:        Name (GPRF, Zero)
+  ssdt8.dsl:421:        Name (OPCE, 0x02)
+> ssdt8.dsl:422:        OperationRegion (PCIM, SystemMemory, \_SB.PCI0.DGDA, 0x1000)
+  ssdt8.dsl:423:        Field (PCIM, DWordAcc, NoLock, Preserve)
+  ssdt8.dsl:424:        {
+  ssdt8.dsl:425:            NVID,   16, 
+  ssdt8.dsl:426:            NDID,   16, 
+  ssdt8.dsl:427:            CMDR,   8, 
+  ssdt8.dsl:428:            VGAR,   2008, 
+  ssdt8.dsl:429:            Offset (0x48B), 
+  ssdt8.dsl:430:                ,   1, 
+  ssdt8.dsl:431:            HDAE,   1
+  ssdt8.dsl:432:        }
+  ssdt8.dsl:433:
+> ssdt8.dsl:434:        OperationRegion (DGPU, SystemMemory, \_SB.PCI0.DGDA, 0x0100)
+  ssdt8.dsl:435:        Field (DGPU, DWordAcc, NoLock, Preserve)
+  ssdt8.dsl:436:        {
+  ssdt8.dsl:437:            Offset (0x10), 
+  ssdt8.dsl:438:            MPEG,   32, 
+  ssdt8.dsl:439:            Offset (0x40), 
+  ssdt8.dsl:440:            SSSV,   32
+  ssdt8.dsl:441:        }
+  ssdt8.dsl:442:
+> ssdt8.dsl:443:        OperationRegion (NVMM, SystemMemory, MPEG, 0x00022500)
+  ssdt8.dsl:444:        Field (NVMM, DWordAcc, NoLock, Preserve)
+  ssdt8.dsl:445:        {
+  ssdt8.dsl:446:            Offset (0x22408), 
+  ssdt8.dsl:447:            H265,   32
+  ssdt8.dsl:448:        }
+  ssdt8.dsl:449:
+> ssdt8.dsl:450:        OperationRegion (PCIS, PCI_Config, Zero, 0x0100)
+  ssdt8.dsl:451:        Field (PCIS, AnyAcc, NoLock, Preserve)
+  ssdt8.dsl:452:        {
+  ssdt8.dsl:453:            PVID,   16, 
+  ssdt8.dsl:454:            PDID,   16
+  ssdt8.dsl:455:        }
+  ssdt8.dsl:456:
+  ssdt8.dsl:457:        Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+  ssdt8.dsl:458:        {
+  ssdt8.dsl:459:            Acquire (NVMT, 0xFFFF)
+  ssdt8.dsl:460:            _PSC = Zero
+  ssdt8.dsl:461:            If ((DGPS != Zero))
+  ssdt8.dsl:462:            {
+  ssdt8.dsl:463:                \_SB.PCI0.GPP0.PG00._ON ()
+  ssdt8.dsl:464:                DGPS = Zero
+  ssdt8.dsl:465:            }
+  ssdt8.dsl:466:
+  ssdt8.dsl:467:            Release (NVMT)
+  ssdt8.dsl:468:        }
+  ssdt8.dsl:469:
+  ssdt8.dsl:470:        Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+  ssdt8.dsl:4333:                "NON-MUX or Error", 
+  ssdt8.dsl:4334:                Zero
+  ssdt8.dsl:4335:            }
+  ssdt8.dsl:4336:        })
+  ssdt8.dsl:4337:        Method (_DOD, 0, NotSerialized)  // _DOD: Display Output Devices
+  ssdt8.dsl:4338:        {
+  ssdt8.dsl:4339:            Return (Package (0x01)
+  ssdt8.dsl:4340:            {
+  ssdt8.dsl:4341:                0x8000A450
+  ssdt8.dsl:4342:            })
+  ssdt8.dsl:4343:        }
+  ssdt8.dsl:4344:
+> ssdt8.dsl:4345:        OperationRegion (SMIP, SystemIO, 0xB0, One)
+  ssdt8.dsl:4346:        Field (SMIP, ByteAcc, NoLock, Preserve)
+  ssdt8.dsl:4347:        {
+  ssdt8.dsl:4348:            IOB0,   8
+  ssdt8.dsl:4349:        }
+  ssdt8.dsl:4350:
+  ssdt8.dsl:4351:        Device (LCD0)
+  ssdt8.dsl:4352:        {
+  ssdt8.dsl:4353:            Method (_ADR, 0, Serialized)  // _ADR: Address
+  ssdt8.dsl:4354:            {
+  ssdt8.dsl:4355:                Return (0x8000A450)
+  ssdt8.dsl:4356:            }
+  ssdt8.dsl:4357:
+  ssdt8.dsl:4358:            Method (_DDC, 1, Serialized)  // _DDC: Display Data Current
+  ssdt8.dsl:4359:            {
+  ssdt8.dsl:4360:                Name (BUFF, Buffer (0x0100){})
+  ssdt8.dsl:4361:                CreateField (BUFF, Zero, 0x0400, EDD0)
+  ssdt8.dsl:4362:                CreateField (BUFF, 0x0400, 0x0400, EDD1)
+  ssdt8.dsl:4363:                EDD0 = IDFD /* External reference */
+  ssdt8.dsl:4364:                EDD1 = IDF2 /* External reference */
+  ssdt8.dsl:4365:                If ((Arg0 == One))
+  ssdt8.dsl:4588:        Device (AWMI)
+  ssdt8.dsl:4589:        {
+  ssdt8.dsl:4590:            Name (_HID, "PNP0C14" /* Windows Management Instrumentation Device */)  // _HID: Hardware ID
+  ssdt8.dsl:4591:            Name (_UID, "0x00")  // _UID: Unique ID
+  ssdt8.dsl:4592:            Name (_WDG, Buffer (0x28)
+  ssdt8.dsl:4593:            {
+  ssdt8.dsl:4594:                /* 0000 */  0x13, 0x96, 0x3E, 0x60, 0x25, 0xEF, 0x38, 0x43,  // ..>`%.8C
+  ssdt8.dsl:4595:                /* 0008 */  0xA3, 0xD0, 0xC4, 0x61, 0x77, 0x51, 0x6D, 0xB7,  // ...awQm.
+  ssdt8.dsl:4596:                /* 0010 */  0x41, 0x41, 0x01, 0x02, 0x21, 0x12, 0x90, 0x05,  // AA..!...
+  ssdt8.dsl:4597:                /* 0018 */  0x66, 0xD5, 0xD1, 0x11, 0xB2, 0xF0, 0x00, 0xA0,  // f.......
+  ssdt8.dsl:4598:                /* 0020 */  0xC9, 0x06, 0x29, 0x10, 0x30, 0x30, 0x01, 0x00   // ..).00..
+  ssdt8.dsl:4599:            })
+> ssdt8.dsl:4600:            Method (WMAA, 3, Serialized)
+  ssdt8.dsl:4601:            {
+  ssdt8.dsl:4602:                Name (TEMP, Zero)
+  ssdt8.dsl:4603:                CreateByteField (Arg2, Zero, MODF)
+> ssdt8.dsl:4604:                CreateDWordField (Arg2, 0x04, LEDB)
+  ssdt8.dsl:4605:                While (One)
+  ssdt8.dsl:4606:                {
+  ssdt8.dsl:4607:                    TEMP = Arg1
+  ssdt8.dsl:4608:                    If ((TEMP == One))
+  ssdt8.dsl:4609:                    {
+  ssdt8.dsl:4610:                        If ((MODF == Zero))
+  ssdt8.dsl:4611:                        {
+> ssdt8.dsl:4612:                            Local0 = (\_SB.PCI0.LPC0.EC0.EPWM & 0x0FFF)
+  ssdt8.dsl:4613:                            Return (Local0)
+  ssdt8.dsl:4614:                        }
+  ssdt8.dsl:4615:                        ElseIf ((MODF == One))
+  ssdt8.dsl:4616:                        {
+> ssdt8.dsl:4617:                            LEDB |= 0x8000
+> ssdt8.dsl:4618:                            \_SB.PCI0.LPC0.EC0.EPWM = LEDB /* \_SB_.PCI0.AWMI.WMAA.LEDB */
+  ssdt8.dsl:4619:                            Return (Zero)
+  ssdt8.dsl:4620:                        }
+  ssdt8.dsl:4621:                        ElseIf ((MODF == 0x02))
+  ssdt8.dsl:4622:                        {
+  ssdt8.dsl:4623:                            Return (0x0320)
+  ssdt8.dsl:4624:                        }
+  ssdt8.dsl:4625:                        Else
+  ssdt8.dsl:4626:                        {
+  ssdt8.dsl:4627:                            Return (One)
+  ssdt8.dsl:4628:                        }
+  ssdt8.dsl:4629:                    }
+  ssdt8.dsl:4630:                    ElseIf ((TEMP == 0x02))
+  ssdt8.dsl:4631:                    {
+  ssdt8.dsl:4632:                        If ((MODF == Zero))
+  ssdt8.dsl:4633:                        {
+  ssdt8.dsl:4634:                            If ((HDRS == One))
+  ssdt8.dsl:4635:                            {
+  ssdt8.dsl:4636:                                Return (0x03)
+  ssdt8.dsl:4637:                            }
+  ssdt8.dsl:4638:                            ElseIf ((DISM == 0x04))
+  ssdt8.dsl:4641:                            }
+  ssdt8.dsl:4642:                            ElseIf ((DISM == 0x02))
+  ssdt8.dsl:4643:                            {
+  ssdt8.dsl:4644:                                Return (One)
+  ssdt8.dsl:4645:                            }
+  ssdt8.dsl:4646:                            Else
+  ssdt8.dsl:4647:                            {
+  ssdt8.dsl:4648:                                Return (Zero)
+  ssdt8.dsl:4649:                            }
+  ssdt8.dsl:4650:                        }
+  ssdt8.dsl:4651:                        ElseIf ((MODF == One))
+  ssdt8.dsl:4652:                        {
+> ssdt8.dsl:4653:                            If ((LEDB < 0x03))
+  ssdt8.dsl:4654:                            {
+  ssdt8.dsl:4655:                                Return (Zero)
+  ssdt8.dsl:4656:                            }
+  ssdt8.dsl:4657:
+  ssdt8.dsl:4658:                            Return (One)
+  ssdt8.dsl:4659:                        }
+  ssdt8.dsl:4660:                        Else
+  ssdt8.dsl:4661:                        {
+  ssdt8.dsl:4662:                            Return (One)
+  ssdt8.dsl:4663:                        }
+  ssdt8.dsl:4664:                    }
+  ssdt8.dsl:4665:                    Else
+  ssdt8.dsl:4666:                    {
+  ssdt8.dsl:4667:                        Return (One)
+  ssdt8.dsl:4668:                    }
+  ssdt8.dsl:4669:
+  ssdt8.dsl:4670:                    Break
+  ssdt8.dsl:4671:                }
+  ssdt8.dsl:4672:            }
+  ssdt8.dsl:4673:
+
+
