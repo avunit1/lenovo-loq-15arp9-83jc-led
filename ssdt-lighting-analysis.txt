@@ -1,0 +1,3216 @@
+﻿
+  DSDT.dsl:87:    External (_SB_.PCI0.LPC0.EC0_.ESMC, MethodObj)    // 1 Arguments
+  DSDT.dsl:88:    External (_SB_.PCI0.LPC0.EC0_.ESMS, UnknownObj)
+  DSDT.dsl:89:    External (_SB_.PCI0.LPC0.EC0_.FPTB, UnknownObj)
+> DSDT.dsl:90:    External (_SB_.PCI0.LPC0.EC0_.GZ35, FieldUnitObj)
+  DSDT.dsl:91:    External (_SB_.PCI0.LPC0.EC0_.IBAC, UnknownObj)
+  DSDT.dsl:92:    External (_SB_.PCI0.LPC0.EC0_.IBPD, UnknownObj)
+> DSDT.dsl:93:    External (_SB_.PCI0.LPC0.EC0_.KLEN, UnknownObj)
+  DSDT.dsl:94:    External (_SB_.PCI0.LPC0.EC0_.M034, MethodObj)    // 1 Arguments
+  DSDT.dsl:95:    External (_SB_.PCI0.LPC0.EC0_.NVRE, UnknownObj)
+  DSDT.dsl:96:    External (_SB_.PCI0.LPC0.EC0_.PDTY, UnknownObj)
+  DSDT.dsl:97:    External (_SB_.PCI0.LPC0.EC0_.PMID, UnknownObj)
+  DSDT.dsl:98:    External (_SB_.PCI0.LPC0.EC0_.RWAK, UnknownObj)
+  DSDT.dsl:99:    External (_SB_.PCI0.LPC0.EC0_.TCAD, UnknownObj)
+  DSDT.dsl:277:    External (PMID, FieldUnitObj)
+  DSDT.dsl:278:    External (PWOK, UnknownObj)
+  DSDT.dsl:279:
+> DSDT.dsl:280:    OperationRegion (DBG0, SystemIO, 0x80, One)
+  DSDT.dsl:281:    Field (DBG0, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:282:    {
+  DSDT.dsl:283:        IO80,   8
+  DSDT.dsl:284:    }
+  DSDT.dsl:285:
+> DSDT.dsl:286:    OperationRegion (DBG1, SystemIO, 0x80, 0x02)
+  DSDT.dsl:287:    Field (DBG1, WordAcc, NoLock, Preserve)
+  DSDT.dsl:288:    {
+  DSDT.dsl:289:        P80H,   16
+  DSDT.dsl:290:    }
+  DSDT.dsl:291:
+> DSDT.dsl:292:    OperationRegion (ACMS, SystemIO, 0x72, 0x02)
+  DSDT.dsl:293:    Field (ACMS, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:294:    {
+  DSDT.dsl:295:        ACMX,   8, 
+  DSDT.dsl:296:        ACMA,   8
+  DSDT.dsl:297:    }
+  DSDT.dsl:298:
+> DSDT.dsl:299:    OperationRegion (XMOS, SystemIO, 0x72, 0x02)
+  DSDT.dsl:300:    Field (XMOS, ByteAcc, Lock, Preserve)
+  DSDT.dsl:301:    {
+  DSDT.dsl:302:        IO72,   8, 
+  DSDT.dsl:303:        IO73,   8
+  DSDT.dsl:304:    }
+  DSDT.dsl:305:
+  DSDT.dsl:321:        IMEN,   8
+  DSDT.dsl:322:    }
+  DSDT.dsl:323:
+> DSDT.dsl:324:    OperationRegion (PSMI, SystemIO, 0xB0, 0x02)
+  DSDT.dsl:325:    Field (PSMI, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:326:    {
+  DSDT.dsl:327:        APMC,   8, 
+  DSDT.dsl:328:        APMD,   8
+  DSDT.dsl:329:    }
+  DSDT.dsl:330:
+> DSDT.dsl:331:    OperationRegion (PMRG, SystemIO, 0x0CD6, 0x02)
+  DSDT.dsl:332:    Field (PMRG, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:333:    {
+  DSDT.dsl:334:        PMRI,   8, 
+  DSDT.dsl:335:        PMRD,   8
+  DSDT.dsl:336:    }
+  DSDT.dsl:337:
+  DSDT.dsl:346:        RSTU,   1
+  DSDT.dsl:347:    }
+  DSDT.dsl:348:
+> DSDT.dsl:349:    OperationRegion (GSMG, SystemMemory, 0xFED81500, 0x03FF)
+  DSDT.dsl:350:    Field (GSMG, AnyAcc, NoLock, Preserve)
+  DSDT.dsl:351:    {
+  DSDT.dsl:352:        Offset (0x5C), 
+  DSDT.dsl:353:        Offset (0x5E), 
+  DSDT.dsl:354:        GS23,   1, 
+  DSDT.dsl:355:            ,   5, 
+  DSDT.dsl:363:        GE40,   1
+  DSDT.dsl:364:    }
+  DSDT.dsl:365:
+> DSDT.dsl:366:    OperationRegion (GSMM, SystemMemory, 0xFED80000, 0x1000)
+  DSDT.dsl:367:    Field (GSMM, AnyAcc, NoLock, Preserve)
+  DSDT.dsl:368:    {
+  DSDT.dsl:369:        Offset (0x288), 
+  DSDT.dsl:370:            ,   1, 
+  DSDT.dsl:371:        CLPS,   1, 
+  DSDT.dsl:372:        Offset (0x2B0), 
+  DSDT.dsl:377:        PWDE,   1
+  DSDT.dsl:378:    }
+  DSDT.dsl:379:
+> DSDT.dsl:380:    OperationRegion (P1E0, SystemIO, P1EB, 0x04)
+  DSDT.dsl:381:    Field (P1E0, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:382:    {
+  DSDT.dsl:383:            ,   14, 
+  DSDT.dsl:384:        PEWS,   1, 
+  DSDT.dsl:385:        WSTA,   1, 
+  DSDT.dsl:386:            ,   14, 
+  DSDT.dsl:387:        PEWD,   1
+  DSDT.dsl:388:    }
+  DSDT.dsl:389:
+> DSDT.dsl:390:    OperationRegion (IOCC, SystemIO, 0x0400, 0x80)
+  DSDT.dsl:391:    Field (IOCC, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:392:    {
+  DSDT.dsl:393:        Offset (0x01), 
+  DSDT.dsl:394:            ,   2, 
+  DSDT.dsl:395:        RTCS,   1
+  DSDT.dsl:396:    }
+  DSDT.dsl:450:        M000 (Arg0)
+  DSDT.dsl:451:    }
+  DSDT.dsl:452:
+> DSDT.dsl:453:    OperationRegion (GNVS, SystemMemory, 0x7AEEDA98, 0x0000018E)
+  DSDT.dsl:454:    Field (GNVS, AnyAcc, NoLock, Preserve)
+  DSDT.dsl:455:    {
+  DSDT.dsl:456:        SMIF,   8, 
+  DSDT.dsl:457:        PRM0,   8, 
+  DSDT.dsl:458:        PRM1,   8, 
+  DSDT.dsl:459:        BRTL,   8, 
+  DSDT.dsl:531:        WX1M,   8
+  DSDT.dsl:532:    }
+  DSDT.dsl:533:
+> DSDT.dsl:534:    OperationRegion (OGNS, SystemMemory, 0x7AEEDD18, 0x0000002A)
+  DSDT.dsl:535:    Field (OGNS, AnyAcc, Lock, Preserve)
+  DSDT.dsl:536:    {
+  DSDT.dsl:537:        OG00,   8, 
+  DSDT.dsl:538:        OG01,   8, 
+  DSDT.dsl:539:        M2WL,   8, 
+  DSDT.dsl:540:        THPN,   8, 
+  DSDT.dsl:773:
+  DSDT.dsl:774:    Name (BUFN, Zero)
+  DSDT.dsl:775:    Name (MBUF, Buffer (0x1000){})
+> DSDT.dsl:776:    OperationRegion (MDBG, SystemMemory, 0x7AE61018, 0x00001004)
+  DSDT.dsl:777:    Field (MDBG, AnyAcc, Lock, Preserve)
+  DSDT.dsl:778:    {
+  DSDT.dsl:779:        MDG0,   32768
+  DSDT.dsl:780:    }
+  DSDT.dsl:781:
+  DSDT.dsl:782:    Method (DB2H, 1, Serialized)
+  DSDT.dsl:1314:        Name (APBM, 0x00)
+  DSDT.dsl:1315:        Device (PWRB)
+  DSDT.dsl:1316:        {
+> DSDT.dsl:1317:            Name (_HID, EisaId ("PNP0C0C") /* Power Button Device */)  // _HID: Hardware ID
+> DSDT.dsl:1318:            Name (_DDN, "Power button")  // _DDN: DOS Device Name
+  DSDT.dsl:1319:            Method (_STA, 0, NotSerialized)  // _STA: Status
+  DSDT.dsl:1320:            {
+  DSDT.dsl:1321:                Name (PSTA, Zero)
+  DSDT.dsl:1322:                M460 ("PLA-ASL-\\_SB.PWRB._STA = 0xB\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  DSDT.dsl:1323:                If ((APBM == One))
+  DSDT.dsl:1324:                {
+  DSDT.dsl:1692:            {
+  DSDT.dsl:1693:                Acquire (NAPM, 0xFFFF)
+  DSDT.dsl:1694:                Local0 = (PCBA + 0xB8)
+> DSDT.dsl:1695:                OperationRegion (VARM, SystemMemory, Local0, 0x08)
+  DSDT.dsl:1696:                Field (VARM, DWordAcc, NoLock, Preserve)
+  DSDT.dsl:1697:                {
+  DSDT.dsl:1698:                    NAPX,   32, 
+  DSDT.dsl:1699:                    NAPD,   32
+  DSDT.dsl:1700:                }
+  DSDT.dsl:1701:
+  DSDT.dsl:1792:            Method (UPWD, 0, Serialized)
+  DSDT.dsl:1793:            {
+  DSDT.dsl:1794:                M460 ("PLA-ASL-_SB.PCI0.UPWD\n", Zero, Zero, Zero, Zero, Zero, Zero)
+> DSDT.dsl:1795:                OperationRegion (PSMI, SystemIO, 0xB0, 0x02)
+  DSDT.dsl:1796:                Field (PSMI, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:1797:                {
+  DSDT.dsl:1798:                    SMIC,   8, 
+  DSDT.dsl:1799:                    SMID,   8
+  DSDT.dsl:1800:                }
+  DSDT.dsl:1801:
+  DSDT.dsl:4215:                            BRTL = Arg0
+  DSDT.dsl:4216:                        }
+  DSDT.dsl:4217:
+> DSDT.dsl:4218:                        OperationRegion (DDC0, SystemMemory, DDCP, 0x0180)
+  DSDT.dsl:4219:                        Field (DDC0, AnyAcc, Lock, Preserve)
+  DSDT.dsl:4220:                        {
+  DSDT.dsl:4221:                            DDCD,   3072
+  DSDT.dsl:4222:                        }
+  DSDT.dsl:4223:
+  DSDT.dsl:4224:                        Method (_DDC, 1, NotSerialized)  // _DDC: Display Data Current
+  DSDT.dsl:5580:            }
+  DSDT.dsl:5581:        }
+  DSDT.dsl:5582:
+> DSDT.dsl:5583:        OperationRegion (PIRQ, SystemIO, 0x0C00, 0x02)
+  DSDT.dsl:5584:        Field (PIRQ, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:5585:        {
+  DSDT.dsl:5586:            PIDX,   8, 
+  DSDT.dsl:5587:            PDAT,   8
+  DSDT.dsl:5588:        }
+  DSDT.dsl:5589:
+  DSDT.dsl:6140:
+  DSDT.dsl:6141:    Scope (_SB)
+  DSDT.dsl:6142:    {
+> DSDT.dsl:6143:        OperationRegion (SMIC, SystemMemory, 0xFED80000, 0x00800000)
+  DSDT.dsl:6144:        Field (SMIC, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:6145:        {
+  DSDT.dsl:6146:            Offset (0x36A), 
+  DSDT.dsl:6147:            SMIB,   8
+  DSDT.dsl:6148:        }
+  DSDT.dsl:6149:
+> DSDT.dsl:6150:        OperationRegion (SSMI, SystemIO, SMIB, 0x02)
+  DSDT.dsl:6151:        Field (SSMI, AnyAcc, NoLock, Preserve)
+  DSDT.dsl:6152:        {
+  DSDT.dsl:6153:            SMIW,   16
+  DSDT.dsl:6154:        }
+  DSDT.dsl:6155:
+> DSDT.dsl:6156:        OperationRegion (ECMC, SystemIO, 0x72, 0x02)
+  DSDT.dsl:6157:        Field (ECMC, AnyAcc, NoLock, Preserve)
+  DSDT.dsl:6158:        {
+  DSDT.dsl:6159:            ECMI,   8, 
+  DSDT.dsl:6160:            ECMD,   8
+  DSDT.dsl:6161:        }
+  DSDT.dsl:6162:
+  DSDT.dsl:6166:            FRTB,   32
+  DSDT.dsl:6167:        }
+  DSDT.dsl:6168:
+> DSDT.dsl:6169:        OperationRegion (FRTP, SystemMemory, FRTB, 0x0100)
+  DSDT.dsl:6170:        Field (FRTP, AnyAcc, NoLock, Preserve)
+  DSDT.dsl:6171:        {
+  DSDT.dsl:6172:            PEBA,   32, 
+  DSDT.dsl:6173:                ,   5, 
+  DSDT.dsl:6174:            IC0E,   1, 
+  DSDT.dsl:6175:            IC1E,   1, 
+  DSDT.dsl:6237:            I33M,   1
+  DSDT.dsl:6238:        }
+  DSDT.dsl:6239:
+> DSDT.dsl:6240:        OperationRegion (FCFG, SystemMemory, PEBA, 0x01000000)
+  DSDT.dsl:6241:        Field (FCFG, DWordAcc, NoLock, Preserve)
+  DSDT.dsl:6242:        {
+  DSDT.dsl:6243:            Offset (0xA3078), 
+  DSDT.dsl:6244:                ,   2, 
+  DSDT.dsl:6245:            LDQ0,   1, 
+  DSDT.dsl:6246:            Offset (0xA30CB), 
+  DSDT.dsl:6248:            AUSS,   1
+  DSDT.dsl:6249:        }
+  DSDT.dsl:6250:
+> DSDT.dsl:6251:        OperationRegion (IOMX, SystemMemory, 0xFED80D00, 0x0100)
+  DSDT.dsl:6252:        Field (IOMX, AnyAcc, NoLock, Preserve)
+  DSDT.dsl:6253:        {
+  DSDT.dsl:6254:            Offset (0x15), 
+  DSDT.dsl:6255:            IM15,   8, 
+  DSDT.dsl:6256:            IM16,   8, 
+  DSDT.dsl:6257:            Offset (0x1F), 
+  DSDT.dsl:6276:            IM6D,   8
+  DSDT.dsl:6277:        }
+  DSDT.dsl:6278:
+> DSDT.dsl:6279:        OperationRegion (FACR, SystemMemory, 0xFED81E00, 0x0100)
+  DSDT.dsl:6280:        Field (FACR, AnyAcc, NoLock, Preserve)
+  DSDT.dsl:6281:        {
+  DSDT.dsl:6282:            Offset (0x80), 
+  DSDT.dsl:6283:                ,   28, 
+  DSDT.dsl:6284:            RD28,   1, 
+  DSDT.dsl:6285:                ,   1, 
+  DSDT.dsl:6292:            PG1A,   1
+  DSDT.dsl:6293:        }
+  DSDT.dsl:6294:
+> DSDT.dsl:6295:        OperationRegion (LUIE, SystemMemory, 0xFEDC0020, 0x04)
+  DSDT.dsl:6296:        Field (LUIE, AnyAcc, NoLock, Preserve)
+  DSDT.dsl:6297:        {
+  DSDT.dsl:6298:            IER0,   1, 
+  DSDT.dsl:6299:            IER1,   1, 
+  DSDT.dsl:6300:            IER2,   1, 
+  DSDT.dsl:6301:            IER3,   1, 
+  DSDT.dsl:6373:        {
+  DSDT.dsl:6374:            Local0 = (Arg0 << One)
+  DSDT.dsl:6375:            Local0 += 0xFED81E40
+> DSDT.dsl:6376:            OperationRegion (ADCR, SystemMemory, Local0, 0x02)
+  DSDT.dsl:6377:            Field (ADCR, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:6378:            {
+  DSDT.dsl:6379:                ADTD,   2, 
+  DSDT.dsl:6380:                ADPS,   1, 
+  DSDT.dsl:6381:                ADPD,   1, 
+  DSDT.dsl:6382:                ADSO,   1, 
+  DSDT.dsl:6398:        {
+  DSDT.dsl:6399:            Local0 = (Arg0 << One)
+  DSDT.dsl:6400:            Local0 += 0xFED81E40
+> DSDT.dsl:6401:            OperationRegion (ADCR, SystemMemory, Local0, 0x02)
+  DSDT.dsl:6402:            Field (ADCR, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:6403:            {
+  DSDT.dsl:6404:                ADTD,   2, 
+  DSDT.dsl:6405:                ADPS,   1, 
+  DSDT.dsl:6406:                ADPD,   1, 
+  DSDT.dsl:6407:                ADSO,   1, 
+  DSDT.dsl:6443:            Local3 = (One << Arg0)
+  DSDT.dsl:6444:            Local0 = (Arg0 << One)
+  DSDT.dsl:6445:            Local0 += 0xFED81E40
+> DSDT.dsl:6446:            OperationRegion (ADCR, SystemMemory, Local0, 0x02)
+  DSDT.dsl:6447:            Field (ADCR, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:6448:            {
+  DSDT.dsl:6449:                ADTD,   2, 
+  DSDT.dsl:6450:                ADPS,   1, 
+  DSDT.dsl:6451:                ADPD,   1, 
+  DSDT.dsl:6452:                ADSO,   1, 
+  DSDT.dsl:6501:            }
+  DSDT.dsl:6502:        }
+  DSDT.dsl:6503:
+> DSDT.dsl:6504:        OperationRegion (FPIC, SystemIO, 0x0C00, 0x02)
+  DSDT.dsl:6505:        Field (FPIC, AnyAcc, NoLock, Preserve)
+  DSDT.dsl:6506:        {
+  DSDT.dsl:6507:            FPII,   8, 
+  DSDT.dsl:6508:            FPID,   8
+  DSDT.dsl:6509:        }
+  DSDT.dsl:6510:
+  DSDT.dsl:9655:        Mutex (CFMX, 0x00)
+  DSDT.dsl:9656:        Scope (_SB)
+  DSDT.dsl:9657:        {
+> DSDT.dsl:9658:            OperationRegion (SMIO, SystemIO, 0xB0, 0x02)
+  DSDT.dsl:9659:            Field (SMIO, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:9660:            {
+  DSDT.dsl:9661:                SMIM,   8, 
+  DSDT.dsl:9662:                SMID,   8
+  DSDT.dsl:9663:            }
+  DSDT.dsl:9664:
+  DSDT.dsl:9771:                }
+  DSDT.dsl:9772:            }
+  DSDT.dsl:9773:
+> DSDT.dsl:9774:            OperationRegion (ECMM, SystemMemory, 0xFE0B0400, 0x1000)
+  DSDT.dsl:9775:            Field (ECMM, AnyAcc, Lock, Preserve)
+  DSDT.dsl:9776:            {
+  DSDT.dsl:9777:                Offset (0x5D), 
+  DSDT.dsl:9778:                ERIB,   16, 
+  DSDT.dsl:9779:                Offset (0x61), 
+  DSDT.dsl:9780:                SMST,   8, 
+  DSDT.dsl:9907:                Offset (0xDD)
+  DSDT.dsl:9908:            }
+  DSDT.dsl:9909:
+> DSDT.dsl:9910:            OperationRegion (USEC, SystemMemory, 0xFE0B0640, 0x30)
+  DSDT.dsl:9911:            Field (USEC, ByteAcc, Lock, Preserve)
+  DSDT.dsl:9912:            {
+  DSDT.dsl:9913:                VER1,   8, 
+  DSDT.dsl:9914:                VER2,   8, 
+  DSDT.dsl:9915:                RSV1,   8, 
+  DSDT.dsl:9916:                RSV2,   8, 
+  DSDT.dsl:9960:                MGOF,   8
+  DSDT.dsl:9961:            }
+  DSDT.dsl:9962:
+> DSDT.dsl:9963:            OperationRegion (PECM, SystemMemory, 0xFE0B0400, 0x1000)
+  DSDT.dsl:9964:            Field (PECM, AnyAcc, Lock, Preserve)
+  DSDT.dsl:9965:            {
+  DSDT.dsl:9966:                Offset (0x08), 
+  DSDT.dsl:9967:                NVD1,   3, 
+  DSDT.dsl:9968:                Offset (0x09), 
+  DSDT.dsl:9969:                    ,   1, 
+  DSDT.dsl:9987:                BNCS,   1
+  DSDT.dsl:9988:            }
+  DSDT.dsl:9989:
+> DSDT.dsl:9990:            OperationRegion (ERAM, EmbeddedControl, Zero, 0xFF)
+  DSDT.dsl:9991:            Field (ERAM, ByteAcc, Lock, Preserve)
+  DSDT.dsl:9992:            {
+  DSDT.dsl:9993:                Offset (0x5F), 
+  DSDT.dsl:9994:                ERBD,   8, 
+  DSDT.dsl:9995:                SMPR,   8, 
+  DSDT.dsl:9996:                Offset (0x62)
+  DSDT.dsl:9997:            }
+  DSDT.dsl:9998:
+> DSDT.dsl:9999:            OperationRegion (CCLK, SystemIO, 0x1810, 0x04)
+  DSDT.dsl:10000:            Field (CCLK, DWordAcc, NoLock, Preserve)
+  DSDT.dsl:10001:            {
+  DSDT.dsl:10002:                    ,   1, 
+  DSDT.dsl:10003:                DUTY,   3, 
+  DSDT.dsl:10004:                THEN,   1, 
+  DSDT.dsl:10005:                Offset (0x01), 
+  DSDT.dsl:10081:            {
+  DSDT.dsl:10082:                If (CSAD ())
+  DSDT.dsl:10083:                {
+> DSDT.dsl:10084:                    GZ44 = RXMS (0x76)
+> DSDT.dsl:10085:                    SSFM (Zero, GZ44)
+  DSDT.dsl:10086:                }
+  DSDT.dsl:10087:                Else
+  DSDT.dsl:10088:                {
+  DSDT.dsl:10089:                    Local2 = RXMS (0x76)
+  DSDT.dsl:10090:                    Local3 = RXMS (0x7A)
+  DSDT.dsl:10091:                    If (((Local2 == 0x03) && (ADPS == 0x03)))
+  DSDT.dsl:10093:                        If (((Local3 == Zero) || (Local3 == One)))
+  DSDT.dsl:10094:                        {
+  DSDT.dsl:10095:                            WXMS (0x77, Zero)
+> DSDT.dsl:10096:                            GZ44 = Zero
+  DSDT.dsl:10097:                            SSFM (Zero, Zero)
+  DSDT.dsl:10098:                        }
+  DSDT.dsl:10099:                        Else
+  DSDT.dsl:10100:                        {
+  DSDT.dsl:10101:                            WXMS (0x77, 0x02)
+> DSDT.dsl:10102:                            GZ44 = 0x02
+  DSDT.dsl:10103:                            SSFM (Zero, 0x02)
+  DSDT.dsl:10104:                        }
+  DSDT.dsl:10105:                    }
+  DSDT.dsl:10106:                    ElseIf ((Local2 != 0x02))
+  DSDT.dsl:10107:                    {
+  DSDT.dsl:10108:                        WXMS (0x77, Zero)
+> DSDT.dsl:10109:                        GZ44 = Zero
+  DSDT.dsl:10110:                        SSFM (Zero, Zero)
+  DSDT.dsl:10111:                    }
+  DSDT.dsl:10112:                    Else
+  DSDT.dsl:10113:                    {
+  DSDT.dsl:10114:                        WXMS (0x77, 0x02)
+> DSDT.dsl:10115:                        GZ44 = 0x02
+  DSDT.dsl:10116:                        SSFM (Zero, 0x02)
+  DSDT.dsl:10117:                    }
+  DSDT.dsl:10118:                }
+  DSDT.dsl:10119:
+> DSDT.dsl:10120:                If (!((GZ44 == Zero) && (SUBM != Zero)))
+  DSDT.dsl:10121:                {
+  DSDT.dsl:10122:                    Notify (GZFD, 0xD9) // Hardware-Specific
+  DSDT.dsl:10123:                }
+  DSDT.dsl:10124:
+  DSDT.dsl:10125:                SSFM (One, Zero)
+  DSDT.dsl:10126:            }
+  DSDT.dsl:10373:                    }
+  DSDT.dsl:10374:
+  DSDT.dsl:10375:                    WXMS (0x76, Local1)
+> DSDT.dsl:10376:                    GZ44 = Local1
+  DSDT.dsl:10377:                    SSFM (Zero, Local1)
+  DSDT.dsl:10378:                }
+  DSDT.dsl:10379:                Else
+  DSDT.dsl:10380:                {
+  DSDT.dsl:10381:                    Local1 = RXMS (0x77)
+  DSDT.dsl:10382:                    If ((Local1 == 0x02))
+  DSDT.dsl:10393:                        WXMS (0x77, Zero)
+  DSDT.dsl:10394:                        WXMS (0x76, Zero)
+  DSDT.dsl:10395:                        SSFM (Zero, Zero)
+> DSDT.dsl:10396:                        GZ44 = Zero
+  DSDT.dsl:10397:                    }
+  DSDT.dsl:10398:                    Else
+  DSDT.dsl:10399:                    {
+  DSDT.dsl:10400:                        WXMS (0x77, 0x02)
+  DSDT.dsl:10401:                        WXMS (0x76, 0x02)
+  DSDT.dsl:10402:                        SSFM (Zero, 0x02)
+> DSDT.dsl:10403:                        GZ44 = 0x02
+  DSDT.dsl:10404:                    }
+  DSDT.dsl:10405:                }
+  DSDT.dsl:10406:
+  DSDT.dsl:10407:                Notify (GZFD, 0xD5) // Hardware-Specific
+  DSDT.dsl:10408:                Notify (GZFD, 0xD9) // Hardware-Specific
+  DSDT.dsl:10409:                SSFM (One, Zero)
+  DSDT.dsl:10413:            {
+  DSDT.dsl:10414:                Debug = "Q16 trigger"
+  DSDT.dsl:10415:                Notify (GZFD, 0xD8) // Hardware-Specific
+> DSDT.dsl:10416:                If ((GZ35 == Zero))
+  DSDT.dsl:10417:                {
+  DSDT.dsl:10418:                    ^^^^GZFD.KYID = 0x03
+  DSDT.dsl:10419:                    Notify (GZFD, 0xDA) // Hardware-Specific
+> DSDT.dsl:10420:                    If ((KLEN == Zero))
+  DSDT.dsl:10421:                    {
+  DSDT.dsl:10422:                        PSD1 = 0x40
+  DSDT.dsl:10423:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10424:                    }
+> DSDT.dsl:10425:                    ElseIf ((KLEN == One))
+  DSDT.dsl:10426:                    {
+  DSDT.dsl:10427:                        PSD1 = 0x41
+  DSDT.dsl:10428:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10429:                    }
+> DSDT.dsl:10430:                    ElseIf ((KLEN == 0x02))
+  DSDT.dsl:10431:                    {
+  DSDT.dsl:10432:                        PSD1 = 0x42
+  DSDT.dsl:10433:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10434:                    }
+  DSDT.dsl:10435:                    Else
+  DSDT.dsl:10436:                    {
+  DSDT.dsl:10443:            Method (_Q2D, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:10444:            {
+  DSDT.dsl:10445:                Debug = "Q2D trigger"
+> DSDT.dsl:10446:                If ((GZ35 == One))
+  DSDT.dsl:10447:                {
+  DSDT.dsl:10448:                    ^^^^GZFD.KYID = 0x03
+  DSDT.dsl:10449:                    Notify (GZFD, 0xDA) // Hardware-Specific
+> DSDT.dsl:10450:                    If ((RGBM == Zero))
+  DSDT.dsl:10451:                    {
+  DSDT.dsl:10452:                        PSD1 = 0x1B
+  DSDT.dsl:10453:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10454:                    }
+> DSDT.dsl:10455:                    ElseIf ((RGBM == One))
+  DSDT.dsl:10456:                    {
+  DSDT.dsl:10457:                        PSD1 = 0x1C
+  DSDT.dsl:10458:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10459:                    }
+> DSDT.dsl:10460:                    ElseIf ((RGBM == 0x02))
+  DSDT.dsl:10461:                    {
+  DSDT.dsl:10462:                        PSD1 = 0x1D
+  DSDT.dsl:10463:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10464:                    }
+> DSDT.dsl:10465:                    ElseIf ((RGBM == 0x03))
+  DSDT.dsl:10466:                    {
+  DSDT.dsl:10467:                        PSD1 = 0x1E
+  DSDT.dsl:10468:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10469:                    }
+> DSDT.dsl:10470:                    ElseIf ((RGBM == 0x04))
+  DSDT.dsl:10471:                    {
+  DSDT.dsl:10472:                        PSD1 = 0x1F
+  DSDT.dsl:10473:                        Notify (WMIU, 0xD0) // Hardware-Specific
+  DSDT.dsl:10474:                    }
+  DSDT.dsl:10475:                    Else
+  DSDT.dsl:10476:                    {
+  DSDT.dsl:10495:            Method (_Q2E, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:10496:            {
+  DSDT.dsl:10497:                Debug = "=====PROJECT_QUERY_2E====="
+> DSDT.dsl:10498:                If (((BLPF == One) && ((GZ44 == One) || (GZ44 == 0x07))))
+  DSDT.dsl:10499:                {
+  DSDT.dsl:10500:                    Local0 = (FSOC - CSOC) /* \_SB_.PCI0.LPC0.EC0_.CSOC */
+  DSDT.dsl:10501:                    If (((Local0 >= 0x0B) && (Local0 <= 0x0F)))
+  DSDT.dsl:10502:                    {
+  DSDT.dsl:10503:                        WXMS (0x71, One)
+  DSDT.dsl:10504:                    }
+  DSDT.dsl:10523:                }
+  DSDT.dsl:10524:            }
+  DSDT.dsl:10525:
+> DSDT.dsl:10526:            OperationRegion (PRT0, SystemIO, 0x80, 0x04)
+  DSDT.dsl:10527:            Field (PRT0, ByteAcc, Lock, Preserve)
+  DSDT.dsl:10528:            {
+  DSDT.dsl:10529:                P80H,   8
+  DSDT.dsl:10530:            }
+  DSDT.dsl:10531:
+  DSDT.dsl:10532:            Method (_Q0B, 0, NotSerialized)  // _Qxx: EC Query, xx=0x00-0xFF
+  DSDT.dsl:10606:                Release (FAMX)
+  DSDT.dsl:10607:            }
+  DSDT.dsl:10608:
+> DSDT.dsl:10609:            OperationRegion (ECCD, SystemMemory, 0xFE0B0400, 0x1000)
+  DSDT.dsl:10610:            Field (ECCD, AnyAcc, Lock, Preserve)
+  DSDT.dsl:10611:            {
+  DSDT.dsl:10612:                Offset (0x220), 
+  DSDT.dsl:10613:                Offset (0x222), 
+  DSDT.dsl:10614:                ECTB,   1, 
+  DSDT.dsl:10615:                ECTE,   1, 
+  DSDT.dsl:11334:
+  DSDT.dsl:11335:    Scope (_SB.PCI0.LPC0.EC0)
+  DSDT.dsl:11336:    {
+> DSDT.dsl:11337:        OperationRegion (ECF2, EmbeddedControl, Zero, 0xFF)
+  DSDT.dsl:11338:        Field (ECF2, ByteAcc, Lock, Preserve)
+  DSDT.dsl:11339:        {
+  DSDT.dsl:11340:            VCMD,   8, 
+  DSDT.dsl:11341:            VDAT,   8, 
+  DSDT.dsl:11342:            VSTA,   8
+  DSDT.dsl:11343:        }
+  DSDT.dsl:12443:                {
+  DSDT.dsl:12444:                    Case (One)
+  DSDT.dsl:12445:                    {
+> DSDT.dsl:12446:                        If ((GZ35 == Zero))
+  DSDT.dsl:12447:                        {
+  DSDT.dsl:12448:                            Local0 = 0x04
+  DSDT.dsl:12449:                            RETD |= Local0
+  DSDT.dsl:12450:                        }
+  DSDT.dsl:12451:                        Else
+  DSDT.dsl:12452:                        {
+  DSDT.dsl:12460:                        {
+  DSDT.dsl:12461:                            Case (One)
+  DSDT.dsl:12462:                            {
+> DSDT.dsl:12463:                                Local0 = (KLEN << One)
+  DSDT.dsl:12464:                                RETD |= Local0
+  DSDT.dsl:12465:                            }
+  DSDT.dsl:12466:                            Case (0x02)
+  DSDT.dsl:12467:                            {
+> DSDT.dsl:12468:                                Local0 = (KLEN << One)
+  DSDT.dsl:12469:                                RETD |= Local0
+  DSDT.dsl:12470:                            }
+  DSDT.dsl:12471:                            Case (0x03)
+  DSDT.dsl:12472:                            {
+> DSDT.dsl:12473:                                Local0 = (KLEN << One)
+  DSDT.dsl:12474:                                RETD |= Local0
+  DSDT.dsl:12475:                                RETD |= 0x00010000
+  DSDT.dsl:12476:                            }
+  DSDT.dsl:12477:
+  DSDT.dsl:12478:                        }
+  DSDT.dsl:12479:                    }
+  DSDT.dsl:12484:                            Case (One)
+  DSDT.dsl:12485:                            {
+  DSDT.dsl:12486:                                Local0 = (IDTH & One)
+> DSDT.dsl:12487:                                KLEN = Local0
+> DSDT.dsl:12488:                                Local0 = (KLEN << One)
+  DSDT.dsl:12489:                                RETD |= Local0
+  DSDT.dsl:12490:                            }
+  DSDT.dsl:12491:                            Case (0x02)
+  DSDT.dsl:12492:                            {
+> DSDT.dsl:12493:                                KLEN = IDTH /* \_SB_.PCI0.LPC0.EC0_.VPC0.KBLC.IDTH */
+> DSDT.dsl:12494:                                Local0 = (KLEN << One)
+  DSDT.dsl:12495:                                RETD |= Local0
+  DSDT.dsl:12496:                            }
+  DSDT.dsl:12497:                            Case (0x03)
+  DSDT.dsl:12498:                            {
+> DSDT.dsl:12499:                                KLEN = IDTH /* \_SB_.PCI0.LPC0.EC0_.VPC0.KBLC.IDTH */
+> DSDT.dsl:12500:                                Local0 = (KLEN << One)
+  DSDT.dsl:12501:                                RETD |= Local0
+  DSDT.dsl:12502:                                RETD |= 0x00010000
+  DSDT.dsl:12503:                            }
+  DSDT.dsl:12504:
+  DSDT.dsl:12505:                        }
+  DSDT.dsl:12506:                    }
+  DSDT.dsl:12722:            Name (ECPS, Zero)
+  DSDT.dsl:12723:        }
+  DSDT.dsl:12724:
+> DSDT.dsl:12725:        OperationRegion (ECAM, EmbeddedControl, Zero, 0xFF)
+  DSDT.dsl:12726:        Field (ECAM, ByteAcc, Lock, Preserve)
+  DSDT.dsl:12727:        {
+  DSDT.dsl:12728:        }
+  DSDT.dsl:12729:
+  DSDT.dsl:12730:        Field (ECMM, AnyAcc, Lock, Preserve)
+  DSDT.dsl:12731:        {
+  DSDT.dsl:12732:            Offset (0x03), 
+> DSDT.dsl:12733:            KLEN,   2, 
+  DSDT.dsl:12734:            UCEN,   1, 
+  DSDT.dsl:12735:            UCEX,   1, 
+  DSDT.dsl:12736:            KLEX,   1, 
+  DSDT.dsl:12737:                ,   2, 
+  DSDT.dsl:12738:            UCBM,   1, 
+  DSDT.dsl:12739:            SBOV,   1, 
+  DSDT.dsl:12774:            GZ25,   1, 
+  DSDT.dsl:12775:                ,   1, 
+  DSDT.dsl:12776:            ECRS,   1, 
+> DSDT.dsl:12777:            GZ44,   3, 
+  DSDT.dsl:12778:            YMCD,   8, 
+  DSDT.dsl:12779:            PODL,   8, 
+  DSDT.dsl:12780:            PODH,   8, 
+  DSDT.dsl:12781:            Offset (0x10), 
+  DSDT.dsl:12782:                ,   1, 
+  DSDT.dsl:12783:                ,   1, 
+  DSDT.dsl:12796:            Offset (0x17), 
+  DSDT.dsl:12797:            ATMP,   8, 
+  DSDT.dsl:12798:            GZ52,   1, 
+> DSDT.dsl:12799:            GZ35,   1, 
+  DSDT.dsl:12800:            BDPF,   1, 
+  DSDT.dsl:12801:                ,   1, 
+  DSDT.dsl:12802:            PGPW,   1, 
+  DSDT.dsl:12803:                ,   1, 
+  DSDT.dsl:12804:                ,   1, 
+  DSDT.dsl:12805:            Offset (0x19), 
+  DSDT.dsl:12822:            QBSM,   1, 
+  DSDT.dsl:12823:            BATM,   1, 
+  DSDT.dsl:12824:                ,   5, 
+> DSDT.dsl:12825:            RGBM,   3, 
+  DSDT.dsl:12826:            CNEX,   1, 
+  DSDT.dsl:12827:            CMEX,   1, 
+  DSDT.dsl:12828:                ,   1, 
+  DSDT.dsl:12829:            PDTY,   1, 
+  DSDT.dsl:12830:                ,   1, 
+  DSDT.dsl:12831:            BLPF,   1, 
+  DSDT.dsl:12845:            CSOC,   8
+  DSDT.dsl:12846:        }
+  DSDT.dsl:12847:
+> DSDT.dsl:12848:        OperationRegion (FANR, SystemMemory, 0xFE0B0500, 0x1000)
+  DSDT.dsl:12849:        Field (FANR, AnyAcc, Lock, Preserve)
+  DSDT.dsl:12850:        {
+  DSDT.dsl:12851:            Offset (0x04), 
+  DSDT.dsl:12852:            FA1S,   8, 
+  DSDT.dsl:12853:            Offset (0x2B), 
+  DSDT.dsl:12854:            FA2S,   8
+  DSDT.dsl:12855:        }
+  DSDT.dsl:12856:
+> DSDT.dsl:12857:        OperationRegion (EFAN, SystemMemory, 0xFE0B0F00, 0x1000)
+  DSDT.dsl:12858:        Field (EFAN, AnyAcc, Lock, Preserve)
+  DSDT.dsl:12859:        {
+  DSDT.dsl:12860:            CL00,   8, 
+  DSDT.dsl:12861:            CT00,   8, 
+  DSDT.dsl:12862:            CRP0,   8, 
+  DSDT.dsl:12863:            Offset (0x04), 
+  DSDT.dsl:13066:            CCTL,   8
+  DSDT.dsl:13067:        }
+  DSDT.dsl:13068:
+> DSDT.dsl:13069:        OperationRegion (TACR, SystemMemory, 0xFE0B0700, 0x1000)
+  DSDT.dsl:13070:        Field (TACR, AnyAcc, Lock, Preserve)
+  DSDT.dsl:13071:        {
+  DSDT.dsl:13072:            Offset (0xA0), 
+  DSDT.dsl:13073:            TPSW,   128, 
+  DSDT.dsl:13074:            TKEY,   256, 
+  DSDT.dsl:13075:            TIDB,   128, 
+  DSDT.dsl:13248:                        }
+  DSDT.dsl:13249:                        ElseIf ((ToInteger (Arg2) == 0x21))
+  DSDT.dsl:13250:                        {
+> DSDT.dsl:13251:                            If ((^^PCI0.LPC0.EC0.GZ35 == Zero))
+  DSDT.dsl:13252:                            {
+  DSDT.dsl:13253:                                Return (0x21)
+  DSDT.dsl:13254:                            }
+  DSDT.dsl:13255:                            Else
+  DSDT.dsl:13256:                            {
+  DSDT.dsl:13257:                                Return (Zero)
+  DSDT.dsl:13518:        }
+  DSDT.dsl:13519:    }
+  DSDT.dsl:13520:
+> DSDT.dsl:13521:    OperationRegion (SMIO, SystemIO, 0xB0, 0x02)
+  DSDT.dsl:13522:    Field (SMIO, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:13523:    {
+  DSDT.dsl:13524:        SMIC,   8, 
+  DSDT.dsl:13525:        SMID,   8
+  DSDT.dsl:13526:    }
+  DSDT.dsl:13527:
+  DSDT.dsl:16074:                }
+  DSDT.dsl:16075:            }
+  DSDT.dsl:16076:
+> DSDT.dsl:16077:            If ((ToInteger (^PCI0.LPC0.EC0.GZ44) == 0x03))
+  DSDT.dsl:16078:            {
+  DSDT.dsl:16079:                ^NPCF.DBAC = Zero
+  DSDT.dsl:16080:            }
+> DSDT.dsl:16081:            ElseIf ((ToInteger (^PCI0.LPC0.EC0.GZ44) == 0x07))
+  DSDT.dsl:16082:            {
+  DSDT.dsl:16083:                If ((PMID == Zero))
+  DSDT.dsl:16084:                {
+  DSDT.dsl:16085:                    If ((RXMS (0x71) == One))
+  DSDT.dsl:16086:                    {
+  DSDT.dsl:16087:                        Local2 = (DerefOf (DerefOf (Local1 [0x04]) [One]) - 0x0A)
+  DSDT.dsl:16211:            {
+  DSDT.dsl:16212:                If ((PMID == Zero))
+  DSDT.dsl:16213:                {
+> DSDT.dsl:16214:                    If ((ToInteger (^PCI0.LPC0.EC0.GZ44) == One))
+  DSDT.dsl:16215:                    {
+  DSDT.dsl:16216:                        If ((RXMS (0x71) == One))
+  DSDT.dsl:16217:                        {
+> DSDT.dsl:16218:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16219:                                ) - 0x0A)
+  DSDT.dsl:16220:                            ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16221:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16222:                                ) * 0x08)
+> DSDT.dsl:16223:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16224:                                ) * 0x08)
+  DSDT.dsl:16225:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16226:                            ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16227:                                ) * 0x08)
+> DSDT.dsl:16228:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16229:                                )
+  DSDT.dsl:16230:                        }
+  DSDT.dsl:16231:                        ElseIf ((RXMS (0x71) == 0x02))
+  DSDT.dsl:16232:                        {
+> DSDT.dsl:16233:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16234:                                ) - 0x14)
+  DSDT.dsl:16235:                            ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16236:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16237:                                ) * 0x08)
+> DSDT.dsl:16238:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16239:                                ) * 0x08)
+  DSDT.dsl:16240:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16241:                            ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16242:                                ) * 0x08)
+> DSDT.dsl:16243:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16244:                                )
+  DSDT.dsl:16245:                        }
+  DSDT.dsl:16246:                        ElseIf ((RXMS (0x71) == 0x03))
+  DSDT.dsl:16247:                        {
+> DSDT.dsl:16248:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16249:                                ) - 0x1E)
+  DSDT.dsl:16250:                            ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16251:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16252:                                ) * 0x08)
+> DSDT.dsl:16253:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16254:                                ) * 0x08)
+  DSDT.dsl:16255:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16256:                            ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16257:                                ) * 0x08)
+> DSDT.dsl:16258:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16259:                                )
+  DSDT.dsl:16260:                        }
+  DSDT.dsl:16261:                        Else
+  DSDT.dsl:16262:                        {
+> DSDT.dsl:16263:                            ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16264:                                ) * 0x08)
+> DSDT.dsl:16265:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16266:                                ) * 0x08)
+> DSDT.dsl:16267:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16268:                                ) * 0x08)
+  DSDT.dsl:16269:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16270:                            ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16271:                                ) * 0x08)
+> DSDT.dsl:16272:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16273:                                )
+  DSDT.dsl:16274:                        }
+  DSDT.dsl:16275:                    }
+  DSDT.dsl:16276:                    Else
+  DSDT.dsl:16277:                    {
+> DSDT.dsl:16278:                        ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16279:                            ) * 0x08)
+> DSDT.dsl:16280:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16281:                            ) * 0x08)
+> DSDT.dsl:16282:                        TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16283:                            ) * 0x08)
+  DSDT.dsl:16284:                        ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16285:                        ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16286:                            ) * 0x08)
+> DSDT.dsl:16287:                        ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16288:                            )
+  DSDT.dsl:16289:                    }
+  DSDT.dsl:16290:                }
+> DSDT.dsl:16291:                ElseIf ((ToInteger (^PCI0.LPC0.EC0.GZ44) == One))
+  DSDT.dsl:16292:                {
+  DSDT.dsl:16293:                    If (((ToInteger (PGID) == 0x04) || (ToInteger (PGID) == 0x05)))
+  DSDT.dsl:16294:                    {
+  DSDT.dsl:16295:                        If ((RXMS (0x71) == One))
+  DSDT.dsl:16296:                        {
+> DSDT.dsl:16297:                            ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16298:                                ) * 0x08)
+> DSDT.dsl:16299:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16300:                                ) * 0x08)
+> DSDT.dsl:16301:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16302:                                ) * 0x08)
+  DSDT.dsl:16303:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16304:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16305:                                ) - 0x0A)
+  DSDT.dsl:16306:                            ^NPCF.ATPP = (Local2 * 0x08)
+> DSDT.dsl:16307:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16308:                                )
+  DSDT.dsl:16309:                        }
+  DSDT.dsl:16310:                        ElseIf ((RXMS (0x71) == 0x02))
+  DSDT.dsl:16311:                        {
+> DSDT.dsl:16312:                            ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16313:                                ) * 0x08)
+> DSDT.dsl:16314:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16315:                                ) * 0x08)
+> DSDT.dsl:16316:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16317:                                ) * 0x08)
+  DSDT.dsl:16318:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16319:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16320:                                ) - 0x14)
+  DSDT.dsl:16321:                            ^NPCF.ATPP = (Local2 * 0x08)
+> DSDT.dsl:16322:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16323:                                )
+  DSDT.dsl:16324:                        }
+  DSDT.dsl:16325:                        ElseIf ((RXMS (0x71) == 0x03))
+  DSDT.dsl:16326:                        {
+> DSDT.dsl:16327:                            ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16328:                                ) * 0x08)
+> DSDT.dsl:16329:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16330:                                ) * 0x08)
+> DSDT.dsl:16331:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16332:                                ) * 0x08)
+  DSDT.dsl:16333:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16334:                            Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16335:                                ) - 0x1E)
+  DSDT.dsl:16336:                            ^NPCF.ATPP = (Local2 * 0x08)
+> DSDT.dsl:16337:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16338:                                )
+  DSDT.dsl:16339:                        }
+  DSDT.dsl:16340:                        Else
+  DSDT.dsl:16341:                        {
+> DSDT.dsl:16342:                            ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16343:                                ) * 0x08)
+> DSDT.dsl:16344:                            ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16345:                                ) * 0x08)
+> DSDT.dsl:16346:                            TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16347:                                ) * 0x08)
+  DSDT.dsl:16348:                            ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16349:                            ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16350:                                ) * 0x08)
+> DSDT.dsl:16351:                            ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16352:                                )
+  DSDT.dsl:16353:                        }
+  DSDT.dsl:16354:                    }
+  DSDT.dsl:16355:                    ElseIf ((RXMS (0x71) == One))
+  DSDT.dsl:16356:                    {
+> DSDT.dsl:16357:                        Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16358:                            ) - 0x0A)
+  DSDT.dsl:16359:                        ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16360:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16361:                            ) * 0x08)
+> DSDT.dsl:16362:                        TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16363:                            ) * 0x08)
+  DSDT.dsl:16364:                        ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16365:                        ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16366:                            ) * 0x08)
+> DSDT.dsl:16367:                        ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16368:                            )
+  DSDT.dsl:16369:                    }
+  DSDT.dsl:16370:                    ElseIf ((RXMS (0x71) == 0x02))
+  DSDT.dsl:16371:                    {
+> DSDT.dsl:16372:                        Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16373:                            ) - 0x14)
+  DSDT.dsl:16374:                        ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16375:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16376:                            ) * 0x08)
+> DSDT.dsl:16377:                        TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16378:                            ) * 0x08)
+  DSDT.dsl:16379:                        ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16380:                        ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16381:                            ) * 0x08)
+> DSDT.dsl:16382:                        ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16383:                            )
+  DSDT.dsl:16384:                    }
+  DSDT.dsl:16385:                    ElseIf ((RXMS (0x71) == 0x03))
+  DSDT.dsl:16386:                    {
+> DSDT.dsl:16387:                        Local2 = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16388:                            ) - 0x1E)
+  DSDT.dsl:16389:                        ^NPCF.ACBT = (Local2 * 0x08)
+> DSDT.dsl:16390:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16391:                            ) * 0x08)
+> DSDT.dsl:16392:                        TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16393:                            ) * 0x08)
+  DSDT.dsl:16394:                        ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16395:                        ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16396:                            ) * 0x08)
+> DSDT.dsl:16397:                        ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16398:                            )
+  DSDT.dsl:16399:                    }
+  DSDT.dsl:16400:                    Else
+  DSDT.dsl:16401:                    {
+> DSDT.dsl:16402:                        ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16403:                            ) * 0x08)
+> DSDT.dsl:16404:                        ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16405:                            ) * 0x08)
+> DSDT.dsl:16406:                        TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16407:                            ) * 0x08)
+  DSDT.dsl:16408:                        ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16409:                        ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16410:                            ) * 0x08)
+> DSDT.dsl:16411:                        ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16412:                            )
+  DSDT.dsl:16413:                    }
+  DSDT.dsl:16414:                }
+  DSDT.dsl:16415:                Else
+  DSDT.dsl:16416:                {
+> DSDT.dsl:16417:                    ^NPCF.ACBT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [One]
+  DSDT.dsl:16418:                        ) * 0x08)
+> DSDT.dsl:16419:                    ^NPCF.AMAT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x02]
+  DSDT.dsl:16420:                        ) * 0x08)
+> DSDT.dsl:16421:                    TMIT = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x03]
+  DSDT.dsl:16422:                        ) * 0x08)
+  DSDT.dsl:16423:                    ^NPCF.AMIT = (~TMIT + One)
+> DSDT.dsl:16424:                    ^NPCF.ATPP = (DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x04]
+  DSDT.dsl:16425:                        ) * 0x08)
+> DSDT.dsl:16426:                    ^NPCF.DBAC = DerefOf (DerefOf (Local1 [ToInteger (^PCI0.LPC0.EC0.GZ44)]) [0x05]
+  DSDT.dsl:16427:                        )
+  DSDT.dsl:16428:                }
+  DSDT.dsl:16429:
+  DSDT.dsl:16430:                WXMS (0x71, Zero)
+  DSDT.dsl:16431:            }
+  DSDT.dsl:16432:
+> DSDT.dsl:16433:            If ((ToInteger (^PCI0.LPC0.EC0.GZ44) == Zero))
+  DSDT.dsl:16434:            {
+  DSDT.dsl:16435:                If ((SUBM != Zero))
+  DSDT.dsl:16436:                {
+  DSDT.dsl:16437:                    If ((PMID == One))
+  DSDT.dsl:16438:                    {
+  DSDT.dsl:16439:                        If ((PGID == Zero))
+  DSDT.dsl:16499:                }
+  DSDT.dsl:16500:            }
+  DSDT.dsl:16501:
+> DSDT.dsl:16502:            If ((ToInteger (^PCI0.LPC0.EC0.GZ44) == 0x02))
+  DSDT.dsl:16503:            {
+  DSDT.dsl:16504:                ^NPCF.DROS = 0xAFC8
+  DSDT.dsl:16505:            }
+  DSDT.dsl:16506:            Else
+  DSDT.dsl:16507:            {
+  DSDT.dsl:16508:                ^NPCF.DROS = Zero
+  DSDT.dsl:16516:                }
+  DSDT.dsl:16517:            }
+  DSDT.dsl:16518:
+> DSDT.dsl:16519:            If ((ToInteger (^PCI0.LPC0.EC0.GZ44) != 0x03))
+  DSDT.dsl:16520:            {
+  DSDT.dsl:16521:                ^PCI0.GPP0.PEGP.NTCC = 0x57
+  DSDT.dsl:16522:                Notify (^PCI0.GPP0.PEGP, 0xC0) // Hardware-Specific
+  DSDT.dsl:16523:            }
+  DSDT.dsl:16524:        }
+  DSDT.dsl:16525:
+  DSDT.dsl:34798:                FTLE = 0x0A
+  DSDT.dsl:34799:                FTSL = 0x0A
+  DSDT.dsl:34800:                Local0 = One
+> DSDT.dsl:34801:                If ((^^PCI0.LPC0.EC0.GZ44 == 0x07))
+  DSDT.dsl:34802:                {
+  DSDT.dsl:34803:                    FTS0 = DerefOf (EFST [Zero])
+  DSDT.dsl:34804:                    FSS0 = DerefOf (EFST [Zero])
+  DSDT.dsl:34805:                    FTS1 = DerefOf (EFST [One])
+  DSDT.dsl:34806:                    FSS1 = DerefOf (EFST [One])
+  DSDT.dsl:34807:                    FTS2 = DerefOf (EFST [0x02])
+  DSDT.dsl:35883:            CreateByteField (STM2, 0x02, C00B)
+  DSDT.dsl:35884:            Method (GLTT, 1, NotSerialized)
+  DSDT.dsl:35885:            {
+> DSDT.dsl:35886:                If ((^^PCI0.LPC0.EC0.GZ35 == Zero))
+  DSDT.dsl:35887:                {
+  DSDT.dsl:35888:                    Local1 = DerefOf (LTT0 [ToInteger (Arg0)])
+  DSDT.dsl:35889:                }
+  DSDT.dsl:35890:                Else
+  DSDT.dsl:35891:                {
+  DSDT.dsl:35892:                    Local1 = DerefOf (LTT1 [ToInteger (Arg0)])
+  DSDT.dsl:35902:                Return (LT00) /* \_SB_.GZFD.LT00 */
+  DSDT.dsl:35903:            }
+  DSDT.dsl:35904:
+> DSDT.dsl:35905:            Method (GLT1, 1, Serialized)
+  DSDT.dsl:35906:            {
+  DSDT.dsl:35907:                Switch (ToInteger (Arg0))
+  DSDT.dsl:35908:                {
+  DSDT.dsl:35909:                    Case (Zero)
+  DSDT.dsl:35910:                    {
+> DSDT.dsl:35911:                        If ((^^PCI0.LPC0.EC0.GZ35 == Zero))
+  DSDT.dsl:35912:                        {
+  DSDT.dsl:35913:                            C007 = Zero
+> DSDT.dsl:35914:                            C008 = (^^PCI0.LPC0.EC0.KLEN + One)
+  DSDT.dsl:35915:                        }
+  DSDT.dsl:35916:                        Else
+  DSDT.dsl:35917:                        {
+  DSDT.dsl:35918:                        }
+  DSDT.dsl:35919:                    }
+  DSDT.dsl:35920:                    Case (0x04)
+  DSDT.dsl:35921:                    {
+> DSDT.dsl:35922:                        If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  DSDT.dsl:35923:                        {
+  DSDT.dsl:35924:                            C007 = One
+  DSDT.dsl:35925:                        }
+  DSDT.dsl:35926:
+> DSDT.dsl:35927:                        If ((^^PCI0.LPC0.EC0.GZ44 == One))
+  DSDT.dsl:35928:                        {
+  DSDT.dsl:35929:                            C007 = 0x02
+  DSDT.dsl:35930:                        }
+  DSDT.dsl:35931:
+> DSDT.dsl:35932:                        If ((^^PCI0.LPC0.EC0.GZ44 == 0x02))
+  DSDT.dsl:35933:                        {
+  DSDT.dsl:35934:                            C007 = Zero
+  DSDT.dsl:35935:                        }
+  DSDT.dsl:35936:
+> DSDT.dsl:35937:                        If ((^^PCI0.LPC0.EC0.GZ44 == 0x03))
+  DSDT.dsl:35938:                        {
+  DSDT.dsl:35939:                            C007 = 0x03
+  DSDT.dsl:35940:                        }
+  DSDT.dsl:35941:
+  DSDT.dsl:35942:                        C008 = Zero
+  DSDT.dsl:35943:                    }
+  DSDT.dsl:35950:                Return (LTM1) /* \_SB_.GZFD.LTM1 */
+  DSDT.dsl:35951:            }
+  DSDT.dsl:35952:
+> DSDT.dsl:35953:            Method (SLT2, 1, Serialized)
+  DSDT.dsl:35954:            {
+  DSDT.dsl:35955:                CreateByteField (Arg0, Zero, C009)
+  DSDT.dsl:35956:                CreateByteField (Arg0, One, C00A)
+  DSDT.dsl:35957:                CreateByteField (Arg0, 0x02, C00B)
+  DSDT.dsl:35958:                Switch (ToInteger (C009))
+  DSDT.dsl:35959:                {
+  DSDT.dsl:35960:                    Case (Zero)
+  DSDT.dsl:35961:                    {
+> DSDT.dsl:35962:                        If ((^^PCI0.LPC0.EC0.GZ35 == Zero))
+  DSDT.dsl:35963:                        {
+> DSDT.dsl:35964:                            ^^PCI0.LPC0.EC0.KLEN = (C00B - One)
+  DSDT.dsl:35965:                        }
+  DSDT.dsl:35966:                        Else
+  DSDT.dsl:35967:                        {
+  DSDT.dsl:35968:                        }
+  DSDT.dsl:35969:                    }
+  DSDT.dsl:35970:                    Case (0x04)
+  DSDT.dsl:37163:                    0x0F
+  DSDT.dsl:37164:                }
+  DSDT.dsl:37165:            })
+> DSDT.dsl:37166:            Name (WDG0, Buffer (0x02E4)
+  DSDT.dsl:37167:            {
+  DSDT.dsl:37168:                /* 0000 */  0x6D, 0x25, 0x90, 0x4C, 0xEA, 0x44, 0xA8, 0xD6,  // m%.L.D..
+  DSDT.dsl:37169:                /* 0008 */  0x76, 0x50, 0x63, 0xDF, 0x4F, 0xEB, 0x2C, 0xFF,  // vPc.O.,.
+  DSDT.dsl:37170:                /* 0010 */  0x41, 0x30, 0x02, 0x01, 0xC1, 0xC5, 0xF5, 0x3C,  // A0.....<
+  DSDT.dsl:37171:                /* 0018 */  0x6D, 0xFD, 0x3C, 0x4E, 0x91, 0xED, 0x59, 0xBA,  // m.<N..Y.
+  DSDT.dsl:37172:                /* 0020 */  0x1E, 0x9B, 0xBF, 0x36, 0x41, 0x31, 0x0D, 0x01,  // ...6A1..
+  DSDT.dsl:38033:                {
+  DSDT.dsl:38034:                    If ((PGID == Zero))
+  DSDT.dsl:38035:                    {
+> DSDT.dsl:38036:                        Return (WDG0) /* \_SB_.GZFD.WDG0 */
+  DSDT.dsl:38037:                    }
+  DSDT.dsl:38038:                    ElseIf ((PGID == One))
+  DSDT.dsl:38039:                    {
+  DSDT.dsl:38040:                        Return (WDG1) /* \_SB_.GZFD.WDG1 */
+  DSDT.dsl:38041:                    }
+  DSDT.dsl:38042:                    ElseIf ((PGID == 0x02))
+  DSDT.dsl:38194:
+  DSDT.dsl:38195:            Method (WMAA, 3, Serialized)
+  DSDT.dsl:38196:            {
+> DSDT.dsl:38197:                OperationRegion (SMIP, SystemIO, 0xB0, One)
+  DSDT.dsl:38198:                Field (SMIP, ByteAcc, NoLock, Preserve)
+  DSDT.dsl:38199:                {
+  DSDT.dsl:38200:                    IOB0,   8
+  DSDT.dsl:38201:                }
+  DSDT.dsl:38202:
+  DSDT.dsl:38203:                If ((GZRF == Zero))
+  DSDT.dsl:38213:
+  DSDT.dsl:38214:                    If (CSAD ())
+  DSDT.dsl:38215:                    {
+> DSDT.dsl:38216:                        ^^PCI0.LPC0.EC0.GZ44 = RXMS (0x76)
+> DSDT.dsl:38217:                        SSFM (Zero, ^^PCI0.LPC0.EC0.GZ44)
+  DSDT.dsl:38218:                    }
+  DSDT.dsl:38219:                    Else
+  DSDT.dsl:38220:                    {
+  DSDT.dsl:38221:                        Local2 = RXMS (0x76)
+  DSDT.dsl:38222:                        If ((Local2 == 0x02))
+  DSDT.dsl:38223:                        {
+  DSDT.dsl:38224:                            WXMS (0x77, 0x02)
+> DSDT.dsl:38225:                            ^^PCI0.LPC0.EC0.GZ44 = 0x02
+  DSDT.dsl:38226:                            SSFM (Zero, 0x02)
+  DSDT.dsl:38227:                        }
+  DSDT.dsl:38228:                        Else
+  DSDT.dsl:38229:                        {
+  DSDT.dsl:38230:                            WXMS (0x77, Zero)
+> DSDT.dsl:38231:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38232:                            SSFM (Zero, Zero)
+  DSDT.dsl:38233:                        }
+  DSDT.dsl:38234:                    }
+  DSDT.dsl:38235:
+  DSDT.dsl:38236:                    Notify (GZFD, 0xD7) // Hardware-Specific
+  DSDT.dsl:38237:                    Notify (GZFD, 0xD9) // Hardware-Specific
+  DSDT.dsl:38458:
+  DSDT.dsl:38459:                If ((Arg1 == 0x23))
+  DSDT.dsl:38460:                {
+> DSDT.dsl:38461:                    If (^^PCI0.LPC0.EC0.GZ35)
+  DSDT.dsl:38462:                    {
+  DSDT.dsl:38463:                        Return (Zero)
+  DSDT.dsl:38464:                    }
+  DSDT.dsl:38465:                    Else
+  DSDT.dsl:38466:                    {
+  DSDT.dsl:38467:                        Return (0xF0)
+  DSDT.dsl:38574:                    {
+  DSDT.dsl:38575:                        If ((ToInteger (Arg2) == One))
+  DSDT.dsl:38576:                        {
+> DSDT.dsl:38577:                            ^^PCI0.LPC0.EC0.GZ44 = 0x02
+  DSDT.dsl:38578:                            WXMS (0x76, 0x02)
+  DSDT.dsl:38579:                            SSFM (Zero, 0x02)
+  DSDT.dsl:38580:                            Debug = "AC_Quiet"
+  DSDT.dsl:38581:                        }
+  DSDT.dsl:38582:                        ElseIf ((ToInteger (Arg2) == 0x02))
+  DSDT.dsl:38583:                        {
+> DSDT.dsl:38584:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38585:                            WXMS (0x76, Zero)
+  DSDT.dsl:38586:                            SSFM (Zero, Zero)
+  DSDT.dsl:38587:                            Debug = "AC_Balance"
+  DSDT.dsl:38588:                        }
+  DSDT.dsl:38589:                        ElseIf ((ToInteger (Arg2) == 0x03))
+  DSDT.dsl:38590:                        {
+> DSDT.dsl:38591:                            ^^PCI0.LPC0.EC0.GZ44 = One
+  DSDT.dsl:38592:                            WXMS (0x76, One)
+  DSDT.dsl:38593:                            SSFM (Zero, One)
+  DSDT.dsl:38594:                            Debug = "AC_Performance"
+  DSDT.dsl:38595:                        }
+  DSDT.dsl:38596:                        ElseIf ((ToInteger (Arg2) == 0xFF))
+  DSDT.dsl:38597:                        {
+> DSDT.dsl:38598:                            If (((^^PCI0.LPC0.EC0.GZ44 != 0x03) && (^^PCI0.LPC0.EC0.GZ44 != 0x07)))
+  DSDT.dsl:38599:                            {
+> DSDT.dsl:38600:                                WXMS (0x7A, ^^PCI0.LPC0.EC0.GZ44)
+  DSDT.dsl:38601:                            }
+  DSDT.dsl:38602:
+> DSDT.dsl:38603:                            ^^PCI0.LPC0.EC0.GZ44 = 0x03
+  DSDT.dsl:38604:                            WXMS (0x76, 0x03)
+  DSDT.dsl:38605:                            SSFM (Zero, 0x03)
+  DSDT.dsl:38606:                            If (((RXMS (0x7B) == One) || (RXMS (0x7B) == 0x02)))
+  DSDT.dsl:38607:                            {
+  DSDT.dsl:38608:                                WXMS (0x7B, One)
+  DSDT.dsl:38609:                            }
+  DSDT.dsl:38617:                        }
+  DSDT.dsl:38618:                        ElseIf ((ToInteger (Arg2) == 0xE0))
+  DSDT.dsl:38619:                        {
+> DSDT.dsl:38620:                            If (((^^PCI0.LPC0.EC0.GZ44 != 0x03) && (^^PCI0.LPC0.EC0.GZ44 != 0x07)))
+  DSDT.dsl:38621:                            {
+> DSDT.dsl:38622:                                WXMS (0x7A, ^^PCI0.LPC0.EC0.GZ44)
+  DSDT.dsl:38623:                            }
+  DSDT.dsl:38624:
+> DSDT.dsl:38625:                            ^^PCI0.LPC0.EC0.GZ44 = 0x07
+  DSDT.dsl:38626:                            WXMS (0x76, 0x07)
+  DSDT.dsl:38627:                            SSFM (Zero, 0x07)
+  DSDT.dsl:38628:                            If (((RXMS (0x7B) == One) || (RXMS (0x7B) == 0x02)))
+  DSDT.dsl:38629:                            {
+  DSDT.dsl:38630:                                WXMS (0x7B, 0x02)
+  DSDT.dsl:38631:                            }
+  DSDT.dsl:38637:                    {
+  DSDT.dsl:38638:                        If ((ToInteger (Arg2) == One))
+  DSDT.dsl:38639:                        {
+> DSDT.dsl:38640:                            ^^PCI0.LPC0.EC0.GZ44 = 0x02
+  DSDT.dsl:38641:                            WXMS (0x76, 0x02)
+  DSDT.dsl:38642:                            WXMS (0x77, 0x02)
+  DSDT.dsl:38643:                            SSFM (Zero, 0x02)
+  DSDT.dsl:38644:                            Debug = "DC_Quiet"
+  DSDT.dsl:38645:                        }
+  DSDT.dsl:38646:                        ElseIf ((ToInteger (Arg2) == 0x02))
+  DSDT.dsl:38647:                        {
+> DSDT.dsl:38648:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38649:                            WXMS (0x76, Zero)
+  DSDT.dsl:38650:                            WXMS (0x77, Zero)
+  DSDT.dsl:38651:                            SSFM (Zero, Zero)
+  DSDT.dsl:38652:                            Debug = "DC_Balance"
+  DSDT.dsl:38653:                        }
+  DSDT.dsl:38654:                        ElseIf ((ToInteger (Arg2) == 0x03))
+  DSDT.dsl:38655:                        {
+> DSDT.dsl:38656:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38657:                            WXMS (0x76, One)
+  DSDT.dsl:38658:                            WXMS (0x77, Zero)
+  DSDT.dsl:38659:                            SSFM (Zero, Zero)
+  DSDT.dsl:38660:                            Debug = "DC_Performance"
+  DSDT.dsl:38661:                        }
+  DSDT.dsl:38662:                        ElseIf ((ToInteger (Arg2) == 0xFF))
+  DSDT.dsl:38663:                        {
+> DSDT.dsl:38664:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38665:                            WXMS (0x76, 0x03)
+  DSDT.dsl:38666:                            WXMS (0x77, Zero)
+  DSDT.dsl:38667:                            SSFM (Zero, Zero)
+  DSDT.dsl:38668:                            If (((RXMS (0x7B) == One) || (RXMS (0x7B) == 0x02)))
+  DSDT.dsl:38669:                            {
+  DSDT.dsl:38670:                                WXMS (0x7B, One)
+  DSDT.dsl:38678:                        }
+  DSDT.dsl:38679:                        ElseIf ((ToInteger (Arg2) == 0xE0))
+  DSDT.dsl:38680:                        {
+> DSDT.dsl:38681:                            ^^PCI0.LPC0.EC0.GZ44 = Zero
+  DSDT.dsl:38682:                            WXMS (0x76, 0x07)
+  DSDT.dsl:38683:                            WXMS (0x77, Zero)
+  DSDT.dsl:38684:                            SSFM (Zero, Zero)
+  DSDT.dsl:38685:                            If (((RXMS (0x7B) == One) || (RXMS (0x7B) == 0x02)))
+  DSDT.dsl:38686:                            {
+  DSDT.dsl:38687:                                WXMS (0x7B, 0x02)
+  DSDT.dsl:38908:                If ((Arg1 == 0x37))
+  DSDT.dsl:38909:                {
+  DSDT.dsl:38910:                    Debug = "GetThermalMode"
+> DSDT.dsl:38911:                    If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  DSDT.dsl:38912:                    {
+  DSDT.dsl:38913:                        Debug = "Balance"
+  DSDT.dsl:38914:                        Local0 = 0x02
+  DSDT.dsl:38915:                    }
+> DSDT.dsl:38916:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == One))
+  DSDT.dsl:38917:                    {
+  DSDT.dsl:38918:                        Debug = "Performance"
+  DSDT.dsl:38919:                        Local0 = 0x03
+  DSDT.dsl:38920:                    }
+> DSDT.dsl:38921:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x02))
+  DSDT.dsl:38922:                    {
+  DSDT.dsl:38923:                        Debug = "Quiet"
+  DSDT.dsl:38924:                        Local0 = One
+  DSDT.dsl:38925:                    }
+> DSDT.dsl:38926:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x03))
+  DSDT.dsl:38927:                    {
+  DSDT.dsl:38928:                        Debug = "Custom"
+  DSDT.dsl:38929:                        Local0 = 0xFF
+  DSDT.dsl:38930:                    }
+> DSDT.dsl:38931:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x07))
+  DSDT.dsl:38932:                    {
+  DSDT.dsl:38933:                        Debug = "Extreme"
+  DSDT.dsl:38934:                        Local0 = 0xE0
+  DSDT.dsl:38935:                    }
+  DSDT.dsl:38936:
+  DSDT.dsl:38937:                    Return (Local0)
+  DSDT.dsl:38954:                        ^^PCI0.LPC0.EC0.WLIS = One
+  DSDT.dsl:38955:                    }
+  DSDT.dsl:38956:
+> DSDT.dsl:38957:                    If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  DSDT.dsl:38958:                    {
+  DSDT.dsl:38959:                        If ((((^^PCI0.LPC0.EC0.ADPT == One) && ((^^PCI0.LPC0.EC0.ADPS == 0x02) || (^^PCI0.LPC0.EC0.ADPS == 
+  DSDT.dsl:38960:                            Zero))) && (^^PCI0.LPC0.EC0.TCAD != One)))
+  DSDT.dsl:38961:                        {
+  DSDT.dsl:38962:                            SSFM (Zero, Zero)
+  DSDT.dsl:38963:                            SSFM (One, Zero)
+  DSDT.dsl:39234:
+  DSDT.dsl:39235:                If ((Arg1 == 0x06))
+  DSDT.dsl:39236:                {
+> DSDT.dsl:39237:                    If ((^^PCI0.LPC0.EC0.GZ44 != 0x07))
+  DSDT.dsl:39238:                    {
+  DSDT.dsl:39239:                        SFAN (Arg2)
+  DSDT.dsl:39240:                    }
+  DSDT.dsl:39241:
+  DSDT.dsl:39242:                    Return (Zero)
+  DSDT.dsl:39243:                }
+  DSDT.dsl:40366:
+  DSDT.dsl:40367:                    If ((DEV1 == One))
+  DSDT.dsl:40368:                    {
+> DSDT.dsl:40369:                        If ((ToInteger (^^PCI0.LPC0.EC0.GZ44) == 0x03))
+  DSDT.dsl:40370:                        {
+  DSDT.dsl:40371:                            If ((FEA1 == One))
+  DSDT.dsl:40372:                            {
+  DSDT.dsl:40373:                                DPC0 = 0x07
+  DSDT.dsl:40374:                                SSZE = 0x07
+  DSDT.dsl:40375:                                Local0 = ToInteger (DAT1)
+  DSDT.dsl:40904:                }
+  DSDT.dsl:40905:            }
+  DSDT.dsl:40906:
+> DSDT.dsl:40907:            Method (WMAF, 3, NotSerialized)
+  DSDT.dsl:40908:            {
+  DSDT.dsl:40909:                If ((Arg1 == One))
+  DSDT.dsl:40910:                {
+> DSDT.dsl:40911:                    Debug = "Call WMAF- MethodId 1 - Get_Lighting_Current_Status"
+> DSDT.dsl:40912:                    Return (GLT1 (Arg2))
+  DSDT.dsl:40913:                }
+  DSDT.dsl:40914:
+  DSDT.dsl:40915:                If ((Arg1 == 0x02))
+  DSDT.dsl:40916:                {
+> DSDT.dsl:40917:                    Debug = "Call WMAF- MethodId 2 - Set_Lighting_Current_Status"
+> DSDT.dsl:40918:                    SLT2 (Arg2)
+  DSDT.dsl:40919:                    Return (Zero)
+  DSDT.dsl:40920:                }
+  DSDT.dsl:40921:            }
+  DSDT.dsl:40922:
+  DSDT.dsl:40923:            Method (_WED, 1, NotSerialized)  // _Wxx: Wake Event, xx=0x00-0xFF
+  DSDT.dsl:40924:            {
+  DSDT.dsl:40962:
+  DSDT.dsl:40963:                If ((Arg0 == 0xD5))
+  DSDT.dsl:40964:                {
+> DSDT.dsl:40965:                    If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  DSDT.dsl:40966:                    {
+  DSDT.dsl:40967:                        Local0 = 0x02
+  DSDT.dsl:40968:                    }
+> DSDT.dsl:40969:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == One))
+  DSDT.dsl:40970:                    {
+  DSDT.dsl:40971:                        Local0 = 0x03
+  DSDT.dsl:40972:                    }
+> DSDT.dsl:40973:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x02))
+  DSDT.dsl:40974:                    {
+  DSDT.dsl:40975:                        Local0 = One
+  DSDT.dsl:40976:                    }
+> DSDT.dsl:40977:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x03))
+  DSDT.dsl:40978:                    {
+  DSDT.dsl:40979:                        Local0 = 0xFF
+  DSDT.dsl:40980:                    }
+> DSDT.dsl:40981:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x07))
+  DSDT.dsl:40982:                    {
+  DSDT.dsl:40983:                        Local0 = 0xE0
+  DSDT.dsl:40984:                    }
+  DSDT.dsl:40985:
+  DSDT.dsl:40986:                    Return (Local0)
+  DSDT.dsl:40987:                }
+  DSDT.dsl:41040:
+  DSDT.dsl:41041:                If ((Arg0 == 0xD9))
+  DSDT.dsl:41042:                {
+> DSDT.dsl:41043:                    If ((^^PCI0.LPC0.EC0.GZ44 == Zero))
+  DSDT.dsl:41044:                    {
+  DSDT.dsl:41045:                        Local0 = 0x02
+  DSDT.dsl:41046:                    }
+> DSDT.dsl:41047:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == One))
+  DSDT.dsl:41048:                    {
+  DSDT.dsl:41049:                        Local0 = 0x03
+  DSDT.dsl:41050:                    }
+> DSDT.dsl:41051:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x02))
+  DSDT.dsl:41052:                    {
+  DSDT.dsl:41053:                        Local0 = One
+  DSDT.dsl:41054:                    }
+> DSDT.dsl:41055:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x03))
+  DSDT.dsl:41056:                    {
+  DSDT.dsl:41057:                        Local0 = 0xFF
+  DSDT.dsl:41058:                    }
+> DSDT.dsl:41059:                    ElseIf ((^^PCI0.LPC0.EC0.GZ44 == 0x07))
+  DSDT.dsl:41060:                    {
+  DSDT.dsl:41061:                        Local0 = 0xE0
+  DSDT.dsl:41062:                    }
+  DSDT.dsl:41063:
+  DSDT.dsl:41064:                    Return (Local0)
+  DSDT.dsl:41065:                }
+  ssdt.dsl:401:        {
+  ssdt.dsl:402:            M460 ("FEA-ASL-MSG0-Start\n", Zero, Zero, Zero, Zero, Zero, Zero)
+  ssdt.dsl:403:            M000 (0x5511)
+> ssdt.dsl:404:            OperationRegion (VARM, SystemIO, 0x80, 0x04)
+  ssdt.dsl:405:            Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt.dsl:406:            {
+  ssdt.dsl:407:                VARR,   32
+  ssdt.dsl:408:            }
+  ssdt.dsl:409:
+  ssdt.dsl:410:            If ((Arg2 != 0x09))
+  ssdt10.dsl:23:    Scope (\_SB)
+  ssdt10.dsl:24:    {
+  ssdt10.dsl:25:        Name (MDSZ, 0x01E0)
+> ssdt10.dsl:26:        OperationRegion (PDSP, SystemIO, 0xB0, One)
+  ssdt10.dsl:27:        Field (PDSP, ByteAcc, NoLock, Preserve)
+  ssdt10.dsl:28:        {
+  ssdt10.dsl:29:            IOB2,   8
+  ssdt10.dsl:30:        }
+  ssdt10.dsl:31:
+> ssdt10.dsl:32:        OperationRegion (GPCD, SystemMemory, 0x7AA0E000, 0x0200)
+  ssdt10.dsl:33:        Field (GPCD, AnyAcc, NoLock, Preserve)
+  ssdt10.dsl:34:        {
+  ssdt10.dsl:35:            DTSZ,   32, 
+  ssdt10.dsl:36:            TKNO,   32, 
+  ssdt10.dsl:37:            PTYP,   8, 
+  ssdt10.dsl:38:            I_PS,   8, 
+  ssdt12.dsl:22:{
+  ssdt12.dsl:23:    Scope (\_SB)
+  ssdt12.dsl:24:    {
+> ssdt12.dsl:25:        OperationRegion (TP80, SystemIO, 0x80, 0x04)
+  ssdt12.dsl:26:        Field (TP80, DWordAcc, NoLock, Preserve)
+  ssdt12.dsl:27:        {
+  ssdt12.dsl:28:            PMTP,   32
+  ssdt12.dsl:29:        }
+  ssdt12.dsl:30:
+  ssdt12.dsl:31:        Name (DPX4, 0xA9F40000)
+  ssdt13.dsl:213:                    {
+  ssdt13.dsl:214:                        Acquire (Z009, 0xFFFF)
+  ssdt13.dsl:215:                        Local0 = Arg0
+> ssdt13.dsl:216:                        OperationRegion (VARM, EmbeddedControl, Local0, One)
+  ssdt13.dsl:217:                        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt13.dsl:218:                        {
+  ssdt13.dsl:219:                            VARR,   8
+  ssdt13.dsl:220:                        }
+  ssdt13.dsl:221:
+  ssdt13.dsl:222:                        Local1 = VARR /* \_SB_.PCI0.LPC0.EC0_.M040.VARR */
+  ssdt13.dsl:238:                    {
+  ssdt13.dsl:239:                        Acquire (Z009, 0xFFFF)
+  ssdt13.dsl:240:                        Local0 = Arg0
+> ssdt13.dsl:241:                        OperationRegion (VARM, EmbeddedControl, Local0, One)
+  ssdt13.dsl:242:                        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt13.dsl:243:                        {
+  ssdt13.dsl:244:                            VARR,   8
+  ssdt13.dsl:245:                        }
+  ssdt13.dsl:246:
+  ssdt13.dsl:247:                        Local1 = Arg1
+  ssdt13.dsl:255:        Method (M31A, 1, Serialized)
+  ssdt13.dsl:256:        {
+  ssdt13.dsl:257:            Local0 = Arg0
+> ssdt13.dsl:258:            OperationRegion (VARI, SystemIO, Local0, One)
+  ssdt13.dsl:259:            Field (VARI, ByteAcc, NoLock, Preserve)
+  ssdt13.dsl:260:            {
+  ssdt13.dsl:261:                VARO,   8
+  ssdt13.dsl:262:            }
+  ssdt13.dsl:263:
+  ssdt13.dsl:264:            Local1 = VARO /* \_SB_.PCI0.LPC0.EC0_.M31A.VARO */
+  ssdt13.dsl:268:        Method (M319, 2, Serialized)
+  ssdt13.dsl:269:        {
+  ssdt13.dsl:270:            Local0 = Arg0
+> ssdt13.dsl:271:            OperationRegion (VARI, SystemIO, Local0, One)
+  ssdt13.dsl:272:            Field (VARI, ByteAcc, NoLock, Preserve)
+  ssdt13.dsl:273:            {
+  ssdt13.dsl:274:                VARO,   8
+  ssdt13.dsl:275:            }
+  ssdt13.dsl:276:
+  ssdt13.dsl:277:            Local1 = Arg1
+  ssdt14.dsl:163:
+  ssdt14.dsl:164:    Scope (\_SB.PCI0.GPP6.WLAN)
+  ssdt14.dsl:165:    {
+> ssdt14.dsl:166:        OperationRegion (PCIS, PCI_Config, Zero, 0x0100)
+  ssdt14.dsl:167:        Field (PCIS, AnyAcc, NoLock, Preserve)
+  ssdt14.dsl:168:        {
+  ssdt14.dsl:169:            PRXX,   2048
+  ssdt14.dsl:170:        }
+  ssdt14.dsl:171:
+  ssdt14.dsl:172:        Name (RBUF, Buffer (0x0100){})
+  ssdt14.dsl:230:                If ((Local1 == Zero)){}
+  ssdt14.dsl:231:                Else
+  ssdt14.dsl:232:                {
+> ssdt14.dsl:233:                    OperationRegion (FLDR, PCI_Config, Local1, 0x06)
+  ssdt14.dsl:234:                    Field (FLDR, ByteAcc, NoLock, Preserve)
+  ssdt14.dsl:235:                    {
+  ssdt14.dsl:236:                        DCAP,   32, 
+  ssdt14.dsl:237:                        DCTR,   16
+  ssdt14.dsl:238:                    }
+  ssdt14.dsl:239:
+  ssdt16.dsl:693:            M271 = M049 (M133, 0x01DF)
+  ssdt16.dsl:694:            Local0 = ((M084 + 0x1502) + ((M266 & 0xFF) * 0x04
+  ssdt16.dsl:695:                ))
+> ssdt16.dsl:696:            OperationRegion (VAMM, SystemMemory, Local0, One)
+  ssdt16.dsl:697:            Field (VAMM, ByteAcc, NoLock, Preserve)
+  ssdt16.dsl:698:            {
+  ssdt16.dsl:699:                P011,   8
+  ssdt16.dsl:700:            }
+  ssdt16.dsl:701:
+  ssdt16.dsl:702:            Local0 = ((M084 + 0x1502) + ((M267 & 0xFF) * 0x04
+  ssdt16.dsl:703:                ))
+> ssdt16.dsl:704:            OperationRegion (VANN, SystemMemory, Local0, One)
+  ssdt16.dsl:705:            Field (VANN, ByteAcc, NoLock, Preserve)
+  ssdt16.dsl:706:            {
+  ssdt16.dsl:707:                P141,   8
+  ssdt16.dsl:708:            }
+  ssdt16.dsl:709:
+  ssdt16.dsl:710:            If ((M274 == One))
+  ssdt17.dsl:147:    External (MOEM, MethodObj)    // 3 Arguments
+  ssdt17.dsl:148:    External (NFPC, MethodObj)    // 0 Arguments
+  ssdt17.dsl:149:
+> ssdt17.dsl:150:    OperationRegion (CPNV, SystemMemory, 0x7AF17018, 0x00010107)
+  ssdt17.dsl:151:    Field (CPNV, AnyAcc, Lock, Preserve)
+  ssdt17.dsl:152:    {
+  ssdt17.dsl:153:        M082,   32, 
+  ssdt17.dsl:154:        M083,   32, 
+  ssdt17.dsl:155:        M084,   32, 
+  ssdt17.dsl:156:        M085,   8, 
+  ssdt17.dsl:269:            Local1 = ToInteger (M288)
+  ssdt17.dsl:270:            If ((ToInteger (M287) == 0x03))
+  ssdt17.dsl:271:            {
+> ssdt17.dsl:272:                OperationRegion (VARM, SystemIO, Local1, 0x04)
+  ssdt17.dsl:273:                Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:274:                {
+  ssdt17.dsl:275:                    VARR,   32
+  ssdt17.dsl:276:                }
+  ssdt17.dsl:277:
+  ssdt17.dsl:278:                VARR = Local0
+  ssdt17.dsl:279:            }
+  ssdt17.dsl:280:            ElseIf ((ToInteger (M287) == 0x02))
+  ssdt17.dsl:281:            {
+> ssdt17.dsl:282:                OperationRegion (VARN, SystemIO, Local1, 0x02)
+  ssdt17.dsl:283:                Field (VARN, WordAcc, NoLock, Preserve)
+  ssdt17.dsl:284:                {
+  ssdt17.dsl:285:                    VARS,   16
+  ssdt17.dsl:286:                }
+  ssdt17.dsl:287:
+  ssdt17.dsl:288:                VARS = (Local0 & 0xFFFF)
+  ssdt17.dsl:289:            }
+  ssdt17.dsl:290:            ElseIf ((ToInteger (M287) == One))
+  ssdt17.dsl:291:            {
+> ssdt17.dsl:292:                OperationRegion (VARO, SystemIO, Local1, One)
+  ssdt17.dsl:293:                Field (VARO, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:294:                {
+  ssdt17.dsl:295:                    VART,   8
+  ssdt17.dsl:296:                }
+  ssdt17.dsl:297:
+  ssdt17.dsl:298:                VART = (Local0 & 0xFF)
+  ssdt17.dsl:305:            M250 (Zero, Zero, Zero, Local2, Local0)
+  ssdt17.dsl:306:        }
+  ssdt17.dsl:307:
+> ssdt17.dsl:308:        OperationRegion (VARP, SystemMemory, 0xFED80808, 0x04)
+  ssdt17.dsl:309:        Field (VARP, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:310:        {
+  ssdt17.dsl:311:            VARU,   32
+  ssdt17.dsl:312:        }
+  ssdt17.dsl:313:
+  ssdt17.dsl:314:        Local1 = VARU /* \M000.VARU */
+  ssdt17.dsl:386:
+  ssdt17.dsl:387:    Method (M004, 1, Serialized)
+  ssdt17.dsl:388:    {
+> ssdt17.dsl:389:        OperationRegion (VARM, SystemIO, 0x0CD8, 0x08)
+  ssdt17.dsl:390:        Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:391:        {
+  ssdt17.dsl:392:            VAR1,   32
+  ssdt17.dsl:393:        }
+  ssdt17.dsl:394:
+  ssdt17.dsl:395:        BankField (VARM, VAR1, Arg0
+  ssdt17.dsl:405:
+  ssdt17.dsl:406:    Method (M005, 2, Serialized)
+  ssdt17.dsl:407:    {
+> ssdt17.dsl:408:        OperationRegion (VARM, SystemIO, 0x0CD8, 0x08)
+  ssdt17.dsl:409:        Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:410:        {
+  ssdt17.dsl:411:            VAR1,   32
+  ssdt17.dsl:412:        }
+  ssdt17.dsl:413:
+  ssdt17.dsl:414:        BankField (VARM, VAR1, Arg0
+  ssdt17.dsl:1096:        M460 ("  KER-ASL-CpmTriggerSmi (0x%X, 0x%X, %d)\n", Arg0, Arg1, Arg2, Zero, Zero, Zero)
+  ssdt17.dsl:1097:        Acquire (M230, 0xFFFF)
+  ssdt17.dsl:1098:        Local0 = Arg0
+> ssdt17.dsl:1099:        OperationRegion (VARM, SystemIO, M231, 0x02)
+  ssdt17.dsl:1100:        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:1101:        {
+  ssdt17.dsl:1102:            VAR1,   8, 
+  ssdt17.dsl:1103:            VAR2,   8
+  ssdt17.dsl:1104:        }
+  ssdt17.dsl:1105:
+  ssdt17.dsl:1161:        ToInteger (M453, Local0)
+  ssdt17.dsl:1162:        If ((Local0 > 0xFFFF))
+  ssdt17.dsl:1163:        {
+> ssdt17.dsl:1164:            OperationRegion (VARM, SystemMemory, Local0, 0x20)
+  ssdt17.dsl:1165:            Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:1166:            {
+  ssdt17.dsl:1167:                THRM,   8, 
+  ssdt17.dsl:1168:                Offset (0x14), 
+  ssdt17.dsl:1169:                LSRM,   8, 
+  ssdt17.dsl:1170:                Offset (0x18), 
+  ssdt17.dsl:1195:        ElseIf ((Local0 > Zero))
+  ssdt17.dsl:1196:        {
+  ssdt17.dsl:1197:            CreateWordField (M285, 0x02, M288)
+> ssdt17.dsl:1198:            OperationRegion (VARN, SystemIO, Local0, 0x08)
+  ssdt17.dsl:1199:            Field (VARN, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:1200:            {
+  ssdt17.dsl:1201:                THRI,   8, 
+  ssdt17.dsl:1202:                Offset (0x05), 
+  ssdt17.dsl:1203:                LSRI,   8
+  ssdt17.dsl:1204:            }
+  ssdt17.dsl:1231:        }
+  ssdt17.dsl:1232:        ElseIf ((Local0 > 0xFFFF))
+  ssdt17.dsl:1233:        {
+> ssdt17.dsl:1234:            OperationRegion (VARM, SystemMemory, Local0, 0x20)
+  ssdt17.dsl:1235:            Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:1236:            {
+  ssdt17.dsl:1237:                DLLM,   8, 
+  ssdt17.dsl:1238:                Offset (0x04), 
+  ssdt17.dsl:1239:                DLHM,   8, 
+  ssdt17.dsl:1240:                Offset (0x08), 
+  ssdt17.dsl:1284:        }
+  ssdt17.dsl:1285:        ElseIf ((Local7 > 0xFFFF))
+  ssdt17.dsl:1286:        {
+> ssdt17.dsl:1287:            OperationRegion (VARM, SystemMemory, Local7, 0x20)
+  ssdt17.dsl:1288:            Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:1289:            {
+  ssdt17.dsl:1290:                DLLM,   8, 
+  ssdt17.dsl:1291:                Offset (0x04), 
+  ssdt17.dsl:1292:                DLHM,   8, 
+  ssdt17.dsl:1293:                Offset (0x08), 
+  ssdt17.dsl:1312:        }
+  ssdt17.dsl:1313:        ElseIf ((ToInteger (M288) == Local7))
+  ssdt17.dsl:1314:        {
+> ssdt17.dsl:1315:            OperationRegion (VARS, SystemIO, Local7, 0x04)
+  ssdt17.dsl:1316:            Field (VARS, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:1317:            {
+  ssdt17.dsl:1318:                VART,   32
+  ssdt17.dsl:1319:            }
+  ssdt17.dsl:1320:
+  ssdt17.dsl:1321:            VART = 0x5F535452
+  ssdt17.dsl:1396:
+  ssdt17.dsl:1397:        If ((ToInteger (M288) == Local7))
+  ssdt17.dsl:1398:        {
+> ssdt17.dsl:1399:            OperationRegion (VARU, SystemIO, Local7, 0x04)
+  ssdt17.dsl:1400:            Field (VARU, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:1401:            {
+  ssdt17.dsl:1402:                VARV,   32
+  ssdt17.dsl:1403:            }
+  ssdt17.dsl:1404:
+  ssdt17.dsl:1405:            VARV = 0x5F454E44
+  ssdt17.dsl:1819:        Local0 += (Arg1 << 0x0F)
+  ssdt17.dsl:1820:        Local0 += (Arg2 << 0x0C)
+  ssdt17.dsl:1821:        Local0 += 0xE0
+> ssdt17.dsl:1822:        OperationRegion (VARM, SystemMemory, Local0, 0x08)
+  ssdt17.dsl:1823:        Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:1824:        {
+  ssdt17.dsl:1825:            VAR1,   32
+  ssdt17.dsl:1826:        }
+  ssdt17.dsl:1827:
+  ssdt17.dsl:1828:        BankField (VARM, VAR1, Arg3
+  ssdt17.dsl:1844:        Local0 += (Arg1 << 0x0F)
+  ssdt17.dsl:1845:        Local0 += (Arg2 << 0x0C)
+  ssdt17.dsl:1846:        Local0 += 0xE0
+> ssdt17.dsl:1847:        OperationRegion (VARM, SystemMemory, Local0, 0x08)
+  ssdt17.dsl:1848:        Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:1849:        {
+  ssdt17.dsl:1850:            VAR1,   32
+  ssdt17.dsl:1851:        }
+  ssdt17.dsl:1852:
+  ssdt17.dsl:1853:        BankField (VARM, VAR1, Arg3
+  ssdt17.dsl:2470:        Local0 = (M083 + (Local0 << 0x14))
+  ssdt17.dsl:2471:        Local0 += 0xE0
+  ssdt17.dsl:2472:        Acquire (M421, 0xFFFF)
+> ssdt17.dsl:2473:        OperationRegion (VARM, SystemMemory, Local0, 0x08)
+  ssdt17.dsl:2474:        Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:2475:        {
+  ssdt17.dsl:2476:            VAR1,   32
+  ssdt17.dsl:2477:        }
+  ssdt17.dsl:2478:
+  ssdt17.dsl:2479:        BankField (VARM, VAR1, Arg3
+  ssdt17.dsl:2500:            Local0 = (M083 + (Local0 << 0x14))
+  ssdt17.dsl:2501:            Local0 += 0xE0
+  ssdt17.dsl:2502:            Acquire (M421, 0xFFFF)
+> ssdt17.dsl:2503:            OperationRegion (VARM, SystemMemory, Local0, 0x08)
+  ssdt17.dsl:2504:            Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:2505:            {
+  ssdt17.dsl:2506:                VAR1,   32
+  ssdt17.dsl:2507:            }
+  ssdt17.dsl:2508:
+  ssdt17.dsl:2509:            BankField (VARM, VAR1, Arg3
+  ssdt17.dsl:2548:            Acquire (M253, 0xFFFF)
+  ssdt17.dsl:2549:        }
+  ssdt17.dsl:2550:
+> ssdt17.dsl:2551:        OperationRegion (VARM, SystemMemory, Local0, 0x08)
+  ssdt17.dsl:2552:        Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:2553:        {
+  ssdt17.dsl:2554:            VAR1,   32
+  ssdt17.dsl:2555:        }
+  ssdt17.dsl:2556:
+  ssdt17.dsl:2557:        BankField (VARM, VAR1, Arg3
+  ssdt17.dsl:2602:                Acquire (M253, 0xFFFF)
+  ssdt17.dsl:2603:            }
+  ssdt17.dsl:2604:
+> ssdt17.dsl:2605:            OperationRegion (VARM, SystemMemory, Local0, 0x08)
+  ssdt17.dsl:2606:            Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:2607:            {
+  ssdt17.dsl:2608:                VAR1,   32
+  ssdt17.dsl:2609:            }
+  ssdt17.dsl:2610:
+  ssdt17.dsl:2611:            BankField (VARM, VAR1, Arg3
+  ssdt17.dsl:2632:    Method (M013, 4, Serialized)
+  ssdt17.dsl:2633:    {
+  ssdt17.dsl:2634:        Local0 = (Arg0 + Arg1)
+> ssdt17.dsl:2635:        OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt17.dsl:2636:        Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:2637:        {
+  ssdt17.dsl:2638:            VARR,   32
+  ssdt17.dsl:2639:        }
+  ssdt17.dsl:2640:
+  ssdt17.dsl:2641:        Local1 = VARR /* \M013.VARR */
+  ssdt17.dsl:2651:    {
+  ssdt17.dsl:2652:        M460 ("  KER-ASL-CpmWriteMem32 (0x%X, 0x%X, %d, %d, 0x%X)\n", Arg0, Arg1, Arg2, Arg3, Arg4, Zero)
+  ssdt17.dsl:2653:        Local0 = (Arg0 + Arg1)
+> ssdt17.dsl:2654:        OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt17.dsl:2655:        Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:2656:        {
+  ssdt17.dsl:2657:            VARR,   32
+  ssdt17.dsl:2658:        }
+  ssdt17.dsl:2659:
+  ssdt17.dsl:2660:        Local1 = VARR /* \M014.VARR */
+  ssdt17.dsl:2672:    Method (M011, 4, Serialized)
+  ssdt17.dsl:2673:    {
+  ssdt17.dsl:2674:        Local0 = (Arg0 + Arg1)
+> ssdt17.dsl:2675:        OperationRegion (VARM, SystemMemory, Local0, One)
+  ssdt17.dsl:2676:        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:2677:        {
+  ssdt17.dsl:2678:            VARR,   8
+  ssdt17.dsl:2679:        }
+  ssdt17.dsl:2680:
+  ssdt17.dsl:2681:        Local1 = VARR /* \M011.VARR */
+  ssdt17.dsl:2689:    {
+  ssdt17.dsl:2690:        M460 ("  KER-ASL-CpmWriteMem8 (0x%X, 0x%X, %d, %d, 0x%X)\n", Arg0, Arg1, Arg2, Arg3, Arg4, Zero)
+  ssdt17.dsl:2691:        Local0 = (Arg0 + Arg1)
+> ssdt17.dsl:2692:        OperationRegion (VARM, SystemMemory, Local0, One)
+  ssdt17.dsl:2693:        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:2694:        {
+  ssdt17.dsl:2695:            VARR,   8
+  ssdt17.dsl:2696:        }
+  ssdt17.dsl:2697:
+  ssdt17.dsl:2698:        Local1 = VARR /* \M012.VARR */
+  ssdt17.dsl:2743:        If ((Arg0 != Zero))
+  ssdt17.dsl:2744:        {
+  ssdt17.dsl:2745:            Local0 = (Arg0 + Arg1)
+> ssdt17.dsl:2746:            OperationRegion (VARM, SystemMemory, Local0, One)
+  ssdt17.dsl:2747:            Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:2748:            {
+  ssdt17.dsl:2749:                VARR,   8
+  ssdt17.dsl:2750:            }
+  ssdt17.dsl:2751:
+  ssdt17.dsl:2752:            Local0 = VARR /* \M049.VARR */
+  ssdt17.dsl:2761:        If ((Arg0 != Zero))
+  ssdt17.dsl:2762:        {
+  ssdt17.dsl:2763:            Local0 = (Arg0 + Arg1)
+> ssdt17.dsl:2764:            OperationRegion (VARM, SystemMemory, Local0, 0x02)
+  ssdt17.dsl:2765:            Field (VARM, WordAcc, NoLock, Preserve)
+  ssdt17.dsl:2766:            {
+  ssdt17.dsl:2767:                VARR,   16
+  ssdt17.dsl:2768:            }
+  ssdt17.dsl:2769:
+  ssdt17.dsl:2770:            Local0 = VARR /* \M04A.VARR */
+  ssdt17.dsl:2779:        If ((Arg0 != Zero))
+  ssdt17.dsl:2780:        {
+  ssdt17.dsl:2781:            Local0 = (Arg0 + Arg1)
+> ssdt17.dsl:2782:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt17.dsl:2783:            Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:2784:            {
+  ssdt17.dsl:2785:                VARR,   32
+  ssdt17.dsl:2786:            }
+  ssdt17.dsl:2787:
+  ssdt17.dsl:2788:            Local0 = VARR /* \M04B.VARR */
+  ssdt17.dsl:2796:        If ((Arg0 != Zero))
+  ssdt17.dsl:2797:        {
+  ssdt17.dsl:2798:            Local0 = (Arg0 + Arg1)
+> ssdt17.dsl:2799:            OperationRegion (VARM, SystemMemory, Local0, One)
+  ssdt17.dsl:2800:            Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:2801:            {
+  ssdt17.dsl:2802:                VARR,   8
+  ssdt17.dsl:2803:            }
+  ssdt17.dsl:2804:
+  ssdt17.dsl:2805:            VARR = Arg2
+  ssdt17.dsl:2811:        If ((Arg0 != Zero))
+  ssdt17.dsl:2812:        {
+  ssdt17.dsl:2813:            Local0 = (Arg0 + Arg1)
+> ssdt17.dsl:2814:            OperationRegion (VARM, SystemMemory, Local0, 0x02)
+  ssdt17.dsl:2815:            Field (VARM, WordAcc, NoLock, Preserve)
+  ssdt17.dsl:2816:            {
+  ssdt17.dsl:2817:                VARR,   16
+  ssdt17.dsl:2818:            }
+  ssdt17.dsl:2819:
+  ssdt17.dsl:2820:            VARR = Arg2
+  ssdt17.dsl:2826:        If ((Arg0 != Zero))
+  ssdt17.dsl:2827:        {
+  ssdt17.dsl:2828:            Local0 = (Arg0 + Arg1)
+> ssdt17.dsl:2829:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt17.dsl:2830:            Field (VARM, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:2831:            {
+  ssdt17.dsl:2832:                VARR,   32
+  ssdt17.dsl:2833:            }
+  ssdt17.dsl:2834:
+  ssdt17.dsl:2835:            VARR = Arg2
+  ssdt17.dsl:3221:            Return (Zero)
+  ssdt17.dsl:3222:        }
+  ssdt17.dsl:3223:
+> ssdt17.dsl:3224:        OperationRegion (VARM, SystemIO, Arg0, 0x09)
+  ssdt17.dsl:3225:        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:3226:        {
+  ssdt17.dsl:3227:            Offset (0x08), 
+  ssdt17.dsl:3228:            SMB8,   8
+  ssdt17.dsl:3229:        }
+  ssdt17.dsl:3230:
+  ssdt17.dsl:3257:
+  ssdt17.dsl:3258:    Method (M478, 1, Serialized)
+  ssdt17.dsl:3259:    {
+> ssdt17.dsl:3260:        OperationRegion (VARM, SystemIO, Arg0, 0x09)
+  ssdt17.dsl:3261:        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:3262:        {
+  ssdt17.dsl:3263:            Offset (0x08), 
+  ssdt17.dsl:3264:            SMB8,   8
+  ssdt17.dsl:3265:        }
+  ssdt17.dsl:3266:
+  ssdt17.dsl:3269:
+  ssdt17.dsl:3270:    Method (M479, 2, Serialized)
+  ssdt17.dsl:3271:    {
+> ssdt17.dsl:3272:        OperationRegion (VARM, SystemIO, Arg0, 0x03)
+  ssdt17.dsl:3273:        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:3274:        {
+  ssdt17.dsl:3275:            SMB0,   8, 
+  ssdt17.dsl:3276:            SMB1,   8, 
+  ssdt17.dsl:3277:            SMB2,   8
+  ssdt17.dsl:3278:        }
+  ssdt17.dsl:3424:            Return (Local0)
+  ssdt17.dsl:3425:        }
+  ssdt17.dsl:3426:
+> ssdt17.dsl:3427:        OperationRegion (VARM, SystemIO, Local4, 0x09)
+  ssdt17.dsl:3428:        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:3429:        {
+  ssdt17.dsl:3430:            SMB0,   8, 
+  ssdt17.dsl:3431:            SMB1,   8, 
+  ssdt17.dsl:3432:            SMB2,   8, 
+  ssdt17.dsl:3433:            SMB3,   8, 
+  ssdt17.dsl:3673:    {
+  ssdt17.dsl:3674:        Acquire (M408, 0xFFFF)
+  ssdt17.dsl:3675:        Local0 = (M414 + (Arg0 << 0x05))
+> ssdt17.dsl:3676:        OperationRegion (VARM, SystemIO, Local0, 0x09)
+  ssdt17.dsl:3677:        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:3678:        {
+  ssdt17.dsl:3679:            SMB0,   8, 
+  ssdt17.dsl:3680:            SMB1,   8, 
+  ssdt17.dsl:3681:            SMB2,   8, 
+  ssdt17.dsl:3682:            SMB3,   8, 
+  ssdt17.dsl:3854:    {
+  ssdt17.dsl:3855:        Acquire (M408, 0xFFFF)
+  ssdt17.dsl:3856:        Local0 = (M414 + (Arg0 << 0x05))
+> ssdt17.dsl:3857:        OperationRegion (VARM, SystemIO, Local0, 0x09)
+  ssdt17.dsl:3858:        Field (VARM, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:3859:        {
+  ssdt17.dsl:3860:            SMB0,   8, 
+  ssdt17.dsl:3861:            SMB1,   8, 
+  ssdt17.dsl:3862:            SMB2,   8, 
+  ssdt17.dsl:3863:            SMB3,   8, 
+  ssdt17.dsl:4324:        })
+  ssdt17.dsl:4325:        Local0 = M4EA /* \M4EA */
+  ssdt17.dsl:4326:        Local1 = M4EB /* \M4EB */
+> ssdt17.dsl:4327:        OperationRegion (VAR0, SystemMemory, Local0, 0x02)
+  ssdt17.dsl:4328:        Field (VAR0, ByteAcc, NoLock, Preserve)
+  ssdt17.dsl:4329:        {
+  ssdt17.dsl:4330:            ADTD,   2, 
+  ssdt17.dsl:4331:            ADPS,   1, 
+  ssdt17.dsl:4332:            ADPD,   1, 
+  ssdt17.dsl:4333:            ADSO,   1, 
+  ssdt17.dsl:4337:            ADDS,   3
+  ssdt17.dsl:4338:        }
+  ssdt17.dsl:4339:
+> ssdt17.dsl:4340:        OperationRegion (VAR1, SystemMemory, Local1, 0x0100)
+  ssdt17.dsl:4341:        Field (VAR1, DWordAcc, NoLock, Preserve)
+  ssdt17.dsl:4342:        {
+  ssdt17.dsl:4343:            IC00,   32, 
+  ssdt17.dsl:4344:            IC04,   32, 
+  ssdt17.dsl:4345:            Offset (0x10), 
+  ssdt17.dsl:4346:            IC10,   32, 
+  ssdt18.dsl:1354:        Name (ASMI, 0x00B0)
+  ssdt18.dsl:1355:        Name (DSMI, 0x9D)
+  ssdt18.dsl:1356:        Name (AODV, 0x06)
+> ssdt18.dsl:1357:        OperationRegion (AODE, SystemMemory, 0x7AE64018, 0x24AC)
+  ssdt18.dsl:1358:        Field (AODE, AnyAcc, NoLock, Preserve)
+  ssdt18.dsl:1359:        {
+  ssdt18.dsl:1360:            OUTB,   1600, 
+  ssdt18.dsl:1361:            SCMI,   32, 
+  ssdt18.dsl:1362:            SCMD,   32, 
+  ssdt18.dsl:1363:            DSPD,   68128, 
+  ssdt18.dsl:1425:                Return (LODT) /* \AOD_.AM04.LODT */
+  ssdt18.dsl:1426:            }
+  ssdt18.dsl:1427:
+> ssdt18.dsl:1428:            OperationRegion (PSMI, SystemIO, ASMI, 0x02)
+  ssdt18.dsl:1429:            Field (PSMI, AnyAcc, NoLock, Preserve)
+  ssdt18.dsl:1430:            {
+  ssdt18.dsl:1431:                ASMO,   8
+  ssdt18.dsl:1432:            }
+  ssdt18.dsl:1433:
+  ssdt18.dsl:1434:            Mutex (SMLO, 0x00)
+  ssdt2.dsl:20: */
+  ssdt2.dsl:21:DefinitionBlock ("", "SSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
+  ssdt2.dsl:22:{
+> ssdt2.dsl:23:    OperationRegion (CMPW, SystemMemory, 0x72F2D198, 0x0200)
+  ssdt2.dsl:24:}
+  ssdt2.dsl:25:
+  ssdt24.dsl:264:        Method (RPRM, 2, NotSerialized)
+  ssdt24.dsl:265:        {
+  ssdt24.dsl:266:            Local0 = Arg0
+> ssdt24.dsl:267:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:268:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:269:            {
+  ssdt24.dsl:270:                VARR,   32
+  ssdt24.dsl:271:            }
+  ssdt24.dsl:272:
+  ssdt24.dsl:273:            Local1 = VARR /* \_SB_.PCI0.GP19.RPRM.VARR */
+  ssdt24.dsl:293:            Local0 = Arg0
+  ssdt24.dsl:294:            If ((Arg1 == One))
+  ssdt24.dsl:295:            {
+> ssdt24.dsl:296:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt24.dsl:297:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:298:                {
+  ssdt24.dsl:299:                    VARE,   8
+  ssdt24.dsl:300:                }
+  ssdt24.dsl:301:
+  ssdt24.dsl:302:                VARE = Arg2
+  ssdt24.dsl:303:            }
+  ssdt24.dsl:304:            ElseIf ((Arg1 == 0x02))
+  ssdt24.dsl:305:            {
+> ssdt24.dsl:306:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt24.dsl:307:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:308:                {
+  ssdt24.dsl:309:                    VARF,   16
+  ssdt24.dsl:310:                }
+  ssdt24.dsl:311:
+  ssdt24.dsl:312:                VARF = Arg2
+  ssdt24.dsl:313:            }
+  ssdt24.dsl:314:            ElseIf ((Arg1 == 0x03))
+  ssdt24.dsl:315:            {
+> ssdt24.dsl:316:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt24.dsl:317:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:318:                {
+  ssdt24.dsl:319:                    VARG,   24
+  ssdt24.dsl:320:                }
+  ssdt24.dsl:321:
+  ssdt24.dsl:322:                VARG = Arg2
+  ssdt24.dsl:323:            }
+  ssdt24.dsl:324:            Else
+  ssdt24.dsl:325:            {
+> ssdt24.dsl:326:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:327:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:328:                {
+  ssdt24.dsl:329:                    VARH,   32
+  ssdt24.dsl:330:                }
+  ssdt24.dsl:331:
+  ssdt24.dsl:332:                VARH = Arg2
+  ssdt24.dsl:629:        Method (RPRM, 2, NotSerialized)
+  ssdt24.dsl:630:        {
+  ssdt24.dsl:631:            Local0 = Arg0
+> ssdt24.dsl:632:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:633:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:634:            {
+  ssdt24.dsl:635:                VARR,   32
+  ssdt24.dsl:636:            }
+  ssdt24.dsl:637:
+  ssdt24.dsl:638:            Local1 = VARR /* \_SB_.PCI0.GP19.XHC2.RPRM.VARR */
+  ssdt24.dsl:658:            Local0 = Arg0
+  ssdt24.dsl:659:            If ((Arg1 == One))
+  ssdt24.dsl:660:            {
+> ssdt24.dsl:661:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt24.dsl:662:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:663:                {
+  ssdt24.dsl:664:                    VARE,   8
+  ssdt24.dsl:665:                }
+  ssdt24.dsl:666:
+  ssdt24.dsl:667:                VARE = Arg2
+  ssdt24.dsl:668:            }
+  ssdt24.dsl:669:            ElseIf ((Arg1 == 0x02))
+  ssdt24.dsl:670:            {
+> ssdt24.dsl:671:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt24.dsl:672:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:673:                {
+  ssdt24.dsl:674:                    VARF,   16
+  ssdt24.dsl:675:                }
+  ssdt24.dsl:676:
+  ssdt24.dsl:677:                VARF = Arg2
+  ssdt24.dsl:678:            }
+  ssdt24.dsl:679:            ElseIf ((Arg1 == 0x03))
+  ssdt24.dsl:680:            {
+> ssdt24.dsl:681:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt24.dsl:682:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:683:                {
+  ssdt24.dsl:684:                    VARG,   24
+  ssdt24.dsl:685:                }
+  ssdt24.dsl:686:
+  ssdt24.dsl:687:                VARG = Arg2
+  ssdt24.dsl:688:            }
+  ssdt24.dsl:689:            Else
+  ssdt24.dsl:690:            {
+> ssdt24.dsl:691:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:692:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:693:                {
+  ssdt24.dsl:694:                    VARH,   32
+  ssdt24.dsl:695:                }
+  ssdt24.dsl:696:
+  ssdt24.dsl:697:                VARH = Arg2
+  ssdt24.dsl:1084:        Method (RPRM, 2, NotSerialized)
+  ssdt24.dsl:1085:        {
+  ssdt24.dsl:1086:            Local0 = Arg0
+> ssdt24.dsl:1087:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:1088:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:1089:            {
+  ssdt24.dsl:1090:                VARR,   32
+  ssdt24.dsl:1091:            }
+  ssdt24.dsl:1092:
+  ssdt24.dsl:1093:            Local1 = VARR /* \_SB_.PCI0.GP19.XHC3.RPRM.VARR */
+  ssdt24.dsl:1113:            Local0 = Arg0
+  ssdt24.dsl:1114:            If ((Arg1 == One))
+  ssdt24.dsl:1115:            {
+> ssdt24.dsl:1116:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt24.dsl:1117:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:1118:                {
+  ssdt24.dsl:1119:                    VARE,   8
+  ssdt24.dsl:1120:                }
+  ssdt24.dsl:1121:
+  ssdt24.dsl:1122:                VARE = Arg2
+  ssdt24.dsl:1123:            }
+  ssdt24.dsl:1124:            ElseIf ((Arg1 == 0x02))
+  ssdt24.dsl:1125:            {
+> ssdt24.dsl:1126:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt24.dsl:1127:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:1128:                {
+  ssdt24.dsl:1129:                    VARF,   16
+  ssdt24.dsl:1130:                }
+  ssdt24.dsl:1131:
+  ssdt24.dsl:1132:                VARF = Arg2
+  ssdt24.dsl:1133:            }
+  ssdt24.dsl:1134:            ElseIf ((Arg1 == 0x03))
+  ssdt24.dsl:1135:            {
+> ssdt24.dsl:1136:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt24.dsl:1137:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:1138:                {
+  ssdt24.dsl:1139:                    VARG,   24
+  ssdt24.dsl:1140:                }
+  ssdt24.dsl:1141:
+  ssdt24.dsl:1142:                VARG = Arg2
+  ssdt24.dsl:1143:            }
+  ssdt24.dsl:1144:            Else
+  ssdt24.dsl:1145:            {
+> ssdt24.dsl:1146:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:1147:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:1148:                {
+  ssdt24.dsl:1149:                    VARH,   32
+  ssdt24.dsl:1150:                }
+  ssdt24.dsl:1151:
+  ssdt24.dsl:1152:                VARH = Arg2
+  ssdt24.dsl:1642:        Method (RPRM, 2, NotSerialized)
+  ssdt24.dsl:1643:        {
+  ssdt24.dsl:1644:            Local0 = Arg0
+> ssdt24.dsl:1645:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:1646:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:1647:            {
+  ssdt24.dsl:1648:                VARR,   32
+  ssdt24.dsl:1649:            }
+  ssdt24.dsl:1650:
+  ssdt24.dsl:1651:            Local1 = VARR /* \_SB_.PCI0.GP19.XHC4.RPRM.VARR */
+  ssdt24.dsl:1671:            Local0 = Arg0
+  ssdt24.dsl:1672:            If ((Arg1 == One))
+  ssdt24.dsl:1673:            {
+> ssdt24.dsl:1674:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt24.dsl:1675:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:1676:                {
+  ssdt24.dsl:1677:                    VARE,   8
+  ssdt24.dsl:1678:                }
+  ssdt24.dsl:1679:
+  ssdt24.dsl:1680:                VARE = Arg2
+  ssdt24.dsl:1681:            }
+  ssdt24.dsl:1682:            ElseIf ((Arg1 == 0x02))
+  ssdt24.dsl:1683:            {
+> ssdt24.dsl:1684:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt24.dsl:1685:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:1686:                {
+  ssdt24.dsl:1687:                    VARF,   16
+  ssdt24.dsl:1688:                }
+  ssdt24.dsl:1689:
+  ssdt24.dsl:1690:                VARF = Arg2
+  ssdt24.dsl:1691:            }
+  ssdt24.dsl:1692:            ElseIf ((Arg1 == 0x03))
+  ssdt24.dsl:1693:            {
+> ssdt24.dsl:1694:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt24.dsl:1695:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:1696:                {
+  ssdt24.dsl:1697:                    VARG,   24
+  ssdt24.dsl:1698:                }
+  ssdt24.dsl:1699:
+  ssdt24.dsl:1700:                VARG = Arg2
+  ssdt24.dsl:1701:            }
+  ssdt24.dsl:1702:            Else
+  ssdt24.dsl:1703:            {
+> ssdt24.dsl:1704:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:1705:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:1706:                {
+  ssdt24.dsl:1707:                    VARH,   32
+  ssdt24.dsl:1708:                }
+  ssdt24.dsl:1709:
+  ssdt24.dsl:1710:                VARH = Arg2
+  ssdt24.dsl:2264:        Method (RPRM, 2, NotSerialized)
+  ssdt24.dsl:2265:        {
+  ssdt24.dsl:2266:            Local0 = Arg0
+> ssdt24.dsl:2267:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:2268:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:2269:            {
+  ssdt24.dsl:2270:                VARR,   32
+  ssdt24.dsl:2271:            }
+  ssdt24.dsl:2272:
+  ssdt24.dsl:2273:            Local1 = VARR /* \_SB_.PCI0.GP19.NHI0.RPRM.VARR */
+  ssdt24.dsl:2293:            Local0 = Arg0
+  ssdt24.dsl:2294:            If ((Arg1 == One))
+  ssdt24.dsl:2295:            {
+> ssdt24.dsl:2296:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt24.dsl:2297:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:2298:                {
+  ssdt24.dsl:2299:                    VARE,   8
+  ssdt24.dsl:2300:                }
+  ssdt24.dsl:2301:
+  ssdt24.dsl:2302:                VARE = Arg2
+  ssdt24.dsl:2303:            }
+  ssdt24.dsl:2304:            ElseIf ((Arg1 == 0x02))
+  ssdt24.dsl:2305:            {
+> ssdt24.dsl:2306:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt24.dsl:2307:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:2308:                {
+  ssdt24.dsl:2309:                    VARF,   16
+  ssdt24.dsl:2310:                }
+  ssdt24.dsl:2311:
+  ssdt24.dsl:2312:                VARF = Arg2
+  ssdt24.dsl:2313:            }
+  ssdt24.dsl:2314:            ElseIf ((Arg1 == 0x03))
+  ssdt24.dsl:2315:            {
+> ssdt24.dsl:2316:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt24.dsl:2317:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:2318:                {
+  ssdt24.dsl:2319:                    VARG,   24
+  ssdt24.dsl:2320:                }
+  ssdt24.dsl:2321:
+  ssdt24.dsl:2322:                VARG = Arg2
+  ssdt24.dsl:2323:            }
+  ssdt24.dsl:2324:            Else
+  ssdt24.dsl:2325:            {
+> ssdt24.dsl:2326:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:2327:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:2328:                {
+  ssdt24.dsl:2329:                    VARH,   32
+  ssdt24.dsl:2330:                }
+  ssdt24.dsl:2331:
+  ssdt24.dsl:2332:                VARH = Arg2
+  ssdt24.dsl:2783:        Method (RPRM, 2, NotSerialized)
+  ssdt24.dsl:2784:        {
+  ssdt24.dsl:2785:            Local0 = Arg0
+> ssdt24.dsl:2786:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:2787:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:2788:            {
+  ssdt24.dsl:2789:                VARR,   32
+  ssdt24.dsl:2790:            }
+  ssdt24.dsl:2791:
+  ssdt24.dsl:2792:            Local1 = VARR /* \_SB_.PCI0.GP19.NHI1.RPRM.VARR */
+  ssdt24.dsl:2812:            Local0 = Arg0
+  ssdt24.dsl:2813:            If ((Arg1 == One))
+  ssdt24.dsl:2814:            {
+> ssdt24.dsl:2815:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt24.dsl:2816:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:2817:                {
+  ssdt24.dsl:2818:                    VARE,   8
+  ssdt24.dsl:2819:                }
+  ssdt24.dsl:2820:
+  ssdt24.dsl:2821:                VARE = Arg2
+  ssdt24.dsl:2822:            }
+  ssdt24.dsl:2823:            ElseIf ((Arg1 == 0x02))
+  ssdt24.dsl:2824:            {
+> ssdt24.dsl:2825:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt24.dsl:2826:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:2827:                {
+  ssdt24.dsl:2828:                    VARF,   16
+  ssdt24.dsl:2829:                }
+  ssdt24.dsl:2830:
+  ssdt24.dsl:2831:                VARF = Arg2
+  ssdt24.dsl:2832:            }
+  ssdt24.dsl:2833:            ElseIf ((Arg1 == 0x03))
+  ssdt24.dsl:2834:            {
+> ssdt24.dsl:2835:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt24.dsl:2836:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:2837:                {
+  ssdt24.dsl:2838:                    VARG,   24
+  ssdt24.dsl:2839:                }
+  ssdt24.dsl:2840:
+  ssdt24.dsl:2841:                VARG = Arg2
+  ssdt24.dsl:2842:            }
+  ssdt24.dsl:2843:            Else
+  ssdt24.dsl:2844:            {
+> ssdt24.dsl:2845:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:2846:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:2847:                {
+  ssdt24.dsl:2848:                    VARH,   32
+  ssdt24.dsl:2849:                }
+  ssdt24.dsl:2850:
+  ssdt24.dsl:2851:                VARH = Arg2
+  ssdt24.dsl:3285:        Method (RPRM, 2, NotSerialized)
+  ssdt24.dsl:3286:        {
+  ssdt24.dsl:3287:            Local0 = Arg0
+> ssdt24.dsl:3288:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:3289:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:3290:            {
+  ssdt24.dsl:3291:                VARR,   32
+  ssdt24.dsl:3292:            }
+  ssdt24.dsl:3293:
+  ssdt24.dsl:3294:            Local1 = VARR /* \_SB_.PCI0.GP11.RPRM.VARR */
+  ssdt24.dsl:3314:            Local0 = Arg0
+  ssdt24.dsl:3315:            If ((Arg1 == One))
+  ssdt24.dsl:3316:            {
+> ssdt24.dsl:3317:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt24.dsl:3318:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:3319:                {
+  ssdt24.dsl:3320:                    VARE,   8
+  ssdt24.dsl:3321:                }
+  ssdt24.dsl:3322:
+  ssdt24.dsl:3323:                VARE = Arg2
+  ssdt24.dsl:3324:            }
+  ssdt24.dsl:3325:            ElseIf ((Arg1 == 0x02))
+  ssdt24.dsl:3326:            {
+> ssdt24.dsl:3327:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt24.dsl:3328:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:3329:                {
+  ssdt24.dsl:3330:                    VARF,   16
+  ssdt24.dsl:3331:                }
+  ssdt24.dsl:3332:
+  ssdt24.dsl:3333:                VARF = Arg2
+  ssdt24.dsl:3334:            }
+  ssdt24.dsl:3335:            ElseIf ((Arg1 == 0x03))
+  ssdt24.dsl:3336:            {
+> ssdt24.dsl:3337:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt24.dsl:3338:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:3339:                {
+  ssdt24.dsl:3340:                    VARG,   24
+  ssdt24.dsl:3341:                }
+  ssdt24.dsl:3342:
+  ssdt24.dsl:3343:                VARG = Arg2
+  ssdt24.dsl:3344:            }
+  ssdt24.dsl:3345:            Else
+  ssdt24.dsl:3346:            {
+> ssdt24.dsl:3347:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:3348:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:3349:                {
+  ssdt24.dsl:3350:                    VARH,   32
+  ssdt24.dsl:3351:                }
+  ssdt24.dsl:3352:
+  ssdt24.dsl:3353:                VARH = Arg2
+  ssdt24.dsl:3854:            Method (RPRM, 2, NotSerialized)
+  ssdt24.dsl:3855:            {
+  ssdt24.dsl:3856:                Local0 = Arg0
+> ssdt24.dsl:3857:                OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:3858:                Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:3859:                {
+  ssdt24.dsl:3860:                    VARR,   32
+  ssdt24.dsl:3861:                }
+  ssdt24.dsl:3862:
+  ssdt24.dsl:3863:                Local1 = VARR /* \_SB_.PCI0.GP11.SWUS.RPRM.VARR */
+  ssdt24.dsl:3883:                Local0 = Arg0
+  ssdt24.dsl:3884:                If ((Arg1 == One))
+  ssdt24.dsl:3885:                {
+> ssdt24.dsl:3886:                    OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt24.dsl:3887:                    Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:3888:                    {
+  ssdt24.dsl:3889:                        VARE,   8
+  ssdt24.dsl:3890:                    }
+  ssdt24.dsl:3891:
+  ssdt24.dsl:3892:                    VARE = Arg2
+  ssdt24.dsl:3893:                }
+  ssdt24.dsl:3894:                ElseIf ((Arg1 == 0x02))
+  ssdt24.dsl:3895:                {
+> ssdt24.dsl:3896:                    OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt24.dsl:3897:                    Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:3898:                    {
+  ssdt24.dsl:3899:                        VARF,   16
+  ssdt24.dsl:3900:                    }
+  ssdt24.dsl:3901:
+  ssdt24.dsl:3902:                    VARF = Arg2
+  ssdt24.dsl:3903:                }
+  ssdt24.dsl:3904:                ElseIf ((Arg1 == 0x03))
+  ssdt24.dsl:3905:                {
+> ssdt24.dsl:3906:                    OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt24.dsl:3907:                    Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:3908:                    {
+  ssdt24.dsl:3909:                        VARG,   24
+  ssdt24.dsl:3910:                    }
+  ssdt24.dsl:3911:
+  ssdt24.dsl:3912:                    VARG = Arg2
+  ssdt24.dsl:3913:                }
+  ssdt24.dsl:3914:                Else
+  ssdt24.dsl:3915:                {
+> ssdt24.dsl:3916:                    OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:3917:                    Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:3918:                    {
+  ssdt24.dsl:3919:                        VARH,   32
+  ssdt24.dsl:3920:                    }
+  ssdt24.dsl:3921:
+  ssdt24.dsl:3922:                    VARH = Arg2
+  ssdt24.dsl:4357:        Method (RPRM, 2, NotSerialized)
+  ssdt24.dsl:4358:        {
+  ssdt24.dsl:4359:            Local0 = Arg0
+> ssdt24.dsl:4360:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:4361:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:4362:            {
+  ssdt24.dsl:4363:                VARR,   32
+  ssdt24.dsl:4364:            }
+  ssdt24.dsl:4365:
+  ssdt24.dsl:4366:            Local1 = VARR /* \_SB_.PCI0.GP12.RPRM.VARR */
+  ssdt24.dsl:4386:            Local0 = Arg0
+  ssdt24.dsl:4387:            If ((Arg1 == One))
+  ssdt24.dsl:4388:            {
+> ssdt24.dsl:4389:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt24.dsl:4390:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:4391:                {
+  ssdt24.dsl:4392:                    VARE,   8
+  ssdt24.dsl:4393:                }
+  ssdt24.dsl:4394:
+  ssdt24.dsl:4395:                VARE = Arg2
+  ssdt24.dsl:4396:            }
+  ssdt24.dsl:4397:            ElseIf ((Arg1 == 0x02))
+  ssdt24.dsl:4398:            {
+> ssdt24.dsl:4399:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt24.dsl:4400:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:4401:                {
+  ssdt24.dsl:4402:                    VARF,   16
+  ssdt24.dsl:4403:                }
+  ssdt24.dsl:4404:
+  ssdt24.dsl:4405:                VARF = Arg2
+  ssdt24.dsl:4406:            }
+  ssdt24.dsl:4407:            ElseIf ((Arg1 == 0x03))
+  ssdt24.dsl:4408:            {
+> ssdt24.dsl:4409:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt24.dsl:4410:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:4411:                {
+  ssdt24.dsl:4412:                    VARG,   24
+  ssdt24.dsl:4413:                }
+  ssdt24.dsl:4414:
+  ssdt24.dsl:4415:                VARG = Arg2
+  ssdt24.dsl:4416:            }
+  ssdt24.dsl:4417:            Else
+  ssdt24.dsl:4418:            {
+> ssdt24.dsl:4419:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:4420:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:4421:                {
+  ssdt24.dsl:4422:                    VARH,   32
+  ssdt24.dsl:4423:                }
+  ssdt24.dsl:4424:
+  ssdt24.dsl:4425:                VARH = Arg2
+  ssdt24.dsl:4926:            Method (RPRM, 2, NotSerialized)
+  ssdt24.dsl:4927:            {
+  ssdt24.dsl:4928:                Local0 = Arg0
+> ssdt24.dsl:4929:                OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:4930:                Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:4931:                {
+  ssdt24.dsl:4932:                    VARR,   32
+  ssdt24.dsl:4933:                }
+  ssdt24.dsl:4934:
+  ssdt24.dsl:4935:                Local1 = VARR /* \_SB_.PCI0.GP12.SWUS.RPRM.VARR */
+  ssdt24.dsl:4955:                Local0 = Arg0
+  ssdt24.dsl:4956:                If ((Arg1 == One))
+  ssdt24.dsl:4957:                {
+> ssdt24.dsl:4958:                    OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt24.dsl:4959:                    Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:4960:                    {
+  ssdt24.dsl:4961:                        VARE,   8
+  ssdt24.dsl:4962:                    }
+  ssdt24.dsl:4963:
+  ssdt24.dsl:4964:                    VARE = Arg2
+  ssdt24.dsl:4965:                }
+  ssdt24.dsl:4966:                ElseIf ((Arg1 == 0x02))
+  ssdt24.dsl:4967:                {
+> ssdt24.dsl:4968:                    OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt24.dsl:4969:                    Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:4970:                    {
+  ssdt24.dsl:4971:                        VARF,   16
+  ssdt24.dsl:4972:                    }
+  ssdt24.dsl:4973:
+  ssdt24.dsl:4974:                    VARF = Arg2
+  ssdt24.dsl:4975:                }
+  ssdt24.dsl:4976:                ElseIf ((Arg1 == 0x03))
+  ssdt24.dsl:4977:                {
+> ssdt24.dsl:4978:                    OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt24.dsl:4979:                    Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:4980:                    {
+  ssdt24.dsl:4981:                        VARG,   24
+  ssdt24.dsl:4982:                    }
+  ssdt24.dsl:4983:
+  ssdt24.dsl:4984:                    VARG = Arg2
+  ssdt24.dsl:4985:                }
+  ssdt24.dsl:4986:                Else
+  ssdt24.dsl:4987:                {
+> ssdt24.dsl:4988:                    OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt24.dsl:4989:                    Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt24.dsl:4990:                    {
+  ssdt24.dsl:4991:                        VARH,   32
+  ssdt24.dsl:4992:                    }
+  ssdt24.dsl:4993:
+  ssdt24.dsl:4994:                    VARH = Arg2
+  ssdt25.dsl:231:        Method (RPRM, 2, NotSerialized)
+  ssdt25.dsl:232:        {
+  ssdt25.dsl:233:            Local0 = Arg0
+> ssdt25.dsl:234:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:235:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:236:            {
+  ssdt25.dsl:237:                VARR,   32
+  ssdt25.dsl:238:            }
+  ssdt25.dsl:239:
+  ssdt25.dsl:240:            Local1 = VARR /* \_SB_.PCI0.GP17.RPRM.VARR */
+  ssdt25.dsl:260:            Local0 = Arg0
+  ssdt25.dsl:261:            If ((Arg1 == One))
+  ssdt25.dsl:262:            {
+> ssdt25.dsl:263:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt25.dsl:264:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:265:                {
+  ssdt25.dsl:266:                    VARE,   8
+  ssdt25.dsl:267:                }
+  ssdt25.dsl:268:
+  ssdt25.dsl:269:                VARE = Arg2
+  ssdt25.dsl:270:            }
+  ssdt25.dsl:271:            ElseIf ((Arg1 == 0x02))
+  ssdt25.dsl:272:            {
+> ssdt25.dsl:273:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt25.dsl:274:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:275:                {
+  ssdt25.dsl:276:                    VARF,   16
+  ssdt25.dsl:277:                }
+  ssdt25.dsl:278:
+  ssdt25.dsl:279:                VARF = Arg2
+  ssdt25.dsl:280:            }
+  ssdt25.dsl:281:            ElseIf ((Arg1 == 0x03))
+  ssdt25.dsl:282:            {
+> ssdt25.dsl:283:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt25.dsl:284:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:285:                {
+  ssdt25.dsl:286:                    VARG,   24
+  ssdt25.dsl:287:                }
+  ssdt25.dsl:288:
+  ssdt25.dsl:289:                VARG = Arg2
+  ssdt25.dsl:290:            }
+  ssdt25.dsl:291:            Else
+  ssdt25.dsl:292:            {
+> ssdt25.dsl:293:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:294:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:295:                {
+  ssdt25.dsl:296:                    VARH,   32
+  ssdt25.dsl:297:                }
+  ssdt25.dsl:298:
+  ssdt25.dsl:299:                VARH = Arg2
+  ssdt25.dsl:640:        Method (RPRM, 2, NotSerialized)
+  ssdt25.dsl:641:        {
+  ssdt25.dsl:642:            Local0 = Arg0
+> ssdt25.dsl:643:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:644:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:645:            {
+  ssdt25.dsl:646:                VARR,   32
+  ssdt25.dsl:647:            }
+  ssdt25.dsl:648:
+  ssdt25.dsl:649:            Local1 = VARR /* \_SB_.PCI0.GP17.VGA_.RPRM.VARR */
+  ssdt25.dsl:669:            Local0 = Arg0
+  ssdt25.dsl:670:            If ((Arg1 == One))
+  ssdt25.dsl:671:            {
+> ssdt25.dsl:672:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt25.dsl:673:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:674:                {
+  ssdt25.dsl:675:                    VARE,   8
+  ssdt25.dsl:676:                }
+  ssdt25.dsl:677:
+  ssdt25.dsl:678:                VARE = Arg2
+  ssdt25.dsl:679:            }
+  ssdt25.dsl:680:            ElseIf ((Arg1 == 0x02))
+  ssdt25.dsl:681:            {
+> ssdt25.dsl:682:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt25.dsl:683:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:684:                {
+  ssdt25.dsl:685:                    VARF,   16
+  ssdt25.dsl:686:                }
+  ssdt25.dsl:687:
+  ssdt25.dsl:688:                VARF = Arg2
+  ssdt25.dsl:689:            }
+  ssdt25.dsl:690:            ElseIf ((Arg1 == 0x03))
+  ssdt25.dsl:691:            {
+> ssdt25.dsl:692:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt25.dsl:693:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:694:                {
+  ssdt25.dsl:695:                    VARG,   24
+  ssdt25.dsl:696:                }
+  ssdt25.dsl:697:
+  ssdt25.dsl:698:                VARG = Arg2
+  ssdt25.dsl:699:            }
+  ssdt25.dsl:700:            Else
+  ssdt25.dsl:701:            {
+> ssdt25.dsl:702:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:703:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:704:                {
+  ssdt25.dsl:705:                    VARH,   32
+  ssdt25.dsl:706:                }
+  ssdt25.dsl:707:
+  ssdt25.dsl:708:                VARH = Arg2
+  ssdt25.dsl:1049:        Method (RPRM, 2, NotSerialized)
+  ssdt25.dsl:1050:        {
+  ssdt25.dsl:1051:            Local0 = Arg0
+> ssdt25.dsl:1052:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:1053:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1054:            {
+  ssdt25.dsl:1055:                VARR,   32
+  ssdt25.dsl:1056:            }
+  ssdt25.dsl:1057:
+  ssdt25.dsl:1058:            Local1 = VARR /* \_SB_.PCI0.GP17.HDAU.RPRM.VARR */
+  ssdt25.dsl:1078:            Local0 = Arg0
+  ssdt25.dsl:1079:            If ((Arg1 == One))
+  ssdt25.dsl:1080:            {
+> ssdt25.dsl:1081:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt25.dsl:1082:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1083:                {
+  ssdt25.dsl:1084:                    VARE,   8
+  ssdt25.dsl:1085:                }
+  ssdt25.dsl:1086:
+  ssdt25.dsl:1087:                VARE = Arg2
+  ssdt25.dsl:1088:            }
+  ssdt25.dsl:1089:            ElseIf ((Arg1 == 0x02))
+  ssdt25.dsl:1090:            {
+> ssdt25.dsl:1091:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt25.dsl:1092:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1093:                {
+  ssdt25.dsl:1094:                    VARF,   16
+  ssdt25.dsl:1095:                }
+  ssdt25.dsl:1096:
+  ssdt25.dsl:1097:                VARF = Arg2
+  ssdt25.dsl:1098:            }
+  ssdt25.dsl:1099:            ElseIf ((Arg1 == 0x03))
+  ssdt25.dsl:1100:            {
+> ssdt25.dsl:1101:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt25.dsl:1102:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1103:                {
+  ssdt25.dsl:1104:                    VARG,   24
+  ssdt25.dsl:1105:                }
+  ssdt25.dsl:1106:
+  ssdt25.dsl:1107:                VARG = Arg2
+  ssdt25.dsl:1108:            }
+  ssdt25.dsl:1109:            Else
+  ssdt25.dsl:1110:            {
+> ssdt25.dsl:1111:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:1112:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1113:                {
+  ssdt25.dsl:1114:                    VARH,   32
+  ssdt25.dsl:1115:                }
+  ssdt25.dsl:1116:
+  ssdt25.dsl:1117:                VARH = Arg2
+  ssdt25.dsl:1493:        Method (RPRM, 2, NotSerialized)
+  ssdt25.dsl:1494:        {
+  ssdt25.dsl:1495:            Local0 = Arg0
+> ssdt25.dsl:1496:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:1497:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1498:            {
+  ssdt25.dsl:1499:                VARR,   32
+  ssdt25.dsl:1500:            }
+  ssdt25.dsl:1501:
+  ssdt25.dsl:1502:            Local1 = VARR /* \_SB_.PCI0.GP17.XHC0.RPRM.VARR */
+  ssdt25.dsl:1522:            Local0 = Arg0
+  ssdt25.dsl:1523:            If ((Arg1 == One))
+  ssdt25.dsl:1524:            {
+> ssdt25.dsl:1525:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt25.dsl:1526:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1527:                {
+  ssdt25.dsl:1528:                    VARE,   8
+  ssdt25.dsl:1529:                }
+  ssdt25.dsl:1530:
+  ssdt25.dsl:1531:                VARE = Arg2
+  ssdt25.dsl:1532:            }
+  ssdt25.dsl:1533:            ElseIf ((Arg1 == 0x02))
+  ssdt25.dsl:1534:            {
+> ssdt25.dsl:1535:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt25.dsl:1536:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1537:                {
+  ssdt25.dsl:1538:                    VARF,   16
+  ssdt25.dsl:1539:                }
+  ssdt25.dsl:1540:
+  ssdt25.dsl:1541:                VARF = Arg2
+  ssdt25.dsl:1542:            }
+  ssdt25.dsl:1543:            ElseIf ((Arg1 == 0x03))
+  ssdt25.dsl:1544:            {
+> ssdt25.dsl:1545:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt25.dsl:1546:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1547:                {
+  ssdt25.dsl:1548:                    VARG,   24
+  ssdt25.dsl:1549:                }
+  ssdt25.dsl:1550:
+  ssdt25.dsl:1551:                VARG = Arg2
+  ssdt25.dsl:1552:            }
+  ssdt25.dsl:1553:            Else
+  ssdt25.dsl:1554:            {
+> ssdt25.dsl:1555:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:1556:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1557:                {
+  ssdt25.dsl:1558:                    VARH,   32
+  ssdt25.dsl:1559:                }
+  ssdt25.dsl:1560:
+  ssdt25.dsl:1561:                VARH = Arg2
+  ssdt25.dsl:1937:        Method (RPRM, 2, NotSerialized)
+  ssdt25.dsl:1938:        {
+  ssdt25.dsl:1939:            Local0 = Arg0
+> ssdt25.dsl:1940:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:1941:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1942:            {
+  ssdt25.dsl:1943:                VARR,   32
+  ssdt25.dsl:1944:            }
+  ssdt25.dsl:1945:
+  ssdt25.dsl:1946:            Local1 = VARR /* \_SB_.PCI0.GP17.XHC1.RPRM.VARR */
+  ssdt25.dsl:1966:            Local0 = Arg0
+  ssdt25.dsl:1967:            If ((Arg1 == One))
+  ssdt25.dsl:1968:            {
+> ssdt25.dsl:1969:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt25.dsl:1970:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1971:                {
+  ssdt25.dsl:1972:                    VARE,   8
+  ssdt25.dsl:1973:                }
+  ssdt25.dsl:1974:
+  ssdt25.dsl:1975:                VARE = Arg2
+  ssdt25.dsl:1976:            }
+  ssdt25.dsl:1977:            ElseIf ((Arg1 == 0x02))
+  ssdt25.dsl:1978:            {
+> ssdt25.dsl:1979:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt25.dsl:1980:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1981:                {
+  ssdt25.dsl:1982:                    VARF,   16
+  ssdt25.dsl:1983:                }
+  ssdt25.dsl:1984:
+  ssdt25.dsl:1985:                VARF = Arg2
+  ssdt25.dsl:1986:            }
+  ssdt25.dsl:1987:            ElseIf ((Arg1 == 0x03))
+  ssdt25.dsl:1988:            {
+> ssdt25.dsl:1989:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt25.dsl:1990:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:1991:                {
+  ssdt25.dsl:1992:                    VARG,   24
+  ssdt25.dsl:1993:                }
+  ssdt25.dsl:1994:
+  ssdt25.dsl:1995:                VARG = Arg2
+  ssdt25.dsl:1996:            }
+  ssdt25.dsl:1997:            Else
+  ssdt25.dsl:1998:            {
+> ssdt25.dsl:1999:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:2000:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2001:                {
+  ssdt25.dsl:2002:                    VARH,   32
+  ssdt25.dsl:2003:                }
+  ssdt25.dsl:2004:
+  ssdt25.dsl:2005:                VARH = Arg2
+  ssdt25.dsl:2358:        Method (RPRM, 2, NotSerialized)
+  ssdt25.dsl:2359:        {
+  ssdt25.dsl:2360:            Local0 = Arg0
+> ssdt25.dsl:2361:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:2362:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2363:            {
+  ssdt25.dsl:2364:                VARR,   32
+  ssdt25.dsl:2365:            }
+  ssdt25.dsl:2366:
+  ssdt25.dsl:2367:            Local1 = VARR /* \_SB_.PCI0.GP17.ACP_.RPRM.VARR */
+  ssdt25.dsl:2387:            Local0 = Arg0
+  ssdt25.dsl:2388:            If ((Arg1 == One))
+  ssdt25.dsl:2389:            {
+> ssdt25.dsl:2390:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt25.dsl:2391:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2392:                {
+  ssdt25.dsl:2393:                    VARE,   8
+  ssdt25.dsl:2394:                }
+  ssdt25.dsl:2395:
+  ssdt25.dsl:2396:                VARE = Arg2
+  ssdt25.dsl:2397:            }
+  ssdt25.dsl:2398:            ElseIf ((Arg1 == 0x02))
+  ssdt25.dsl:2399:            {
+> ssdt25.dsl:2400:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt25.dsl:2401:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2402:                {
+  ssdt25.dsl:2403:                    VARF,   16
+  ssdt25.dsl:2404:                }
+  ssdt25.dsl:2405:
+  ssdt25.dsl:2406:                VARF = Arg2
+  ssdt25.dsl:2407:            }
+  ssdt25.dsl:2408:            ElseIf ((Arg1 == 0x03))
+  ssdt25.dsl:2409:            {
+> ssdt25.dsl:2410:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt25.dsl:2411:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2412:                {
+  ssdt25.dsl:2413:                    VARG,   24
+  ssdt25.dsl:2414:                }
+  ssdt25.dsl:2415:
+  ssdt25.dsl:2416:                VARG = Arg2
+  ssdt25.dsl:2417:            }
+  ssdt25.dsl:2418:            Else
+  ssdt25.dsl:2419:            {
+> ssdt25.dsl:2420:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:2421:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2422:                {
+  ssdt25.dsl:2423:                    VARH,   32
+  ssdt25.dsl:2424:                }
+  ssdt25.dsl:2425:
+  ssdt25.dsl:2426:                VARH = Arg2
+  ssdt25.dsl:2749:        Method (RPRM, 2, NotSerialized)
+  ssdt25.dsl:2750:        {
+  ssdt25.dsl:2751:            Local0 = Arg0
+> ssdt25.dsl:2752:            OperationRegion (VARM, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:2753:            Field (VARM, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2754:            {
+  ssdt25.dsl:2755:                VARR,   32
+  ssdt25.dsl:2756:            }
+  ssdt25.dsl:2757:
+  ssdt25.dsl:2758:            Local1 = VARR /* \_SB_.PCI0.GP17.AZAL.RPRM.VARR */
+  ssdt25.dsl:2778:            Local0 = Arg0
+  ssdt25.dsl:2779:            If ((Arg1 == One))
+  ssdt25.dsl:2780:            {
+> ssdt25.dsl:2781:                OperationRegion (VARA, SystemMemory, Local0, One)
+  ssdt25.dsl:2782:                Field (VARA, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2783:                {
+  ssdt25.dsl:2784:                    VARE,   8
+  ssdt25.dsl:2785:                }
+  ssdt25.dsl:2786:
+  ssdt25.dsl:2787:                VARE = Arg2
+  ssdt25.dsl:2788:            }
+  ssdt25.dsl:2789:            ElseIf ((Arg1 == 0x02))
+  ssdt25.dsl:2790:            {
+> ssdt25.dsl:2791:                OperationRegion (VARB, SystemMemory, Local0, 0x02)
+  ssdt25.dsl:2792:                Field (VARB, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2793:                {
+  ssdt25.dsl:2794:                    VARF,   16
+  ssdt25.dsl:2795:                }
+  ssdt25.dsl:2796:
+  ssdt25.dsl:2797:                VARF = Arg2
+  ssdt25.dsl:2798:            }
+  ssdt25.dsl:2799:            ElseIf ((Arg1 == 0x03))
+  ssdt25.dsl:2800:            {
+> ssdt25.dsl:2801:                OperationRegion (VARC, SystemMemory, Local0, 0x03)
+  ssdt25.dsl:2802:                Field (VARC, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2803:                {
+  ssdt25.dsl:2804:                    VARG,   24
+  ssdt25.dsl:2805:                }
+  ssdt25.dsl:2806:
+  ssdt25.dsl:2807:                VARG = Arg2
+  ssdt25.dsl:2808:            }
+  ssdt25.dsl:2809:            Else
+  ssdt25.dsl:2810:            {
+> ssdt25.dsl:2811:                OperationRegion (VARD, SystemMemory, Local0, 0x04)
+  ssdt25.dsl:2812:                Field (VARD, AnyAcc, NoLock, Preserve)
+  ssdt25.dsl:2813:                {
+  ssdt25.dsl:2814:                    VARH,   32
+  ssdt25.dsl:2815:                }
+  ssdt25.dsl:2816:
+  ssdt25.dsl:2817:                VARH = Arg2
+  ssdt3.dsl:159:                Return (0x0F)
+  ssdt3.dsl:160:            }
+  ssdt3.dsl:161:
+> ssdt3.dsl:162:            OperationRegion (USBC, SystemMemory, CUCB, 0x38)
+  ssdt3.dsl:163:            Field (USBC, ByteAcc, Lock, Preserve)
+  ssdt3.dsl:164:            {
+  ssdt3.dsl:165:                VER1,   8, 
+  ssdt3.dsl:166:                VER2,   8, 
+  ssdt3.dsl:167:                RSV1,   8, 
+  ssdt3.dsl:168:                RSV2,   8, 
+  ssdt4.dsl:192:            /* 0510 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+  ssdt4.dsl:193:            /* 0518 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+  ssdt4.dsl:194:        })
+> ssdt4.dsl:195:        OperationRegion (A001, SystemIO, 0x80, 0x04)
+  ssdt4.dsl:196:        Field (A001, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:197:        {
+  ssdt4.dsl:198:            A002,   32
+  ssdt4.dsl:199:        }
+  ssdt4.dsl:200:
+> ssdt4.dsl:201:        OperationRegion (A003, SystemIO, 0x80, 0x02)
+  ssdt4.dsl:202:        Field (A003, WordAcc, NoLock, Preserve)
+  ssdt4.dsl:203:        {
+  ssdt4.dsl:204:            A004,   16
+  ssdt4.dsl:205:        }
+  ssdt4.dsl:206:
+> ssdt4.dsl:207:        OperationRegion (A005, SystemIO, 0x80, 0x01)
+  ssdt4.dsl:208:        Field (A005, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:209:        {
+  ssdt4.dsl:210:            A006,   8
+  ssdt4.dsl:211:        }
+  ssdt4.dsl:212:
+  ssdt4.dsl:213:        Method (A007, 1, NotSerialized)
+  ssdt4.dsl:1233:            }
+  ssdt4.dsl:1234:        }
+  ssdt4.dsl:1235:
+> ssdt4.dsl:1236:        OperationRegion (A161, SystemMemory, AGRB, 0x1000)
+  ssdt4.dsl:1237:        Field (A161, DWordAcc, Lock, Preserve)
+  ssdt4.dsl:1238:        {
+  ssdt4.dsl:1239:            Offset (0xA0), 
+  ssdt4.dsl:1240:            A162,   32
+  ssdt4.dsl:1241:        }
+  ssdt4.dsl:1242:
+  ssdt4.dsl:1983:                Name (AB0B, 0x00)
+  ssdt4.dsl:1984:                Name (AB0C, 0x00)
+  ssdt4.dsl:1985:                Name (AB0D, 0x00)
+> ssdt4.dsl:1986:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:1987:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:1988:                    ))), 0x1000)
+  ssdt4.dsl:1989:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:1990:                {
+  ssdt4.dsl:1991:                    Offset (0x18), 
+  ssdt4.dsl:1992:                    Offset (0x19), 
+  ssdt4.dsl:2312:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:2313:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:2314:                    Local0 += Arg1
+> ssdt4.dsl:2315:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:2316:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:2317:                    {
+  ssdt4.dsl:2318:                        ADRR,   32
+  ssdt4.dsl:2319:                    }
+  ssdt4.dsl:2320:
+  ssdt4.dsl:2321:                    ADRR = Arg2
+  ssdt4.dsl:2326:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:2327:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:2328:                    Local0 += Arg1
+> ssdt4.dsl:2329:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:2330:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:2331:                    {
+  ssdt4.dsl:2332:                        ADRR,   32
+  ssdt4.dsl:2333:                    }
+  ssdt4.dsl:2334:
+  ssdt4.dsl:2335:                    Return (ADRR) /* \_SB_.AWR0.ABR0.A116.ADRR */
+  ssdt4.dsl:2427:                Name (AB0B, 0x00)
+  ssdt4.dsl:2428:                Name (AB0C, 0x00)
+  ssdt4.dsl:2429:                Name (AB0D, 0x00)
+> ssdt4.dsl:2430:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:2431:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:2432:                    ))), 0x1000)
+  ssdt4.dsl:2433:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:2434:                {
+  ssdt4.dsl:2435:                    Offset (0x18), 
+  ssdt4.dsl:2436:                    Offset (0x19), 
+  ssdt4.dsl:2756:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:2757:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:2758:                    Local0 += Arg1
+> ssdt4.dsl:2759:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:2760:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:2761:                    {
+  ssdt4.dsl:2762:                        ADRR,   32
+  ssdt4.dsl:2763:                    }
+  ssdt4.dsl:2764:
+  ssdt4.dsl:2765:                    ADRR = Arg2
+  ssdt4.dsl:2770:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:2771:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:2772:                    Local0 += Arg1
+> ssdt4.dsl:2773:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:2774:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:2775:                    {
+  ssdt4.dsl:2776:                        ADRR,   32
+  ssdt4.dsl:2777:                    }
+  ssdt4.dsl:2778:
+  ssdt4.dsl:2779:                    Return (ADRR) /* \_SB_.AWR0.ABR1.A116.ADRR */
+  ssdt4.dsl:2871:                Name (AB0B, 0x00)
+  ssdt4.dsl:2872:                Name (AB0C, 0x00)
+  ssdt4.dsl:2873:                Name (AB0D, 0x00)
+> ssdt4.dsl:2874:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:2875:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:2876:                    ))), 0x1000)
+  ssdt4.dsl:2877:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:2878:                {
+  ssdt4.dsl:2879:                    Offset (0x18), 
+  ssdt4.dsl:2880:                    Offset (0x19), 
+  ssdt4.dsl:3200:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:3201:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:3202:                    Local0 += Arg1
+> ssdt4.dsl:3203:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:3204:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:3205:                    {
+  ssdt4.dsl:3206:                        ADRR,   32
+  ssdt4.dsl:3207:                    }
+  ssdt4.dsl:3208:
+  ssdt4.dsl:3209:                    ADRR = Arg2
+  ssdt4.dsl:3214:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:3215:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:3216:                    Local0 += Arg1
+> ssdt4.dsl:3217:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:3218:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:3219:                    {
+  ssdt4.dsl:3220:                        ADRR,   32
+  ssdt4.dsl:3221:                    }
+  ssdt4.dsl:3222:
+  ssdt4.dsl:3223:                    Return (ADRR) /* \_SB_.AWR0.ABR2.A116.ADRR */
+  ssdt4.dsl:3315:                Name (AB0B, 0x00)
+  ssdt4.dsl:3316:                Name (AB0C, 0x00)
+  ssdt4.dsl:3317:                Name (AB0D, 0x00)
+> ssdt4.dsl:3318:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:3319:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:3320:                    ))), 0x1000)
+  ssdt4.dsl:3321:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:3322:                {
+  ssdt4.dsl:3323:                    Offset (0x18), 
+  ssdt4.dsl:3324:                    Offset (0x19), 
+  ssdt4.dsl:3644:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:3645:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:3646:                    Local0 += Arg1
+> ssdt4.dsl:3647:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:3648:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:3649:                    {
+  ssdt4.dsl:3650:                        ADRR,   32
+  ssdt4.dsl:3651:                    }
+  ssdt4.dsl:3652:
+  ssdt4.dsl:3653:                    ADRR = Arg2
+  ssdt4.dsl:3658:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:3659:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:3660:                    Local0 += Arg1
+> ssdt4.dsl:3661:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:3662:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:3663:                    {
+  ssdt4.dsl:3664:                        ADRR,   32
+  ssdt4.dsl:3665:                    }
+  ssdt4.dsl:3666:
+  ssdt4.dsl:3667:                    Return (ADRR) /* \_SB_.AWR0.ABR3.A116.ADRR */
+  ssdt4.dsl:3759:                Name (AB0B, 0x00)
+  ssdt4.dsl:3760:                Name (AB0C, 0x00)
+  ssdt4.dsl:3761:                Name (AB0D, 0x00)
+> ssdt4.dsl:3762:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:3763:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:3764:                    ))), 0x1000)
+  ssdt4.dsl:3765:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:3766:                {
+  ssdt4.dsl:3767:                    Offset (0x18), 
+  ssdt4.dsl:3768:                    Offset (0x19), 
+  ssdt4.dsl:4088:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:4089:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:4090:                    Local0 += Arg1
+> ssdt4.dsl:4091:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:4092:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:4093:                    {
+  ssdt4.dsl:4094:                        ADRR,   32
+  ssdt4.dsl:4095:                    }
+  ssdt4.dsl:4096:
+  ssdt4.dsl:4097:                    ADRR = Arg2
+  ssdt4.dsl:4102:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:4103:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:4104:                    Local0 += Arg1
+> ssdt4.dsl:4105:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:4106:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:4107:                    {
+  ssdt4.dsl:4108:                        ADRR,   32
+  ssdt4.dsl:4109:                    }
+  ssdt4.dsl:4110:
+  ssdt4.dsl:4111:                    Return (ADRR) /* \_SB_.AWR0.ABR4.A116.ADRR */
+  ssdt4.dsl:4203:                Name (AB0B, 0x00)
+  ssdt4.dsl:4204:                Name (AB0C, 0x00)
+  ssdt4.dsl:4205:                Name (AB0D, 0x00)
+> ssdt4.dsl:4206:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:4207:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:4208:                    ))), 0x1000)
+  ssdt4.dsl:4209:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:4210:                {
+  ssdt4.dsl:4211:                    Offset (0x18), 
+  ssdt4.dsl:4212:                    Offset (0x19), 
+  ssdt4.dsl:4532:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:4533:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:4534:                    Local0 += Arg1
+> ssdt4.dsl:4535:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:4536:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:4537:                    {
+  ssdt4.dsl:4538:                        ADRR,   32
+  ssdt4.dsl:4539:                    }
+  ssdt4.dsl:4540:
+  ssdt4.dsl:4541:                    ADRR = Arg2
+  ssdt4.dsl:4546:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:4547:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:4548:                    Local0 += Arg1
+> ssdt4.dsl:4549:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:4550:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:4551:                    {
+  ssdt4.dsl:4552:                        ADRR,   32
+  ssdt4.dsl:4553:                    }
+  ssdt4.dsl:4554:
+  ssdt4.dsl:4555:                    Return (ADRR) /* \_SB_.AWR0.ABR5.A116.ADRR */
+  ssdt4.dsl:4647:                Name (AB0B, 0x00)
+  ssdt4.dsl:4648:                Name (AB0C, 0x00)
+  ssdt4.dsl:4649:                Name (AB0D, 0x00)
+> ssdt4.dsl:4650:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:4651:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:4652:                    ))), 0x1000)
+  ssdt4.dsl:4653:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:4654:                {
+  ssdt4.dsl:4655:                    Offset (0x18), 
+  ssdt4.dsl:4656:                    Offset (0x19), 
+  ssdt4.dsl:4976:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:4977:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:4978:                    Local0 += Arg1
+> ssdt4.dsl:4979:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:4980:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:4981:                    {
+  ssdt4.dsl:4982:                        ADRR,   32
+  ssdt4.dsl:4983:                    }
+  ssdt4.dsl:4984:
+  ssdt4.dsl:4985:                    ADRR = Arg2
+  ssdt4.dsl:4990:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:4991:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:4992:                    Local0 += Arg1
+> ssdt4.dsl:4993:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:4994:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:4995:                    {
+  ssdt4.dsl:4996:                        ADRR,   32
+  ssdt4.dsl:4997:                    }
+  ssdt4.dsl:4998:
+  ssdt4.dsl:4999:                    Return (ADRR) /* \_SB_.AWR0.ABR6.A116.ADRR */
+  ssdt4.dsl:5091:                Name (AB0B, 0x00)
+  ssdt4.dsl:5092:                Name (AB0C, 0x00)
+  ssdt4.dsl:5093:                Name (AB0D, 0x00)
+> ssdt4.dsl:5094:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:5095:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:5096:                    ))), 0x1000)
+  ssdt4.dsl:5097:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:5098:                {
+  ssdt4.dsl:5099:                    Offset (0x18), 
+  ssdt4.dsl:5100:                    Offset (0x19), 
+  ssdt4.dsl:5420:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:5421:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:5422:                    Local0 += Arg1
+> ssdt4.dsl:5423:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:5424:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:5425:                    {
+  ssdt4.dsl:5426:                        ADRR,   32
+  ssdt4.dsl:5427:                    }
+  ssdt4.dsl:5428:
+  ssdt4.dsl:5429:                    ADRR = Arg2
+  ssdt4.dsl:5434:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:5435:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:5436:                    Local0 += Arg1
+> ssdt4.dsl:5437:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:5438:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:5439:                    {
+  ssdt4.dsl:5440:                        ADRR,   32
+  ssdt4.dsl:5441:                    }
+  ssdt4.dsl:5442:
+  ssdt4.dsl:5443:                    Return (ADRR) /* \_SB_.AWR0.ABR7.A116.ADRR */
+  ssdt4.dsl:5535:                Name (AB0B, 0x00)
+  ssdt4.dsl:5536:                Name (AB0C, 0x00)
+  ssdt4.dsl:5537:                Name (AB0D, 0x00)
+> ssdt4.dsl:5538:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:5539:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:5540:                    ))), 0x1000)
+  ssdt4.dsl:5541:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:5542:                {
+  ssdt4.dsl:5543:                    Offset (0x18), 
+  ssdt4.dsl:5544:                    Offset (0x19), 
+  ssdt4.dsl:5864:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:5865:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:5866:                    Local0 += Arg1
+> ssdt4.dsl:5867:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:5868:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:5869:                    {
+  ssdt4.dsl:5870:                        ADRR,   32
+  ssdt4.dsl:5871:                    }
+  ssdt4.dsl:5872:
+  ssdt4.dsl:5873:                    ADRR = Arg2
+  ssdt4.dsl:5878:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:5879:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:5880:                    Local0 += Arg1
+> ssdt4.dsl:5881:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:5882:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:5883:                    {
+  ssdt4.dsl:5884:                        ADRR,   32
+  ssdt4.dsl:5885:                    }
+  ssdt4.dsl:5886:
+  ssdt4.dsl:5887:                    Return (ADRR) /* \_SB_.AWR0.ABR8.A116.ADRR */
+  ssdt4.dsl:5979:                Name (AB0B, 0x00)
+  ssdt4.dsl:5980:                Name (AB0C, 0x00)
+  ssdt4.dsl:5981:                Name (AB0D, 0x00)
+> ssdt4.dsl:5982:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:5983:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:5984:                    ))), 0x1000)
+  ssdt4.dsl:5985:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:5986:                {
+  ssdt4.dsl:5987:                    Offset (0x18), 
+  ssdt4.dsl:5988:                    Offset (0x19), 
+  ssdt4.dsl:6308:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:6309:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:6310:                    Local0 += Arg1
+> ssdt4.dsl:6311:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:6312:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:6313:                    {
+  ssdt4.dsl:6314:                        ADRR,   32
+  ssdt4.dsl:6315:                    }
+  ssdt4.dsl:6316:
+  ssdt4.dsl:6317:                    ADRR = Arg2
+  ssdt4.dsl:6322:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:6323:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:6324:                    Local0 += Arg1
+> ssdt4.dsl:6325:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:6326:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:6327:                    {
+  ssdt4.dsl:6328:                        ADRR,   32
+  ssdt4.dsl:6329:                    }
+  ssdt4.dsl:6330:
+  ssdt4.dsl:6331:                    Return (ADRR) /* \_SB_.AWR0.ABR9.A116.ADRR */
+  ssdt4.dsl:6423:                Name (AB0B, 0x00)
+  ssdt4.dsl:6424:                Name (AB0C, 0x00)
+  ssdt4.dsl:6425:                Name (AB0D, 0x00)
+> ssdt4.dsl:6426:                OperationRegion (A118, SystemMemory, (AGRB + ((DerefOf (\_SB.ADAT [(AB12 + 0x0D)]
+  ssdt4.dsl:6427:                    ) << 0x0F) | (DerefOf (\_SB.ADAT [(AB12 + 0x0E)]) << 0x0C
+  ssdt4.dsl:6428:                    ))), 0x1000)
+  ssdt4.dsl:6429:                Field (A118, ByteAcc, NoLock, Preserve)
+  ssdt4.dsl:6430:                {
+  ssdt4.dsl:6431:                    Offset (0x18), 
+  ssdt4.dsl:6432:                    Offset (0x19), 
+  ssdt4.dsl:6752:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:6753:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:6754:                    Local0 += Arg1
+> ssdt4.dsl:6755:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:6756:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:6757:                    {
+  ssdt4.dsl:6758:                        ADRR,   32
+  ssdt4.dsl:6759:                    }
+  ssdt4.dsl:6760:
+  ssdt4.dsl:6761:                    ADRR = Arg2
+  ssdt4.dsl:6766:                    Local0 = (AGRB + (A113 << 0x14))
+  ssdt4.dsl:6767:                    Local0 += (Arg0 << 0x0C)
+  ssdt4.dsl:6768:                    Local0 += Arg1
+> ssdt4.dsl:6769:                    OperationRegion (ADRB, SystemMemory, Local0, 0x04)
+  ssdt4.dsl:6770:                    Field (ADRB, DWordAcc, NoLock, Preserve)
+  ssdt4.dsl:6771:                    {
+  ssdt4.dsl:6772:                        ADRR,   32
+  ssdt4.dsl:6773:                    }
+  ssdt4.dsl:6774:
+  ssdt4.dsl:6775:                    Return (ADRR) /* \_SB_.AWR0.ABRA.A116.ADRR */
+  ssdt5.dsl:150:    External (M4C0, FieldUnitObj)
+  ssdt5.dsl:151:    External (M4F0, FieldUnitObj)
+  ssdt5.dsl:152:
+> ssdt5.dsl:153:    OperationRegion (PM00, SystemMemory, 0xFED80300, 0x0100)
+  ssdt5.dsl:154:    Field (PM00, AnyAcc, NoLock, Preserve)
+  ssdt5.dsl:155:    {
+  ssdt5.dsl:156:        Offset (0x6A), 
+  ssdt5.dsl:157:        SWSP,   8
+  ssdt5.dsl:158:    }
+  ssdt5.dsl:159:
+> ssdt5.dsl:160:    OperationRegion (SWRG, SystemIO, SWSP, 0x02)
+  ssdt5.dsl:161:    Field (SWRG, AnyAcc, NoLock, Preserve)
+  ssdt5.dsl:162:    {
+  ssdt5.dsl:163:        SWCP,   8, 
+  ssdt5.dsl:164:        SWDP,   8
+  ssdt5.dsl:165:    }
+  ssdt5.dsl:166:
+  ssdt6.dsl:162:                /* 0010 */  0x00, 0x60, 0xE8, 0x72, 0x00, 0x40, 0x00, 0x00,  // .`.r.@..
+  ssdt6.dsl:163:                /* 0018 */  0x79, 0x00                                       // y.
+  ssdt6.dsl:164:            })
+> ssdt6.dsl:165:            OperationRegion (SMIP, SystemIO, 0xB0, One)
+  ssdt6.dsl:166:            Field (SMIP, ByteAcc, NoLock, Preserve)
+  ssdt6.dsl:167:            {
+  ssdt6.dsl:168:                IOB2,   8
+  ssdt6.dsl:169:            }
+  ssdt6.dsl:170:
+> ssdt6.dsl:171:            OperationRegion (TNVS, SystemMemory, 0x7AE68000, 0x27)
+  ssdt6.dsl:172:            Field (TNVS, AnyAcc, NoLock, Preserve)
+  ssdt6.dsl:173:            {
+  ssdt6.dsl:174:                PPIN,   8, 
+  ssdt6.dsl:175:                PPIP,   32, 
+  ssdt6.dsl:176:                PPRP,   32, 
+  ssdt6.dsl:177:                PPRQ,   32, 
+  ssdt6.dsl:185:                CAIN,   8
+  ssdt6.dsl:186:            }
+  ssdt6.dsl:187:
+> ssdt6.dsl:188:            OperationRegion (CONA, SystemMemory, 0x7AE68027, 0x30)
+  ssdt6.dsl:189:            Field (CONA, DWordAcc, NoLock, Preserve)
+  ssdt6.dsl:190:            {
+  ssdt6.dsl:191:                HRTB,   32, 
+  ssdt6.dsl:192:                ERRR,   32, 
+  ssdt6.dsl:193:                CLFG,   32, 
+  ssdt6.dsl:194:                STA1,   32, 
+  ssdt8.dsl:101:
+  ssdt8.dsl:102:    Scope (\_SB.PCI0)
+  ssdt8.dsl:103:    {
+> ssdt8.dsl:104:        OperationRegion (HGOP, SystemMemory, 0x72F2DF18, 0x00000013)
+  ssdt8.dsl:105:        Field (HGOP, AnyAcc, Lock, Preserve)
+  ssdt8.dsl:106:        {
+  ssdt8.dsl:107:            DGDA,   32, 
+  ssdt8.dsl:108:            DGBA,   32, 
+  ssdt8.dsl:109:            DGPV,   16, 
+  ssdt8.dsl:110:            OPTF,   8, 
+  ssdt8.dsl:118:
+  ssdt8.dsl:119:    Scope (\_SB.PCI0.GPP0.PEGP)
+  ssdt8.dsl:120:    {
+> ssdt8.dsl:121:        OperationRegion (VBOR, SystemMemory, 0x7AE1F018, 0x00040004)
+  ssdt8.dsl:122:        Field (VBOR, DWordAcc, Lock, Preserve)
+  ssdt8.dsl:123:        {
+  ssdt8.dsl:124:            RVBS,   32, 
+  ssdt8.dsl:125:            VBS1,   262144, 
+  ssdt8.dsl:126:            VBS2,   262144, 
+  ssdt8.dsl:127:            VBS3,   262144, 
+  ssdt8.dsl:135:
+  ssdt8.dsl:136:    Scope (\_SB.PCI0.GPP0.PEGP)
+  ssdt8.dsl:137:    {
+> ssdt8.dsl:138:        OperationRegion (NOPR, SystemMemory, 0x7AE1C018, 0x00002028)
+  ssdt8.dsl:139:        Field (NOPR, AnyAcc, Lock, Preserve)
+  ssdt8.dsl:140:        {
+  ssdt8.dsl:141:            DHPS,   8, 
+  ssdt8.dsl:142:            DPCS,   8, 
+  ssdt8.dsl:143:            GPSS,   8, 
+  ssdt8.dsl:144:            VENS,   8, 
+  ssdt8.dsl:340:            PG00, 
+  ssdt8.dsl:341:        })
+  ssdt8.dsl:342:        Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
+> ssdt8.dsl:343:        OperationRegion (RPCX, SystemMemory, \_SB.PCI0.DGBA, 0x1000)
+  ssdt8.dsl:344:        Field (RPCX, DWordAcc, NoLock, Preserve)
+  ssdt8.dsl:345:        {
+  ssdt8.dsl:346:            RVID,   32, 
+  ssdt8.dsl:347:            CMDR,   8, 
+  ssdt8.dsl:348:            Offset (0x19), 
+  ssdt8.dsl:349:            PRBN,   8, 
+  ssdt8.dsl:419:        Name (_PSC, Zero)  // _PSC: Power State Current
+  ssdt8.dsl:420:        Name (GPRF, Zero)
+  ssdt8.dsl:421:        Name (OPCE, 0x02)
+> ssdt8.dsl:422:        OperationRegion (PCIM, SystemMemory, \_SB.PCI0.DGDA, 0x1000)
+  ssdt8.dsl:423:        Field (PCIM, DWordAcc, NoLock, Preserve)
+  ssdt8.dsl:424:        {
+  ssdt8.dsl:425:            NVID,   16, 
+  ssdt8.dsl:426:            NDID,   16, 
+  ssdt8.dsl:427:            CMDR,   8, 
+  ssdt8.dsl:428:            VGAR,   2008, 
+  ssdt8.dsl:431:            HDAE,   1
+  ssdt8.dsl:432:        }
+  ssdt8.dsl:433:
+> ssdt8.dsl:434:        OperationRegion (DGPU, SystemMemory, \_SB.PCI0.DGDA, 0x0100)
+  ssdt8.dsl:435:        Field (DGPU, DWordAcc, NoLock, Preserve)
+  ssdt8.dsl:436:        {
+  ssdt8.dsl:437:            Offset (0x10), 
+  ssdt8.dsl:438:            MPEG,   32, 
+  ssdt8.dsl:439:            Offset (0x40), 
+  ssdt8.dsl:440:            SSSV,   32
+  ssdt8.dsl:441:        }
+  ssdt8.dsl:442:
+> ssdt8.dsl:443:        OperationRegion (NVMM, SystemMemory, MPEG, 0x00022500)
+  ssdt8.dsl:444:        Field (NVMM, DWordAcc, NoLock, Preserve)
+  ssdt8.dsl:445:        {
+  ssdt8.dsl:446:            Offset (0x22408), 
+  ssdt8.dsl:447:            H265,   32
+  ssdt8.dsl:448:        }
+  ssdt8.dsl:449:
+> ssdt8.dsl:450:        OperationRegion (PCIS, PCI_Config, Zero, 0x0100)
+  ssdt8.dsl:451:        Field (PCIS, AnyAcc, NoLock, Preserve)
+  ssdt8.dsl:452:        {
+  ssdt8.dsl:453:            PVID,   16, 
+  ssdt8.dsl:454:            PDID,   16
+  ssdt8.dsl:455:        }
+  ssdt8.dsl:456:
+  ssdt8.dsl:4342:            })
+  ssdt8.dsl:4343:        }
+  ssdt8.dsl:4344:
+> ssdt8.dsl:4345:        OperationRegion (SMIP, SystemIO, 0xB0, One)
+  ssdt8.dsl:4346:        Field (SMIP, ByteAcc, NoLock, Preserve)
+  ssdt8.dsl:4347:        {
+  ssdt8.dsl:4348:            IOB0,   8
+  ssdt8.dsl:4349:        }
+  ssdt8.dsl:4350:
+  ssdt8.dsl:4351:        Device (LCD0)
+  ssdt8.dsl:4601:            {
+  ssdt8.dsl:4602:                Name (TEMP, Zero)
+  ssdt8.dsl:4603:                CreateByteField (Arg2, Zero, MODF)
+> ssdt8.dsl:4604:                CreateDWordField (Arg2, 0x04, LEDB)
+  ssdt8.dsl:4605:                While (One)
+  ssdt8.dsl:4606:                {
+  ssdt8.dsl:4607:                    TEMP = Arg1
+  ssdt8.dsl:4608:                    If ((TEMP == One))
+  ssdt8.dsl:4609:                    {
+  ssdt8.dsl:4610:                        If ((MODF == Zero))
+  ssdt8.dsl:4614:                        }
+  ssdt8.dsl:4615:                        ElseIf ((MODF == One))
+  ssdt8.dsl:4616:                        {
+> ssdt8.dsl:4617:                            LEDB |= 0x8000
+> ssdt8.dsl:4618:                            \_SB.PCI0.LPC0.EC0.EPWM = LEDB /* \_SB_.PCI0.AWMI.WMAA.LEDB */
+  ssdt8.dsl:4619:                            Return (Zero)
+  ssdt8.dsl:4620:                        }
+  ssdt8.dsl:4621:                        ElseIf ((MODF == 0x02))
+  ssdt8.dsl:4622:                        {
+  ssdt8.dsl:4623:                            Return (0x0320)
+  ssdt8.dsl:4624:                        }
+  ssdt8.dsl:4650:                        }
+  ssdt8.dsl:4651:                        ElseIf ((MODF == One))
+  ssdt8.dsl:4652:                        {
+> ssdt8.dsl:4653:                            If ((LEDB < 0x03))
+  ssdt8.dsl:4654:                            {
+  ssdt8.dsl:4655:                                Return (Zero)
+  ssdt8.dsl:4656:                            }
+  ssdt8.dsl:4657:
+  ssdt8.dsl:4658:                            Return (One)
+  ssdt8.dsl:4659:                        }
+
+
